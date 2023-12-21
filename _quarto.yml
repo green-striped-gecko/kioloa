@@ -1,0 +1,30 @@
+project:
+  type: book
+book:
+  title: "dartRbook"
+  author: "Bernd Gruber, Arthur Georges, Carlo Pacioni, Luis Mijangos"
+  date: "22/11/2023"
+  chapters:
+    - index.qmd
+    - install.qmd
+    - basicfiltering.qmd
+#    - summary.qmd
+#    - summary2.qmd
+    - references.qmd
+
+bibliography: references.bib
+highlight-style: pygments
+
+format:
+  PrettyPDF-pdf: 
+      keep-tex: true
+      toc: true
+
+#  docx:
+#    reference-doc: template.docx
+  html:
+    theme: cosmo
+    css: "css.css"
+
+editor: visual
+

@@ -1,0 +1,39 @@
+# Preamble {.unnumbered}
+
+
+This is a Quarto book and the following page is just for convenience when writing the book.
+
+(so just ignore)
+
+
+
+::: callout-note
+## Exercise
+
+![](images/task.png){#id .class width="48" height="48"} Note that there are five types of callouts, including: `note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+::: {.blackbox data-latex=""}
+**NOTICE!** Thank you for noticing this **new notice**! Your noticing it has been noted, and *will be reported to the authorities*!
+:::
+
+::: {.infobox .task data-latex="{task}"}
+**NOTICE!**
+
+Thank you for noticing this **new notice**! Your noticing it has been noted, and *will be reported to the authorities*!
+:::
+
+<img src="images/pirat.png" align="right" width="100" height="100"/>
+
+### Next
+
+
+```{r  class.output="output"}
+cat("sdaafsadfsdafasd")
+
+1+1
+
+```
+
+As demonstrated by @gruber2018 we can do the following.
+see also @mijangos2022
