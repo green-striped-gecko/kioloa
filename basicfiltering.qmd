@@ -106,7 +106,7 @@ gl.report.secondaries(gl)
 
 The output is a bit more complex than one might expect. The total number of SNPs scored in the dataset gl is 119,414 residing on 70,942 sequence tags. So there are many sequence tags with more than one SNP (indeed 28,769). Filtering on secondaries will remove 48,477 SNPs. The function models the frequency spectrum of SNPs per sequence tag with a zero truncated Poisson Distribution (strictly the distribution is a compound Poisson as lamda varies) and uses that distribution to estimate the unknown zero class -- the number of sequence tags expected to contain no SNP (that is, the invariant sequence tags). This value of 7,317,732 can be used to correct the denominator for estimates of heterozygosity.
 
-This estimation is best shown in a graph. [@Arthur: the original example with gl does not give a plot]
+This estimation is best shown in a graph. [@knut84: the original example with gl does not give a plot]
 
 ```{r}
 gl.report.secondaries(bandicoot.gl, verbose=1)

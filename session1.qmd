@@ -1,0 +1,43 @@
+# Session 1 {.unnumbered}
+
+by xhxhxsd
+
+here comes all the stuff from the first session 
+
+A
+
+sdfsdafsdaf
+
+
+## subheading on the right first
+
+
+sdfkljsjdalfkjsda;lfjsdakfjsda
+
+
+### subsubsdfsdafads
+
+
+more stuff sdfsadfsjkdaf;sdalfsdafsda fsda
+
+
+::: callout-warning
+## be careful
+
+![](images/pirat.png){#id .class width="48" height="48"} Note that there are five types of callouts, including: `note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+
+
+
+::: callout-note
+## Exercise
+
+![](images/task.png){#id .class width="48" height="48"} Note that there are five types of callouts, including: `note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+
+```{r}
+plot(1)
+```
+

@@ -1,11 +1,12 @@
 project:
   type: book
 book:
-  title: "dartRbook"
+  title: "kioloa PopGen"
   author: "Bernd Gruber, Arthur Georges, Carlo Pacioni, Luis Mijangos"
   date: "22/11/2023"
   chapters:
     - index.qmd
+    - session1.qmd
     - install.qmd
     - basicfiltering.qmd
 #    - summary.qmd
