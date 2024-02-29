@@ -1,9 +1,0 @@
-# Landscape genomics
-
-Tutorial on landscape genomics
-
-
-
-```{r, eval=FALSE}
-3 + 8
-```
