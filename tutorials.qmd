@@ -1,9 +1,23 @@
 # dartR Tutorials {#sec-tutes}
 
-## Data Structure
+## `dartR` RStudio Refresher
 
-{{< pdf tutorial3.pdf width=100% height=600 >}}
+{{< pdf tutorials/Tutorial_1_dartR_RStudio_Refresher.pdf width=100% height=600 >}}
+
+## `dartR` Installation
+
+{{< pdf tutorials/Tutorial_2_dartR_Installation.pdf width=100% height=600 >}}
+
+## Data Structure and Input
+
+{{< pdf tutorials/Tutorial_3_dartR_Data_Structures_and_Input.pdf width=100% height=600 >}}
 
 ## Data Manipulation
 
-{{< pdf tutorial3.pdf width=100% height=600 >}}
+{{< pdf tutorials/Tutorial_4_Data_Manipulation.pdf width=100% height=600 >}}
+
+## `dartR` Basic Filtering
+
+{{< pdf tutorials/Tutorial_5_dartR_Basic_Filtering.pdf width=100% height=600 >}}
+
+
