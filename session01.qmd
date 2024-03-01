@@ -1,0 +1,105 @@
+
+# 1 Intro to dartR {.unnumbered}
+
+*Session leads*
+
+![](images/Presenters1.png)
+
+## Required packages
+
+```{r, eval=FALSE}
+library(dartR.base)
+library(dartR.data)
+```
+
+## dartR fundamentals
+
+Here is a glimpse at some of the functions we will be using.
+
+```{r, eval=FALSE}
+testset.gl
+
+gl <- testset.gl
+nInd(gl)
+nLoc(gl)
+nPop(gl)
+popNames(gl)
+indNames(gl)
+locNames(gl)
+table(pop(gl))
+as.matrix(gl)[1:7,1:5]
+
+gl.set.verbosity(3)
+gl.report.callrate(gl)
+gl.report.callrate(gl,method="ind")
+gl.report.reproducibility(gl)
+gl.filter.callrate(gl,method ="ind", threshold=0.8)
+
+```
+
+## EXERCISE
+
+::: callout-note
+## Exercise
+
+![](images/task.png){#id .class width="48" height="48"} Try some of these report, subset, and filtering functions on your own.
+
+### Reporting
+
+```{r, eval=FALSE}
+gl.report.callrate()
+gl.report.reproducibility()
+gl.report.secondaries()
+gl.report.rdepth()
+gl.report.monomorphs()
+gl.report.overhang()
+gl.report.hamming()
+gl.report.overshoot()
+
+```
+
+### Subsetting
+
+```{r, eval=FALSE}
+gl.keep.ind()
+gl.drop.ind()
+gl.keep.loc()
+gl.drop.loc()
+gl.keep.pop()
+gl.drop.pop()
+gl.merge.pop()
+gl.subsample.ind()
+gl.subsample.loc()
+
+```
+
+*for a more in depth walk through see the* [dartR Tutorials](tutorials.qmd) *section.*
+
+### filtering
+
+```{r, eval=FALSE}
+gl.filter.callrate()
+gl.filter.reproducibility()
+gl.filter.secondaries()
+gl.filter.rdepth()
+gl.filter.monomorphs()
+gl.filter.overhang()
+gl.filter.hamming()
+gl.filter.overshoot()
+
+```
+
+::: callout-tip
+**Remember**, you can always look up the help file for `dartRverse` functions by putting a question mark (?) before a function. For example:
+
+```{r, eval=FALSE}
+?gl.filter.callrate
+```
+
+*Make sure you have the associated library loaded* (eg. `libary(dartR.base)`)
+:::
+:::
+
+## Further Readings
+
+For more tuturials see the [dartR Tutorials](tutorials.qmd) section

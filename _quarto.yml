@@ -1,31 +1,29 @@
 project:
   type: book
+  output-dir: docs
 book:
-  title: "kioloa PopGen"
+  title: "Kioloa PopGen"
   author: "Bernd Gruber, Arthur Georges, Carlo Pacioni, Luis Mijangos"
-  date: "22/11/2023"
+  date: "02/28/2024"
   chapters:
     - index.qmd
-    - session1.qmd
+    - schedule.qmd
     - install.qmd
-    - basicfiltering.qmd
-#    - summary.qmd
-#    - summary2.qmd
+    - session01.qmd
+    - session02.qmd
+    - session10.qmd
     - references.qmd
+    - break.qmd
+    - tutorials.qmd
 
 bibliography: references.bib
 highlight-style: pygments
 
 format:
-  PrettyPDF-pdf: 
-      keep-tex: true
-      toc: true
 
-#  docx:
-#    reference-doc: template.docx
   html:
     theme: cosmo
     css: "css.css"
+    number-sections: false
 
 editor: visual
-

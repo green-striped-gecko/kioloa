@@ -1,0 +1,149 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kioloa PopGen",
+    "section": "",
+    "text": "Welcome!\nWelcome, Fellow Magical Beings, to our 5-day spellbinding journey in the mystical realm of Population Genetics using the ancient art of R! We’re over the moon (and not just because we’ve mastered levitation spells) to have you join us at the enchanted Kioloa ANU Coastal Campus. Nestled among the spellbound forests of Murramarang Nation Park and the crystal-clear waters of southern New South Wales, our meeting lair couldn’t be more perfect. When you’re not weaving R spells, you’ll find yourself spoiled for choice with magical brews (a.k.a. coffee) and breathtaking sceneries.\nOur coven is as varied as the potions in a wizard’s pantry, bringing together sorcerers from all corners of the realm. Here, every sorcerer and sorceress will don both the student’s cloak and the teacher’s hat, expanding their arcane knowledge in genetics for the noble causes of biodiversity conservation and ecosystem restoration. Expect a cauldron bubbling with interaction, where being right is as celebrated as making mistakes, where sensitivity meets resilience, and where every voice conjures new spells of knowledge, perspective, and innovation.\nOur quest is to master key incantations in population genetics, with our wands pointed firmly at the R statistical grimoire. We’re ditching the dusty tomes for hands-on magic, aiming to empower you to conjure your own population genetics enchantments by the end of our gathering. And fear not, there will be ample time to apply these spells on your own datasets.\nOur magic words? Cooperation, flexibility, and dedication. We embark on this journey with a spirit of camaraderie, ready to share potions, carry scrolls, and lend a helping wand in times of need. The path may twist and turn, with unexpected dragons (breakdowns), storms (rain), and spells gone awry (tech hiccups), but our collective humour and knack for improvisation will see us through.\nWe are united by a deep-seated dedication to unravelling the mysteries of genetics, a passion that burns as bright within you as it does within us. We believe this adventure will be rewarding not just intellectually, but also aesthetically, socially, and culturally. We can’t wait to embark on this enchanting journey with you. May our time together be as fulfilling as finding the philosopher’s stone!"
+  },
+  {
+    "objectID": "index.html#here-are-some-things-you-might-see-along-your-journey",
+    "href": "index.html#here-are-some-things-you-might-see-along-your-journey",
+    "title": "Kioloa PopGen",
+    "section": "Here are some things you might see along your journey:",
+    "text": "Here are some things you might see along your journey:\nBelow is an exercise box, this is encouraging you to give it a go yourself!\n\n\n\n\n\n\nExercise\n\n\n\n Note that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\nBelow is a caution box, take note, this will keep you on your path.\n\n\n\n\n\n\nCaution\n\n\n\nNOTICE!\nThank you for noticing this new notice! Your noticing it has been noted, and will be reported to the authorities!\n\n\nBelow is a warning box! Be careful and take head of what it says.\n\n\n\n\n\n\nWarning\n\n\n\nNOTICE! Thank you for noticing this new notice! Your noticing it has been noted, and will be reported to the authorities!"
+  },
+  {
+    "objectID": "index.html#a-big-thank-you-to-the-developers",
+    "href": "index.html#a-big-thank-you-to-the-developers",
+    "title": "Kioloa PopGen",
+    "section": "A big thank you to the developers!",
+    "text": "A big thank you to the developers!\nDartR published first by Gruber et al. (2018), and DartR V2 published by Mijangos et al. (2022)\n\n\n\n\nGruber, Bernd, Peter J. Unmack, Oliver F. Berry, and Arthur Georges. 2018. “DARTR : An R Package to Facilitate Analysis of SNP Data Generated from Reduced Representation Genome Sequencing.” Molecular Ecology Resources 18 (3): 691–99. https://doi.org/10.1111/1755-0998.12745.\n\n\nMijangos, Jose Luis, Bernd Gruber, Oliver Berry, Carlo Pacioni, and Arthur Georges. 2022. “dartR V2: An Accessible Genetic Analysis Platform for Conservation, Ecology and Agriculture.” Methods in Ecology and Evolution 13 (10): 2150–58. https://doi.org/10.1111/2041-210X.13918."
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Program",
+    "section": "",
+    "text": "#\nDay\nTime\nTopic\nPresenters\n\n\n\n\n1\nMon\n2 pm - 4 pm\nWelcome, Intro dartR\nOliver Berry, Andrzej Killian, Arthur Georges, Bernd Gruber, Renee Catullo\n\n\n2\n\n5 pm – 7 pm\nPop Gen In Conservation & Restoration\nBill Sherwin, Carlo Pacioni, Renee Catullo\n\n\n3\nTue\n9 am – 11 am\nSequencing Technologies\nJason Carling, Andrew Kowalczyk, Renee Catullo\n\n\n4\n\n12 pm – 2 pm\nData Management, Reproducibility & Integrity\nJiajia Li\n\n\n5\n\n3 pm – 5 pm\nEffective Population Size\nBernd Gruber, Carlo Pacioni, Bill Sherwin\n\n\n6\nWed\n9 am – 11 am\nManagement Of Small Populations\nCatherine Grueber, Kate Farquharson\n\n\n7\n\n12 pm – 2 pm\nNatural Selection\nLuciano Beheregaray, Chris Brauer, Jonathan Sandoval\n\n\n8\n\n3 pm – 5 pm\nLandscape Genetics\nBernd Gruber, Robyn Shaw\n\n\n9\nThu\n9 am – 11 am\nLineage Divergence\nArthur Georges, Sally Potter, Craig Moritz\n\n\n10\n\n12 pm – 2 pm\nSex Linked Markers\nDiana Robledo, Floriaan Devloo-Delva\n\n\n11\n\n7 pm – 9 pm\nFrom Genes to Kin: Dissecting Relatedness & Kinship\nJinliang Wang, Luis Mijangos, Natasha Marosi\n\n\n12\nFri\n9 am – 11 am\nGenetic Structure\nArthur Georges, Bernd Gruber, Bill Sherwin\n\n\n13\n\n12 pm – 2 pm\nCombining Genomic Resources\nLuis Mijangos, Sally Potter"
+  },
+  {
+    "objectID": "install.html#rationale",
+    "href": "install.html#rationale",
+    "title": "Install dartRverse",
+    "section": "Rationale",
+    "text": "Rationale\nWe have developed a new suit of packages called “dartRverse” packages, that will replace the previous dartR package, which soon will be no longer supported. The new suit of packages are meant to be a 1:1 replacement and only in some instance very minor changes will be needed to update previous code. For example we reworked on the “output” of all functions, now being able to save figures in specified folders, which can be easier recovered and manipulated for further tweaking. The main reasons for splitting dartR into several packages and developing the dartRverse suit of packages was difficulty to maintain dartR, because of limits imposed by CRAN, but also limits due the the long time to test new function, when compiling the package. Therefore we were forced to split the package into several smaller packages. This has several advantages and in the best of all cases no disadvantages.\n\neasier maintenance\nfaster development\nless dependencies on other packages\neasier to become a contributor\nhave your own package developed that can be branded as part of the dartRverse\n\nThe main paradigm was also that for our users nothing (or at as little as possible) needed to change and all existing code and scripts should still work. Also the installation process was meant to be straightforward and finally the coexistance between dartR and dartRverse packages should be possible (for the interim until dartR will be no longer supported)."
+  },
+  {
+    "objectID": "install.html#installation",
+    "href": "install.html#installation",
+    "title": "Install dartRverse",
+    "section": "Installation",
+    "text": "Installation\n\ninstall dartRverse\n\n#installs the necessary bioconductor packages\ninstall.packages(\"devtools\")\ninstall.packages(\"BiocManager\")\nBiocManager::install(\"SNPRelate\")\n\n#install dartRverse (dartRverse) & core (dartR.base, dartR.data)\ninstall.packages(\"dartRverse\")\n\nThe dartRverse package is the first package to install and its only purpose is to support the installation of the other dartRverse packages. It will also be the first port of call to provide links to tutorials and other documentation.\nIf everything works well this should install two more packages with form the core version of dartRverse, nameley dartR.base and dartR.data. Those core packages have all the main function of old dartR package that deals with input, conversion, reporting and filtering of data. Also some base function to analysse data (e.g. PCoA, Fst) are included.\nOnce the dartRverse package has been installed we can load the package to check which part of the dartRverse has been installed.\n\nlibrary(dartRverse)\n\n\n\n\n\n\n\n\ninstall additional packages\nNow we can install the additional packages that are part of the dartRverse. Depending on your needs you can install all of them or only the one you are interested.\nFor example if you are interested in additional functions to analyse population structure (e.g. run STRUCTURE or faststructure) you can install the dartR.popgen package. If you are interested in functions that support the simulation of data you can install the dartR.sim package.\nYou can check which packages are avaialbel and which of them you have installed by typing:\n\ndartRverse::dartRverse_install()\n\n\n\n\n\n\nThe currently available packages are:\n\ndartR.sim (simulate SNP data)\ndartR.popgen (run population genetic analysis)\ndartR.spatial (run landscape genetic analysis)\ndartR.captive (estimate relatedness, support captive breeding)\ndartR.sexlinked (identify sexlinked markers, not ready yet)\n\nSo to install the dartR.sim simply type:\n\ninstall.packages(\"dartR.sim\")\ninstall.packages(\"dartR.popgen\")\ninstall.packages(\"dartR.spatial\")\ninstall.packages(\"dartR.captive\")\n# currently dartR.sexlinked requires a different installation process (see below)\n\n\n\nGithub repositories\nWe make all of our packages available via CRAN. The reason for this is that CRAN packages follow a stringent testing before they are allowed to be uploaded to CRAN and therefore are more likely to contain less errors then packages that are available on other repositories. Nevertheless we also make our packages available during development via github.\nYou can find the repositories under: https://github.com/green-striped-gecko/dartR.base [for the dartR.base package] and equivalent for the other packages.\nThe reason why you might want to install a package from github is that you want to use the latest version of the package. However, you should be aware that the packages on github are not tested and therefore might contain errors. Also the packages on github might be updated on a daily basis and therefore might change without notice.\nWe use different branches and they are reflecting different stages of development and majurity.\n\nmain (the main branch, which is equivalent to the current CRAN version)\ndev (development branch, which has the latest functions that might be in the next CRAN version, but have not been tested yet)\ndev_name (these are branches of our main developers and are used for testing and development of new functions. Installing functions from here might cause problems and should only be done if you know what you are doing)\n\ndartRverse supports the installation of github version of the packages using the following syntax:\ndartRverse_install(package = \"dartR.base\", repo = \"github\", branch = \"dev\")\nThis install the dev branch of dartR.base from CRAN. All main and dev branches are tested if they can be installed (and some additional error checks via): https://github.com/green-striped-gecko/dartRverse\nPlease note that you should provide the package repository (github/cran), the branch (main, dev,dev_name) and version number in case you want to report a bug. You can use the github methods to report issues or use our google group: https://groups.google.com/d/forum/dartr.\n\n\nInstalling dartR.sexlinked\ndartRverse_install(package = \"dartR.sexlinked\", repo = \"github\", branch = \"dev\")"
+  },
+  {
+    "objectID": "install.html#using-dartrverse",
+    "href": "install.html#using-dartrverse",
+    "title": "Install dartRverse",
+    "section": "using dartRverse",
+    "text": "using dartRverse\nTo use dartRverse you can simply load the package and use it as before.\n\nlibrary(dartRverse)"
+  },
+  {
+    "objectID": "install.html#using-legacy-dartr",
+    "href": "install.html#using-legacy-dartr",
+    "title": "Install dartRverse",
+    "section": "Using legacy dartR",
+    "text": "Using legacy dartR\nFor whatever reason you might want to use legacy dartR, instead of the dartRverse packages [e.g. for initial testing]. For a detailed explanation on how to do this see the dartR Tutorials section that has an in depth walk through of how to do this in the Installing R tutorial PDF."
+  },
+  {
+    "objectID": "session01.html#required-packages",
+    "href": "session01.html#required-packages",
+    "title": "1 Intro to dartR",
+    "section": "Required packages",
+    "text": "Required packages\n\nlibrary(dartR.base)\nlibrary(dartR.data)"
+  },
+  {
+    "objectID": "session01.html#dartr-fundamentals",
+    "href": "session01.html#dartr-fundamentals",
+    "title": "1 Intro to dartR",
+    "section": "dartR fundamentals",
+    "text": "dartR fundamentals\nHere is a glimpse at some of the functions we will be using.\n\ntestset.gl\n\ngl &lt;- testset.gl\nnInd(gl)\nnLoc(gl)\nnPop(gl)\npopNames(gl)\nindNames(gl)\nlocNames(gl)\ntable(pop(gl))\nas.matrix(gl)[1:7,1:5]\n\ngl.set.verbosity(3)\ngl.report.callrate(gl)\ngl.report.callrate(gl,method=\"ind\")\ngl.report.reproducibility(gl)\ngl.filter.callrate(gl,method =\"ind\", threshold=0.8)"
+  },
+  {
+    "objectID": "session01.html#exercise",
+    "href": "session01.html#exercise",
+    "title": "1 Intro to dartR",
+    "section": "EXERCISE",
+    "text": "EXERCISE\n\n\n\n\n\n\nExercise\n\n\n\n Try some of these report, subset, and filtering functions on your own.\n\nReporting\n\ngl.report.callrate()\ngl.report.reproducibility()\ngl.report.secondaries()\ngl.report.rdepth()\ngl.report.monomorphs()\ngl.report.overhang()\ngl.report.hamming()\ngl.report.overshoot()\n\n\n\nSubsetting\n\ngl.keep.ind()\ngl.drop.ind()\ngl.keep.loc()\ngl.drop.loc()\ngl.keep.pop()\ngl.drop.pop()\ngl.merge.pop()\ngl.subsample.ind()\ngl.subsample.loc()\n\nfor a more in depth walk through see the dartR Tutorials section.\n\n\nfiltering\n\ngl.filter.callrate()\ngl.filter.reproducibility()\ngl.filter.secondaries()\ngl.filter.rdepth()\ngl.filter.monomorphs()\ngl.filter.overhang()\ngl.filter.hamming()\ngl.filter.overshoot()\n\n\n\n\n\n\n\nTip\n\n\n\nRemember, you can always look up the help file for dartRverse functions by putting a question mark (?) before a function. For example:\n\n?gl.filter.callrate\n\nMake sure you have the associated library loaded (eg. libary(dartR.base))"
+  },
+  {
+    "objectID": "session01.html#further-readings",
+    "href": "session01.html#further-readings",
+    "title": "1 Intro to dartR",
+    "section": "Further Readings",
+    "text": "Further Readings\nFor more tuturials see the dartR Tutorials section"
+  },
+  {
+    "objectID": "session02.html",
+    "href": "session02.html",
+    "title": "2 Pop Gen In Conservation",
+    "section": "",
+    "text": "still to come…"
+  },
+  {
+    "objectID": "session10.html#required-packages",
+    "href": "session10.html#required-packages",
+    "title": "10 Sex Linked Markers",
+    "section": "Required packages",
+    "text": "Required packages\n\nlibrary(dartR.base)\nlibrary(dartR.sexlinked)"
+  },
+  {
+    "objectID": "session10.html#dataset-1---zwzz---the-yellow-tufted-honeyeater",
+    "href": "session10.html#dataset-1---zwzz---the-yellow-tufted-honeyeater",
+    "title": "10 Sex Linked Markers",
+    "section": "Dataset 1 - ZW//ZZ - The Yellow Tufted Honeyeater",
+    "text": "Dataset 1 - ZW//ZZ - The Yellow Tufted Honeyeater\n\n\n\nThe Yellow Tufted Honeyeater\n\n\n\nLoad data\n\ncodedataSNPsIndividuals\n\n\n\ndata(\"YTH\")\n\nYTH  # Explore the dataset\nYTH@n.loc  # Number of SNPs\nlength(YTH@ind.names)  # Number of individuals\n\n\n\n\n\n ********************\n *** DARTR OBJECT ***\n ********************\n\n ** 609 genotypes,  994 SNPs , size: 49.9 Mb\n\n    missing data: 139174 (=22.99 %) scored as NA\n\n ** Genetic data\n   @gen: list of 609 SNPbin\n   @ploidy: ploidy of each individual  (range: 2-2)\n\n ** Additional data\n   @ind.names:  609 individual labels\n   @loc.names:  994 locus labels\n   @loc.all:  994 allele labels\n   @position: integer storing positions of the SNPs [within 69 base sequence]\n   @pop: population of each individual (group size range: 12-516)\n   @other: a list containing: loc.metrics, ind.metrics, loc.metrics.flags, verbose, history \n    @other$ind.metrics: id, pop, sex, sex_original, service, plate_location \n    @other$loc.metrics: AlleleID, CloneID, AlleleSequence, TrimmedSequence, Chrom_Lichenostomus_HeHo_v1, ChromPos_Lichenostomus_HeHo_v1, AlnCnt_Lichenostomus_HeHo_v1, AlnEvalue_Lichenostomus_HeHo_v1, SNP, SnpPosition, CallRate, OneRatioRef, OneRatioSnp, FreqHomRef, FreqHomSnp, FreqHets, PICRef, PICSnp, AvgPIC, AvgCountRef, AvgCountSnp, RepAvg, clone, uid, rdepth, maf \n   @other$latlon[g]: no coordinates attached\n\n\n\n\n\n\n[1] 994\n\n\n\n\n\n\n[1] 609\n\n\n\n\n\n\n\nRun filter.sex.linked\nThis function identifies sex-linked and autosomal loci present in a SNP dataset (i.e., genlight object) using individuals with known sex. It identifies five types of loci: w-linked or y-linked, sex-biased, z-linked or x-linked, gametologous and autosomal.\nThe genlight object must contain in gl@other$ind.metrics a column named “id”, and a column named “sex” in which individuals with known-sex are assigned ‘M’ for male, or ‘F’ for female. The function ignores individuals that are assigned anything else or nothing at all (unknown-sex).\n\n\n\nZW/ZZ sex chromosomes\n\n\n\n\n\n\n\n\nTip\n\n\n\nNOTE\nSet ncores to more than 1 (default) if you have more than 50,000 SNPs, since it could actually slow down the analysis with smaller datasets.\n\n\n\ncodetable\n\n\n\nhead(YTH@other$ind.metrics)  # Check that ind.metrics has the necessary columns\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nid\npop\nsex\nsex_original\nservice\nplate_location\n\n\n\n\nANWC46839\nANWC46839\nMelanops\nF\nF\nDLich17-2918\n1-A1\n\n\nW49\nW49\nCassidix\nF\nF\nDLich17-2918\n1-A10\n\n\nW90\nW90\nCassidix\nF\nF\nDLich17-2918\n1-A12\n\n\nC25\nC25\nCassidix\nM\nM\nDLich17-2918\n1-A2\n\n\nC8\nC8\nCassidix\nM\nM\nDLich17-2918\n1-A3\n\n\nW70\nW70\nCassidix\nF\nF\nDLich17-2918\n1-A4\n\n\n\n\n\n\n\n\n\ncodeoutput\n\n\n\nres &lt;- dartR.sexlinked::filter.sex.linked(gl = YTH, system = \"zw\")\n\n\n\n\n\nDetected 276 females and 333 males.\n\n\nStarting phase 1. May take a while...\n\n\nBuilding call rate plots.\n\n\n\n\n\nDone. Starting phase 2.\n\n\nBuilding heterozygosity plots.\n\n\n\n\n\n\n\n\nDone building heterozygosity plots.\n\n\n**FINISHED** Total of analyzed loci: 994.\nFound 506 sex-linked loci:\n   52 W-linked loci\n   273 sex-biased loci\n   165 Z-linked loci\n   16 ZW gametologs.\nAnd 488 autosomal loci.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExercise\n\n\n\n\nHow many males and females does the dataset contain?\nHow many sex-linked loci were found?\n\n\nNow check the output:\n\ncodew.linkedz.linkedgametologsex.biasedautosomaltable\n\n\n\nres$w.linked  # Notice that it says 'w-linked'\nres$z.linked  # Notice that it says 'z-linked'\nres$gametolog\nres$sex.biased\nres$autosomal\nknitr::kable(head(res$results.table))  # The output table\n\n\n\n\n\n ********************\n *** DARTR OBJECT ***\n ********************\n\n ** 609 genotypes,  52 SNPs , size: 48.9 Mb\n\n    missing data: 17304 (=54.64 %) scored as NA\n\n ** Genetic data\n   @gen: list of 609 SNPbin\n   @ploidy: ploidy of each individual  (range: 2-2)\n\n ** Additional data\n   @ind.names:  609 individual labels\n   @loc.names:  52 locus labels\n   @loc.all:  52 allele labels\n   @position: integer storing positions of the SNPs [within 69 base sequence]\n   @pop: population of each individual (group size range: 12-516)\n   @other: a list containing: loc.metrics, ind.metrics, loc.metrics.flags, verbose, history \n    @other$ind.metrics: id, pop, sex, sex_original, service, plate_location \n    @other$loc.metrics: AlleleID, CloneID, AlleleSequence, TrimmedSequence, Chrom_Lichenostomus_HeHo_v1, ChromPos_Lichenostomus_HeHo_v1, AlnCnt_Lichenostomus_HeHo_v1, AlnEvalue_Lichenostomus_HeHo_v1, SNP, SnpPosition, CallRate, OneRatioRef, OneRatioSnp, FreqHomRef, FreqHomSnp, FreqHets, PICRef, PICSnp, AvgPIC, AvgCountRef, AvgCountSnp, RepAvg, clone, uid, rdepth, maf \n   @other$latlon[g]: no coordinates attached\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe output consists of a genlight object for each type of loci, plus a results table.\n\n\nRun infer.sex\nThis function uses the complete output of function filter.sex.linked (list of 6 objects) to infer the sex of all individuals in the dataset. Specifically, the function uses 3 types of sex-linked loci (W-/Y-linked, Z-/X-linked, and gametologs), assigns a preliminary genetic sex for each type of sex-linked loci available, and outputs an agreed sex.\n\nsexID &lt;- dartR.sexlinked::infer.sex(gl_sex_filtered = res, system = \"zw\",\n    seed = 124)\n\n***FINISHED***\n\nknitr::kable(head(sexID))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nid\nw.linked.sex\n#missing\n#called\nz.linked.sex\n#Hom.z\n#Het.z\ngametolog.sex\n#Hom.g\n#Het.g\nagreed.sex\n\n\n\n\nANWC46839\nANWC46839\nF\n51\n1\nF\n1\n141\nF\n5\n0\nF\n\n\nW49\nW49\nF\n52\n0\nF\n2\n156\nF\n5\n0\nF\n\n\nW90\nW90\nF\n48\n4\nF\n0\n162\nF\n5\n0\nF\n\n\nC25\nC25\nM\n0\n52\nM\n52\n113\nM\n0\n5\nM\n\n\nC8\nC8\nM\n0\n52\nM\n48\n116\nM\n0\n5\nM\n\n\nW70\nW70\nF\n49\n3\nF\n0\n152\nF\n5\n0\nF\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nIMPORTANT We created this function with the explicit intent that a human checks the evidence for the agreed sex that do NOT agree for all types of sex-linked loci (denoted as ‘*M’ or ‘*F’). This human can then use their criterion to validate these assignments.\n\n\n\n\n\n\n\n\nExercise\n\n\n\n\nCan you find individuals for which the agreed sex is uncertain (i.e., has an asterisk “*”)?"
+  },
+  {
+    "objectID": "session10.html#exercise-2",
+    "href": "session10.html#exercise-2",
+    "title": "10 Sex Linked Markers",
+    "section": "EXERCISE",
+    "text": "EXERCISE\n\n\n\n\n\n\nExercise\n\n\n\n\nImagine you are analyzing the genetic data of a population and you want to look at its genetic structure and genetic diversity. You get to work by filtering your beautiful set of SNPs. Because you are a rigorous, you want to test whether using function filter.sex.linked to properly filter out sex-linked loci changes the results of the populations analyses. So you: (1) process your SNP dataset by applying standard filters and run analyses, and (2) process the dataset by filtering out sex-linked loci first, applying standard filters second, and then run analyses.\nChoose one of the following datasets (or your own data) and report:\n\nHow many sex-linked markers are present?\nHow many individuals had a wrong sexID?\nDo you see any changes in your PCA/structure analyses when you filtered out sex-linked markers versus when you did not?\nDo you see any differences in genetic diversity and fixation indices when you filtered out sex-linked markers versus when you did not?\n\n\n\n \n \n\nExercise data 1 - Your own data\n\nHINT\nYou can have a look at the exercise data below for inspiration.\n\n\n1. Number of sex-linked markers?\n\n\n2. Individuals with wrong sexID?\n\n\n3. Changes in PCA before and after removing the SLM?\n\n\n4. Differences in genetic diversity and fixation indices between autosomal and SLM?\n\n\n\nExercise data 2 - The Eastern Yellow Robin\nData from Robledo-Ruiz et al. (2023)\n\n\n\nThe Eastern Yellow Robin"
+  },
+  {
+    "objectID": "session10.html#further-readings",
+    "href": "session10.html#further-readings",
+    "title": "10 Sex Linked Markers",
+    "section": "Further Readings",
+    "text": "Further Readings\nDevloo-Delva, F., Burridge, C. P., Kyne, P. M., Brunnschweiler, J. M., Chapman, D. D., Charvet, P., … & Feutry, P. (2023). From rivers to ocean basins: The role of ocean barriers and philopatry in the genetic structuring of a cosmopolitan coastal predator. Ecology and Evolution, 13(2), e9837. https://doi.org/10.1002/ece3.9837\nNikolic, N., Devloo-Delva, F., Bailleul, D., Noskova, E., Rougeux, C., Delord, C., … & Arnaud‐Haond, S. (2023). Stepping up to genome scan allows stock differentiation in the worldwide distributed blue shark Prionace glauca. Molecular Ecology, 32(5), 1000-1019. https://doi.org/10.1111/mec.16822\nRobledo-Ruiz, D. A., Austin, L., Amos, J. N., Castrejón-Figueroa, J., Harley, D. K. P., Magrath, M. J. L., Sunnucks, P., & Pavlova, A. (2023). Easy-to-use R functions to separate reduced-representation genomic datasets into sex-linked and autosomal loci, and conduct sex assignment. Molecular Ecology Resources, 00, 1–21. https://doi.org/10.1111/1755-0998.13844\n\n\n\n\nRobledo-Ruiz, Diana A., Lana Austin, J. Nevil Amos, Jesús Castrejón-Figueroa, Daniel K. P. Harley, Michael J. L. Magrath, Paul Sunnucks, and Alexandra Pavlova. 2023. “Easy-to-Use R Functions to Separate Reduced-Representation Genomic Datasets into Sex-Linked and Autosomal Loci, and Conduct Sex Assignment.” Molecular Ecology Resources 0 (n/a). https://doi.org/10.1111/1755-0998.13844."
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Gruber, Bernd, Peter J. Unmack, Oliver F. Berry, and Arthur Georges.\n2018. “DARTR : An R Package\nto Facilitate Analysis of SNP Data Generated from Reduced\nRepresentation Genome Sequencing.” Molecular Ecology\nResources 18 (3): 691–99. https://doi.org/10.1111/1755-0998.12745.\n\n\nMijangos, Jose Luis, Bernd Gruber, Oliver Berry, Carlo Pacioni, and\nArthur Georges. 2022. “dartR V2:\nAn Accessible Genetic Analysis Platform for Conservation,\nEcology and Agriculture.” Methods in Ecology and\nEvolution 13 (10): 2150–58. https://doi.org/10.1111/2041-210X.13918.\n\n\nRobledo-Ruiz, Diana A., Lana Austin, J. Nevil Amos, Jesús\nCastrejón-Figueroa, Daniel K. P. Harley, Michael J. L. Magrath, Paul\nSunnucks, and Alexandra Pavlova. 2023. “Easy-to-Use R\nFunctions to Separate Reduced-Representation Genomic Datasets into\nSex-Linked and Autosomal Loci, and Conduct Sex Assignment.”\nMolecular Ecology Resources 0 (n/a). https://doi.org/10.1111/1755-0998.13844."
+  },
+  {
+    "objectID": "break.html",
+    "href": "break.html",
+    "title": "__________",
+    "section": "",
+    "text": "Everything beyond this point is for added learning, we hope you have fun exploring all the amazing things the dartRverse has to offer."
+  },
+  {
+    "objectID": "tutorials.html#data-structure",
+    "href": "tutorials.html#data-structure",
+    "title": "dartR Tutorials",
+    "section": "Data Structure",
+    "text": "Data Structure\nUnable to display PDF file. Download instead."
+  },
+  {
+    "objectID": "tutorials.html#data-manipulation",
+    "href": "tutorials.html#data-manipulation",
+    "title": "dartR Tutorials",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\nUnable to display PDF file. Download instead."
+  }
+]
