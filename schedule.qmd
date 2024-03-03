@@ -1,11 +1,11 @@
 ---
-title: "Program"
 format: html
 editor: visual
 ---
+# Program {.unnumbered}
 
-| #   | Day  |     Time        |       **Topic**          |                     Presenters |
-|:---:|------|:---------------:|:------------------------:|:------------------------------:|
+| \#  | Day |     Time     |                         **Topic**                          |                                 Presenters                                 |
+|:----------:|------------|:----------:|:--------------:|:------------------:|
 |  1  | Mon | 2 pm - 4 pm  |         [**Welcome, Intro dartR**](session01.qmd)          | Oliver Berry, Andrzej Killian, Arthur Georges, Bernd Gruber, Renee Catullo |
 |  2  |     | 5 pm – 7 pm  | [**Pop Gen In Conservation & Restoration**](session02.qmd) |                 Bill Sherwin, Carlo Pacioni, Renee Catullo                 |
 |  3  | Tue | 9 am – 11 am |                **Sequencing Technologies**                 |               Jason Carling, Andrew Kowalczyk, Renee Catullo               |
@@ -20,4 +20,4 @@ editor: visual
 | 12  | Fri | 9 am – 11 am |                   **Genetic Structure**                    |                 Arthur Georges, Bernd Gruber, Bill Sherwin                 |
 | 13  |     | 12 pm – 2 pm |              **Combining Genomic Resources**               |                        Luis Mijangos, Sally Potter                         |
 
-: {tbl-colwidths="[5,5,20, 30, 40]" .striped .bordered}
+: {tbl-colwidths="\[5,5,20, 30, 40\]" .striped .bordered}

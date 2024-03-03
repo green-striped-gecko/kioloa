@@ -108,7 +108,6 @@ To use dartRverse you can simply load the package and use it as before.
 library(dartRverse)
 ```
 
-
 ## Using legacy dartR
 
 For whatever reason you might want to use legacy dartR, instead of the dartRverse packages \[e.g. for initial testing\]. For a detailed explanation on how to do this see the [dartR Tutorials](tutorials.qmd) section that has an in depth walk through of how to do this in the Installing R tutorial PDF.

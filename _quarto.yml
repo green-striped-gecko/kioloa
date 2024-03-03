@@ -11,7 +11,17 @@ book:
     - install.qmd
     - session01.qmd
     - session02.qmd
+    - session03.qmd
+    - session04.qmd
+    - session05.qmd
+    - session06.qmd
+    - session07.qmd
+    - session08.qmd
+    - session09.qmd
     - session10.qmd
+    - session11.qmd
+    - session12.qmd
+    - session13.qmd
     - references.qmd
     - break.qmd
     - tutorials.qmd
@@ -24,6 +34,7 @@ format:
   html:
     theme: cosmo
     css: "css.css"
-    number-sections: false
+    number-depth: 1
+    
 
 editor: visual

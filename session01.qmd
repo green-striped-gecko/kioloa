@@ -1,7 +1,6 @@
+# Intro to dartR
 
-# 1 Intro to dartR {.unnumbered}
-
-*Session leads*
+*Session Presenters*
 
 ![](images/Presenters1.png)
 
@@ -12,7 +11,11 @@ library(dartR.base)
 library(dartR.data)
 ```
 
-## dartR fundamentals
+*make sure you have the packages installed, see* [Install dartRverse](install.qmd)
+
+## Session Content
+
+### dartR fundamentals
 
 Here is a glimpse at some of the functions we will be using.
 
@@ -100,6 +103,6 @@ gl.filter.overshoot()
 :::
 :::
 
-## Further Readings
+## Further Study
 
 For more tuturials see the [dartR Tutorials](tutorials.qmd) section

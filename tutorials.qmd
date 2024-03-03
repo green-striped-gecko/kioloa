@@ -1,4 +1,4 @@
-# dartR Tutorials {#sec-tutes}
+# dartR Tutorials {.unnumbered}
 
 ## `dartR` RStudio Refresher
 
@@ -19,5 +19,3 @@
 ## `dartR` Basic Filtering
 
 {{< pdf tutorials/Tutorial_5_dartR_Basic_Filtering.pdf width=100% height=600 >}}
-
-

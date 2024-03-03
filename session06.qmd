@@ -1,14 +1,13 @@
-# Pop Gen In Conservation {#sec-s1}
+# Management of Small Populations
 
 *Session Presenters*
 
-![](images/Presenters2.png)
+![](images/Presentersxx.png)
 
 ## Required packages
 
 ```{r, eval=FALSE}
 library(dartR.base)
-library(dartR.data)
 ```
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
@@ -28,3 +27,7 @@ Still to come...
 ## Further Study
 
 still to come...
+
+file.copy(from = '.')
+
+file.copy(from = paste0(mediaDir, media_mp3), to = paste0("./\_audio/", media_mp3))

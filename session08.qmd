@@ -1,14 +1,13 @@
-# Pop Gen In Conservation {#sec-s1}
+# Landscape Genetics
 
 *Session Presenters*
 
-![](images/Presenters2.png)
+![](images/Presentersxx.png)
 
 ## Required packages
 
 ```{r, eval=FALSE}
 library(dartR.base)
-library(dartR.data)
 ```
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
