@@ -6,6 +6,10 @@
 
 ## *Required packages*
 
+```{r, include = FALSE}
+ library(webexercises)
+```
+
 ```{r, warning=FALSE, message=FALSE}
 library(dartR.base)
 library(dartR.data)
@@ -48,10 +52,15 @@ library(dartR.data)
 
 ### The structure of a genlight object
 ![](images/genlight_structure.jpg){#id .class width="600" fig-align="left"}
-For a detailed rundown of the genetic data check out the tuturial on **Data Structure and Input** found in the [dartR Tutorials](tutorials.qmd) section.
+
+For a detailed rundown of the genetic data used by the `dartRverse`, check out the tuturial on **Data Structure and Input** found in the [dartR Tutorials](tutorials.qmd) section.
 
 ### the Basics
 Here is a glimpse at the functions we will be using. Please follow along, or try running the `code` on your own. 
+
+::: panel-tabset
+
+##### code
 
 ```{r, output=FALSE}
 testset.gl
@@ -66,16 +75,45 @@ locNames(gl)
 table(pop(gl))
 as.matrix(gl)[1:7,1:5]
 
-gl.set.verbosity(3)
-
 ```
 
+##### genlight
+
+```{r}
+testset.gl
+```
+
+:::
+
+
+::: callout-note
+## Quiz!
+![](images/task.png){#id .class width="48" height="48"}This quiz is refering to the `testset.gl` dataset you have interrogated above.
+
+Type the correct number into the blank boxes below: 
+
+* number of SNPs `r fitb(255)`
+* number of individuals `r fitb(250)`
+* number of populations `r fitb(30)`
+
+*boxes will go green if you have the answer correct*
+
+::: 
+
+
+#### Reporting and Filtering
 ::: panel-tabset
 
 ##### code
+```{r, include=FALSE}
+gl.set.verbosity(3)
+```
+
 ```{r, eval=FALSE}
+gl.set.verbosity(3)
+
 gl.report.callrate(gl)               # loci callrate             
-gl.report.callrate(gl,method="ind")  # ind callrate
+gl.report.callrate(gl,method="ind")  # individual callrate
 gl.report.reproducibility(gl)        # reproducibility
 
 # filter
@@ -89,7 +127,7 @@ gl.report.callrate(gl)
 
 ```
 
-##### ind callrate
+##### individual callrate
 ```{r}
 gl.report.callrate(gl,method="ind")
 
@@ -152,8 +190,6 @@ gl.subsample.ind()
 gl.subsample.loc()
 
 ```
-
-*for a more in depth walk through see the* [dartR Tutorials](tutorials.qmd) *section.*
 
 ### filtering
 

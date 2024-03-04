@@ -2,40 +2,38 @@ project:
   type: book
   output-dir: docs
 book:
-  title: "Kioloa PopGen"
-  author: "Bernd Gruber, Arthur Georges, Carlo Pacioni, Luis Mijangos"
-  date: "02/28/2024"
+  title: Kioloa PopGen
+  author: Bernd Gruber, Arthur Georges, Carlo Pacioni, Luis Mijangos
+  date: 02/28/2024
   chapters:
-    - index.qmd
-    - schedule.qmd
-    - install.qmd
-    - session01.qmd
-    - session02.qmd
-    - session03.qmd
-    - session04.qmd
-    - session05.qmd
-    - session06.qmd
-    - session07.qmd
-    - session08.qmd
-    - session09.qmd
-    - session10.qmd
-    - session11.qmd
-    - session12.qmd
-    - session13.qmd
-    - break.qmd
-    - references.qmd
-    - useful.qmd
-    - tutorials.qmd
-
+  - index.qmd
+  - schedule.qmd
+  - install.qmd
+  - session01.qmd
+  - session02.qmd
+  - session03.qmd
+  - session04.qmd
+  - session05.qmd
+  - session06.qmd
+  - session07.qmd
+  - session08.qmd
+  - session09.qmd
+  - session10.qmd
+  - session11.qmd
+  - session12.qmd
+  - session13.qmd
+  - break.qmd
+  - references.qmd
+  - useful.qmd
+  - tutorials.qmd
 bibliography: references.bib
 highlight-style: pygments
-
 format:
-
   html:
     theme: cosmo
-    css: "css.css"
+    css:
+    - css.css
+    - include/webex.css
     number-depth: 1
-    
-
+    include-after-body: include/webex.js
 editor: visual

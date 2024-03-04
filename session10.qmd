@@ -14,18 +14,18 @@ knitr::opts_chunk$set(tidy = TRUE, tidy.opts = list(width.cutoff = 72),
                       echo = TRUE)
 ```
 
-# Required packages
+## *Required packages*
 
 ```{r, warning=FALSE, message=FALSE}
 library(dartR.base)
 library(dartR.sexlinked)
 ```
 
-# Dataset 1 - ZW//ZZ - The Yellow Tufted Honeyeater
+## Dataset 1 - ZW//ZZ - The Yellow Tufted Honeyeater
 
 ![The Yellow Tufted Honeyeater](images/Yellow_Tufted_Honeyeater.jpg)
 
-## Load data
+### Load data
 
 ```{r}
 data("YTH")
@@ -35,7 +35,7 @@ length(YTH@ind.names) # Number of individuals
 
 ```
 
-## Run `filter.sex.linked`
+### Run `filter.sex.linked`
 
 This function identifies sex-linked and autosomal loci present in a SNP dataset (i.e., genlight object) using individuals with known sex. It identifies five types of loci: w-linked or y-linked, sex-biased, z-linked or x-linked, gametologous and autosomal.
 
@@ -55,7 +55,7 @@ res <- dartR.sexlinked::filter.sex.linked(gl = YTH, system = "zw")
 ```
 
 ::: callout-note
-## Exercise
+### Exercise
 
 ![](images/task.png){#id .class width="48" height="48"}
 
@@ -77,7 +77,7 @@ knitr::kable(head(res$results.table))  # The output table
 
 The output consists of a genlight object for each type of loci, plus a results table.
 
-## Run `infer.sex`
+### Run `infer.sex`
 
 This function uses the complete output of function filter.sex.linked (list of 6 objects) to infer the sex of all individuals in the dataset. Specifically, the function uses 3 types of sex-linked loci (W-/Y-linked, Z-/X-linked, and gametologs), assigns a preliminary genetic sex for each type of sex-linked loci available, and outputs an `agreed sex`.
 
@@ -87,23 +87,23 @@ sexID <- dartR.sexlinked::infer.sex(gl_sex_filtered = res, system = "zw", seed =
 knitr::kable(head(sexID))
 ```
 
-::: blackbox
+::: callout-warning
 **IMPORTANT** We created this function with the explicit intent that a human checks the evidence for the `agreed sex` that do NOT agree for all types of sex-linked loci (denoted as '\*M' or '\*F'). This human can then use their criterion to validate these assignments.
 :::
 
 ::: callout-note
-## Exercise
+### Exercise
 
 ![](images/task.png){.class width="48" height="48"}
 
 Can you find individuals for which the `agreed sex` is uncertain (i.e., has an asterisk "\*")?
 :::
 
-# Dataset 2 - XX/XY - The Leadbeater's possum
+## Dataset 2 - XX/XY - The Leadbeater's possum
 
 ![The Leadbeater's possum](images/Leadbeaters_possum.jpg)
 
-## Load data
+### Load data
 
 ```{r}
 data("LBP")
@@ -112,7 +112,7 @@ LBP@n.loc             # Number of SNPs
 length(LBP@ind.names) # Number of individuals
 ```
 
-## Run `filter.sex.linked`
+### Run `filter.sex.linked`
 
 This function identifies sex-linked and autosomal loci present in a SNP dataset (genlight object) using individuals with known sex. It identifies five types of loci: w-linked or y-linked, sex-biased, z-linked or x-linked, gametologous and autosomal.
 
@@ -126,7 +126,7 @@ res <- dartR.sexlinked::filter.sex.linked(gl = LBP, system = "xy")
 ```
 
 ::: callout-note
-## Exercise
+### Exercise
 
 ![](images/task.png){.class width="48" height="48"}
 
@@ -148,7 +148,7 @@ knitr::kable(head(res$results.table))  # The output table
 
 The output consists of a genlight object for each type of loci, plus a results table.
 
-## Run `infer.sex`
+### Run `infer.sex`
 
 This function uses the output of function filter.sex.linked (list of 6 objects) to infer the sex of all individuals in the dataset. It uses 3 types of sex-linked loci (W-/Y-linked, Z-/X-linked, and gametologs), assigns a preliminary genetic sex for each type of sex-linked loci available, and outputs an `agreed sex`.
 
@@ -160,14 +160,14 @@ knitr::kable(head(sexID))
 What did the function mention about gametologs? How did that impact the results table? How many types of sex-linked loci were used to infer an `agreed sex`?
 
 ::: callout-note
-## Exercise
+### Exercise
 
 ![](images/task.png){.class width="48" height="48"}
 
 Can you find individuals for which the `agreed sex` is uncertain (i.e., has an asterisk "\*")?
 :::
 
-# EXERCISE
+## EXERCISES
 
 ::: callout-note
 ## Exercise
@@ -199,15 +199,21 @@ Choose one of the following datasets (or your own data) and report:
 You can have a look at the exercise data below for inspiration.
 :::
 
-### 1. Number of sex-linked markers?
+::: callout-note
+### Exercise - Your own data
+ 1. Number of sex-linked markers?
 
-### 2. Individuals with wrong sexID?
+ 2. Individuals with wrong sexID?
 
-### 3. Changes in PCA before and after removing the SLM?
+ 3. Changes in PCA before and after removing the SLM?
 
-### 4. Differences in genetic diversity and fixation indices between autosomal and SLM?
+ 4. Differences in genetic diversity and fixation indices between autosomal and SLM?
+
+:::
 
 ## Exercise data 2 - The Eastern Yellow Robin
+
+
 
 Data from Robledo-Ruiz et al. 2023.
 
@@ -403,6 +409,8 @@ knitr::kable(head(sexID))
 agreed.sex <- sub(pattern = "\\*", replacement = "", x = sexID$agreed.sex) # remove asterisk
 sum(data.gl$other$ind.metrics$sex != agreed.sex, na.rm = TRUE)
 ```
+
+# *Further study*
 
 # References
 

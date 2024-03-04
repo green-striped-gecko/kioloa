@@ -98,6 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="css.css">
+<link rel="stylesheet" href="include/webex.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -264,50 +265,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages"><span class="header-section-number">11</span> Required packages</a></li>
-  <li><a href="#dataset-1---zwzz---the-yellow-tufted-honeyeater" id="toc-dataset-1---zwzz---the-yellow-tufted-honeyeater" class="nav-link" data-scroll-target="#dataset-1---zwzz---the-yellow-tufted-honeyeater"><span class="header-section-number">12</span> Dataset 1 - ZW//ZZ - The Yellow Tufted Honeyeater</a>
+  <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages"><em>Required packages</em></a></li>
+  <li><a href="#dataset-1---zwzz---the-yellow-tufted-honeyeater" id="toc-dataset-1---zwzz---the-yellow-tufted-honeyeater" class="nav-link" data-scroll-target="#dataset-1---zwzz---the-yellow-tufted-honeyeater">Dataset 1 - ZW//ZZ - The Yellow Tufted Honeyeater</a>
   <ul class="collapse">
   <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">Load data</a></li>
   <li><a href="#run-filter.sex.linked" id="toc-run-filter.sex.linked" class="nav-link" data-scroll-target="#run-filter.sex.linked">Run <code>filter.sex.linked</code></a></li>
   <li><a href="#run-infer.sex" id="toc-run-infer.sex" class="nav-link" data-scroll-target="#run-infer.sex">Run <code>infer.sex</code></a></li>
   </ul></li>
-  <li><a href="#dataset-2---xxxy---the-leadbeaters-possum" id="toc-dataset-2---xxxy---the-leadbeaters-possum" class="nav-link" data-scroll-target="#dataset-2---xxxy---the-leadbeaters-possum"><span class="header-section-number">13</span> Dataset 2 - XX/XY - The Leadbeater’s possum</a>
+  <li><a href="#dataset-2---xxxy---the-leadbeaters-possum" id="toc-dataset-2---xxxy---the-leadbeaters-possum" class="nav-link" data-scroll-target="#dataset-2---xxxy---the-leadbeaters-possum">Dataset 2 - XX/XY - The Leadbeater’s possum</a>
   <ul class="collapse">
   <li><a href="#load-data-1" id="toc-load-data-1" class="nav-link" data-scroll-target="#load-data-1">Load data</a></li>
   <li><a href="#run-filter.sex.linked-1" id="toc-run-filter.sex.linked-1" class="nav-link" data-scroll-target="#run-filter.sex.linked-1">Run <code>filter.sex.linked</code></a></li>
   <li><a href="#run-infer.sex-1" id="toc-run-infer.sex-1" class="nav-link" data-scroll-target="#run-infer.sex-1">Run <code>infer.sex</code></a></li>
   </ul></li>
-  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4"><span class="header-section-number">14</span> EXERCISE</a>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">EXERCISES</a></li>
+  <li><a href="#exercise-data-1---your-own-data" id="toc-exercise-data-1---your-own-data" class="nav-link" data-scroll-target="#exercise-data-1---your-own-data">Exercise data 1 - Your own data</a></li>
+  <li><a href="#exercise-data-2---the-eastern-yellow-robin" id="toc-exercise-data-2---the-eastern-yellow-robin" class="nav-link" data-scroll-target="#exercise-data-2---the-eastern-yellow-robin">Exercise data 2 - The Eastern Yellow Robin</a>
   <ul class="collapse">
-  <li><a href="#exercise-data-1---your-own-data" id="toc-exercise-data-1---your-own-data" class="nav-link" data-scroll-target="#exercise-data-1---your-own-data">Exercise data 1 - Your own data</a>
-  <ul class="collapse">
+  <li><a href="#load-data-2" id="toc-load-data-2" class="nav-link" data-scroll-target="#load-data-2">Load data</a></li>
   <li><a href="#number-of-sex-linked-markers" id="toc-number-of-sex-linked-markers" class="nav-link" data-scroll-target="#number-of-sex-linked-markers">1. Number of sex-linked markers?</a></li>
   <li><a href="#individuals-with-wrong-sexid" id="toc-individuals-with-wrong-sexid" class="nav-link" data-scroll-target="#individuals-with-wrong-sexid">2. Individuals with wrong sexID?</a></li>
   <li><a href="#changes-in-pca-before-and-after-removing-the-slm" id="toc-changes-in-pca-before-and-after-removing-the-slm" class="nav-link" data-scroll-target="#changes-in-pca-before-and-after-removing-the-slm">3. Changes in PCA before and after removing the SLM?</a></li>
   <li><a href="#differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm" id="toc-differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm" class="nav-link" data-scroll-target="#differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm">4. Differences in genetic diversity and fixation indices between autosomal and SLM?</a></li>
   </ul></li>
-  <li><a href="#exercise-data-2---the-eastern-yellow-robin" id="toc-exercise-data-2---the-eastern-yellow-robin" class="nav-link" data-scroll-target="#exercise-data-2---the-eastern-yellow-robin">Exercise data 2 - The Eastern Yellow Robin</a>
-  <ul class="collapse">
-  <li><a href="#load-data-2" id="toc-load-data-2" class="nav-link" data-scroll-target="#load-data-2">Load data</a></li>
-  <li><a href="#number-of-sex-linked-markers-1" id="toc-number-of-sex-linked-markers-1" class="nav-link" data-scroll-target="#number-of-sex-linked-markers-1">1. Number of sex-linked markers?</a></li>
-  <li><a href="#individuals-with-wrong-sexid-1" id="toc-individuals-with-wrong-sexid-1" class="nav-link" data-scroll-target="#individuals-with-wrong-sexid-1">2. Individuals with wrong sexID?</a></li>
-  <li><a href="#changes-in-pca-before-and-after-removing-the-slm-1" id="toc-changes-in-pca-before-and-after-removing-the-slm-1" class="nav-link" data-scroll-target="#changes-in-pca-before-and-after-removing-the-slm-1">3. Changes in PCA before and after removing the SLM?</a></li>
-  <li><a href="#differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm-1" id="toc-differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm-1" class="nav-link" data-scroll-target="#differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm-1">4. Differences in genetic diversity and fixation indices between autosomal and SLM?</a></li>
-  </ul></li>
   <li><a href="#exercise-data-3---bull-shark" id="toc-exercise-data-3---bull-shark" class="nav-link" data-scroll-target="#exercise-data-3---bull-shark">Exercise data 3 - Bull shark</a>
   <ul class="collapse">
   <li><a href="#load-data-3" id="toc-load-data-3" class="nav-link" data-scroll-target="#load-data-3">Load data</a></li>
-  <li><a href="#number-of-sex-linked-markers-2" id="toc-number-of-sex-linked-markers-2" class="nav-link" data-scroll-target="#number-of-sex-linked-markers-2">1. Number of sex-linked markers?</a></li>
-  <li><a href="#individuals-with-wrong-sexid-2" id="toc-individuals-with-wrong-sexid-2" class="nav-link" data-scroll-target="#individuals-with-wrong-sexid-2">2. Individuals with wrong sexID?</a></li>
+  <li><a href="#number-of-sex-linked-markers-1" id="toc-number-of-sex-linked-markers-1" class="nav-link" data-scroll-target="#number-of-sex-linked-markers-1">1. Number of sex-linked markers?</a></li>
+  <li><a href="#individuals-with-wrong-sexid-1" id="toc-individuals-with-wrong-sexid-1" class="nav-link" data-scroll-target="#individuals-with-wrong-sexid-1">2. Individuals with wrong sexID?</a></li>
   </ul></li>
   <li><a href="#exercise-data-4---blue-shark" id="toc-exercise-data-4---blue-shark" class="nav-link" data-scroll-target="#exercise-data-4---blue-shark">Exercise data 4 - Blue shark</a>
   <ul class="collapse">
   <li><a href="#load-data-4" id="toc-load-data-4" class="nav-link" data-scroll-target="#load-data-4">Load data</a></li>
-  <li><a href="#number-of-sex-linked-markers-3" id="toc-number-of-sex-linked-markers-3" class="nav-link" data-scroll-target="#number-of-sex-linked-markers-3">1. Number of sex-linked markers?</a></li>
-  <li><a href="#individuals-with-wrong-sexid-3" id="toc-individuals-with-wrong-sexid-3" class="nav-link" data-scroll-target="#individuals-with-wrong-sexid-3">2. Individuals with wrong sexID?</a></li>
+  <li><a href="#number-of-sex-linked-markers-2" id="toc-number-of-sex-linked-markers-2" class="nav-link" data-scroll-target="#number-of-sex-linked-markers-2">1. Number of sex-linked markers?</a></li>
+  <li><a href="#individuals-with-wrong-sexid-2" id="toc-individuals-with-wrong-sexid-2" class="nav-link" data-scroll-target="#individuals-with-wrong-sexid-2">2. Individuals with wrong sexID?</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">15</span> References</a></li>
+  <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study"><span class="header-section-number">11</span> <em>Further study</em></a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">12</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -333,23 +327,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p><em>Session leads</em></p>
 <p><img src="images/Presenters10.png" class="img-fluid"></p>
-<section id="required-packages" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Required packages</h1>
+<section id="required-packages" class="level2">
+<h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-1_85621c4f5f5209ba3371089efdd34589">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.base)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.sexlinked)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="dataset-1---zwzz---the-yellow-tufted-honeyeater" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Dataset 1 - ZW//ZZ - The Yellow Tufted Honeyeater</h1>
+<section id="dataset-1---zwzz---the-yellow-tufted-honeyeater" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-1---zwzz---the-yellow-tufted-honeyeater">Dataset 1 - ZW//ZZ - The Yellow Tufted Honeyeater</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Yellow_Tufted_Honeyeater.jpg" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">The Yellow Tufted Honeyeater</figcaption>
 </figure>
 </div>
-<section id="load-data" class="level2">
-<h2 class="anchored" data-anchor-id="load-data">Load data</h2>
+<section id="load-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-data">Load data</h3>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-2_dc92a28dee5bd74956d8ff98e402f2d4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"YTH"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>YTH  <span class="co"># Explore the dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -387,8 +381,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="run-filter.sex.linked" class="level2">
-<h2 class="anchored" data-anchor-id="run-filter.sex.linked">Run <code>filter.sex.linked</code></h2>
+<section id="run-filter.sex.linked" class="level3">
+<h3 class="anchored" data-anchor-id="run-filter.sex.linked">Run <code>filter.sex.linked</code></h3>
 <p>This function identifies sex-linked and autosomal loci present in a SNP dataset (i.e., genlight object) using individuals with known sex. It identifies five types of loci: w-linked or y-linked, sex-biased, z-linked or x-linked, gametologous and autosomal.</p>
 <p><em>The genlight object must contain in gl@other$ind.metrics a column named “id”, and a column named “sex” in which individuals with known-sex are assigned ‘M’ for male, or ‘F’ for female. The function ignores individuals that are assigned anything else or nothing at all (unknown-sex).</em></p>
 <div class="quarto-figure quarto-figure-center">
@@ -886,8 +880,8 @@ Exercise
 </div>
 <p>The output consists of a genlight object for each type of loci, plus a results table.</p>
 </section>
-<section id="run-infer.sex" class="level2">
-<h2 class="anchored" data-anchor-id="run-infer.sex">Run <code>infer.sex</code></h2>
+<section id="run-infer.sex" class="level3">
+<h3 class="anchored" data-anchor-id="run-infer.sex">Run <code>infer.sex</code></h3>
 <p>This function uses the complete output of function filter.sex.linked (list of 6 objects) to infer the sex of all individuals in the dataset. Specifically, the function uses 3 types of sex-linked loci (W-/Y-linked, Z-/X-linked, and gametologs), assigns a preliminary genetic sex for each type of sex-linked loci available, and outputs an <code>agreed sex</code>.</p>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-5_383902b45e0977a60bd2fcc0585da9d4">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sexID <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">infer.sex</span>(<span class="at">gl_sex_filtered =</span> res, <span class="at">system =</span> <span class="st">"zw"</span>,</span>
@@ -1017,8 +1011,18 @@ Exercise
 </table>
 </div>
 </div>
-<div class="blackbox">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>IMPORTANT</strong> We created this function with the explicit intent that a human checks the evidence for the <code>agreed sex</code> that do NOT agree for all types of sex-linked loci (denoted as ‘*M’ or ‘*F’). This human can then use their criterion to validate these assignments.</p>
+</div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1036,16 +1040,16 @@ Exercise
 </div>
 </section>
 </section>
-<section id="dataset-2---xxxy---the-leadbeaters-possum" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Dataset 2 - XX/XY - The Leadbeater’s possum</h1>
+<section id="dataset-2---xxxy---the-leadbeaters-possum" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-2---xxxy---the-leadbeaters-possum">Dataset 2 - XX/XY - The Leadbeater’s possum</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Leadbeaters_possum.jpg" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">The Leadbeater’s possum</figcaption>
 </figure>
 </div>
-<section id="load-data-1" class="level2">
-<h2 class="anchored" data-anchor-id="load-data-1">Load data</h2>
+<section id="load-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="load-data-1">Load data</h3>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-6_98a6fcc393aaf0780ec8b25090d01e65">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"LBP"</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>LBP  <span class="co"># Explore the dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1083,8 +1087,8 @@ Exercise
 </div>
 </div>
 </section>
-<section id="run-filter.sex.linked-1" class="level2">
-<h2 class="anchored" data-anchor-id="run-filter.sex.linked-1">Run <code>filter.sex.linked</code></h2>
+<section id="run-filter.sex.linked-1" class="level3">
+<h3 class="anchored" data-anchor-id="run-filter.sex.linked-1">Run <code>filter.sex.linked</code></h3>
 <p>This function identifies sex-linked and autosomal loci present in a SNP dataset (genlight object) using individuals with known sex. It identifies five types of loci: w-linked or y-linked, sex-biased, z-linked or x-linked, gametologous and autosomal.</p>
 <p><em>The genlight object must contain in gl@other$ind.metrics a column named “id”, and a column named “sex” in which individuals with known-sex are assigned ‘M’ for male, or ‘F’ for female. The function ignores individuals that are assigned anything else or nothing at all (unknown-sex).</em></p>
 <div class="quarto-figure quarto-figure-center">
@@ -1578,8 +1582,8 @@ Exercise
 </div>
 <p>The output consists of a genlight object for each type of loci, plus a results table.</p>
 </section>
-<section id="run-infer.sex-1" class="level2">
-<h2 class="anchored" data-anchor-id="run-infer.sex-1">Run <code>infer.sex</code></h2>
+<section id="run-infer.sex-1" class="level3">
+<h3 class="anchored" data-anchor-id="run-infer.sex-1">Run <code>infer.sex</code></h3>
 <p>This function uses the output of function filter.sex.linked (list of 6 objects) to infer the sex of all individuals in the dataset. It uses 3 types of sex-linked loci (W-/Y-linked, Z-/X-linked, and gametologs), assigns a preliminary genetic sex for each type of sex-linked loci available, and outputs an <code>agreed sex</code>.</p>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-9_3c21021e999c7411f95843d1fd148ab3">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>sexID <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">infer.sex</span>(<span class="at">gl_sex_filtered =</span> res, <span class="at">system =</span> <span class="st">"xy"</span>,</span>
@@ -1729,8 +1733,8 @@ Exercise
 </div>
 </section>
 </section>
-<section id="exercise-4" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> EXERCISE</h1>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">EXERCISES</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1754,24 +1758,31 @@ Exercise
 </div>
 <p><img src="images/beer.png" class="class" width="350" height="200"> <img src="images/Eastern_Yellow_Robin.jpg" class="img-fluid" alt="The Eastern Yellow Robin" width="349"></p>
 <p><img src="images/Bull_Shark.jpg" class="class" width="350" height="200"> <img src="images/Blue_shark.jpg" class="class" width="350" height="200"></p>
+</section>
 <section id="exercise-data-1---your-own-data" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-data-1---your-own-data">Exercise data 1 - Your own data</h2>
 <div class="infobox">
 <p><strong>HINT</strong></p>
 <p>You can have a look at the exercise data below for inspiration.</p>
 </div>
-<section id="number-of-sex-linked-markers" class="level3">
-<h3 class="anchored" data-anchor-id="number-of-sex-linked-markers">1. Number of sex-linked markers?</h3>
-</section>
-<section id="individuals-with-wrong-sexid" class="level3">
-<h3 class="anchored" data-anchor-id="individuals-with-wrong-sexid">2. Individuals with wrong sexID?</h3>
-</section>
-<section id="changes-in-pca-before-and-after-removing-the-slm" class="level3">
-<h3 class="anchored" data-anchor-id="changes-in-pca-before-and-after-removing-the-slm">3. Changes in PCA before and after removing the SLM?</h3>
-</section>
-<section id="differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm" class="level3">
-<h3 class="anchored" data-anchor-id="differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm">4. Differences in genetic diversity and fixation indices between autosomal and SLM?</h3>
-</section>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise - Your own data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Number of sex-linked markers?</p></li>
+<li><p>Individuals with wrong sexID?</p></li>
+<li><p>Changes in PCA before and after removing the SLM?</p></li>
+<li><p>Differences in genetic diversity and fixation indices between autosomal and SLM?</p></li>
+</ol>
+</div>
+</div>
 </section>
 <section id="exercise-data-2---the-eastern-yellow-robin" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-data-2---the-eastern-yellow-robin">Exercise data 2 - The Eastern Yellow Robin</h2>
@@ -1805,8 +1816,8 @@ Exercise
 </div>
 </div>
 </section>
-<section id="number-of-sex-linked-markers-1" class="level3">
-<h3 class="anchored" data-anchor-id="number-of-sex-linked-markers-1">1. Number of sex-linked markers?</h3>
+<section id="number-of-sex-linked-markers" class="level3">
+<h3 class="anchored" data-anchor-id="number-of-sex-linked-markers">1. Number of sex-linked markers?</h3>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-11_216cdeb297a8f2ce9ed455e326ac5b8c">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">filter.sex.linked</span>(<span class="at">gl =</span> EYR, <span class="at">system =</span> <span class="st">"zw"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1850,8 +1861,8 @@ And 850 autosomal loci.</code></pre>
 </div>
 </div>
 </section>
-<section id="individuals-with-wrong-sexid-1" class="level3">
-<h3 class="anchored" data-anchor-id="individuals-with-wrong-sexid-1">2. Individuals with wrong sexID?</h3>
+<section id="individuals-with-wrong-sexid" class="level3">
+<h3 class="anchored" data-anchor-id="individuals-with-wrong-sexid">2. Individuals with wrong sexID?</h3>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-12_e0a730b2d52cba295ccbeb462f623f75">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>sexID <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">infer.sex</span>(<span class="at">gl_sex_filtered =</span> res, <span class="at">system =</span> <span class="st">"zw"</span>,</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">124</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2547,8 +2558,8 @@ Completed: ::
 </section>
 </section>
 </section>
-<section id="changes-in-pca-before-and-after-removing-the-slm-1" class="level3">
-<h3 class="anchored" data-anchor-id="changes-in-pca-before-and-after-removing-the-slm-1">3. Changes in PCA before and after removing the SLM?</h3>
+<section id="changes-in-pca-before-and-after-removing-the-slm" class="level3">
+<h3 class="anchored" data-anchor-id="changes-in-pca-before-and-after-removing-the-slm">3. Changes in PCA before and after removing the SLM?</h3>
 <section id="pca-on-sloppy-dataset-only-standard-filters" class="level4">
 <h4 class="anchored" data-anchor-id="pca-on-sloppy-dataset-only-standard-filters">PCA on sloppy dataset (only standard filters)</h4>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-15_20a096cf1b24373abb5611afed9d4203">
@@ -2604,8 +2615,8 @@ Package directlabels  needed for this function to work. Please install it.
 </div>
 </section>
 </section>
-<section id="differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm-1" class="level3">
-<h3 class="anchored" data-anchor-id="differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm-1">4. Differences in genetic diversity and fixation indices between autosomal and SLM?</h3>
+<section id="differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm" class="level3">
+<h3 class="anchored" data-anchor-id="differences-in-genetic-diversity-and-fixation-indices-between-autosomal-and-slm">4. Differences in genetic diversity and fixation indices between autosomal and SLM?</h3>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-17_3658a0b05858c54ddb82f38c3e0becf8">
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic stats</span></span>
 <span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>basic.sloppy <span class="ot">&lt;-</span> dartR.base<span class="sc">::</span><span class="fu">utils.basic.stats</span>(EYR.sloppy)</span>
@@ -2837,8 +2848,8 @@ E-ATL  E-IO  Fiji Japan  N-IO W-ATL  W-IO W-PAC
 </div>
 </div>
 </section>
-<section id="number-of-sex-linked-markers-2" class="level3">
-<h3 class="anchored" data-anchor-id="number-of-sex-linked-markers-2">1. Number of sex-linked markers?</h3>
+<section id="number-of-sex-linked-markers-1" class="level3">
+<h3 class="anchored" data-anchor-id="number-of-sex-linked-markers-1">1. Number of sex-linked markers?</h3>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-19_ce4afc82ba1ec2bd420c94dd5ff74198">
 <div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">filter.sex.linked</span>(<span class="at">gl =</span> data.gl, <span class="at">system =</span> <span class="st">"xy"</span>, <span class="at">plots =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncores =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2883,8 +2894,8 @@ And 93193 autosomal loci.</code></pre>
 </div>
 </div>
 </section>
-<section id="individuals-with-wrong-sexid-2" class="level3">
-<h3 class="anchored" data-anchor-id="individuals-with-wrong-sexid-2">2. Individuals with wrong sexID?</h3>
+<section id="individuals-with-wrong-sexid-1" class="level3">
+<h3 class="anchored" data-anchor-id="individuals-with-wrong-sexid-1">2. Individuals with wrong sexID?</h3>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-20_a5a442056c400a0899fa7720a12bcdb5">
 <div class="sourceCode cell-code" id="cb158"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a>sexID <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">infer.sex</span>(<span class="at">gl_sex_filtered =</span> res, <span class="at">system =</span> <span class="st">"xy"</span>,</span>
 <span id="cb158-2"><a href="#cb158-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">124</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3068,8 +3079,8 @@ SWPAC3    WIO
 </div>
 </div>
 </section>
-<section id="number-of-sex-linked-markers-3" class="level3">
-<h3 class="anchored" data-anchor-id="number-of-sex-linked-markers-3">1. Number of sex-linked markers?</h3>
+<section id="number-of-sex-linked-markers-2" class="level3">
+<h3 class="anchored" data-anchor-id="number-of-sex-linked-markers-2">1. Number of sex-linked markers?</h3>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-22_809b2465383734055874c0be24543d3d">
 <div class="sourceCode cell-code" id="cb173"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb173-1"><a href="#cb173-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">filter.sex.linked</span>(<span class="at">gl =</span> data.gl, <span class="at">system =</span> <span class="st">"xy"</span>, <span class="at">plots =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb173-2"><a href="#cb173-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncores =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3114,8 +3125,8 @@ And 172358 autosomal loci.</code></pre>
 </div>
 </div>
 </section>
-<section id="individuals-with-wrong-sexid-3" class="level3">
-<h3 class="anchored" data-anchor-id="individuals-with-wrong-sexid-3">2. Individuals with wrong sexID?</h3>
+<section id="individuals-with-wrong-sexid-2" class="level3">
+<h3 class="anchored" data-anchor-id="individuals-with-wrong-sexid-2">2. Individuals with wrong sexID?</h3>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-23_e7a999c9f02582a5c2e4a50e35f6ca0d">
 <div class="sourceCode cell-code" id="cb181"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a>sexID <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">infer.sex</span>(<span class="at">gl_sex_filtered =</span> res, <span class="at">system =</span> <span class="st">"xy"</span>,</span>
 <span id="cb181-2"><a href="#cb181-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">124</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3255,9 +3266,11 @@ And 172358 autosomal loci.</code></pre>
 </div>
 </section>
 </section>
+<section id="further-study" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> <em>Further study</em></h1>
 </section>
-<section id="references" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> References</h1>
+<section id="references" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> References</h1>
 <p>Devloo-Delva, F., Burridge, C. P., Kyne, P. M., Brunnschweiler, J. M., Chapman, D. D., Charvet, P., … &amp; Feutry, P. (2023). From rivers to ocean basins: The role of ocean barriers and philopatry in the genetic structuring of a cosmopolitan coastal predator. Ecology and Evolution, 13(2), e9837. https://doi.org/10.1002/ece3.9837</p>
 <p>Nikolic, N., Devloo-Delva, F., Bailleul, D., Noskova, E., Rougeux, C., Delord, C., … &amp; Arnaud‐Haond, S. (2023). Stepping up to genome scan allows stock differentiation in the worldwide distributed blue shark <em>Prionace glauca</em>. Molecular Ecology, 32(5), 1000-1019. https://doi.org/10.1111/mec.16822</p>
 <p>Robledo-Ruiz, D. A., Austin, L., Amos, J. N., Castrejón-Figueroa, J., Harley, D. K. P., Magrath, M. J. L., Sunnucks, P., &amp; Pavlova, A. (2023). Easy-to-use R functions to separate reduced-representation genomic datasets into sex-linked and autosomal loci, and conduct sex assignment. Molecular Ecology Resources, 00, 1–21. https://doi.org/10.1111/1755-0998.13844</p>
@@ -3266,6 +3279,212 @@ And 172358 autosomal loci.</code></pre>
 </section>
 
 </main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
