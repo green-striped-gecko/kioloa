@@ -22,8 +22,9 @@ book:
     - session11.qmd
     - session12.qmd
     - session13.qmd
-    - references.qmd
     - break.qmd
+    - references.qmd
+    - useful.qmd
     - tutorials.qmd
 
 bibliography: references.bib

@@ -21,21 +21,32 @@ We are united by a deep-seated dedication to unravelling the mysteries of geneti
 ::: callout-note
 ## Exercise
 
-![](images/task.png){#id .class width="48" height="48"} Note that there are five types of callouts, including: `note`, `warning`, `important`, `tip`, and `caution`.
+![](images/task.png){#id .class width="48" height="48"} Give the `code` a go!
 :::
+
+**Below is a tip box, with added insights for your journey.**
+
+::: callout-tip
+*take a look...*
+
+A variety of things to learn!
+
+:::
+
+
 
 **Below is a caution box, take note, this will keep you on your path.**
 
 ::: callout-caution
-**NOTICE!**
+**Take CARE!** It is easy to go astray, I am here to help.
 
-Thank you for noticing this **new notice**! Your noticing it has been noted, and *will be reported to the authorities*!
 :::
 
 **Below is a warning box! Be careful and take head of what it says.**
 
 ::: callout-warning
-**NOTICE!** Thank you for noticing this **new notice**! Your noticing it has been noted, and *will be reported to the authorities*!
+**NOTICE!** Thank you for noticing this **warning**!
+
 
 <img src="images/pirat.png" align="right" width="100" height="100"/>
 :::

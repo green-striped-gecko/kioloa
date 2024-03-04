@@ -1,0 +1,6 @@
+# More info {.unnumbered}
+
+## Detailed program
+
+{{< pdf tutorials/workshop_program.pdf width=100% height=300 >}}
+

@@ -4,22 +4,56 @@
 
 ![](images/Presenters1.png)
 
-## Required packages
+## *Required packages*
 
-```{r, eval=FALSE}
+```{r, warning=FALSE, message=FALSE}
 library(dartR.base)
 library(dartR.data)
 ```
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
 
-## Session Content
+## The `dartRverse`
 
-### dartR fundamentals
+#### From 1 package to 7
+![](images/dartR7.png)
+*See the section* [Install dartRverse](install.qmd) *to learn about the reasoning behind how the dartRverse came to be...*
 
-Here is a glimpse at some of the functions we will be using.
+## The magical world of RStudio Cloud
 
-```{r, eval=FALSE}
+### Step 1: Summoning the RStudio Cloud Portal
+
+-   **Embark on the Journey:** Open your trusty steed (a.k.a. your web browser) and gallop over to [Rstudio Cloud](https://rstudio.cloud/).
+
+
+-   **Forge Your Credentials:** Spot the "Sign Up" beacon in the realm's upper right corner and click it with courage. Click on the “Learn more” below the “Cloud Free” plan and then in the “Sign Up” button. A scroll will appear, asking for your name, your secret code (password), and your e-mail. Please use the same e-mail you provided when you registered to the workshop.
+
+![](images/cloud_sign_up.png)
+
+-   **Prove Your Worth:** After submitting your details, a pigeon (or was it an email?) will fly into your inbox carrying a secret message. Click the link within to prove you're not a goblin in disguise.
+
+### Step 2: Entering the Secret Workshop Chamber
+
+-   **Return to the Portal:** With your email now verified, make your way back to the RStudio Cloud realm and use your newly forged credentials to enter.
+
+-   **Finding the Secret Door:** One day before the workshop, a link leading to the workshop's chamber will be sent to your e-mail.
+
+### Step 3: Joining the Fellowship of the Project
+
+-   **Locate the Treasure Chest:** Within the grand chamber (workshop space), seek the project “PopGenR” and click on it to reveal its secrets. As you open it for the first time, ancient RStudio Cloud spirits will work their magic to prepare your environment.
+
+![](images/cloud_WS.png){#id .class width="500"}
+
+## `dartR` fundamentals
+
+### The structure of a genlight object
+![](images/genlight_structure.jpg){#id .class width="600" fig-align="left"}
+For a detailed rundown of the genetic data check out the tuturial on **Data Structure and Input** found in the [dartR Tutorials](tutorials.qmd) section.
+
+### the Basics
+Here is a glimpse at the functions we will be using. Please follow along, or try running the `code` on your own. 
+
+```{r, output=FALSE}
 testset.gl
 
 gl <- testset.gl
@@ -33,15 +67,58 @@ table(pop(gl))
 as.matrix(gl)[1:7,1:5]
 
 gl.set.verbosity(3)
-gl.report.callrate(gl)
-gl.report.callrate(gl,method="ind")
-gl.report.reproducibility(gl)
+
+```
+
+::: panel-tabset
+
+##### code
+```{r, eval=FALSE}
+gl.report.callrate(gl)               # loci callrate             
+gl.report.callrate(gl,method="ind")  # ind callrate
+gl.report.reproducibility(gl)        # reproducibility
+
+# filter
 gl.filter.callrate(gl,method ="ind", threshold=0.8)
 
 ```
 
-## EXERCISE
+##### loci callrate
+```{r}
+gl.report.callrate(gl)
 
+```
+
+##### ind callrate
+```{r}
+gl.report.callrate(gl,method="ind")
+
+```
+
+##### reproducibility
+```{r}
+gl.report.reproducibility(gl)
+```
+
+##### filter callrate
+
+```{r}
+gl.filter.callrate(gl,method ="ind", threshold=0.8)
+```
+:::
+
+
+::: callout-tip
+**Remember**, you can always look up the help file for `dartRverse` functions by putting a question mark (?) before a function. 
+
+For example:
+```{r, eval=FALSE}
+?gl.filter.callrate
+```
+*Make sure you have the associated library loaded* (eg. `libary(dartR.base)`)
+:::
+
+### Exploring functions
 ::: callout-note
 ## Exercise
 
@@ -92,17 +169,8 @@ gl.filter.overshoot()
 
 ```
 
-::: callout-tip
-**Remember**, you can always look up the help file for `dartRverse` functions by putting a question mark (?) before a function. For example:
-
-```{r, eval=FALSE}
-?gl.filter.callrate
-```
-
-*Make sure you have the associated library loaded* (eg. `libary(dartR.base)`)
-:::
 :::
 
-## Further Study
+## *Further Study*
 
 For more tuturials see the [dartR Tutorials](tutorials.qmd) section

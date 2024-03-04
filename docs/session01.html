@@ -264,14 +264,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages">Required packages</a></li>
-  <li><a href="#session-content" id="toc-session-content" class="nav-link" data-scroll-target="#session-content">Session Content</a>
+  <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages"><em>Required packages</em></a></li>
+  <li><a href="#the-dartrverse" id="toc-the-dartrverse" class="nav-link" data-scroll-target="#the-dartrverse">The <code>dartRverse</code></a></li>
+  <li><a href="#the-magical-world-of-rstudio-cloud" id="toc-the-magical-world-of-rstudio-cloud" class="nav-link" data-scroll-target="#the-magical-world-of-rstudio-cloud">The magical world of RStudio Cloud</a>
   <ul class="collapse">
-  <li><a href="#the-magical-world-of-rstudio-cloud" id="toc-the-magical-world-of-rstudio-cloud" class="nav-link" data-scroll-target="#the-magical-world-of-rstudio-cloud">The magical world of RStudio Cloud</a></li>
-  <li><a href="#dartr-fundamentals" id="toc-dartr-fundamentals" class="nav-link" data-scroll-target="#dartr-fundamentals">dartR fundamentals</a></li>
+  <li><a href="#step-1-summoning-the-rstudio-cloud-portal" id="toc-step-1-summoning-the-rstudio-cloud-portal" class="nav-link" data-scroll-target="#step-1-summoning-the-rstudio-cloud-portal">Step 1: Summoning the RStudio Cloud Portal</a></li>
+  <li><a href="#step-2-entering-the-secret-workshop-chamber" id="toc-step-2-entering-the-secret-workshop-chamber" class="nav-link" data-scroll-target="#step-2-entering-the-secret-workshop-chamber">Step 2: Entering the Secret Workshop Chamber</a></li>
+  <li><a href="#step-3-joining-the-fellowship-of-the-project" id="toc-step-3-joining-the-fellowship-of-the-project" class="nav-link" data-scroll-target="#step-3-joining-the-fellowship-of-the-project">Step 3: Joining the Fellowship of the Project</a></li>
   </ul></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">EXERCISE</a></li>
-  <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study">Further Study</a></li>
+  <li><a href="#dartr-fundamentals" id="toc-dartr-fundamentals" class="nav-link" data-scroll-target="#dartr-fundamentals"><code>dartR</code> fundamentals</a>
+  <ul class="collapse">
+  <li><a href="#the-structure-of-a-genlight-object" id="toc-the-structure-of-a-genlight-object" class="nav-link" data-scroll-target="#the-structure-of-a-genlight-object">The structure of a genlight object</a></li>
+  <li><a href="#the-basics" id="toc-the-basics" class="nav-link" data-scroll-target="#the-basics">the Basics</a></li>
+  <li><a href="#exploring-functions" id="toc-exploring-functions" class="nav-link" data-scroll-target="#exploring-functions">Exploring functions</a></li>
+  </ul></li>
+  <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study"><em>Further Study</em></a></li>
   </ul>
 </nav>
     </div>
@@ -298,18 +305,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>Session Presenters</em></p>
 <p><img src="images/Presenters1.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
-<h2 class="anchored" data-anchor-id="required-packages">Required packages</h2>
+<h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.base)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>make sure you have the packages installed, see</em> <a href="./install.html">Install dartRverse</a></p>
 </section>
-<section id="session-content" class="level2">
-<h2 class="anchored" data-anchor-id="session-content">Session Content</h2>
-<section id="the-magical-world-of-rstudio-cloud" class="level3">
-<h3 class="anchored" data-anchor-id="the-magical-world-of-rstudio-cloud">The magical world of RStudio Cloud</h3>
-<p>Step 1: Summoning the RStudio Cloud Portal</p>
+<section id="the-dartrverse" class="level2">
+<h2 class="anchored" data-anchor-id="the-dartrverse">The <code>dartRverse</code></h2>
+<section id="from-1-package-to-7" class="level4">
+<h4 class="anchored" data-anchor-id="from-1-package-to-7">From 1 package to 7</h4>
+<p><img src="images/dartR7.png" class="img-fluid"> <em>See the section</em> <a href="./install.html">Install dartRverse</a> <em>to learn about the reasoning behind how the dartRverse came to be…</em></p>
+</section>
+</section>
+<section id="the-magical-world-of-rstudio-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="the-magical-world-of-rstudio-cloud">The magical world of RStudio Cloud</h2>
+<section id="step-1-summoning-the-rstudio-cloud-portal" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-summoning-the-rstudio-cloud-portal">Step 1: Summoning the RStudio Cloud Portal</h3>
 <ul>
 <li><p><strong>Embark on the Journey:</strong> Open your trusty steed (a.k.a. your web browser) and gallop over to <a href="https://rstudio.cloud/">Rstudio Cloud</a>.</p></li>
 <li><p><strong>Forge Your Credentials:</strong> Spot the “Sign Up” beacon in the realm’s upper right corner and click it with courage. Click on the “Learn more” below the “Cloud Free” plan and then in the “Sign Up” button. A scroll will appear, asking for your name, your secret code (password), and your e-mail. Please use the same e-mail you provided when you registered to the workshop.</p></li>
@@ -318,20 +331,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>Prove Your Worth:</strong> After submitting your details, a pigeon (or was it an email?) will fly into your inbox carrying a secret message. Click the link within to prove you’re not a goblin in disguise.</li>
 </ul>
-<p>Step 2: Entering the Secret Workshop Chamber</p>
+</section>
+<section id="step-2-entering-the-secret-workshop-chamber" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-entering-the-secret-workshop-chamber">Step 2: Entering the Secret Workshop Chamber</h3>
 <ul>
 <li><p><strong>Return to the Portal:</strong> With your email now verified, make your way back to the RStudio Cloud realm and use your newly forged credentials to enter.</p></li>
 <li><p><strong>Finding the Secret Door:</strong> One day before the workshop, a link leading to the workshop’s chamber will be sent to your e-mail.</p></li>
 </ul>
-<p>Step 3: Joining the Fellowship of the Project</p>
+</section>
+<section id="step-3-joining-the-fellowship-of-the-project" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-joining-the-fellowship-of-the-project">Step 3: Joining the Fellowship of the Project</h3>
 <ul>
 <li><strong>Locate the Treasure Chest:</strong> Within the grand chamber (workshop space), seek the project “PopGenR” and click on it to reveal its secrets. As you open it for the first time, ancient RStudio Cloud spirits will work their magic to prepare your environment.</li>
 </ul>
-<p><img src="images/cloud_WS.png" class="img-fluid"></p>
+<p><img src="images/cloud_WS.png" id="id" class="class img-fluid" width="500"></p>
 </section>
-<section id="dartr-fundamentals" class="level3">
-<h3 class="anchored" data-anchor-id="dartr-fundamentals">dartR fundamentals</h3>
-<p>Here is a glimpse at some of the functions we will be using.</p>
+</section>
+<section id="dartr-fundamentals" class="level2">
+<h2 class="anchored" data-anchor-id="dartr-fundamentals"><code>dartR</code> fundamentals</h2>
+<section id="the-structure-of-a-genlight-object" class="level3">
+<h3 class="anchored" data-anchor-id="the-structure-of-a-genlight-object">The structure of a genlight object</h3>
+<p><img src="images/genlight_structure.jpg" id="id" class="class img-fluid" data-fig-align="left" width="600"> For a detailed rundown of the genetic data check out the tuturial on <strong>Data Structure and Input</strong> found in the <a href="./tutorials.html">dartR Tutorials</a> section.</p>
+</section>
+<section id="the-basics" class="level3">
+<h3 class="anchored" data-anchor-id="the-basics">the Basics</h3>
+<p>Here is a glimpse at the functions we will be using. Please follow along, or try running the <code>code</code> on your own.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>testset.gl</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -345,16 +369,233 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(gl))</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(gl)[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.set.verbosity</span>(<span class="dv">3</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl,<span class="at">method=</span><span class="st">"ind"</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.reproducibility</span>(gl)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(gl,<span class="at">method =</span><span class="st">"ind"</span>, <span class="at">threshold=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.set.verbosity</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">loci callrate</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">ind callrate</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">reproducibility</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">filter callrate</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl)               <span class="co"># loci callrate             </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl,<span class="at">method=</span><span class="st">"ind"</span>)  <span class="co"># ind callrate</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.reproducibility</span>(gl)        <span class="co"># reproducibility</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># filter</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(gl,<span class="at">method =</span><span class="st">"ind"</span>, <span class="at">threshold=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.callrate 
+  Processing genlight object with SNP data
+  Reporting Call Rate by Locus
+  No. of loci = 255 
+  No. of individuals = 250 
+    Minimum      :  0.056 
+    1st quartile :  0.912 
+    Median       :  0.984 
+    Mean         :  0.8765804 
+    3r quartile  :  1 
+    Maximum      :  1 
+    Missing Rate Overall:  0.1234 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session01_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.callrate </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl,<span class="at">method=</span><span class="st">"ind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.callrate 
+  Processing genlight object with SNP data
+
+  Reporting Call Rate by Individual
+  No. of loci = 255 
+  No. of individuals = 250 
+    Minimum      :  0.7490196 
+    1st quartile :  0.8666667 
+    Median       :  0.8823529 
+    Mean         :  0.8765804 
+    3r quartile  :  0.8941176 
+    Maximum      :  0.9333333 
+    Missing Rate Overall:  0.1234 
+
+Listing 30 populations and their average CallRates
+  Monitor again after filtering
+         Population CallRate  N
+1     EmmacBrisWive   0.8839 10
+2     EmmacBurdMist   0.8808 10
+3     EmmacBurnBara   0.8859 11
+4     EmmacClarJack   0.8596  5
+5     EmmacClarYate   0.8769  5
+6     EmmacCoopAvin   0.7682 10
+7    EmmacCoopCully   0.9122 10
+8     EmmacCoopEulb   0.8702 10
+9    EmmacFitzAllig   0.8973 10
+10    EmmacJohnWari   0.8929 10
+11    EmmacMaclGeor   0.8806 11
+12    EmmacMaryBoru   0.8843  6
+13    EmmacMaryPetr   0.8892  4
+14     EmmacMDBBowm   0.8824 10
+15     EmmacMDBCond   0.8855 10
+16     EmmacMDBCudg   0.8878 10
+17     EmmacMDBForb   0.8766 11
+18     EmmacMDBGwyd   0.9050  9
+19     EmmacMDBMaci   0.8773 10
+20 EmmacMDBMurrMung   0.8890 10
+21     EmmacMDBSanf   0.8914 10
+22    EmmacNormJack   0.8725  6
+23    EmmacNormLeic   0.8863  1
+24    EmmacNormSalt   0.8706  1
+25    EmmacRichCasi   0.8757 10
+26        EmmacRoss   0.8706 10
+27    EmmacRussEube   0.8612 10
+28     EmmacTweeUki   0.8773 10
+29    EmsubRopeMata   0.8345  5
+30    EmvicVictJasp   0.8361  5
+
+Listing 20 individuals with the lowest CallRates
+  Use this list to see which individuals will be lost on filtering by individual
+  Set ind.to.list parameter to see more individuals
+   Individual  CallRate
+1    AA063722 0.7490196
+2    AA063726 0.7490196
+3    AA063732 0.7647059
+4    AA063720 0.7686275
+5    AA063712 0.7686275
+6    AA063708 0.7725490
+7    AA063718 0.7764706
+8    AA063710 0.7764706
+9    AA063714 0.7764706
+10   AA063716 0.7803922
+11   AA032760 0.7960784
+12   UC_00210 0.8196078
+13   UC_00259 0.8196078
+14   AA018494 0.8235294
+15   UC_00206 0.8235294
+16   AA019164 0.8274510
+17   UC_00209 0.8313725
+18   UC_00254 0.8313725
+19   AA019159 0.8352941
+20  UC_00126c 0.8352941
+
+)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session01_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.callrate </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.reproducibility</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.reproducibility 
+  Processing genlight object with SNP data
+  Reporting Repeatability by Locus
+  No. of loci = 255 
+  No. of individuals = 250 
+    Minimum      :  0.959459 
+    1st quartile :  1 
+    Median       :  1 
+    Mean         :  0.9981525 
+    3r quartile  :  1 
+    Maximum      :  1 
+    Missing Rate Overall:  0.12 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session01_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Quantile Threshold Retained Percent Filtered Percent
+1      100%  1.000000      214    83.9       41    16.1
+2       95%  1.000000      214    83.9       41    16.1
+3       90%  1.000000      214    83.9       41    16.1
+4       85%  1.000000      214    83.9       41    16.1
+5       80%  1.000000      214    83.9       41    16.1
+6       75%  1.000000      214    83.9       41    16.1
+7       70%  1.000000      214    83.9       41    16.1
+8       65%  1.000000      214    83.9       41    16.1
+9       60%  1.000000      214    83.9       41    16.1
+10      55%  1.000000      214    83.9       41    16.1
+11      50%  1.000000      214    83.9       41    16.1
+12      45%  1.000000      214    83.9       41    16.1
+13      40%  1.000000      214    83.9       41    16.1
+14      35%  1.000000      214    83.9       41    16.1
+15      30%  1.000000      214    83.9       41    16.1
+16      25%  1.000000      214    83.9       41    16.1
+17      20%  1.000000      214    83.9       41    16.1
+18      15%  0.997674      217    85.1       38    14.9
+19      10%  0.994536      230    90.2       25     9.8
+20       5%  0.984694      243    95.3       12     4.7
+21       0%  0.959459      255   100.0        0     0.0
+Completed: gl.report.reproducibility </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(gl,<span class="at">method =</span><span class="st">"ind"</span>, <span class="at">threshold=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.callrate 
+  Processing genlight object with SNP data
+  Warning: Data may include monomorphic loci in call rate 
+                    calculations for filtering
+  Recalculating Call Rate
+  Removing individuals based on Call Rate, threshold = 0.8 
+  Individuals deleted (CallRate &lt;=  0.8 ):
+AA032760[EmmacMDBMaci], AA063718[EmmacCoopAvin], AA063720[EmmacCoopAvin], AA063722[EmmacCoopAvin], AA063726[EmmacCoopAvin], AA063732[EmmacCoopAvin], AA063708[EmmacCoopAvin], AA063710[EmmacCoopAvin], AA063712[EmmacCoopAvin], AA063714[EmmacCoopAvin], AA063716[EmmacCoopAvin],
+  Summary of filtered dataset
+    Call Rate for individuals &gt; 0.8 
+    Original No. of loci : 255 
+    Original No. of individuals: 250 
+    No. of loci retained: 255 
+    No. of individuals retained: 239 
+    No. of populations:  29 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session01_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Note: Locus metrics not recalculated
+  Note: Resultant monomorphic loci not deleted
+Completed: gl.filter.callrate </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Remember</strong>, you can always look up the help file for <code>dartRverse</code> functions by putting a question mark (?) before a function.</p>
+<p>For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>?gl.filter.callrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Make sure you have the associated library loaded</em> (eg. <code>libary(dartR.base)</code>)</p>
+</div>
 </div>
 </section>
-</section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">EXERCISE</h2>
+<section id="exploring-functions" class="level3">
+<h3 class="anchored" data-anchor-id="exploring-functions">Exploring functions</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -369,66 +610,50 @@ Exercise
 <section id="reporting" class="level3">
 <h3 class="anchored" data-anchor-id="reporting">Reporting</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.reproducibility</span>()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.secondaries</span>()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.rdepth</span>()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.monomorphs</span>()</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.overhang</span>()</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.hamming</span>()</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.overshoot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.reproducibility</span>()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.secondaries</span>()</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.rdepth</span>()</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.monomorphs</span>()</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.overhang</span>()</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.hamming</span>()</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.overshoot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="subsetting" class="level3">
 <h3 class="anchored" data-anchor-id="subsetting">Subsetting</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.ind</span>()</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.ind</span>()</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.loc</span>()</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.loc</span>()</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.pop</span>()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.pop</span>()</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.merge.pop</span>()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.subsample.ind</span>()</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.subsample.loc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.ind</span>()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.ind</span>()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.loc</span>()</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.loc</span>()</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.pop</span>()</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.pop</span>()</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.merge.pop</span>()</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.subsample.ind</span>()</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.subsample.loc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>for a more in depth walk through see the</em> <a href="./tutorials.html">dartR Tutorials</a> <em>section.</em></p>
 </section>
 <section id="filtering" class="level3">
 <h3 class="anchored" data-anchor-id="filtering">filtering</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.reproducibility</span>()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.secondaries</span>()</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.rdepth</span>()</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.monomorphs</span>()</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.overhang</span>()</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.hamming</span>()</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.overshoot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Remember</strong>, you can always look up the help file for <code>dartRverse</code> functions by putting a question mark (?) before a function. For example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>?gl.filter.callrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><em>Make sure you have the associated library loaded</em> (eg. <code>libary(dartR.base)</code>)</p>
-</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.reproducibility</span>()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.secondaries</span>()</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.rdepth</span>()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.monomorphs</span>()</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.overhang</span>()</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.hamming</span>()</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.overshoot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </div>
+</section>
 </section>
 <section id="further-study" class="level2">
-<h2 class="anchored" data-anchor-id="further-study">Further Study</h2>
+<h2 class="anchored" data-anchor-id="further-study"><em>Further Study</em></h2>
 <p>For more tuturials see the <a href="./tutorials.html">dartR Tutorials</a> section</p>
 
 

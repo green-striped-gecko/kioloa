@@ -53,3 +53,14 @@ rsconnect/
 # pdfs
 
 tutorials/
+
+# html
+*.html
+!docs/*.html
+
+# files
+
+*_files
+!docs/*_files
+
+
