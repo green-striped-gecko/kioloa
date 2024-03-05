@@ -333,23 +333,23 @@ Now for some strategies,
 as a starting point I would get rid of loci I don’t believe in and then individuals that didn’t work properly at all:
 
 ```{r, eval = FALSE}
-gl <- possums.gl # data from dartR.data
+gl <- platypus.gl # example data from dartR.data
 
-gl.filter.callrate(gl, method = "loc", threshold = 0.7)
+gl <- gl.filter.callrate(gl, method = "loc", threshold = 0.7)
 # Get rid of really poorly sequenced loci, but don’t cut hard
 
-gl.filter.callrate(gl, method = "ind", threshold = 0.25)
+gl <- gl.filter.callrate(gl, method = "ind", threshold = 0.25)
 # Very low filter – this is only to get rid of your really bad 
 # individuals
 
-gl.filter.monomorphs(gl)
+gl <- gl.filter.monomorphs(gl)
 # Always run this after removing individuals – removes loci that are no
 # longer variable
 
-gl.filter.reproducibility(gl)
+gl <- gl.filter.reproducibility(gl)
 # Get rid of unreliable loci
 
-gl.filter.rdepth(gl, lower = X, higher = X)
+gl <- gl.filter.rdepth(gl, lower = 5, upper = 500)
 # Get rid of low and super high read depth loci
 ```
 
@@ -357,22 +357,22 @@ gl.filter.rdepth(gl, lower = X, higher = X)
 Then I would filter more strongly as appropriate for my question. For a population structure analysis I would, 
 
 ```{r, eval = FALSE}
-gl.filter.callrate(gl, method = “loc”, threshold = 0.95)
+gl <- gl.filter.callrate(gl, method = "loc", threshold = 0.95)
 # Structure dislikes missing data
 
-gl.filter.maf(gl,  threshold = 1/(2*nInd(gl))
+gl <- gl.filter.maf(gl,  threshold = 1/(2*nInd(gl)))
 # I usually set up the threshold so it is just removing singletons to
 # improve computation time
 
-gl.filter.secondaries(gl)
+gl <- gl.filter.secondaries(gl)
 # Always do this as the last loci filter so that you’ve cut for quality
 # before you cut because there are two SNPs
 
-gl.filter.callrate(gl, method = “ind”, threshold = .9)
+gl <- gl.filter.callrate(gl, method = "ind", threshold = .9)
 # Filter on individuals. You can usually be a bit flexible at this 
 # point.
 
-gl.filter.monomorphs(gl)
+gl <- gl.filter.monomorphs(gl)
 # Always run this after removing individuals
 ```
 
