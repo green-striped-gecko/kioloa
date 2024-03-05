@@ -333,6 +333,8 @@ Now for some strategies,
 as a starting point I would get rid of loci I don’t believe in and then individuals that didn’t work properly at all:
 
 ```{r, eval = FALSE}
+gl <- possums.gl # data from dartR.data
+
 gl.filter.callrate(gl, method = "loc", threshold = 0.7)
 # Get rid of really poorly sequenced loci, but don’t cut hard
 
