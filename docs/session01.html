@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -266,6 +285,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages"><em>Required packages</em></a></li>
+  <li><a href="#dartrs-reach" id="toc-dartrs-reach" class="nav-link" data-scroll-target="#dartrs-reach"><code>dartR</code>’s Reach</a></li>
+  <li><a href="#diversity-arrays-technology-pty-ltd-dart" id="toc-diversity-arrays-technology-pty-ltd-dart" class="nav-link" data-scroll-target="#diversity-arrays-technology-pty-ltd-dart">Diversity Arrays Technology Pty Ltd (DArT)</a></li>
   <li><a href="#the-dartrverse" id="toc-the-dartrverse" class="nav-link" data-scroll-target="#the-dartrverse">The <code>dartRverse</code></a></li>
   <li><a href="#the-magical-world-of-rstudio-cloud" id="toc-the-magical-world-of-rstudio-cloud" class="nav-link" data-scroll-target="#the-magical-world-of-rstudio-cloud">The magical world of RStudio Cloud</a>
   <ul class="collapse">
@@ -277,8 +298,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#the-structure-of-a-genlight-object" id="toc-the-structure-of-a-genlight-object" class="nav-link" data-scroll-target="#the-structure-of-a-genlight-object">The structure of a genlight object</a></li>
   <li><a href="#the-basics" id="toc-the-basics" class="nav-link" data-scroll-target="#the-basics">the Basics</a></li>
-  <li><a href="#exploring-functions" id="toc-exploring-functions" class="nav-link" data-scroll-target="#exploring-functions">Exploring functions</a></li>
   </ul></li>
+  <li><a href="#filtering-strategies" id="toc-filtering-strategies" class="nav-link" data-scroll-target="#filtering-strategies">Filtering strategies</a>
+  <ul class="collapse">
+  <li><a href="#strategies" id="toc-strategies" class="nav-link" data-scroll-target="#strategies">Strategies</a></li>
+  </ul></li>
+  <li><a href="#exploring-functions" id="toc-exploring-functions" class="nav-link" data-scroll-target="#exploring-functions">Exploring functions</a></li>
   <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study"><em>Further Study</em></a></li>
   </ul>
 </nav>
@@ -312,6 +337,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>make sure you have the packages installed, see</em> <a href="./install.html">Install dartRverse</a></p>
+</section>
+<section id="dartrs-reach" class="level2">
+<h2 class="anchored" data-anchor-id="dartrs-reach"><code>dartR</code>’s Reach</h2>
+<div id="id" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/dartr_reach.png" class="class img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</section>
+<section id="diversity-arrays-technology-pty-ltd-dart" class="level2">
+<h2 class="anchored" data-anchor-id="diversity-arrays-technology-pty-ltd-dart">Diversity Arrays Technology Pty Ltd (DArT)</h2>
+<p><img src="images/dart_diversity.png" class="img-fluid"></p>
+<p>Diversity Arrays Technology Pty Ltd (DArT) is a private company that specializes in genotyping by sequencing. Their approach is one of genome complexity reduction. Basically, DArTSeq is a method that extracts reproducible genomic variation across the genomes of many individuals at an affordable cost. The data are representational in the sense that they are generated for a random but reproducible selection of small fragments of sequence only, fragments that exhibit variation at the level of single base pairs (SNPs).</p>
+<p><em>For more details check out the DArT website:</em> <a href="https://www.diversityarrays.com/" class="uri">https://www.diversityarrays.com/</a></p>
+<p>You can also learn more about the methods by checking out the tutorial on <strong>Data Structure and Input</strong> found in the <a href="./tutorials.html">dartR Tutorials</a> section.</p>
+<section id="their-mission" class="level4">
+<h4 class="anchored" data-anchor-id="their-mission">Their mission:</h4>
+<p><img src="images/dart_mission.png" class="img-fluid"></p>
+</section>
 </section>
 <section id="the-dartrverse" class="level2">
 <h2 class="anchored" data-anchor-id="the-dartrverse">The <code>dartRverse</code></h2>
@@ -415,7 +459,7 @@ Quiz!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><img src="images/task.png" id="id" class="class" width="48" height="48">This quiz is refering to the <code>testset.gl</code> dataset you have interrogated above.</p>
+<p><img src="images/task.png" class="class" width="48" height="48">This quiz is refering to the <code>testset.gl</code> dataset you have interrogated above.</p>
 <p>Type the correct number into the blank boxes below:</p>
 <ul>
 <li>number of SNPs <input class="webex-solveme nospaces" size="3" data-answer="[&quot;255&quot;]"></li>
@@ -643,18 +687,219 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Remember</strong>, you can always look up the help file for <code>dartRverse</code> functions by putting a question mark (?) before a function.</p>
-<p>For example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>?gl.filter.callrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p><strong>Remember</strong>, you can always look up the help file for <code>dartRverse</code> functions by putting a question mark (?) before a function. For example: <code>?gl.filter.callrate</code></p>
 <p><em>Make sure you have the associated library loaded</em> (eg. <code>libary(dartR.base)</code>)</p>
 </div>
 </div>
+<p>Now, lets take a look at our genetic data before and after filtering using the <code>gl.smearplot()</code> function.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Before</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">After</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> testset.gl</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.smearplot</span>(gl) <span class="co"># Before Filtering</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl,<span class="at">verbose=</span><span class="dv">0</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl, <span class="at">method=</span> <span class="st">"ind"</span>, </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">threshold=</span><span class="fl">0.80</span>, <span class="at">verbose=</span><span class="dv">0</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.smearplot</span>(gl) <span class="co"># After Filtering</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  Processing genlight object with SNP data
+Starting gl.smearplot </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session01_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.smearplot </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  Processing genlight object with SNP data
+Starting gl.smearplot </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session01_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.smearplot </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="exploring-functions" class="level3">
-<h3 class="anchored" data-anchor-id="exploring-functions">Exploring functions</h3>
+</section>
+<section id="filtering-strategies" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-strategies">Filtering strategies</h2>
+<p>There is no right filtering order. Your data set will need its own interrogation, so be iterative - test different options. In some cases you may even need to reuse a filter that you used earlier on in the filtering process.</p>
+<p>Instead of providing a recipe to follow, I recommend strategies to filtering.</p>
+<p>First, lets have a closer look at what some of these filters do (click across the tabs for more insight into each filter):</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Filters</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">callrate: loc</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">callrate: ind</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">reproducibility</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" role="tab" aria-controls="tabset-4-5" aria-selected="false">rdepth</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-6" role="tab" aria-controls="tabset-4-6" aria-selected="false">maf</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-7" role="tab" aria-controls="tabset-4-7" aria-selected="false">secondaries</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(<span class="at">method =</span> loc) <span class="co"># Call rate by loci (SNPs)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(<span class="at">method =</span> ind) <span class="co"># Call rate by individuals</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.reproducibility</span>()      <span class="co"># reproducibility </span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.rdepth</span>()               <span class="co"># read depth </span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.maf</span>()                  <span class="co"># minor allele frequency </span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.secondaries</span>()          <span class="co"># secondaries </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p><code>gl.filter.callrate(gl, method = "loc", threshold = 0.95)</code></p>
+<p><strong>What is it?</strong> Removes SNPs with too much missing data based on a specified threshold.</p>
+<p><strong>Why is it important?</strong> Missing loci can add “noise” and computation time to an analysis</p>
+<p><strong>Key Considerations:</strong></p>
+<ul>
+<li>Trade-off between strength of filter and number of loci</li>
+<li>Call rate filters matter for different metrics</li>
+</ul>
+<p><img src="images/callrate_loc.png" class="img-fluid"></p>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p><code>gl.filter.callrate(gl, method = "ind", threshold = 0.95)</code></p>
+<p><strong>What is it?</strong> Removes individuals with too much missing data based on a specified threshold.</p>
+<p><strong>Why is it important?</strong> Deletes the key thing you need to do a study, and removes individuals that may be misleading as they are sequencing outliers</p>
+<p><strong>Key Considerations:</strong></p>
+<ul>
+<li>The filtering step that costs you the very most amount of money</li>
+<li>Generally not a first step – recommend filtering lightly here in the first go and seeing if other filters improve the individuals completeness</li>
+</ul>
+<p><img src="images/callrate_ind.png" class="img-fluid"></p>
+</div>
+<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<p><code>gl.filter.reproducibility()</code></p>
+<p><strong>What is it?</strong> Diversity Arrays duplicates individuals during library prep, to assess whether the same answer is found for every locus ~ a control.</p>
+<p><strong>Why is it important?</strong> Provides confidence in your base calls which is pretty fundamental</p>
+<p><strong>Key Considerations:</strong></p>
+<ul>
+<li>If reproducibility is low, you need your SNPs re-assessed</li>
+<li>If doing sequencing through AGRF or other facilities, make sure to include duplicated individuals (this is an additional cost but do it anyway)</li>
+</ul>
+</div>
+<div id="tabset-4-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-5-tab">
+<p><code>gl.filter.rdepth()</code></p>
+<p><strong>What is it?</strong> The mean number of sequencing reads for a particular locus, across all individuals.</p>
+<p><strong>Why is it important?</strong> The number of reads in a stack tells you how confident you can be in your base calls and a low read depth means that your heterozygous sites have pretty low coverage.</p>
+<p><strong>Key Considerations:</strong></p>
+<ul>
+<li>If your read depth is not high enough, there are questions you can’t confidently answer (e.g., heterozygosity)</li>
+<li>Very high read depth suggests paralogs (genes with multiple copies) being assembled in to one fragment</li>
+</ul>
+<p><img src="images/rdepth.png" class="img-fluid"></p>
+</div>
+<div id="tabset-4-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-6-tab">
+<p><code>gl.filter.maf()</code></p>
+<p><strong>What is it?</strong> Minor allele frequency (maf) is the frequency of the second most common allele in a given population, so this filter removes SNPs based on their relative proportion.</p>
+<p><strong>Importantly,</strong> in the literature, it is often set to 0.05 BUT…</p>
+<p><strong>Key Considerations:</strong></p>
+<ul>
+<li>0.05 can be high if you have lot of individuals
+<ul>
+<li>If you have 300 diploid individuals, then you delete SNPs with less than 30 copies of the minor allele</li>
+</ul></li>
+<li>Or singleton if you have a small number of individuals</li>
+<li>Should depend on your question
+<ul>
+<li>Rare alleles can be very important to certain questions</li>
+<li>Most SNPs are rare alleles, as are most heterozygous sites</li>
+<li>Rare alleles are important in expansion processes</li>
+<li>NOT important in structure or phylogenetic analyses</li>
+</ul></li>
+</ul>
+<p><img src="images/maf.png" class="img-fluid"></p>
+</div>
+<div id="tabset-4-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-7-tab">
+<p><code>gl.filter.secondaries()</code></p>
+<p><strong>What is it?</strong> When there are two SNPs on a single fragment, choosing to keep only one.</p>
+<p><strong>Why is it important?</strong> Loci that are very close together in the genome are not independently inherited as they are too close together for recombination to split, so they tend to be inherited together.</p>
+<p><strong>Key Considerations:</strong></p>
+<ul>
+<li>Can mislead structure and phylogenetic analyses</li>
+<li>Can improve representations of heterozygosity</li>
+</ul>
+<p><img src="images/secondaries.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<section id="strategies" class="level3">
+<h3 class="anchored" data-anchor-id="strategies">Strategies</h3>
+<p>Now for some strategies,</p>
+<p>as a starting point I would get rid of loci I don’t believe in and then individuals that didn’t work properly at all:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(gl, <span class="at">method =</span> <span class="st">"loc"</span>, <span class="at">threshold =</span> <span class="fl">0.7</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Get rid of really poorly sequenced loci, but don’t cut hard</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(gl, <span class="at">method =</span> <span class="st">"ind"</span>, <span class="at">threshold =</span> <span class="fl">0.25</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Very low filter – this is only to get rid of your really bad </span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># individuals</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.monomorphs</span>(gl)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Always run this after removing individuals – removes loci that are no</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># longer variable</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.reproducibility</span>(gl)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Get rid of unreliable loci</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.rdepth</span>(gl, <span class="at">lower =</span> X, <span class="at">higher =</span> X)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Get rid of low and super high read depth loci</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then I would filter more strongly as appropriate for my question. For a population structure analysis I would,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(gl, <span class="at">method =</span> “loc”, <span class="at">threshold =</span> <span class="fl">0.95</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Structure dislikes missing data</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.maf</span>(gl,  <span class="at">threshold =</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">nInd</span>(gl))</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># I usually set up the threshold so it is just removing singletons to</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># improve computation time</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.secondaries</span>(gl)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Always do this as the last loci filter so that you’ve cut for quality</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># before you cut because there are two SNPs</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(gl, <span class="at">method =</span> “ind”, <span class="at">threshold =</span> .<span class="dv">9</span>)</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter on individuals. You can usually be a bit flexible at this </span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co"># point.</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.monomorphs</span>(gl)</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Always run this after removing individuals</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+More tips
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Keep these tips in mind when you go to filter your own data:</p>
+<ul>
+<li>Be flexible</li>
+<li>Know what each filter is doing to your data</li>
+<li>Think carefully about whether the filter is appropriate to the test you want to run</li>
+<li>Analyse your data many different ways</li>
+<li>Don’t over-interpret your PCoA</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="exploring-functions" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-functions">Exploring functions</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -665,56 +910,61 @@ Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><img src="images/task.png" id="id" class="class" width="48" height="48"> Try some of these report, subset, and filtering functions on your own.</p>
+<p><img src="images/task.png" class="class" width="48" height="48"> Try some of these report, subset, and filtering functions on your own.</p>
 <section id="reporting" class="level3">
 <h3 class="anchored" data-anchor-id="reporting">Reporting</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>()</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.reproducibility</span>()</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.secondaries</span>()</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.rdepth</span>()</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.monomorphs</span>()</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.overhang</span>()</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.hamming</span>()</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.overshoot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.reproducibility</span>()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.secondaries</span>()</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.rdepth</span>()</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.monomorphs</span>()</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.overhang</span>()</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.hamming</span>()</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.overshoot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="subsetting" class="level3">
 <h3 class="anchored" data-anchor-id="subsetting">Subsetting</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.ind</span>()</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.ind</span>()</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.loc</span>()</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.loc</span>()</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.pop</span>()</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.pop</span>()</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.merge.pop</span>()</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.subsample.ind</span>()</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.subsample.loc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.ind</span>()</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.ind</span>()</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.loc</span>()</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.loc</span>()</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.keep.pop</span>()</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.drop.pop</span>()</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.merge.pop</span>()</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.subsample.ind</span>()</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.subsample.loc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="filtering" class="level3">
 <h3 class="anchored" data-anchor-id="filtering">filtering</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>()</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.reproducibility</span>()</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.secondaries</span>()</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.rdepth</span>()</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.monomorphs</span>()</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.overhang</span>()</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.hamming</span>()</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.overshoot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.reproducibility</span>()</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.secondaries</span>()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.rdepth</span>()</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.monomorphs</span>()</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.overhang</span>()</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.hamming</span>()</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.overshoot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </div>
 </div>
-</section>
 </section>
 <section id="further-study" class="level2">
 <h2 class="anchored" data-anchor-id="further-study"><em>Further Study</em></h2>
-<p>For more tuturials see the <a href="./tutorials.html">dartR Tutorials</a> section</p>
+<p>For more tuturials see the <a href="./tutorials.html">dartR Tutorials</a> section.</p>
+<p>And check out this interesting paper, <span class="citation" data-cites="jaya_population_2022">Jaya et al. (<a href="references.html#ref-jaya_population_2022" role="doc-biblioref">2022</a>)</span>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-jaya_population_2022" class="csl-entry" role="listitem">
+Jaya, Frederick R., Jessie C. Tanner, Michael R. Whitehead, Paul Doughty, J. Scott Keogh, Craig C. Moritz, and Renee A. Catullo. 2022. <span>“Population Genomics and Sexual Signals Support Reproductive Character Displacement in <span>Uperoleia</span> (<span>Anura</span>: <span>Myobatrachidae</span>) in a Contact Zone.”</span> <em>Molecular Ecology</em> 31 (17): 4527–43. <a href="https://doi.org/10.1111/mec.16597">https://doi.org/10.1111/mec.16597</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
