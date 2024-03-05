@@ -53,7 +53,7 @@ rsconnect/
 # pdfs
 
 tutorials/
-
+!docs/tutorials/
 # html
 *.html
 !docs/*.html
