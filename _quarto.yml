@@ -36,6 +36,8 @@ format:
     - include/webex.css
     number-depth: 1
     include-after-body: include/webex.js
+    link-external-icon: true
+    link-external-newwindow: true
 execute: 
   cache: true
 editor: visual

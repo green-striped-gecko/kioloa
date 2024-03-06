@@ -17,6 +17,8 @@ library(ggplot2)
 #filtered for allele depth in Stacks. SNPs were called independent of other
 #populations, which we will get to later.
 
+load('./data/Session3_data.RData')
+
 #create a list of the kimberley genlights
 kimberley_names <- ls(pattern = "^Kimberley")
 #put all the genlights into a mega list
