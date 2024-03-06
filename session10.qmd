@@ -1,9 +1,8 @@
 # Sex Linked Markers
 
-*Session leads*
+*Session presenters*
 
 ![](images/Presenters10.png)
-
 
 ```{r setup, include=FALSE}
 library(knitr)
@@ -43,7 +42,7 @@ This function identifies sex-linked and autosomal loci present in a SNP dataset 
 
 ![ZW/ZZ sex chromosomes](images/ZW.png)
 
-::: blackbox
+::: callout-caution
 **NOTE**
 
 Set `ncores` to more than 1 (default) if you have more than 50,000 SNPs, since it could actually slow down the analysis with smaller datasets.
@@ -167,7 +166,7 @@ What did the function mention about gametologs? How did that impact the results 
 Can you find individuals for which the `agreed sex` is uncertain (i.e., has an asterisk "\*")?
 :::
 
-## EXERCISES
+## EXERCISE
 
 ::: callout-note
 ## Exercise
@@ -191,9 +190,11 @@ Choose one of the following datasets (or your own data) and report:
 
 ![](images/Bull_Shark.jpg){.class width="350" height="200"} ![](images/Blue_shark.jpg){.class width="350" height="200"}
 
-## Exercise data 1 - Your own data
+## *Further study*
 
-::: {.infobox data-latex="{task}"}
+### Exercise data 1 - Your own data
+
+::: callout-tip
 **HINT**
 
 You can have a look at the exercise data below for inspiration.
@@ -201,25 +202,23 @@ You can have a look at the exercise data below for inspiration.
 
 ::: callout-note
 ### Exercise - Your own data
- 1. Number of sex-linked markers?
 
- 2. Individuals with wrong sexID?
+1.  Number of sex-linked markers?
 
- 3. Changes in PCA before and after removing the SLM?
+2.  Individuals with wrong sexID?
 
- 4. Differences in genetic diversity and fixation indices between autosomal and SLM?
+3.  Changes in PCA before and after removing the SLM?
 
+4.  Differences in genetic diversity and fixation indices between autosomal and SLM?
 :::
 
-## Exercise data 2 - The Eastern Yellow Robin
+### Exercise data 2 - The Eastern Yellow Robin
 
-
-
-Data from Robledo-Ruiz et al. 2023.
+Data from @robledo2023
 
 ![The Eastern Yellow Robin](images/Eastern_Yellow_Robin.jpg)
 
-### Load data
+#### Load data
 
 ```{r, results="hold"}
 data("EYR")
@@ -230,13 +229,13 @@ table(EYR@other$ind.metrics$pop)
 table(EYR@other$ind.metrics$sex, useNA = "ifany")
 ```
 
-### 1. Number of sex-linked markers?
+#### 1. Number of sex-linked markers?
 
 ```{r, results="hold"}
 res <- dartR.sexlinked::filter.sex.linked(gl = EYR, system = "zw")
 ```
 
-### 2. Individuals with wrong sexID?
+#### 2. Individuals with wrong sexID?
 
 ```{r, results="hold"}
 sexID <- dartR.sexlinked::infer.sex(gl_sex_filtered = res, system = "zw", seed = 124)
@@ -301,9 +300,9 @@ dartR.base::gl.report.maf(EYR.correct)
 EYR.correct <- dartR.base::gl.filter.maf(EYR.correct, threshold = 3, verbose = 0, recalc = TRUE)
 ```
 
-### 3. Changes in PCA before and after removing the SLM?
+#### 3. Changes in PCA before and after removing the SLM?
 
-#### PCA on sloppy dataset (only standard filters)
+##### PCA on sloppy dataset (only standard filters)
 
 ```{r, results="hold", warning=FALSE, message=FALSE}
 PCA.sloppy <- dartR.base::gl.pcoa(EYR.sloppy, verbose = 0)
@@ -311,7 +310,7 @@ dartR.base::gl.pcoa.plot(PCA.sloppy, EYR.sloppy, xaxis = 1, yaxis = 2)
 dartR.base::gl.pcoa.plot(PCA.sloppy, EYR.sloppy, xaxis = 2, yaxis = 3)
 ```
 
-#### PCA on correct dataset (filter.sex.linked and standard filters)
+##### PCA on correct dataset (filter.sex.linked and standard filters)
 
 ```{r, results="hold", warning=FALSE, message=FALSE}
 PCA.correct <- dartR.base::gl.pcoa(EYR.correct, verbose = 0)
@@ -319,7 +318,7 @@ dartR.base::gl.pcoa.plot(PCA.correct, EYR.correct, xaxis = 1, yaxis = 2)
 dartR.base::gl.pcoa.plot(PCA.correct, EYR.correct, xaxis = 2, yaxis = 3)
 ```
 
-### 4. Differences in genetic diversity and fixation indices between autosomal and SLM?
+#### 4. Differences in genetic diversity and fixation indices between autosomal and SLM?
 
 ```{r, warning=FALSE}
 # Basic stats
@@ -344,13 +343,13 @@ dartR.base::gl.report.fstat(EYR.sloppy, verbose = 0)
 dartR.base::gl.report.fstat(EYR.correct, verbose = 0)
 ```
 
-## Exercise data 3 - Bull shark
+### Exercise data 3 - Bull shark
 
-Data from Devloo-Delva et al. 2023.
+Data from @devloodelva_rivers_2023.
 
 ![The Bull Shark](images/Bull_Shark.jpg)
 
-### Load data
+#### Load data
 
 ```{r}
 print(load("data/Bull_shark_DArTseq_genlight_for_sex-linked_markers.Rdata"))
@@ -361,13 +360,13 @@ table(data.gl@other$ind.metrics$pop)
 table(data.gl@other$ind.metrics$sex, useNA = "ifany")
 ```
 
-### 1. Number of sex-linked markers?
+#### 1. Number of sex-linked markers?
 
 ```{r, results="hold"}
 res <- dartR.sexlinked::filter.sex.linked(gl = data.gl, system = "xy", plots = TRUE, ncores = 1)
 ```
 
-### 2. Individuals with wrong sexID?
+#### 2. Individuals with wrong sexID?
 
 ```{r, results="hold"}
 sexID <- dartR.sexlinked::infer.sex(gl_sex_filtered = res, system = "xy", seed = 124)
@@ -377,13 +376,13 @@ agreed.sex <- sub(pattern = "\\*", replacement = "", x = sexID$agreed.sex) # rem
 sum(data.gl$other$ind.metrics$sex != agreed.sex, na.rm = TRUE)
 ```
 
-## Exercise data 4 - Blue shark
+### Exercise data 4 - Blue shark
 
-Data from Nikolic et al. 2023.
+Data from @nikolic_stepping_2023.
 
 ![The Blue Shark](images/Blue_shark.jpg)
 
-### Load data
+#### Load data
 
 ```{r}
 print(load("data/Blue_shark_DArTseq_genlight_for_sex-linked_markers.Rdata"))
@@ -394,13 +393,13 @@ table(data.gl@other$ind.metrics$pop)
 table(data.gl@other$ind.metrics$sex, useNA = "ifany")
 ```
 
-### 1. Number of sex-linked markers?
+#### 1. Number of sex-linked markers?
 
 ```{r, results="hold"}
 res <- dartR.sexlinked::filter.sex.linked(gl = data.gl, system = "xy", plots = TRUE, ncores = 1)
 ```
 
-### 2. Individuals with wrong sexID?
+#### 2. Individuals with wrong sexID?
 
 ```{r, results="hold"}
 sexID <- dartR.sexlinked::infer.sex(gl_sex_filtered = res, system = "xy", seed = 124)
@@ -410,12 +409,5 @@ agreed.sex <- sub(pattern = "\\*", replacement = "", x = sexID$agreed.sex) # rem
 sum(data.gl$other$ind.metrics$sex != agreed.sex, na.rm = TRUE)
 ```
 
-# *Further study*
 
-# References
 
-Devloo-Delva, F., Burridge, C. P., Kyne, P. M., Brunnschweiler, J. M., Chapman, D. D., Charvet, P., ... & Feutry, P. (2023). From rivers to ocean basins: The role of ocean barriers and philopatry in the genetic structuring of a cosmopolitan coastal predator. Ecology and Evolution, 13(2), e9837. https://doi.org/10.1002/ece3.9837
-
-Nikolic, N., Devloo-Delva, F., Bailleul, D., Noskova, E., Rougeux, C., Delord, C., ... & Arnaud‐Haond, S. (2023). Stepping up to genome scan allows stock differentiation in the worldwide distributed blue shark *Prionace glauca*. Molecular Ecology, 32(5), 1000-1019. https://doi.org/10.1111/mec.16822
-
-Robledo-Ruiz, D. A., Austin, L., Amos, J. N., Castrejón-Figueroa, J., Harley, D. K. P., Magrath, M. J. L., Sunnucks, P., & Pavlova, A. (2023). Easy-to-use R functions to separate reduced-representation genomic datasets into sex-linked and autosomal loci, and conduct sex assignment. Molecular Ecology Resources, 00, 1--21. https://doi.org/10.1111/1755-0998.13844
