@@ -8,15 +8,15 @@ editor: visual
 *for a more detailed program see the* [More Info](useful.qmd) *section*
 
 | \#  | Day |     Time     |                         **Topic**                          |                                 Presenters                                 |
-|:------------:|--------------|:------------:|:------------:|:--------------:|
+|:-------------:|---------------|:-------------:|:-------------:|:-------------:|
 |  1  | Mon | 2 pm - 4 pm  |         [**Welcome, Intro dartR**](session01.qmd)          | Oliver Berry, Andrzej Killian, Arthur Georges, Bernd Gruber, Renee Catullo |
 |  2  |     | 5 pm – 7 pm  | [**Pop Gen In Conservation & Restoration**](session02.qmd) |                 Bill Sherwin, Carlo Pacioni, Renee Catullo                 |
 |  3  | Tue | 9 am – 11 am |                **Sequencing Technologies**                 |               Jason Carling, Andrew Kowalczyk, Renee Catullo               |
 |  4  |     | 12 pm – 2 pm |      **Data Management, Reproducibility & Integrity**      |                                 Jiajia Li                                  |
-|  5  |     | 3 pm – 5 pm  |               [**Effective Population Size**](session05.qmd)                |                 Bernd Gruber, Carlo Pacioni, Bill Sherwin                  |
-|  6  | Wed | 9 am – 11 am |            **Management Of Small Populations**             |                    Catherine Grueber, Kate Farquharson                     |
+|  5  |     | 3 pm – 5 pm  |       [**Effective Population Size**](session05.qmd)       |                 Bernd Gruber, Carlo Pacioni, Bill Sherwin                  |
+|  6  | Wed | 9 am – 11 am |            [**Management Of Small Populations**](session06.qmd)             |                    Catherine Grueber, Kate Farquharson                     |
 |  7  |     | 12 pm – 2 pm |                   **Natural Selection**                    |            Luciano Beheregaray, Chris Brauer, Jonathan Sandoval            |
-|  8  |     | 3 pm – 5 pm  |                   [**Landscape Genetics**](session08.qmd)                   |                          Bernd Gruber, Robyn Shaw                          |
+|  8  |     | 3 pm – 5 pm  |          [**Landscape Genetics**](session08.qmd)           |                          Bernd Gruber, Robyn Shaw                          |
 |  9  | Thu | 9 am – 11 am |                   **Lineage Divergence**                   |                 Arthur Georges, Sally Potter, Craig Moritz                 |
 | 10  |     | 12 pm – 2 pm |          [**Sex Linked Markers**](session10.qmd)           |                    Diana Robledo, Floriaan Devloo-Delva                    |
 | 11  |     | 7 pm – 9 pm  |  **From Genes to Kin: Dissecting Relatedness & Kinship**   |                Jinliang Wang, Luis Mijangos, Natasha Marosi                |

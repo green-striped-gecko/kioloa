@@ -16,8 +16,6 @@ knitr::opts_chunk$set(tidy = TRUE, tidy.opts = list(width.cutoff = 72),
                       echo = TRUE)
 ```
 
-
-
 ```{r, warning=FALSE, message=FALSE}
 library(dartRverse)
 library(ggplot2)
@@ -51,14 +49,14 @@ Here we'll start with the basics, by looking at the spatial distribution of indi
 
 ## 1. Dispersal strategies
 
-Many biological and demographic processes can shape patterns of genetic structure, for example, dispersal strategies, mating systems, and social behaviours. These processes often occur over a fine scale. As such, exploring patterns within populations over 10s-100s of metres is often very informative, especially in small and inconspicuous species.
+Many biological and demographic processes can shape patterns of genetic structure, for example, dispersal strategies, mating systems, and social behaviours. These processes often occur over a fine scale. As such, exploring patterns within populations over 10s-100s of metres can be very informative, especially in small and inconspicuous species.
 
 Before diving into more complex and correlative analyses, it is useful to understand some of the baseline life-history and demographic traits in your species. One common question is: *how far do individuals disperse and is this the same or different for males and females?*
 
 When one sex disperses further than the other, this is known as sex-biased dispersal. This can be detected via genetic spatial autocorrelation analysis. We'll describe this in more detail later on, but in short, increased philopatry by one sex results in greater genetic similarity among neighbouring individuals, while genetic similarity is reduced in the dispersing sex. You can also learn more about it in [Banks & Peakall 2012](https://doi.org/10.1111/j.1365-294X.2012.05485.x) (and references therein).
 
 ::: callout-tip
-### What is philopatry?
+#### What is philopatry?
 
 Natal philopatry describes when an animal remains close or returns to the area where they were born.
 :::
@@ -92,59 +90,24 @@ pdispmale <- c(0, cumsum(dispmale)/sum(dispmale))
 
 Let's look at the dispersal curves. In this case, males disperse further than females (i.e., there is male-biased dispersal):
 
-::: panel-tabset
-
-##### code
-```{r, output = FALSE}
+```{r}
 # Plot
-plot(dispfemale, 
-     type = "l",      # plot line
-     col = '#E69F00', # line colour
+plot(dispfemale,       
+     type = "l",      
+     col = '#E69F00', 
      lwd = 2,
      main = "Female dispersal curve", 
      xlab = "Distance (m)", 
      ylab = "")
 
-plot(dispmale,
-     type = "l",      # plot line
-     col = '#5D3FD3', # line colour
+plot(dispmale,         
+     type = "l",      
+     col = '#5D3FD3', 
      lwd = 2,         
      main = "Male dispersal curve", 
      xlab = "Distance (m)", 
      ylab = "")
 ```
-
-##### Female dispersal
-
-```{r, echo = FALSE}
-# Plot
-plot(dispfemale,
-     type = "l",
-     col = '#E69F00',
-     lwd = 2,
-     main = "Female dispersal curve", 
-     xlab = "Distance (m)", 
-     ylab = "")
-```
-
-##### Male dispersal
-
-
-```{r, echo = FALSE}
-# Plot
-plot(dispmale,
-     type = "l",
-     lwd = 2,
-     col =  '#5D3FD3',
-     main = "Male dispersal curve", 
-     xlab = "Distance (m)", 
-     ylab = "")
-
-```
-
-
-:::
-
 
 Next we'll create a function that generates a population using `glSim`, which simulates simple SNP data and returns a genlight object. In our hypothetical population, females randomly mate with the nearest male, produce two offspring at a 50:50 sex-ratio, and the offspring then disperse following the dispersal probabilities created above.
 
@@ -291,14 +254,14 @@ What does this mean for fine-scale genetic structure? Can we identify different 
 
 We'll use evenly distributed bins and compare individuals at 10 m intervals up to 50 m.
 
-::: callout-tip
-### Significance testing
+::: callout-note
+#### Significance testing
 
 There are two ways to test whether fine-scale genetic structure is significantly positive (i.e., individuals are genetically similar) or negative (i.e., individuals are genetically dissimilar).
 
-The first approach is a one-tail permutation test, which provides 95% null hypothesis confidence regions. If the autocorrelation coefficient "r" falls outsdide of this range, significant fine-scale spatial genetic structure has been detected.
+The first approach is a one-tail permutation test, which provides 95% null hypothesis confidence regions. If the autocorrelation coefficient "r" falls outsdide of this range, significant fine-scale spatial genetic structure is present.
 
-The second approach is to estimate 95% bootstrap confidence intervals (CIs) around the value for r. These are obtained by drawing (with replacement) from within the set of relevant pairwise comparisons for a given distance class. If bootstrap CIs overlap zero, there is no fine-scale spatial genetic structure present. Bootstrap CIs also allow you to test for significant differences between groups (e.g., between females and males). When CIs are non-overlapping, there is a significant difference.
+The second approach is to estimate 95% bootstrap confidence intervals (CIs) around the value for r. These are obtained by drawing (with replacement) from within the set of relevant pairwise comparisons for a given distance class. If bootstrap CIs do not overlap zero, fine-scale spatial genetic structure is present. Bootstrap CIs also allow you to test for significant differences between groups (e.g., between females and males). When CIs are non-overlapping, there is a significant difference.
 
 I tend to use 95% bootstrap CIs, since they are more conservative than permutational tests and allow for comparisons. The `gl.spatial.autoCorr` function below will output 95% bootstrap CIs. You can try a permutation test by adding `permutation = TRUE` (note that for this option to work, you will need to create separate plots for each sex by choosing `plot.pops.together = FALSE`).
 :::
@@ -325,10 +288,10 @@ We can see that:
 1.  Both females and males show significant positive spatial autocorrelation up to 30 m (where confidence intervals overlap zero). In other words, once you start comparing individuals that are 30 m apart, they are unlikely to be related/genetically similar (regardless of sex).
 2.  Females have significantly stronger fine-scale genetic structure than males up to 10 m (i.e., a greater "r" value and female and male bootstrap CIs are non-overlapping).
 
-These results are not surprising, since we set our distance classes based on the known (simulated) dispersal capacity of males and females, and we had large sample sizes (both individuals and loci). In reality, this analysis is a careful balance between power (maximising the sample size in each bin), and ensuring you are looking at the right scale (i.e., the size of the distance class).
+These results are not surprising, since we set our distance classes based on the known (simulated) dispersal capacity of males and females, and we had large sample sizes (both individuals and loci). In reality, this analysis is a careful balance between power (maximising the sample size in each bin), and ensuring you are looking at the right scale (i.e., the size of the distance class matches the extent of spatial-genetic structure).
 
-::: callout-note
-### Exercise
+::: blackbox
+#### Exercise
 
 1.  *What happens when you vary the dispersal distances? Can you pick up small differences between the sexes?*
 
@@ -351,11 +314,11 @@ Try varying the following parameters:
 
 ## 2a. Isolation-by-distance
 
-Isolation-by-distance (IBD) is a key concept in population genetics. It describes a simple idea: that geographic distance can influence gene flow because individuals or populations that are geographically distant from each other are less likely to share genetic material than those that are close (based on the "stepping-stone" model; Kimura & Weiss 1964).
+Isolation-by-distance (IBD) is a key concept in population genetics. It describes a simple idea: that geographic distance can influence gene flow because individuals or populations that are geographically distant from each other are less likely to share genetic material than those that are close (based on the "stepping-stone" model; [Kimura & Weiss 1964](https://doi.org/10.1093%2Fgenetics%2F49.4.561)).
 
-We can test for IBD with Mantel tests of matrix correspondence (Mantel 1967), implemented using the function `gl.ibd`. This test compares pairwise geographic and genetic distance matrices, using permutations to test for significance. For the latter, you can use pairwise population FST values or individual-by-individual genetic distances.
+We can test for IBD with Mantel tests of matrix correspondence ([Mantel 1967](https://aacrjournals.org/cancerres/article/27/2_Part_1/209/476508/The-Detection-of-Disease-Clustering-and-a)), implemented using the function `gl.ibd`. This test compares pairwise geographic and genetic distance matrices, using permutations to test for significance. For the latter, you can use pairwise estimates of population differentiation or individual-by-individual genetic distances.
 
-It's easy enough to plot the relationship between geographic and genetic distance. However, we can't use a standard regression to test this relationship because pairwise data are not independent. Mantel tests solve this problem by using permutation to test for significance (e.g., the data are randomly shuffled, and if there is no relationship, the result will be similar).
+It's easy enough to plot the relationship between geographic and genetic distance. However, we can't use a standard regression to test this relationship because pairwise data are not independent. Mantel tests solve this problem by using permutation to test for significance (e.g., the data are randomly shuffled. The result will be similar to the shuffled outcome if there is no relationship present).
 
 ::: callout-note
 ### Populations vs. individuals
@@ -392,7 +355,13 @@ f.ibd$mantel
 m.ibd$mantel
 ```
 
-Yes - we see significant IBD in females, since dispersal is more restricted. Males show no pattern of IBD, since many individuals can disperse right up to the spatial extent of our sampling. However, we lose some of the nuance from the previous analysis.
+::: callout-important
+### Mantel test statistics
+
+Although a regression line is useful for visualising the relationship between geographic and genetic distance, we don't report the results of the regression (for reasons outlined above). Instead, we report the Mantel test statistic (and the p-value), which is the correlation between the two distance matrices. Values that approach -1 indicate a strong negative relationship, values close to 0 suggest there is no relationship, and values approaching +1 indicate a strong positive relationship (i.e., IBD).
+:::
+
+Above we can see that there is significant IBD in females, since dispersal is more restricted. Males show no pattern of IBD, since many individuals can disperse right up to the spatial extent of our sampling. However, we lose some of the nuance from the previous analysis.
 
 ::: callout-caution
 #### What can we learn from each analysis?
@@ -402,10 +371,13 @@ Mantel tests show us the broad trend across our study. IBD often acts as our nul
 
 ::: callout-note
 ## Exercise
-![](images/task.png){#id .class width="48" height="48"}1.  *What happens if you use the proportion of shared alleles instead of euclidean distance?*
+
+1.  *What happens if you use the proportion of shared alleles instead of euclidean distance?*
 :::
 
-In general, we expect a linear relationship between geographic (sometimes log-transformed) and genetic distance. A discontinuous relationship can be an indication that something else is going on. We will explore this idea below using a real example.
+------------------------------------------------------------------------
+
+We expect a linear relationship between geographic distance (sometimes log-transformed) and genetic distance. A discontinuous relationship can be an indication that something else is going on. We will explore this idea below using a real example.
 
 ### Lesser hairy-footed dunnarts in the Pilbara
 
@@ -417,9 +389,9 @@ In general, we expect a linear relationship between geographic (sometimes log-tr
 load('Data/Sy.gl.RData') # genetic data
 ```
 
-*Sminthopsis youngsonii* (or the lesser hairy footed dunnart), is a small carnivouros dasyurid found across the Australian arid region. As the name suggests, their hind foot is covered in short, bristly hairs, which are thought to help them navigate sandy soils. They are usually found on sand dunes, inter dune swale and red sand plains.
+*Sminthopsis youngsonii* (or the lesser hairy footed dunnart), is a small carnivorous dasyurid found across the Australian arid region. As the name suggests, their hind foot is covered in short, bristly hairs, which are thought to help them move on sandy soils. They are usually found on sand dunes, inter dune swale and red sand plains.
 
-These samples were taken in the Pilbara at the very western edge of their range. Let's take a look at a map:
+These samples were taken in the Pilbara region at the very western edge of their range. Let's take a look at a map:
 
 ```{r}
 leaflet(Sy.gl@other$latlong) %>% 
@@ -506,7 +478,7 @@ leaflet(cbind(pop = Sy.gl@pop, Sy.gl@other$latlong)) %>%
                   position = 'topright', data = gadmCHE, group = 'Polygons')
 ```
 
-It looks like clay could be acting as a barrier. This is a good theory, but it would be useful to be able to visualise these patterns of isolation by distance spatially to get an indication of where exactly gene flow is being restricted. We'll explore this idea in the next section.
+It looks like clay could be acting as a barrier. This is a good theory, but it would be useful to be able to visualise these patterns of isolation by distance spatially to get an indication of where gene flow is being restricted. We'll explore this idea in the next section.
 
 ## 2b. Isolation-by-barrier
 
@@ -515,8 +487,3 @@ Up to this point, we've tested for IBD - but could be helpful to visually inspec
 ## 2c. Isolation-by-resistance
 
 Up to this point, we've only visually inspected the landscape, could be useful to explicitly test the correlation between gene flow and landscape features.
-
-
-## *Further Study*
-
-still to come...

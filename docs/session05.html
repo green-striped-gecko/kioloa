@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -96,6 +115,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="css.css">
 <link rel="stylesheet" href="include/webex.css">
@@ -265,15 +286,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages">Required packages</a></li>
-  <li><a href="#session-content" id="toc-session-content" class="nav-link" data-scroll-target="#session-content">Session Content</a>
-  <ul class="collapse">
+  <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages"><em>Required packages</em></a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#current-effective-population-size" id="toc-current-effective-population-size" class="nav-link" data-scroll-target="#current-effective-population-size">1. Current effective population size</a></li>
-  <li><a href="#historic-effective-population-size" id="toc-historic-effective-population-size" class="nav-link" data-scroll-target="#historic-effective-population-size">2. Historic effective population size</a></li>
+  <li><a href="#historic-effective-population-size" id="toc-historic-effective-population-size" class="nav-link" data-scroll-target="#historic-effective-population-size">2. Historic effective population size</a>
+  <ul class="collapse">
+  <li><a href="#based-on-sfs" id="toc-based-on-sfs" class="nav-link" data-scroll-target="#based-on-sfs">Based on SFS</a></li>
+  <li><a href="#the-sfs" id="toc-the-sfs" class="nav-link" data-scroll-target="#the-sfs">The SFS</a></li>
+  <li><a href="#examples-for-different-sfs-simulated" id="toc-examples-for-different-sfs-simulated" class="nav-link" data-scroll-target="#examples-for-different-sfs-simulated">Examples for different sfs (simulated)</a></li>
+  <li><a href="#epos" id="toc-epos" class="nav-link" data-scroll-target="#epos">Epos</a></li>
+  <li><a href="#stairways2" id="toc-stairways2" class="nav-link" data-scroll-target="#stairways2">Stairways2</a></li>
+  <li><a href="#example-run-of-stairways2" id="toc-example-run-of-stairways2" class="nav-link" data-scroll-target="#example-run-of-stairways2">Example run of Stairways2</a></li>
   </ul></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">EXERCISE</a></li>
-  <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study">Further Study</a></li>
+  <li><a href="#gone" id="toc-gone" class="nav-link" data-scroll-target="#gone">Gone</a></li>
   </ul>
 </nav>
     </div>
@@ -300,62 +325,350 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>Session Presenters</em></p>
 <p><img src="images/Presenters5.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
-<h2 class="anchored" data-anchor-id="required-packages">Required packages</h2>
+<h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.base)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># library(geohippos) # Oh package, Where Art Thou?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github('green-striped-gecko/geohippos')</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geohippos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>make sure you have the packages installed, see</em> <a href="./install.html">Install dartRverse</a></p>
 </section>
-<section id="session-content" class="level2">
-<h2 class="anchored" data-anchor-id="session-content">Session Content</h2>
-<section id="introduction" class="level3">
-<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Ne is important for conservation and management of populations. It is an indicator of the genetic diversity of a population and is used to estimate the probability of extinction.</p>
 <p>Effective population size (<em>Ne</em>) is a concept in population genetics that refers to the number of breeding individuals in an idealized population that would show the same amount of genetic drift or inbreeding or linkage disequilbrium or coalescent as the population under study. Unlike the actual census size (<em>Nc</em>), which counts all individuals within a population, <em>Ne</em> focuses on those contributing genes to the next generation, offering a more precise understanding of a population’s genetic health and potential for evolutionary change.</p>
 <p>The 50/500 rule is a guideline in conservation biology that relates to the effective population size (<em>Ne</em>) and its implications for the conservation of species. This rule was first proposed by Franklin in 1980 and later expanded by Soule in 1986. It serves as a rule of thumb for determining the minimum viable population sizes needed to prevent inbreeding depression in the short term and maintain evolutionary potential over the long term.</p>
 <p>Be aware the 50/500 rule is a rule of thumb and should be used with caution. It is not a one-size-fits-all rule and should be used in conjunction with other information about the species and its habitat. It has been criticized for being too simplistic and not taking into account the specific needs of individual species.</p>
 </section>
-<section id="current-effective-population-size" class="level3">
-<h3 class="anchored" data-anchor-id="current-effective-population-size">1. Current effective population size</h3>
+<section id="current-effective-population-size" class="level2">
+<h2 class="anchored" data-anchor-id="current-effective-population-size">1. Current effective population size</h2>
 <p>Carlo</p>
 </section>
-<section id="historic-effective-population-size" class="level3">
-<h3 class="anchored" data-anchor-id="historic-effective-population-size">2. Historic effective population size</h3>
-<section id="a-based-on-sfs" class="level4">
-<h4 class="anchored" data-anchor-id="a-based-on-sfs">2a Based on SFS</h4>
-<p>The Site Frequency Spectrum (SFS), sometimes referred to as the allele frequency spectrum, is a fundamental concept in population genetics that describes the distribution of allele frequencies at polymorphic sites within a sample of DNA sequences from a population. It provides a powerful summary of the genetic variation present in the population, capturing information about the history of mutations, demographic events (such as population expansions or bottlenecks). There are several methods to estimate historic, but we explore only two here: Epos <span class="citation" data-cites="lynch2019">(<a href="references.html#ref-lynch2019" role="doc-biblioref"><strong>lynch2019?</strong></a>)</span> and Stairways2 <span class="citation" data-cites="liu2020">(<a href="references.html#ref-liu2020" role="doc-biblioref"><strong>liu2020?</strong></a>)</span></p>
+<section id="historic-effective-population-size" class="level2">
+<h2 class="anchored" data-anchor-id="historic-effective-population-size">2. Historic effective population size</h2>
+<section id="based-on-sfs" class="level3">
+<h3 class="anchored" data-anchor-id="based-on-sfs">Based on SFS</h3>
+<p>The Site Frequency Spectrum (SFS), sometimes referred to as the allele frequency spectrum, is a fundamental concept in population genetics that describes the distribution of allele frequencies at polymorphic sites within a sample of DNA sequences from a population. It provides a powerful summary of the genetic variation present in the population, capturing information about the history of mutations, demographic events (such as population expansions or bottlenecks). There are several methods to estimate historic, but we explore only two here: Epos <span class="citation" data-cites="lynch2019">Lynch et al. (<a href="references.html#ref-lynch2019" role="doc-biblioref">2019</a>)</span> and Stairways2 <span class="citation" data-cites="liu2020">Liu and Fu (<a href="references.html#ref-liu2020" role="doc-biblioref">2020</a>)</span></p>
 </section>
-<section id="the-sfs" class="level4">
-<h4 class="anchored" data-anchor-id="the-sfs">The SFS</h4>
+<section id="the-sfs" class="level3">
+<h3 class="anchored" data-anchor-id="the-sfs">The SFS</h3>
 <p>It is straight forward to create the sfs from a genlight/dartR object. But first you want to make sure you do not have missing data in your dataset, because the allele frequency spectrum is sensitive to missing data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gl100 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/slim_100.rds"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check the population size and number of populations</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(gl100))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># number of individuals</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nInd</span>(gl100)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># number of loci</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(gl100)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>sfscon <span class="ot">&lt;-</span> <span class="fu">gl.sfs</span>(gl100, <span class="at">folded =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>sfscon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(gl100))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ A 
+50 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of individuals</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nInd</span>(gl100)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of loci</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(gl100)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10645</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sfscon <span class="ot">&lt;-</span> <span class="fu">gl.sfs</span>(gl100, <span class="at">folded =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.sfs 
+  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.sfs </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sfscon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  d0   d1   d2   d3   d4   d5   d6   d7   d8   d9  d10  d11  d12  d13  d14  d15 
+  10 1924 1188  676  557  408  400  260  249  254  238  200  179  186  195  170 
+ d16  d17  d18  d19  d20  d21  d22  d23  d24  d25  d26  d27  d28  d29  d30  d31 
+ 180  115  170  122  138  127  142   99  105  109  110   95  106  112   88   85 
+ d32  d33  d34  d35  d36  d37  d38  d39  d40  d41  d42  d43  d44  d45  d46  d47 
+  89   80  100   91   60   96   97   88  111   81   72   86   85   57   91  110 
+ d48  d49  d50 
+  90  114   50 </code></pre>
+</div>
 </div>
 <p>As you can see the is simply a table of the number of alleles at each frequency. Be aware the the sfs is folded by default, but you can change this with the argument <code>folded = FALSE</code>. In most of the cases we will use the folded=TRUE option as you need phased data to use the unfolded sfs (and also have an idea which state is the ancestral one. Often the genomic of an ancestral outgroup is used for this information).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise 1: Parameter in gl.sfs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="images/task.png" class="class" width="48" height="48"> Try different settings for the sfs and see what happens. There are three important parameters:</p>
+<ul>
+<li><code>minbinsize</code> (default is 1)</li>
+<li><code>folded</code> (default is TRUE)</li>
+<li><code>singlepop</code> (default is TRUE) [if you have more than one population in your genlight object]</li>
+</ul>
+</div>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unfolded sfs</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>un.sfs <span class="ot">&lt;-</span> <span class="fu">gl.sfs</span>(gl100, <span class="at">folded =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>un.sfs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unfolded sfs</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>un.sfs <span class="ot">&lt;-</span> <span class="fu">gl.sfs</span>(gl100, <span class="at">folded =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.sfs 
+  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.sfs </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>un.sfs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  d0   d1   d2   d3   d4   d5   d6   d7   d8   d9  d10  d11  d12  d13  d14  d15 
+   0 1913 1144  649  540  392  368  250  231  229  216  182  163  163  149  152 
+ d16  d17  d18  d19  d20  d21  d22  d23  d24  d25  d26  d27  d28  d29  d30  d31 
+ 141  103  138  106  108  102  110   81   83   82   88   74   83   86   60   63 
+ d32  d33  d34  d35  d36  d37  d38  d39  d40  d41  d42  d43  d44  d45  d46  d47 
+  48   59   62   61   38   58   68   55   66   51   42   54   49   26   54   49 
+ d48  d49  d50  d51  d52  d53  d54  d55  d56  d57  d58  d59  d60  d61  d62  d63 
+  54   65   50   49   36   61   37   31   36   32   30   30   45   33   29   38 
+ d64  d65  d66  d67  d68  d69  d70  d71  d72  d73  d74  d75  d76  d77  d78  d79 
+  22   30   38   21   41   22   28   26   23   21   22   27   22   18   32   25 
+ d80  d81  d82  d83  d84  d85  d86  d87  d88  d89  d90  d91  d92  d93  d94  d95 
+  30   16   32   12   39   18   46   23   16   18   22   25   18   10   32   16 
+ d96  d97  d98  d99 d100 
+  17   27   44   11   10 </code></pre>
+</div>
 </div>
 <p>In addition it is possible to create multidimensional sfs, which is useful for example when you have multiple populations (in case you want to have that use: singlepop=FALSE). Be aware if you want to create and multidimensional sfs from more than say 3 populations a 30 individuals you create a huge array of dimensions (61 x 61 x 61), with mainly zeros. So often multidemensional sfs are not very useful.</p>
+<p>So lets have a closer look at the folder sfs from the example. The simulated population had a constant (effective) population size <em>Ne</em> of 100 individuals. Hence we know from theory that we have to expect a sfs that follows an exponential distribution.</p>
+<p>We now load two more data sets:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gldec <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/slim_100_50_50yago.rds"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>glinc <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/slim_100_200_50yago.rds"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>glbottle <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/slim_100_10_50_50yago_10year.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>gldec</code> is a population that experienced a decline from Ne=100 to Ne=50 50 years ago, while <code>glinc</code> is a population that experienced an increase from Ne=100 to Ne=200 50 years ago. And <code>glbottle</code> is a data set that experienced a bottleneck from Ne=100 to Ne=10 50 years ago and then an increase to Ne=50 after years.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise 2: Compare SFS
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="images/task.png" class="class" width="48" height="48"> Create a SFS for the three new datasets and compare them to the SFS of the constant population. What do you expect?</p>
+</div>
+</div>
+<p>Below is a plot that shows all four SFS.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sfsdec <span class="ot">&lt;-</span> <span class="fu">gl.sfs</span>(gldec, <span class="at">folded =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.sfs 
+  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.sfs </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sfsinc <span class="ot">&lt;-</span> <span class="fu">gl.sfs</span>(glinc, <span class="at">folded =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.sfs 
+  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.sfs </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sfsbottle <span class="ot">&lt;-</span> <span class="fu">gl.sfs</span>(glbottle, <span class="at">folded =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.sfs 
+  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.sfs </code></pre>
+</div>
+</div>
 </section>
+<section id="examples-for-different-sfs-simulated" class="level3">
+<h3 class="anchored" data-anchor-id="examples-for-different-sfs-simulated">Examples for different sfs (simulated)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50</span>, sfscon, sfsdec, sfsinc, sfsbottle)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> sfscon)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> sfsdec)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> sfsinc)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>g4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> sfsbottle)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> g2 <span class="sc">+</span> g3 <span class="sc">+</span> g4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As you can see it is not really possible to see the differences between the sfs, so lets check how good our methods are to recreate the historic population sizes.</p>
 </section>
+<section id="epos" class="level3">
+<h3 class="anchored" data-anchor-id="epos">Epos</h3>
+<p>Lets start with the simple one and lets use Epos (as this is the fastest method). A typical epos run requires the genlight/dartR object, then the path to the epos binary.</p>
+<p>There are two more important parameters l and mu. l is the total lenght of the “sampled” chromosome and we will have a discussion on that. mu is the mutation rate per site per generation. The important concept to keep in mind is that:</p>
+<p><span class="math display">\[\LARGE x = mu \times L \times 2 \times Ne \]</span> , where x is the number of mutations in a generation.</p>
+<p>So to be able to estimate the trajectory in an absolute sense we need to know L and mu. In a simulation that is easy because we know how long the chromosome(s) were we did our simulation on. Here L=5e8 and mu was set to a value of 1e-8.</p>
+<p>We could provide the sfs, but the gl.epos function does take care of that in case none is provided (it call gl.sfs). Additional parameters in EPOS are the number of bootstraps that should be run for confidence intervalas (the more the more runs and the longer it takes) and the minimum bins size. Here we use minbinsize=1 (the default), because we have simulated data and also trust our low frequency bins. In a real data set you might want to change that to higer values, though if too high you might delete too much information from your data (the first bins have the highest number of entries and therefore should be the most informative ones).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fl">5e+08</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fl">1e-08</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># forgive me but you need to name 'L' as little l in the function call.</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># will be corrected in the ne</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>Ne_epos <span class="ot">&lt;-</span> <span class="fu">gl.epos</span>(gl100, <span class="at">epos.path =</span> <span class="st">"./binaries/"</span>, <span class="at">l =</span> L, <span class="at">u =</span> mu, <span class="at">boot =</span> <span class="dv">10</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">minbinsize =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Ne_epos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"generation"</span>, <span class="st">"low"</span>, <span class="st">"Ne_median"</span>, <span class="st">"high"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Ne_epos, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> Ne_median)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> high), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As you might remember the population size was constant at 100 individuals. So we expect the Ne to be 100 for all generations. And indeed the median is 100 for allmost all generations. The confidence intervals are very narrow, which is expected as we have simulated this data set. There is little bit disturbing ‘dip’ at really low population sizes. This hints to the known limitation that in very recent times there had not been enough mutations to estimate the population size correctly.</p>
+<p>Before we go on with the other data sets (fairly easy to run, just replace the gl100 with the other data sets) we should discuss the parameter l and mu. The l parameter is the length of the chromosome that was sampled. In a real data set you might not know that, because this depends on your methods, the amount of filters etc. Hence the question is what happens if you set l wrong. Lets test set and set L to an often used value: number of loci times 69 (because in a dart analysis we get 69 bases of sequence hence that sounds like a reasonable idea).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="dv">69</span> <span class="sc">*</span> <span class="fu">nLoc</span>(gl100)  <span class="co">#734505</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fl">1e-08</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>Ne_epos <span class="ot">&lt;-</span> <span class="fu">gl.epos</span>(gl100, <span class="at">epos.path =</span> <span class="st">"./binaries/"</span>, <span class="at">l =</span> L, <span class="at">u =</span> mu, <span class="at">boot =</span> <span class="dv">10</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">minbinsize =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Ne_epos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"generation"</span>, <span class="st">"low"</span>, <span class="st">"Ne_median"</span>, <span class="st">"high"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Ne_epos, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> Ne_median)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> high), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As you can see this is not a good idea the axis values are completely off. The reason is that the number of mutations is calculated as L * mu * Ne. So if you set L too low, you will get a too high Ne (and also the number of generations are off). If you set L too high, you will get a too low Ne. So you need to know the length of the chromosome that you are working with. The good news is that the trajectory is still correct, so we can rely on the shape of the curve, but the absolute values are wrong if L (or mu) are set incorrectly.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise 3: Run Epos for different combinations of L and mu
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="images/task.png" class="class" width="48" height="48"> You can now run epos for different combinations of L and mu. What do you expect if you set L and mu in such a way that L * mu compensate each other?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise 4: Run Epos for all data sets
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="images/task.png" class="class" width="48" height="48"> And now to the next exercise which is the more intersting one: run Epos for all four data sets data sets(glcon, glinc, gldec, glbottle) and compare the results to the simulated trajectories. Once finished you can have a look at the code below.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fl">5e+08</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fl">1e-08</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># constant</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>Ne_epos <span class="ot">&lt;-</span> <span class="fu">gl.epos</span>(gl100, <span class="at">epos.path =</span> <span class="st">"./binaries"</span>, <span class="at">l =</span> L, <span class="at">u =</span> mu, <span class="at">boot =</span> <span class="dv">10</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">minbinsize =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Ne_epos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"generation"</span>, <span class="st">"low"</span>, <span class="st">"Ne_median"</span>, <span class="st">"high"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>pcon <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Ne_epos, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> Ne_median)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># constant</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>Ne_epos <span class="ot">&lt;-</span> <span class="fu">gl.epos</span>(glinc, <span class="at">epos.path =</span> <span class="st">"./binaries"</span>, <span class="at">l =</span> L, <span class="at">u =</span> mu, <span class="at">boot =</span> <span class="dv">10</span>,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">minbinsize =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Ne_epos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"generation"</span>, <span class="st">"low"</span>, <span class="st">"Ne_median"</span>, <span class="st">"high"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>pinc <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Ne_epos, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> Ne_median)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># constant</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>Ne_epos <span class="ot">&lt;-</span> <span class="fu">gl.epos</span>(gldec, <span class="at">epos.path =</span> <span class="st">"./binaries"</span>, <span class="at">l =</span> L, <span class="at">u =</span> mu, <span class="at">boot =</span> <span class="dv">10</span>,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">minbinsize =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Ne_epos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"generation"</span>, <span class="st">"low"</span>, <span class="st">"Ne_median"</span>, <span class="st">"high"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>pdec <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Ne_epos, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> Ne_median)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">200</span>))</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># constant</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>Ne_epos <span class="ot">&lt;-</span> <span class="fu">gl.epos</span>(glbottle, <span class="at">epos.path =</span> <span class="st">"./binaries"</span>, <span class="at">l =</span> L, <span class="at">u =</span> mu, <span class="at">boot =</span> <span class="dv">10</span>,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">minbinsize =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Processing genlight object with SNP data</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Ne_epos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"generation"</span>, <span class="st">"low"</span>, <span class="st">"Ne_median"</span>, <span class="st">"high"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>pbottle <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Ne_epos, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> Ne_median)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And now we can plot them next all in one go:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>pcon <span class="sc">+</span> pinc <span class="sc">+</span> pdec <span class="sc">+</span> pbottle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Pretty good, or what do you think?</p>
 </section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">EXERCISE</h2>
+<section id="stairways2" class="level3">
+<h3 class="anchored" data-anchor-id="stairways2">Stairways2</h3>
+<p>Stairways is the actually more popular mehtod to estimate the historic population sizes from SNPs. The reason is most likely that EPOS was implemented in a way that makes it really hard to run for a not initiated person (you need to compile c++ and run some commands in GO). The upshot in Epos is that is it much much faster and the results are not too different to stairways. Nevertheless, we will have a go with stairways below.</p>
+<p>The good new is that stairways uses the identical input parameters: L, mu, minbinsize. Hence nothing new here an it “suffers” therefore from the same problem if we do not know mu of L the trajectory is okay, but the absolute values on the axis are off.</p>
+<p>The main difference (and here I admit I have to resort to a general explanation as it is beyond my paygrade to understand). Epos uses a simple semi-analytical optimization method to find the best fitting trajectory, whereas stairways uses a machine learning approach that takes longer (but potentially explores the parameter space better). My current approach is to use both methods and see if the results are similar.</p>
+</section>
+<section id="example-run-of-stairways2" class="level3">
+<h3 class="anchored" data-anchor-id="example-run-of-stairways2">Example run of Stairways2</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fl">5e+08</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fl">1e-08</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># takes about 5 minutes so not run here Ne_sw &lt;- gl.stairway2(gl100,</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># stairway.path='./binaries', mu = mu, gentime = 1, run=TRUE, nreps =</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 30, parallel=10, L=L, minbinsize =1)</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>Ne_sw <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/Ne_sw_gl100.rds"</span>)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Ne_sw, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> Ne_median)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> Ne_2.<span class="fl">5.</span>,</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> Ne_97.<span class="fl">5.</span>), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -366,15 +679,89 @@ Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><img src="images/task.png" id="id" class="class" width="48" height="48"> Still to come…</p>
+<p><img src="images/task.png" class="class" width="48" height="48"> Now that you have learned to run Epos and Stairways, perhaps try to run your own data sets or use the ones provided.</p>
+<p>Foxes in Australia (foxes.rds) Crocodiles in Australia (crocs.rds)</p>
+<p>You can also try to run the simulator to explore how good the methods are for more complicated demographic histories. [slim simulator]</p>
 </div>
 </div>
 </section>
-<section id="further-study" class="level2">
-<h2 class="anchored" data-anchor-id="further-study">Further Study</h2>
-<p>still to come…</p>
+</section>
+<section id="gone" class="level2">
+<h2 class="anchored" data-anchor-id="gone">Gone</h2>
+<p>[Needs more implementation and testing, but I will give a brief overview here.] [Be aware Gone is very data hungry and seems not to work too well with the number of SNPs we have at our disposal, but in simulations with Ne~1000 and lots of individuals it seems to work well].</p>
+<p>Gone is a very different method to estimate the population size. It was developed by <span class="citation" data-cites="santiago2020">Santiago et al. (<a href="references.html#ref-santiago2020" role="doc-biblioref">2020</a>)</span>. The authors utilize LD patterns to infer the demographic history of populations. LD can be affected by various factors including recombination, mutation, genetic drift, and population structure. The method is based on the idea that the LD decay is a function of the population size and the recombination rate. So we need next to our SNP data also a so called linkage map. This can be achieved if you have a reference genome available and you can map the SNPs to the reference genome. Gone itself has not been tested to much for recent population sizes and is still very much under research about its usefullness for recent population sizes.</p>
+<p>Below is an implementation to run Gone using the dartRverse, but be aware it has not been much tested. We certainly can run Gone using our simulated data (because we simulted 5 chromosomes and we have a full map of them on those chromosomes).</p>
+<p>To see that we can check how many snps we have on the chromosomes in our data sets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(gl100<span class="sc">@</span>chromosome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   1    2    3    4    5 
+2252 2130 2132 2229 1902 </code></pre>
+</div>
+</div>
+<p>So lets run Gone (be aware it is not very userfriendly implemented yet in terms of the settings. Gone currently a script file that is hidden within the script_GONE.sh file and you need to edit it there to change it from the defaults.</p>
+<p>Explain the settings (important MAF)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># take a bit long Ne_gone &lt;- gl.gone(gl100,gone.path = './binaries')</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># #runs parallel via InputParamters load it instead</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>Ne_gone <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/Ne_gone_100.rds"</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Ne_gone) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"generation"</span>, <span class="st">"Ne_mean"</span>)</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Ne_gone, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> Ne_mean)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Pretty terrible I guess. My first findings indicate the Gone is much more data hungry and works better with much more SNPs, more chromosomes and more individuals. There is a data set I available using 5 chromosomes (but twice in length) and 100 indivduals (being stable all the time)</p>
+<p>The plot is below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>glgone100 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/slimgone_100.rds"</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ne_gone &lt;- gl.gone(gl100,gone.path =</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 'd:/bernd/r/geohippos/binaries/gone/windows/') #runs parallel via</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># InputParamters takes too long</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>Ne_gone <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/Ne_gone_100.rds"</span>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Ne_gone) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"generation"</span>, <span class="st">"Ne_mean"</span>)</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Ne_gone, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> Ne_mean)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session05_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It is certainly possible that gone is “saveable” but it is obvious that Gone is not very “good” in recent years. There seems to be a sweet spot where Gone works well &gt;100 Generations and &lt;300 generations, but that needs more testing.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="images/task.png" class="class" width="48" height="48"> Now that you have learned to run Gone perhaps try to run your own data sets or use the ones provided.</p>
+<p>You can also try to run the simulator to explore how good the methods are for more complicated demographic histories. [slim simulator]</p>
+</div>
+</div>
+<p>We hope you have fun runnig the code and please do not hesitate to ask questions or provide feedback.</p>
+<p>Cheers, Carlo &amp; Bernd</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-liu2020" class="csl-entry" role="listitem">
+Liu, Xiaoming, and Yun-Xin Fu. 2020. <span>“Stairway <span>Plot</span> 2: Demographic History Inference with Folded <span>SNP</span> Frequency Spectra.”</span> <em>Genome Biology</em> 21 (November). <a href="https://doi.org/10.1186/s13059-020-02196-9">https://doi.org/10.1186/s13059-020-02196-9</a>.
+</div>
+<div id="ref-lynch2019" class="csl-entry" role="listitem">
+Lynch, Michael, Bernhard Haubold, Peter Pfaffelhuber, and Takahiro Maruki. 2019. <span>“Inference of <span>Historical</span> <span>Population</span>-<span>Size</span> <span>Changes</span> with <span>Allele</span>-<span>Frequency</span> <span>Data</span>.”</span> <em>G3: Genes<span></span>Genomes<span></span>Genetics</em> 10 (1): 211–23. <a href="https://doi.org/10.1534/g3.119.400854">https://doi.org/10.1534/g3.119.400854</a>.
+</div>
+<div id="ref-santiago2020" class="csl-entry" role="listitem">
+Santiago, E., I. Novo, A. F. Pardiñas, M. Saura, J. Wang, and A. Caballero. 2020. <span>“Recent Demographic History Inferred by High-Resolution Analysis of Linkage Disequilibrium.”</span> <em>Molecular Biology and Evolution</em> 37 (12): 3642–53. <a href="https://doi.org/10.1093/molbev/msaa174">https://doi.org/10.1093/molbev/msaa174</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
