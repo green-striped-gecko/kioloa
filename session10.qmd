@@ -195,7 +195,7 @@ Choose one of the following datasets (or your own data) and report:
 ### Exercise data 1 - Your own data
 
 ::: callout-tip
-**HINT**
+## **HINT**
 
 You can have a look at the exercise data below for inspiration.
 :::

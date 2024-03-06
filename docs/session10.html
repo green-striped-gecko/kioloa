@@ -328,7 +328,7 @@ div.csl-indent {
 
 </header>
 
-<p><em>Session leads</em></p>
+<p><em>Session presenters</em></p>
 <p><img src="images/Presenters10.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
@@ -394,9 +394,19 @@ div.csl-indent {
 <figcaption class="figure-caption">ZW/ZZ sex chromosomes</figcaption>
 </figure>
 </div>
-<div class="blackbox">
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>NOTE</strong></p>
 <p>Set <code>ncores</code> to more than 1 (default) if you have more than 50,000 SNPs, since it could actually slow down the analysis with smaller datasets.</p>
+</div>
 </div>
 <div class="cell" data-hash="session10_cache/html/unnamed-chunk-3_87afa31e9a929db9aaa6d140c9ffdb60">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(YTH<span class="sc">@</span>other<span class="sc">$</span>ind.metrics))  <span class="co"># Check that ind.metrics has the necessary columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1772,11 +1782,10 @@ Exercise
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<strong>HINT</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>HINT</strong></p>
 <p>You can have a look at the exercise data below for inspiration.</p>
 </div>
 </div>

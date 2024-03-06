@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -95,6 +114,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-binding-2.2.1/leaflet.js"></script>
+<script src="site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="site_libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
 
 
 <link rel="stylesheet" href="css.css">
@@ -156,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./session01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to dartR</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to <code>dartR</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -267,7 +297,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages">Required packages</a></li>
   <li><a href="#session-content" id="toc-session-content" class="nav-link" data-scroll-target="#session-content">Session Content</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">EXERCISE</a></li>
+  <li><a href="#assessing-populations-structure-and-demographic-history" id="toc-assessing-populations-structure-and-demographic-history" class="nav-link" data-scroll-target="#assessing-populations-structure-and-demographic-history">Assessing Populations: structure and demographic history</a>
+  <ul class="collapse">
+  <li><a href="#load-data-and-explore" id="toc-load-data-and-explore" class="nav-link" data-scroll-target="#load-data-and-explore">Load data and explore</a></li>
+  <li><a href="#clean-data" id="toc-clean-data" class="nav-link" data-scroll-target="#clean-data">Clean data</a></li>
+  <li><a href="#filtering" id="toc-filtering" class="nav-link" data-scroll-target="#filtering">Filtering</a></li>
+  <li><a href="#run-snmf-lea" id="toc-run-snmf-lea" class="nav-link" data-scroll-target="#run-snmf-lea">Run SNMF (LEA)</a></li>
+  <li><a href="#filtering-for-tajimas-d" id="toc-filtering-for-tajimas-d" class="nav-link" data-scroll-target="#filtering-for-tajimas-d">Filtering for Tajima’s D</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  </ul></li>
   <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study">Further Study</a></li>
   </ul>
 </nav>
@@ -296,18 +334,423 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/Presenters2.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages">Required packages</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.base)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-1_0fbee7ad818beb1f9f8da6c2a516471e">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#BiocManager::install("LEA")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#devtools::install_github("tdhock/directlabels")</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet.minicharts)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(LEA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>make sure you have the packages installed, see</em> <a href="./install.html">Install dartRverse</a></p>
 </section>
 <section id="session-content" class="level2">
 <h2 class="anchored" data-anchor-id="session-content">Session Content</h2>
-<p>Still to come…</p>
 </section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">EXERCISE</h2>
+<section id="assessing-populations-structure-and-demographic-history" class="level2">
+<h2 class="anchored" data-anchor-id="assessing-populations-structure-and-demographic-history">Assessing Populations: structure and demographic history</h2>
+<section id="load-data-and-explore" class="level3">
+<h3 class="anchored" data-anchor-id="load-data-and-explore">Load data and explore</h3>
+<p>read in data</p>
+<p>this dataset is to assess population structure and diversity in Uperoleia crassa, from <span class="citation" data-cites="jaya_population_2022">Jaya et al. (<a href="references.html#ref-jaya_population_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-2_8b6f19a95d5b3cdd4d360dc16eea26fb">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gl &lt;- dartR::gl.read.dart("Report_DUp20-4995_1_moreOrders_SNP_mapping_2.csv",</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                           ind.metafile = "Uperoleia_metadata.csv")</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">'./data/session02_Uperoleia_crassa.RData'</span>) <span class="co"># data named gl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>These are monsoonal tropical frogs, who are very common and abundant. They do interesting and weird stuff evolutionarily and reproductively</p>
+<p>lets quickly look at our samples and populations</p>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-3_bf1702c0a318dabf6173b7c8008a2919">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.map.interactive</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.map.interactive 
+  Processing genlight object with SNP data
+Completed: gl.map.interactive </code></pre>
+</div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-bda6d648511a8169ee53" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-bda6d648511a8169ee53">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[-14.373,-17.51092,-14.8202,-15.9894,-17.48117,-16.4197,-15.9894,-17.51092,-15.9894,-13.51479,-16.7166,-16.323,-15.611435,-17.068,-16.4197,-17.27888,-12.4505,-16.7166,-14.8202,-15.89966,-14.878889,-15.62681,-15.9897,-14.7908,-14.7588,-13.8944,-12.5604,-16.71059,-14.201,-15.60485,-14.201,-13.20231217,-12.703333,-14.883333,-13.833333,-13.39652],[125.9442,126.10867,125.7211,125.3294,138.183,126.0992,125.3294,126.10867,125.3294,132.60605,125.455,124.7589,130.38786,125.2478,126.0992,126.60098,131.0955,125.455,125.7211,128.93649,125.916111,128.67263,125.3294,125.8261,127.0481,126.6069,131.2757,135.43858,132.039,130.38046,132.039,130.7011327,132.883333,135.133333,136.416667,131.15714],10,null,null,{"interactive":true,"className":"","stroke":true,"color":["#FF0000","#FF0000","#FF0000","#FF0000","#00FFFF","#FF0000","#FF0000","#FF0000","#FF0000","#00FFFF","#FF0000","#FF0000","#00FFFF","#FF0000","#FF0000","#FF0000","#00FFFF","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF"],"weight":10,"opacity":0.8,"fill":true,"fillColor":["#FF0000","#FF0000","#FF0000","#FF0000","#00FFFF","#FF0000","#FF0000","#FF0000","#FF0000","#00FFFF","#FF0000","#FF0000","#00FFFF","#FF0000","#FF0000","#FF0000","#00FFFF","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#00FFFF"],"fillOpacity":0.2},["Up1269_WAMR164857","Up0184_WAMR162563","Up0196_WAMR167730","WAMR168047","Up1186_QMJ88804","Up0211_WAMR167951","Up1293_WAMR168190","WAMR162566","WAMR168048","Up1136_NTMR36228","Up1297_WAMR169937","Up1321_WAMR171536","Up1118_NTMR36173","Up0083_WAMR113846","Up0209_WAMR167949","WAMR162621","Up0276_NTMR35114","Up1298_WAMR169939","WAMR167733","Up0183_WAMR162558","Up1074_WAMR64926","Up0166_WAMR162490","Up1310_WAMR171408","WAMR167849","Up1070_WAMR164970","Up1266_WAMR164844","Up0731_ABTC99709","Up1096_R36195","Up0767_ABTC12489","Up1120_R36170","Up0769_ABTC12511","Up0832_ABTC93392","Up0854_ABTC17229","Up0969_ABTC29129","Up1041_R138706","Up1078_R36177"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addMarkers","args":[[-15.89931722727273,-14.31104044071429],[126.0747159545455,132.8383396928571],{"iconUrl":{"data":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=","index":0},"iconWidth":1,"iconHeight":1},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["IK","IT"],{"interactive":false,"permanent":true,"direction":"top","opacity":1,"offset":[0,0],"textsize":"12px","textOnly":true,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Esri.NatGeoWorldMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"limits":{"lat":[-17.51092,-12.4505],"lng":[124.7589,138.183]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>we have two populations - the Kimberley (IK) and the Top End (IT)</p>
+</section>
+<section id="clean-data" class="level3">
+<h3 class="anchored" data-anchor-id="clean-data">Clean data</h3>
+<p>Clean up your dataset to remove the most egregiously bad loci and individuals this set of filtering can be used across analyses</p>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-4_c72a78ca885823273257dbf29cec0dfa">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Get rid of really poorly sequenced loci</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#But don’t cut hard</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.callrate 
+  Processing genlight object with SNP data
+  Reporting Call Rate by Locus
+  No. of loci = 227143 
+  No. of individuals = 36 
+    Minimum      :  0.222222 
+    1st quartile :  0.611111 
+    Median       :  0.777778 
+    Mean         :  0.7464089 
+    3r quartile  :  0.916667 
+    Maximum      :  1 
+    Missing Rate Overall:  0.2536 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl, <span class="at">method =</span> <span class="st">"loc"</span>, <span class="at">threshold =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.callrate 
+  Processing genlight object with SNP data
+  Warning: Data may include monomorphic loci in call rate 
+                    calculations for filtering
+  Recalculating Call Rate
+  Removing loci based on Call Rate, threshold = 0.8 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.filter.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Very low filter – this is only to get rid of your really bad individuals</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl<span class="fl">.1</span>, <span class="at">method =</span> <span class="st">"ind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.callrate 
+  Processing genlight object with SNP data
+
+  Reporting Call Rate by Individual
+  No. of loci = 113404 
+  No. of individuals = 36 
+    Minimum      :  0.7589944 
+    1st quartile :  0.8751808 
+    Median       :  0.9524179 
+    Mean         :  0.9159171 
+    3r quartile  :  0.9598625 
+    Maximum      :  0.9787662 
+    Missing Rate Overall:  0.0841 
+
+Listing 2 populations and their average CallRates
+  Monitor again after filtering
+  Population CallRate  N
+1         IK   0.9567 22
+2         IT   0.8519 14
+
+Listing 20 individuals with the lowest CallRates
+  Use this list to see which individuals will be lost on filtering by individual
+  Set ind.to.list parameter to see more individuals
+          Individual  CallRate
+1     Up1041_R138706 0.7589944
+2    Up1186_QMJ88804 0.7730856
+3      Up1096_R36195 0.8080932
+4   Up0969_ABTC29129 0.8429597
+5   Up1136_NTMR36228 0.8449878
+6   Up0854_ABTC17229 0.8483299
+7   Up0276_NTMR35114 0.8558869
+8   Up1118_NTMR36173 0.8596699
+9      Up1120_R36170 0.8701809
+10  Up0767_ABTC12489 0.8768474
+11  Up0731_ABTC99709 0.8850834
+12  Up0832_ABTC93392 0.8948097
+13  Up0769_ABTC12511 0.8980988
+14 Up0166_WAMR162490 0.9082308
+15     Up1078_R36177 0.9091390
+16 Up1269_WAMR164857 0.9188212
+17 Up1266_WAMR164844 0.9397640
+18 Up1321_WAMR171536 0.9517389
+19        WAMR162566 0.9530969
+20 Up0083_WAMR113846 0.9537142
+
+)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl<span class="fl">.1</span>, <span class="at">method =</span> <span class="st">"ind"</span>, <span class="at">threshold =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.callrate 
+  Processing genlight object with SNP data
+  Warning: Data may include monomorphic loci in call rate 
+                    calculations for filtering
+  Recalculating Call Rate
+  Removing individuals based on Call Rate, threshold = 0.25 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Note: Locus metrics not recalculated
+  Note: Resultant monomorphic loci not deleted
+Completed: gl.filter.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Always run this after removing individuals – removes loci that are no longer variable</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.monomorphs</span>(gl<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.monomorphs 
+  Processing genlight object with SNP data
+  Identifying monomorphic loci
+  No monomorphic loci to remove
+Completed: gl.filter.monomorphs </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Get rid of unreliable loci</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.reproducibility</span>(gl<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.reproducibility 
+  Processing genlight object with SNP data
+  Reporting Repeatability by Locus
+  No. of loci = 113404 
+  No. of individuals = 36 
+    Minimum      :  0.875 
+    1st quartile :  1 
+    Median       :  1 
+    Mean         :  0.9962267 
+    3r quartile  :  1 
+    Maximum      :  1 
+    Missing Rate Overall:  0.08 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Quantile Threshold Retained Percent Filtered Percent
+1      100%  1.000000   106676    94.1     6728     5.9
+2       95%  1.000000   106676    94.1     6728     5.9
+3       90%  1.000000   106676    94.1     6728     5.9
+4       85%  1.000000   106676    94.1     6728     5.9
+5       80%  1.000000   106676    94.1     6728     5.9
+6       75%  1.000000   106676    94.1     6728     5.9
+7       70%  1.000000   106676    94.1     6728     5.9
+8       65%  1.000000   106676    94.1     6728     5.9
+9       60%  1.000000   106676    94.1     6728     5.9
+10      55%  1.000000   106676    94.1     6728     5.9
+11      50%  1.000000   106676    94.1     6728     5.9
+12      45%  1.000000   106676    94.1     6728     5.9
+13      40%  1.000000   106676    94.1     6728     5.9
+14      35%  1.000000   106676    94.1     6728     5.9
+15      30%  1.000000   106676    94.1     6728     5.9
+16      25%  1.000000   106676    94.1     6728     5.9
+17      20%  1.000000   106676    94.1     6728     5.9
+18      15%  1.000000   106676    94.1     6728     5.9
+19      10%  1.000000   106676    94.1     6728     5.9
+20       5%  0.944444   110021    97.0     3383     3.0
+21       0%  0.875000   113404   100.0        0     0.0
+Completed: gl.report.reproducibility </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.reproducibility</span>(gl<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.select.colors 
+  Warning: Number of required colors not specified, set to 9
+  Library: RColorBrewer
+  Palette: brewer.pal
+  Showing and returning 2 of 9 colors for library RColorBrewer : palette Blues </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.select.colors 
+Starting gl.filter.reproducibility 
+  Processing genlight object with SNP data
+  Removing loci with repeatability less than 0.99 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.filter.reproducibility </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Get rid of low and super high read depth loci</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#do twice so you can zoom in</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.rdepth</span>(gl<span class="fl">.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.rdepth 
+  Processing genlight object with SNP data
+  Reporting Read Depth by Locus
+  No. of loci = 106676 
+  No. of individuals = 36 
+    Minimum      :  2.5 
+    1st quartile :  5 
+    Median       :  7.2 
+    Mean         :  7.741356 
+    3r quartile  :  10 
+    Maximum      :  121.7 
+    Missing Rate Overall:  0.09 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-8.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Quantile Threshold Retained Percent Filtered Percent
+1      100%     121.7        1     0.0   106675   100.0
+2       95%      13.6     5520     5.2   101156    94.8
+3       90%      12.4    10872    10.2    95804    89.8
+4       85%      11.5    16057    15.1    90619    84.9
+5       80%      10.7    21633    20.3    85043    79.7
+6       75%      10.0    26932    25.2    79744    74.8
+7       70%       9.4    32193    30.2    74483    69.8
+8       65%       8.8    37650    35.3    69026    64.7
+9       60%       8.2    43461    40.7    63215    59.3
+10      55%       7.7    48582    45.5    58094    54.5
+11      50%       7.2    53911    50.5    52765    49.5
+12      45%       6.7    59668    55.9    47008    44.1
+13      40%       6.3    64353    60.3    42323    39.7
+14      35%       5.8    70391    66.0    36285    34.0
+15      30%       5.4    75457    70.7    31219    29.3
+16      25%       5.0    80644    75.6    26032    24.4
+17      20%       4.6    86041    80.7    20635    19.3
+18      15%       4.2    91353    85.6    15323    14.4
+19      10%       3.8    96433    90.4    10243     9.6
+20       5%       3.3   102090    95.7     4586     4.3
+21       0%       2.5   106676   100.0        0     0.0
+Completed: gl.report.rdepth </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.rdepth</span>(gl<span class="fl">.4</span>, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.rdepth 
+  Processing genlight object with SNP data
+  Removing loci with rdepth &lt;= 0 and &gt;= 25 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-9.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.filter.rdepth </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gl.clean <span class="ot">&lt;-</span> <span class="fu">gl.filter.rdepth</span>(gl<span class="fl">.5</span>, <span class="at">lower =</span> <span class="dv">8</span>, <span class="at">upper =</span> <span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.rdepth 
+  Processing genlight object with SNP data
+  Removing loci with rdepth &lt;= 8 and &gt;= 17 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-10.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.filter.rdepth </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nInd</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 36</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 44752</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at the data to see if you see any obvious issues and redo if you do.</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-4-11.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(gl<span class="fl">.1</span>, gl<span class="fl">.2</span>, gl<span class="fl">.3</span>, gl<span class="fl">.4</span>, gl<span class="fl">.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="this-file-is-now-your-starting-file-for-other-filtering" class="level5">
+<h5 class="anchored" data-anchor-id="this-file-is-now-your-starting-file-for-other-filtering"><strong>this file is now your starting file for other filtering</strong></h5>
+</section>
+</section>
+<section id="filtering" class="level3">
+<h3 class="anchored" data-anchor-id="filtering">Filtering</h3>
+<section id="filtering-data-for-population-structure-and-phylogenetic-analyses" class="level5">
+<h5 class="anchored" data-anchor-id="filtering-data-for-population-structure-and-phylogenetic-analyses"><strong>Filtering data for population structure and phylogenetic analyses</strong></h5>
+<p>loci on the same fragment and missing data are not well supported in these analyses. Structure-like analyses dislikes missing data. So, we are going to filter even harder than normal here just so that we can see a result.</p>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-5_90b8d08987b615f47119bc77dec6a9ea">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl.clean, <span class="at">method =</span> <span class="st">"loc"</span>, <span class="at">threshold =</span> <span class="fl">0.98</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove minor alleles</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#I usually set up the threshold so it is just </span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># removing singletons to improve computation time</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.maf</span>(gl<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.maf</span>(gl<span class="fl">.1</span>,  <span class="at">threshold =</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">nInd</span>(gl<span class="fl">.1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check that the data looks fairly clean</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#this starts to show some obvious population banding</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gl<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remove secondary SNPs on the same fragment</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Always do this as the last loci filter so that you’ve cut for quality </span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># before you cut because there are two SNPs</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.secondaries</span>(gl<span class="fl">.2</span>)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter on individuals. You can usually be a bit flexible at this point.</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#individuals look a whole lot better now</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co">#make note of any idnviduals with a low call rate. Keep them in for now</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co">#but if they act weird in the analysis, you may want to consider removing</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl<span class="fl">.3</span>, <span class="at">method =</span> <span class="st">"ind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl<span class="fl">.3</span>, <span class="at">method =</span> <span class="st">"ind"</span>, <span class="at">threshold =</span> .<span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Always run this after removing individuals</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>gl.structure <span class="ot">&lt;-</span> <span class="fu">gl.filter.monomorphs</span>(gl<span class="fl">.4</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co">#this is your cleaned dataset for a population structure analysis              </span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gl.structure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nInd</span>(gl.structure)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(gl.structure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>you can write this file out for various analyses that we will not go into here</p>
+<p><code>gl2structure(XXXX)</code> <code>gl2faststructure(XXXX)</code></p>
+</section>
+</section>
+<section id="run-snmf-lea" class="level3">
+<h3 class="anchored" data-anchor-id="run-snmf-lea">Run SNMF (LEA)</h3>
+<p>This is a structure-like analysis called SNMF. This code is not all you would need to publish this result, but it is a good first look.</p>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-6_07c5fc506c3fc0ae995dfba9179f1f01">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LEA requires the genotype style file</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl2faststructure</span>(gl.structure, <span class="at">outfile =</span> <span class="st">"gl_structure.fstr"</span>,</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">outpath =</span> <span class="st">'./data/'</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">struct2geno</span>(<span class="st">"./data/gl_structure.fstr"</span>, <span class="at">ploidy =</span> <span class="dv">2</span>, <span class="at">FORMAT =</span> <span class="dv">2</span>) </span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="do">###this hates any loci with all heterozygotes</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>snmf.Sy.K1_8<span class="fl">.10</span> <span class="ot">=</span> <span class="fu">snmf</span>(<span class="st">"./data/gl_structure.fstr.geno"</span>, <span class="at">K =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">entropy =</span> T, <span class="at">ploidy =</span> <span class="dv">2</span>, <span class="at">project=</span><span class="st">"new"</span>, <span class="at">repetitions =</span> <span class="dv">10</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-7_d18fca4f4b67b379bc4569ad95fc3f14">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(snmf.Sy.K1_8<span class="fl">.10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co">#chose best based on lowest cross entropy in graph</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>ce <span class="ot">=</span> <span class="fu">cross.entropy</span>(snmf.Sy.K1_8<span class="fl">.10</span>, <span class="at">K =</span> k)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>best <span class="ot">&lt;-</span> <span class="fu">which.min</span>(ce)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span> (<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">t</span>(<span class="fu">Q</span>(snmf.Sy.K1_8<span class="fl">.10</span>, <span class="at">K =</span> k, <span class="at">run =</span> best)), <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span>k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Do a PCoA plot. I had these but they are also good for some stuff</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(gl.structure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.pcoa 
+  Processing genlight object with SNP data
+  Performing a PCA, individuals as entities, loci as attributes, SNP genotype as state
+Starting gl.colors 
+Selected color type 2 
+Completed: gl.colors </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.pcoa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pc, gl.structure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.pcoa.plot 
+  Processing an ordination file (glPca)
+  Processing genlight object with SNP data
+  Plotting populations in a space defined by the SNPs
+  Preparing plot .... please wait</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.pcoa.plot </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(ce, gl<span class="fl">.1</span>, gl<span class="fl">.2</span>, gl<span class="fl">.3</span>, gl<span class="fl">.4</span>, snmf.Sy.K1_8<span class="fl">.10</span>, best, k, pc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -318,15 +761,745 @@ Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><img src="images/task.png" id="id" class="class" width="48" height="48"> Still to come…</p>
+<p><img src="images/task.png" id="id" class="class" width="48" height="48"> Have a go at altering various parameters and seeing how this changes your answers.</p>
+<p>One thing that regularly changes with MAF filters is the amount of variance explained. Removing more minor alleles increases the variance explained in a PCoA. Think about why that would be the case.</p>
 </div>
 </div>
+</section>
+<section id="filtering-for-tajimas-d" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-for-tajimas-d">Filtering for Tajima’s D</h3>
+<p>Now we are going to look at how filtering can affect your understanding of demographic processes that population is Significant negative values of Tajima’s D are due to an excess of rare alleles and are consistent with range expansion. Significant positive values are associated with population contraction. Significance (a P-value) cannot be calculated without a simulation. Please ask me how to do this using Hudson’s ms program. Rare alleles matter! Lets look at how singletons impact our estimations of whether a population is expanding or contracting</p>
+<p>This is a function written to calculate Tajima’s D from SNP data. It will create the function in your global environment so that you can call it.</p>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-8_0934726aacebce6554cd409599a36e51">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>get_tajima_D <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(dartRverse) <span class="co"># possibly not needed for a function in an R package?</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find allele frequencies (p1 and p2) for every locus in every population</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  allele_freqs <span class="ot">&lt;-</span> <span class="fu">gl.allele.freq</span>(x)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(allele_freqs)[<span class="fu">names</span>(allele_freqs) <span class="sc">==</span> <span class="st">"frequency"</span>] <span class="ot">&lt;-</span> <span class="st">"p1"</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>  allele_freqs<span class="sc">$</span>p1 <span class="ot">&lt;-</span> allele_freqs<span class="sc">$</span>p1 <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  allele_freqs<span class="sc">$</span>p2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> allele_freqs<span class="sc">$</span>p1</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the names of all the populations</span></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>  pops <span class="ot">&lt;-</span> <span class="fu">unique</span>(allele_freqs<span class="sc">$</span>popn)</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#split each population</span></span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>  allele_freqs_by_pop <span class="ot">&lt;-</span> <span class="fu">split</span>(allele_freqs, allele_freqs<span class="sc">$</span>popn)</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Internal function to calculate pi</span></span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>  calc_pi <span class="ot">&lt;-</span> <span class="cf">function</span>(allele_freqs) {</span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">=</span> allele_freqs<span class="sc">$</span>nobs <span class="sc">*</span> <span class="dv">2</span>  <span class="co"># vector of n values</span></span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a>    pi_sqr <span class="ot">&lt;-</span> allele_freqs<span class="sc">$</span>p1 <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> allele_freqs<span class="sc">$</span>p2 <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a>    h <span class="ot">=</span> (n <span class="sc">/</span> (n <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> pi_sqr) <span class="co"># vector of values of h</span></span>
+<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(h) <span class="co"># return pi, which is the sum of h across loci</span></span>
+<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb60-23"><a href="#cb60-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a>  get_tajima_D_for_one_pop <span class="ot">&lt;-</span> <span class="cf">function</span>(allele_freqs_by_pop) {</span>
+<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a>    pi <span class="ot">&lt;-</span> <span class="fu">calc_pi</span>(allele_freqs_by_pop)</span>
+<span id="cb60-26"><a href="#cb60-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb60-27"><a href="#cb60-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate number of segregating sites, ignoring missing data (missing data will not appear in teh allele freq calcualtions)</span></span>
+<span id="cb60-28"><a href="#cb60-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">#S &lt;- sum(!(allele_freqs_by_pop$p1 == 0 | allele_freqs_by_pop$p1 == 1))</span></span>
+<span id="cb60-29"><a href="#cb60-29" aria-hidden="true" tabindex="-1"></a>    S <span class="ot">&lt;-</span> <span class="fu">sum</span>(allele_freqs_by_pop<span class="sc">$</span>p1 <span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> allele_freqs_by_pop<span class="sc">$</span>p1 <span class="sc">&lt;</span><span class="dv">1</span>)</span>
+<span id="cb60-30"><a href="#cb60-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(S <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb60-31"><a href="#cb60-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">"No segregating sites"</span>)</span>
+<span id="cb60-32"><a href="#cb60-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">data.frame</span>(<span class="at">pi =</span> <span class="cn">NaN</span>, </span>
+<span id="cb60-33"><a href="#cb60-33" aria-hidden="true" tabindex="-1"></a>                 <span class="at">S =</span> <span class="cn">NaN</span>, </span>
+<span id="cb60-34"><a href="#cb60-34" aria-hidden="true" tabindex="-1"></a>                 <span class="at">D =</span> <span class="cn">NaN</span>, </span>
+<span id="cb60-35"><a href="#cb60-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Pval.normal =</span> <span class="cn">NaN</span>, </span>
+<span id="cb60-36"><a href="#cb60-36" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Pval.beta =</span> <span class="cn">NaN</span>)</span>
+<span id="cb60-37"><a href="#cb60-37" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb60-38"><a href="#cb60-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb60-39"><a href="#cb60-39" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">mean</span>(allele_freqs_by_pop<span class="sc">$</span>nobs <span class="sc">*</span> <span class="dv">2</span> )</span>
+<span id="cb60-40"><a href="#cb60-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb60-41"><a href="#cb60-41" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>(n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb60-42"><a href="#cb60-42" aria-hidden="true" tabindex="-1"></a>    a1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">/</span>tmp)</span>
+<span id="cb60-43"><a href="#cb60-43" aria-hidden="true" tabindex="-1"></a>    a2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">1</span><span class="sc">/</span>tmp<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb60-44"><a href="#cb60-44" aria-hidden="true" tabindex="-1"></a>    b1 <span class="ot">&lt;-</span> (n <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">/</span>(<span class="dv">3</span> <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb60-45"><a href="#cb60-45" aria-hidden="true" tabindex="-1"></a>    b2 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (n<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> n <span class="sc">+</span> <span class="dv">3</span>)<span class="sc">/</span>(<span class="dv">9</span> <span class="sc">*</span> n <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb60-46"><a href="#cb60-46" aria-hidden="true" tabindex="-1"></a>    c1 <span class="ot">&lt;-</span> b1 <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span>a1</span>
+<span id="cb60-47"><a href="#cb60-47" aria-hidden="true" tabindex="-1"></a>    c2 <span class="ot">&lt;-</span> b2 <span class="sc">-</span> (n <span class="sc">+</span> <span class="dv">2</span>)<span class="sc">/</span>(a1 <span class="sc">*</span> n) <span class="sc">+</span> a2<span class="sc">/</span>a1<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb60-48"><a href="#cb60-48" aria-hidden="true" tabindex="-1"></a>    e1 <span class="ot">&lt;-</span> c1<span class="sc">/</span>a1</span>
+<span id="cb60-49"><a href="#cb60-49" aria-hidden="true" tabindex="-1"></a>    e2 <span class="ot">&lt;-</span> c2<span class="sc">/</span>(a1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> a2)</span>
+<span id="cb60-50"><a href="#cb60-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb60-51"><a href="#cb60-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb60-52"><a href="#cb60-52" aria-hidden="true" tabindex="-1"></a>    <span class="co">#calculate D and do beta testing</span></span>
+<span id="cb60-53"><a href="#cb60-53" aria-hidden="true" tabindex="-1"></a>    D <span class="ot">&lt;-</span> (pi <span class="sc">-</span> S<span class="sc">/</span>a1) <span class="sc">/</span> <span class="fu">sqrt</span>(e1 <span class="sc">*</span> S <span class="sc">+</span> e2 <span class="sc">*</span> S <span class="sc">*</span> (S <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb60-54"><a href="#cb60-54" aria-hidden="true" tabindex="-1"></a>    Dmin <span class="ot">&lt;-</span> (<span class="dv">2</span><span class="sc">/</span>n <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span>a1)<span class="sc">/</span><span class="fu">sqrt</span>(e2)</span>
+<span id="cb60-55"><a href="#cb60-55" aria-hidden="true" tabindex="-1"></a>    Dmax <span class="ot">&lt;-</span> ((n<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>(n <span class="sc">-</span> <span class="dv">1</span>))) <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span>a1)<span class="sc">/</span><span class="fu">sqrt</span>(e2)</span>
+<span id="cb60-56"><a href="#cb60-56" aria-hidden="true" tabindex="-1"></a>    tmp1 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> Dmin <span class="sc">*</span> Dmax</span>
+<span id="cb60-57"><a href="#cb60-57" aria-hidden="true" tabindex="-1"></a>    tmp2 <span class="ot">&lt;-</span> Dmax <span class="sc">-</span> Dmin</span>
+<span id="cb60-58"><a href="#cb60-58" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> <span class="sc">-</span>tmp1 <span class="sc">*</span> Dmax<span class="sc">/</span>tmp2</span>
+<span id="cb60-59"><a href="#cb60-59" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> tmp1 <span class="sc">*</span> Dmin<span class="sc">/</span>tmp2</span>
+<span id="cb60-60"><a href="#cb60-60" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb60-61"><a href="#cb60-61" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb60-62"><a href="#cb60-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">pi =</span> pi, </span>
+<span id="cb60-63"><a href="#cb60-63" aria-hidden="true" tabindex="-1"></a>               <span class="at">S =</span> S, </span>
+<span id="cb60-64"><a href="#cb60-64" aria-hidden="true" tabindex="-1"></a>               <span class="at">D =</span> D)</span>
+<span id="cb60-65"><a href="#cb60-65" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb60-66"><a href="#cb60-66" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb60-67"><a href="#cb60-67" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">"rbind"</span>, <span class="fu">lapply</span>(allele_freqs_by_pop, </span>
+<span id="cb60-68"><a href="#cb60-68" aria-hidden="true" tabindex="-1"></a>                                    get_tajima_D_for_one_pop))</span>
+<span id="cb60-69"><a href="#cb60-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">population =</span> <span class="fu">rownames</span>(output), output, <span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
+<span id="cb60-70"><a href="#cb60-70" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We are going to focus on key filters and how they impact estimates</p>
+<ol type="1">
+<li>Minor allele frequency (MAF) filtering</li>
+<li>No MAF allele filtering</li>
+<li>No MAF filtering but filtering on Read depth</li>
+</ol>
+<section id="maf-filtering" class="level4">
+<h4 class="anchored" data-anchor-id="maf-filtering">1. <strong>MAF filtering</strong></h4>
+<p>We will start with our lightly cleaned data and filter this for the tajima’s calculation</p>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-9_d7d674168403577e4f630952520c0a5d">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This function is written to calculate Tajima's D with a fair amount of missing data</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co">#we are going to filter lightly here </span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.callrate 
+  Processing genlight object with SNP data
+  Reporting Call Rate by Locus
+  No. of loci = 44752 
+  No. of individuals = 36 
+    Minimum      :  0.805556 
+    1st quartile :  0.888889 
+    Median       :  0.944444 
+    Mean         :  0.9387004 
+    3r quartile  :  1 
+    Maximum      :  1 
+    Missing Rate Overall:  0.0613 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl.clean, <span class="at">method =</span> <span class="st">"loc"</span>, <span class="at">threshold =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.callrate 
+  Processing genlight object with SNP data
+  Recalculating Call Rate
+  Removing loci based on Call Rate, threshold = 0.9 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.filter.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#In this first round, we are going to actually remove singletons to see what happens</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.maf</span>(gl<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.maf 
+  Processing genlight object with SNP data
+Starting gl.report.maf 
+
+  Reporting Minor Allele Frequency (MAF) by Locus for population IK 
+  No. of loci = 14958 
+  No. of individuals = 22 
+    Minimum      :  0.0227 
+    1st quantile :  0.0227 
+    Median       :  0.0455 
+    Mean         :  0.09433557 
+    3r quantile  :  0.0952 
+    Maximum      :  0.5 
+    Missing Rate Overall:  0.01 
+
+  Reporting Minor Allele Frequency (MAF) by Locus for population IT 
+  No. of loci = 24122 
+  No. of individuals = 14 
+    Minimum      :  0.0357 
+    1st quantile :  0.0385 
+    Median       :  0.0769 
+    Mean         :  0.1268348 
+    3r quantile  :  0.1667 
+    Maximum      :  0.5 
+    Missing Rate Overall:  0.06 
+
+  Reporting Minor Allele Frequency (MAF) by Locus OVERALL
+  No. of loci = 33136 
+  No. of individuals = 36 
+    Minimum      :  0.0114 
+    1st quantile :  0.0192 
+    Median       :  0.0384 
+    Mean         :  0.08512636 
+    3r quantile  :  0.0893 
+    Maximum      :  0.5 
+    Missing Rate Overall:  0.03 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-9-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Quantile Threshold Retained Percent Filtered Percent
+1      100%    0.5000       75     0.2    33061    99.8
+2       95%    0.3785     1657     5.0    31479    95.0
+3       90%    0.2559     3314    10.0    29822    90.0
+4       85%    0.1705     4984    15.0    28152    85.0
+5       80%    0.1190     6630    20.0    26506    80.0
+6       75%    0.0893     8533    25.8    24603    74.2
+7       70%    0.0714    10159    30.7    22977    69.3
+8       65%    0.0577    11608    35.0    21528    65.0
+9       60%    0.0454    13989    42.2    19147    57.8
+10      55%    0.0416    15067    45.5    18069    54.5
+11      50%    0.0384    16598    50.1    16538    49.9
+12      45%    0.0357    18691    56.4    14445    43.6
+13      40%    0.0292    19887    60.0    13249    40.0
+14      35%    0.0227    22254    67.2    10882    32.8
+15      30%    0.0209    23242    70.1     9894    29.9
+16      25%    0.0192    25099    75.7     8037    24.3
+17      20%    0.0178    28849    87.1     4287    12.9
+18      15%    0.0178    28849    87.1     4287    12.9
+19      10%    0.0114    32776    98.9      360     1.1
+20       5%    0.0114    32776    98.9      360     1.1
+21       0%    0.0114    33136   100.0        0     0.0
+Completed: gl.report.maf </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(gl<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 33136</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.maf</span>(gl<span class="fl">.1</span>,  <span class="at">threshold =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.select.colors 
+  Warning: Number of required colors not specified, set to 9
+  Library: RColorBrewer
+  Palette: brewer.pal
+  Showing and returning 2 of 9 colors for library RColorBrewer : palette Blues </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-9-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.select.colors 
+Starting gl.filter.maf 
+  Processing genlight object with SNP data
+  Removing loci with MAF &lt; 0.05 over all the dataset 
+                and recalculating FreqHoms and FreqHets</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-9-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.filter.maf </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(gl<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12823</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check that the data looks fairly clean</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="co">#this starts ot show some obvious population banding</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gl<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-9-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co">#we are also going to remove secondary SNPs on the same fragment in this first round</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.secondaries</span>(gl<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.secondaries 
+  Processing genlight object with SNP data
+  Selecting one SNP per sequence tag at random
+Completed: gl.filter.secondaries </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter on individuals. You can usually be a bit flexible at this point.</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co">#make note of any idnviduals with a low call rate. Keep them in for now</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co">#but if they act weird in the analysis, you may want to consider removing</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl<span class="fl">.3</span>, <span class="at">method =</span> <span class="st">"ind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.callrate 
+  Processing genlight object with SNP data
+
+  Reporting Call Rate by Individual
+  No. of loci = 10422 
+  No. of individuals = 36 
+    Minimum      :  0.8513721 
+    1st quartile :  0.9509211 
+    Median       :  0.9869507 
+    Mean         :  0.9658255 
+    3r quartile  :  0.9918922 
+    Maximum      :  0.9948187 
+    Missing Rate Overall:  0.0342 
+
+Listing 2 populations and their average CallRates
+  Monitor again after filtering
+  Population CallRate  N
+1         IK   0.9878 22
+2         IT   0.9313 14
+
+Listing 20 individuals with the lowest CallRates
+  Use this list to see which individuals will be lost on filtering by individual
+  Set ind.to.list parameter to see more individuals
+          Individual  CallRate
+1     Up1041_R138706 0.8513721
+2    Up1186_QMJ88804 0.8919593
+3      Up1096_R36195 0.9030896
+4   Up0854_ABTC17229 0.9175782
+5   Up0969_ABTC29129 0.9260219
+6      Up1120_R36170 0.9375360
+7   Up1118_NTMR36173 0.9396469
+8   Up0767_ABTC12489 0.9418538
+9   Up0832_ABTC93392 0.9507772
+10  Up0731_ABTC99709 0.9509691
+11  Up1136_NTMR36228 0.9531760
+12  Up0769_ABTC12511 0.9537517
+13 Up1269_WAMR164857 0.9573019
+14  Up0276_NTMR35114 0.9580695
+15     Up1078_R36177 0.9618116
+16 Up0166_WAMR162490 0.9654577
+17 Up1266_WAMR164844 0.9762042
+18 Up0183_WAMR162558 0.9866628
+19 Up1321_WAMR171536 0.9872385
+20        WAMR162566 0.9877183
+
+)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-9-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl<span class="fl">.3</span>, <span class="at">method =</span> <span class="st">"ind"</span>, <span class="at">threshold =</span> .<span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.callrate 
+  Processing genlight object with SNP data
+  Recalculating Call Rate
+  Removing individuals based on Call Rate, threshold = 0.9 
+  Individuals deleted (CallRate &lt;=  0.9 ):
+Up1186_QMJ88804[IT], Up1041_R138706[IT],</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-9-8.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Note: Locus metrics not recalculated
+  Note: Resultant monomorphic loci not deleted
+Completed: gl.filter.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Always run this after removing individuals</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>gl.D_withfiltering <span class="ot">&lt;-</span> <span class="fu">gl.filter.monomorphs</span>(gl<span class="fl">.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.monomorphs 
+  Processing genlight object with SNP data
+  Identifying monomorphic loci
+  Removing monomorphic loci and loci with all missing 
+                       data
+Completed: gl.filter.monomorphs </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate tajima's D with removing singletons and secondaries</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>D_w_filtering <span class="ot">&lt;-</span> <span class="fu">get_tajima_D</span>(gl.D_withfiltering)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.allele.freq 
+  Processing genlight object with SNP data
+  Calculating Tag allele frequencies for populations
+Completed: gl.allele.freq </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>D_w_filtering</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  population          pi S         D
+1         IK 0.003249825 1 -1.380214
+2         IT 0.004958104 1 -1.715483</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(gl<span class="fl">.1</span>, gl<span class="fl">.2</span>, gl<span class="fl">.3</span>, gl<span class="fl">.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="no-maf-filtering" class="level4">
+<h4 class="anchored" data-anchor-id="no-maf-filtering">2. <strong>No MAF filtering</strong></h4>
+<p>Now lets try it where we <em>don’t</em> remove singletons or secondaries</p>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-10_19ce2ba0d7aaf10d20833792fa6d74a7">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This function is written to calculate Tajima's D with a fair amount of missing data</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="co">#we are going to filter lightly here </span></span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.callrate 
+  Processing genlight object with SNP data
+  Reporting Call Rate by Locus
+  No. of loci = 44752 
+  No. of individuals = 36 
+    Minimum      :  0.805556 
+    1st quartile :  0.888889 
+    Median       :  0.944444 
+    Mean         :  0.9387004 
+    3r quartile  :  1 
+    Maximum      :  1 
+    Missing Rate Overall:  0.0613 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl.clean, <span class="at">method =</span> <span class="st">"loc"</span>, <span class="at">threshold =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.callrate 
+  Processing genlight object with SNP data
+  Recalculating Call Rate
+  Removing loci based on Call Rate, threshold = 0.9 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.filter.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check that the data looks fairly clean</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="co">#this starts ot show some obvious population banding</span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gl<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter on individuals. You can usually be a bit flexible at this point.</span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="co">#make note of any idnviduals with a low call rate. Keep them in for now</span></span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="co">#but if they act weird in the analysis, you may want to consider removing</span></span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl<span class="fl">.1</span>, <span class="at">method =</span> <span class="st">"ind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.callrate 
+  Processing genlight object with SNP data
+
+  Reporting Call Rate by Individual
+  No. of loci = 33136 
+  No. of individuals = 36 
+    Minimum      :  0.8620232 
+    1st quartile :  0.9536758 
+    Median       :  0.9886679 
+    Mean         :  0.9684834 
+    3r quartile  :  0.9923648 
+    Maximum      :  0.9943264 
+    Missing Rate Overall:  0.0315 
+
+Listing 2 populations and their average CallRates
+  Monitor again after filtering
+  Population CallRate  N
+1         IK   0.9888 22
+2         IT   0.9366 14
+
+Listing 20 individuals with the lowest CallRates
+  Use this list to see which individuals will be lost on filtering by individual
+  Set ind.to.list parameter to see more individuals
+          Individual  CallRate
+1     Up1041_R138706 0.8620232
+2    Up1186_QMJ88804 0.9028549
+3      Up1096_R36195 0.9145039
+4   Up0854_ABTC17229 0.9209319
+5   Up0969_ABTC29129 0.9341803
+6      Up1120_R36170 0.9400954
+7   Up1118_NTMR36173 0.9462216
+8   Up0767_ABTC12489 0.9478211
+9   Up0731_ABTC99709 0.9527704
+10  Up1136_NTMR36228 0.9539775
+11  Up0832_ABTC93392 0.9551545
+12  Up0276_NTMR35114 0.9586251
+13  Up0769_ABTC12511 0.9594097
+14 Up1269_WAMR164857 0.9621861
+15     Up1078_R36177 0.9633028
+16 Up0166_WAMR162490 0.9667733
+17 Up1266_WAMR164844 0.9783317
+18 Up1321_WAMR171536 0.9882001
+19 Up0083_WAMR113846 0.9891357
+20 Up0183_WAMR162558 0.9891960
+
+)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl<span class="fl">.1</span>, <span class="at">method =</span> <span class="st">"ind"</span>, <span class="at">threshold =</span> .<span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.callrate 
+  Processing genlight object with SNP data
+  Recalculating Call Rate
+  Removing individuals based on Call Rate, threshold = 0.9 
+  Individuals deleted (CallRate &lt;=  0.9 ):
+Up1041_R138706[IT],</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-10-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Note: Locus metrics not recalculated
+  Note: Resultant monomorphic loci not deleted
+Completed: gl.filter.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Always run this after removing individuals</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>gl.D_withOutfiltering <span class="ot">&lt;-</span> <span class="fu">gl.filter.monomorphs</span>(gl<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.monomorphs 
+  Processing genlight object with SNP data
+  Identifying monomorphic loci
+  Removing monomorphic loci and loci with all missing 
+                       data
+Completed: gl.filter.monomorphs </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(gl<span class="fl">.1</span>, gl<span class="fl">.2</span>)</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>D_wOUT_filtering <span class="ot">&lt;-</span> <span class="fu">get_tajima_D</span>(gl.D_withOutfiltering)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.allele.freq 
+  Processing genlight object with SNP data
+  Calculating Tag allele frequencies for populations
+Completed: gl.allele.freq </code></pre>
+</div>
+</div>
+</section>
+<section id="no-maf-filtering-but-filtering-on-read-depth" class="level4">
+<h4 class="anchored" data-anchor-id="no-maf-filtering-but-filtering-on-read-depth">3. <strong>No MAF filtering but filtering on Read depth</strong></h4>
+<p>Now lets try it where we <em>don’t</em> remove singletons or secondaries AND we filter for read depth to remove singletons where we are not confident about their base calls</p>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-11_10b372b8c2c6770c8bb4469c7935d859">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This function is written to calculate Tajima's D with a fair amount of missing data</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we are going to filter lightly here </span></span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.callrate 
+  Processing genlight object with SNP data
+  Reporting Call Rate by Locus
+  No. of loci = 44752 
+  No. of individuals = 36 
+    Minimum      :  0.805556 
+    1st quartile :  0.888889 
+    Median       :  0.944444 
+    Mean         :  0.9387004 
+    3r quartile  :  1 
+    Maximum      :  1 
+    Missing Rate Overall:  0.0613 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl.clean, <span class="at">method =</span> <span class="st">"loc"</span>, <span class="at">threshold =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.callrate 
+  Processing genlight object with SNP data
+  Recalculating Call Rate
+  Removing loci based on Call Rate, threshold = 0.9 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.filter.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check that the data looks fairly clean</span></span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="co">#this starts ot show some obvious population banding</span></span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gl<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filter to loci with a lower read depth, so that we are really confident</span></span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="co">#that our base calls are correct</span></span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.rdepth</span>(gl<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.rdepth 
+  Processing genlight object with SNP data
+  Reporting Read Depth by Locus
+  No. of loci = 33136 
+  No. of individuals = 36 
+    Minimum      :  8 
+    1st quartile :  9.3 
+    Median       :  10.7 
+    Mean         :  10.94332 
+    3r quartile  :  12.4 
+    Maximum      :  17 
+    Missing Rate Overall:  0.03 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Quantile Threshold Retained Percent Filtered Percent
+1      100%      17.0       27     0.1    33109    99.9
+2       95%      14.7     1707     5.2    31429    94.8
+3       90%      13.8     3536    10.7    29600    89.3
+4       85%      13.3     5002    15.1    28134    84.9
+5       80%      12.8     6811    20.6    26325    79.4
+6       75%      12.4     8369    25.3    24767    74.7
+7       70%      12.0    10014    30.2    23122    69.8
+8       65%      11.6    11913    36.0    21223    64.0
+9       60%      11.3    13385    40.4    19751    59.6
+10      55%      11.0    14934    45.1    18202    54.9
+11      50%      10.7    16641    50.2    16495    49.8
+12      45%      10.4    18337    55.3    14799    44.7
+13      40%      10.1    19974    60.3    13162    39.7
+14      35%       9.8    21780    65.7    11356    34.3
+15      30%       9.5    23645    71.4     9491    28.6
+16      25%       9.3    24859    75.0     8277    25.0
+17      20%       9.0    26704    80.6     6432    19.4
+18      15%       8.7    28644    86.4     4492    13.6
+19      10%       8.5    29974    90.5     3162     9.5
+20       5%       8.2    31834    96.1     1302     3.9
+21       0%       8.0    33136   100.0        0     0.0
+Completed: gl.report.rdepth </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.rdepth</span>(gl<span class="fl">.1</span>, <span class="at">lower =</span> <span class="dv">12</span>, <span class="at">upper =</span> <span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.rdepth 
+  Processing genlight object with SNP data
+  Removing loci with rdepth &lt;= 12 and &gt;= 17 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-11-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.filter.rdepth </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter on individuals. You can usually be a bit flexible at this point.</span></span>
+<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="co">#make note of any idnviduals with a low call rate. Keep them in for now</span></span>
+<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="co">#but if they act weird in the analysis, you may want to consider removing</span></span>
+<span id="cb124-4"><a href="#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl<span class="fl">.2</span>, <span class="at">method =</span> <span class="st">"ind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.callrate 
+  Processing genlight object with SNP data
+
+  Reporting Call Rate by Individual
+  No. of loci = 10014 
+  No. of individuals = 36 
+    Minimum      :  0.8722788 
+    1st quartile :  0.9646245 
+    Median       :  0.9926103 
+    Mean         :  0.9749822 
+    3r quartile  :  0.9955063 
+    Maximum      :  0.9969043 
+    Missing Rate Overall:  0.025 
+
+Listing 2 populations and their average CallRates
+  Monitor again after filtering
+  Population CallRate  N
+1         IK   0.9926 22
+2         IT   0.9473 14
+
+Listing 20 individuals with the lowest CallRates
+  Use this list to see which individuals will be lost on filtering by individual
+  Set ind.to.list parameter to see more individuals
+          Individual  CallRate
+1     Up1041_R138706 0.8722788
+2    Up1186_QMJ88804 0.9191132
+3      Up1096_R36195 0.9281007
+4   Up0854_ABTC17229 0.9320951
+5   Up0969_ABTC29129 0.9398842
+6      Up1120_R36170 0.9531656
+7   Up1118_NTMR36173 0.9573597
+8   Up0767_ABTC12489 0.9620531
+9   Up0832_ABTC93392 0.9636509
+10     Up1078_R36177 0.9649491
+11  Up0731_ABTC99709 0.9657480
+12  Up0769_ABTC12511 0.9662473
+13  Up1136_NTMR36228 0.9678450
+14  Up0276_NTMR35114 0.9690433
+15 Up1269_WAMR164857 0.9721390
+16 Up0166_WAMR162490 0.9740363
+17 Up1266_WAMR164844 0.9870182
+18 Up1321_WAMR171536 0.9924106
+19        WAMR162566 0.9928101
+20 Up0183_WAMR162558 0.9928101
+
+)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-11-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl<span class="fl">.2</span>, <span class="at">method =</span> <span class="st">"ind"</span>, <span class="at">threshold =</span> .<span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.callrate 
+  Processing genlight object with SNP data
+  Recalculating Call Rate
+  Removing individuals based on Call Rate, threshold = 0.9 
+  Individuals deleted (CallRate &lt;=  0.9 ):
+Up1041_R138706[IT],</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session02_files/figure-html/unnamed-chunk-11-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Note: Locus metrics not recalculated
+  Note: Resultant monomorphic loci not deleted
+Completed: gl.filter.callrate </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Always run this after removing individuals</span></span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>gl.D_withOutfilteringRDepth <span class="ot">&lt;-</span> <span class="fu">gl.filter.monomorphs</span>(gl<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.monomorphs 
+  Processing genlight object with SNP data
+  Identifying monomorphic loci
+  Removing monomorphic loci and loci with all missing 
+                       data
+Completed: gl.filter.monomorphs </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(gl<span class="fl">.1</span>, gl<span class="fl">.2</span>, gl<span class="fl">.3</span>)</span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate tajima's D with removing singletons and secondaries</span></span>
+<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-5"><a href="#cb132-5" aria-hidden="true" tabindex="-1"></a>D_wOUT_filtering_Rdepth <span class="ot">&lt;-</span> <span class="fu">get_tajima_D</span>(gl.D_withOutfilteringRDepth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.allele.freq 
+  Processing genlight object with SNP data
+  Calculating Tag allele frequencies for populations
+Completed: gl.allele.freq </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="results" class="level3">
+<h3 class="anchored" data-anchor-id="results">Results</h3>
+<section id="lets-look-at-all-three" class="level5">
+<h5 class="anchored" data-anchor-id="lets-look-at-all-three"><em>lets look at all three</em></h5>
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-12_3dd6a833e05d2e8a457cfcef72ae0753">
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>D_w_filtering</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  population          pi S         D
+1         IK 0.003249825 1 -1.380214
+2         IT 0.004958104 1 -1.715483</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>D_wOUT_filtering</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  population          pi S         D
+1         IK 0.002888251 1 -1.382837
+2         IT 0.004468415 1 -1.661505</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>D_wOUT_filtering_Rdepth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  population          pi S         D
+1         IK 0.002827014 1 -1.383208
+2         IT 0.004398409 1 -1.664054</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interpreting results
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For our Kimberley population, removing minor alleles give the actual wrong answer and suggests the population is contracting. This would have contradicted the rest of the findings of the paper, and been an artifact of the filtering process.</p>
+<p>This shows how understanding the population genetic theory for a metric is crucial to useful analyses.</p>
+</div>
+</div>
+</section>
+</section>
 </section>
 <section id="further-study" class="level2">
 <h2 class="anchored" data-anchor-id="further-study">Further Study</h2>
 <p>still to come…</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-jaya_population_2022" class="csl-entry" role="listitem">
+Jaya, Frederick R., Jessie C. Tanner, Michael R. Whitehead, Paul Doughty, J. Scott Keogh, Craig C. Moritz, and Renee A. Catullo. 2022. <span>“Population Genomics and Sexual Signals Support Reproductive Character Displacement in <span>Uperoleia</span> (<span>Anura</span>: <span>Myobatrachidae</span>) in a Contact Zone.”</span> <em>Molecular Ecology</em> 31 (17): 4527–43. <a href="https://doi.org/10.1111/mec.16597">https://doi.org/10.1111/mec.16597</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -772,7 +1945,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./session01.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to dartR</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to <code>dartR</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
