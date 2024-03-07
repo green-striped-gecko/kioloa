@@ -352,6 +352,7 @@ gm <-gl.map.structure(qmat.log, K = 4, x = possums, scalex = 1, scaley = 0.5)
 
 ```
 
+## Exercises
 
 ::: callout-note
 ## Exercise: Compare Structure and Faststructure runs
@@ -376,8 +377,8 @@ A description of the dataset (and the original paper) can be found here: @fukuda
 :::
 
 ```{r}
-#crocs <- readRDS("./data/crocs.rds")
-#gl.map.interactive(crocs)
+crocs <- readRDS("./data/crocs.rds")
+gl.map.interactive(crocs)
 ```
 
 

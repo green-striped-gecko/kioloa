@@ -4,26 +4,62 @@
 
 ![](images/Presentersxx.png)
 
-## Required packages
+## *Required packages*
 
 ```{r, eval=FALSE}
-library(dartR.base)
+library(tidyverse)
+library(palmerpenguins)
 ```
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
 
 ## Session Content
 
-Still to come...
+### Quarto files
 
-## EXERCISE
 
-::: callout-note
-## Exercise
+::: callout-note 
+## Exercise 
 
-![](images/task.png){#id .class width="48" height="48"} Still to come...
+
+![](images/task.png){#id .class width="48" height="48"} Download an example quarto file and try running it on your own.
+
+```{css}
+#| echo: false
+
+.btn-default,
+.btn-default:hover,
+.btn-default:active {
+  font-size: 20px;
+  color: Grey;
+  background-color: lightblue;
+  border-color: black;
+}
+
+.btn-default:hover {
+  color: grey;
+  transition: 0.2s;
+}
+
+```
+
+```{r, echo=FALSE, warning=FALSE}
+library(downloadthis)
+
+  download_file(path = './hello.qmd',
+    output_name = "binaries",
+    output_extension = ".zip",
+    button_label = "Download hello.qmd",
+    button_type = "default",
+    has_icon = TRUE,
+    icon = "fa fa-file-csv"
+  )
+
+```
+
+
 :::
 
-## Further Study
+## *Further Study*
 
 still to come...
