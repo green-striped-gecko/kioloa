@@ -95,6 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/font-awesome-5.13.0/js/script.js"></script>
 
 
 <link rel="stylesheet" href="css.css">
@@ -156,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./session01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to dartR</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to <code>dartR</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -265,10 +266,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages">Required packages</a></li>
-  <li><a href="#session-content" id="toc-session-content" class="nav-link" data-scroll-target="#session-content">Session Content</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">EXERCISE</a></li>
-  <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study">Further Study</a></li>
+  <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages"><em>Required packages</em></a></li>
+  <li><a href="#session-content" id="toc-session-content" class="nav-link" data-scroll-target="#session-content">Session Content</a>
+  <ul class="collapse">
+  <li><a href="#quarto-files" id="toc-quarto-files" class="nav-link" data-scroll-target="#quarto-files">Quarto files</a></li>
+  </ul></li>
+  <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study"><em>Further Study</em></a></li>
   </ul>
 </nav>
     </div>
@@ -295,18 +298,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>Session Presenters</em></p>
 <p><img src="images/Presentersxx.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
-<h2 class="anchored" data-anchor-id="required-packages">Required packages</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.base)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
+<div class="cell" data-hash="session04_cache/html/unnamed-chunk-1_8aa24cc4bdaba07e0ee14953ac5aec3f">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>make sure you have the packages installed, see</em> <a href="./install.html">Install dartRverse</a></p>
 </section>
 <section id="session-content" class="level2">
 <h2 class="anchored" data-anchor-id="session-content">Session Content</h2>
-<p>Still to come…</p>
-</section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">EXERCISE</h2>
+<section id="quarto-files" class="level3">
+<h3 class="anchored" data-anchor-id="quarto-files">Quarto files</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -317,12 +319,47 @@ Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><img src="images/task.png" id="id" class="class" width="48" height="48"> Still to come…</p>
+<p><img src="images/task.png" id="id" class="class" width="48" height="48"> Download an example quarto file and try running it on your own.</p>
+<div class="cell" data-hash="session04_cache/html/unnamed-chunk-2_ce257ea8bd7d01adbf9b033fb499d7a0">
+<style type="text/css">
+.btn-default,
+.btn-default:hover,
+.btn-default:active {
+  font-size: 20px;
+  color: Grey;
+  background-color: lightblue;
+  border-color: black;
+}
+
+.btn-default:hover {
+  color: grey;
+  transition: 0.2s;
+}
+
+</style>
+</div>
+<div class="cell" data-hash="session04_cache/html/unnamed-chunk-3_847699dcb5189146cabcd2051c712a4a">
+<div class="cell-output-display">
+<button class="btn btn-default" onclick="fetch('data:application/octet-stream;base64,LS0tDQp0aXRsZTogIkhlbGxvLCBRdWFydG8iDQpmb3JtYXQ6IGh0bWwNCmVkaXRvcjogdmlzdWFsDQotLS0NCg0KYGBge3J9DQojfCBsYWJlbDogbG9hZC1wYWNrYWdlcw0KI3wgaW5jbHVkZTogZmFsc2UNCg0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KHBhbG1lcnBlbmd1aW5zKQ0KYGBgDQoNCiMjIE1lZXQgUXVhcnRvDQoNClF1YXJ0byBlbmFibGVzIHlvdSB0byB3ZWF2ZSB0b2dldGhlciBjb250ZW50IGFuZCBleGVjdXRhYmxlIGNvZGUgaW50byBhIGZpbmlzaGVkIGRvY3VtZW50LiBUbyBsZWFybiBtb3JlIGFib3V0IFF1YXJ0byBzZWUgPGh0dHBzOi8vcXVhcnRvLm9yZz4uDQoNCiMjIE1lZXQgdGhlIHBlbmd1aW5zDQoNCiFbXShodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vcXVhcnRvLWRldi9xdWFydG8td2ViL21haW4vZG9jcy9nZXQtc3RhcnRlZC9oZWxsby9yc3R1ZGlvL2x0ZXJfcGVuZ3VpbnMucG5nKXtzdHlsZT0iZmxvYXQ6cmlnaHQ7IiBmaWctYWx0PSJJbGx1c3RyYXRpb24gb2YgdGhyZWUgc3BlY2llcyBvZiBQYWxtZXIgQXJjaGlwZWxhZ28gcGVuZ3VpbnM6IENoaW5zdHJhcCwgR2VudG9vLCBhbmQgQWRlbGllLiBBcnR3b3JrIGJ5IEBhbGxpc29uX2hvcnN0LiIgd2lkdGg9IjQwMSJ9DQoNClRoZSBgcGVuZ3VpbnNgIGRhdGEgZnJvbSB0aGUgWyoqcGFsbWVycGVuZ3VpbnMqKl0oaHR0cHM6Ly9hbGxpc29uaG9yc3QuZ2l0aHViLmlvL3BhbG1lcnBlbmd1aW5zICJwYWxtZXJwZW5ndWlucyBSIHBhY2thZ2UiKSBwYWNrYWdlIGNvbnRhaW5zIHNpemUgbWVhc3VyZW1lbnRzIGZvciBge3J9IG5yb3cocGVuZ3VpbnMpYCBwZW5ndWlucyBmcm9tIHRocmVlIHNwZWNpZXMgb2JzZXJ2ZWQgb24gdGhyZWUgaXNsYW5kcyBpbiB0aGUgUGFsbWVyIEFyY2hpcGVsYWdvLCBBbnRhcmN0aWNhLg0KDQpUaGUgcGxvdCBiZWxvdyBzaG93cyB0aGUgcmVsYXRpb25zaGlwIGJldHdlZW4gZmxpcHBlciBhbmQgYmlsbCBsZW5ndGhzIG9mIHRoZXNlIHBlbmd1aW5zLg0KDQpgYGB7cn0NCiN8IGxhYmVsOiBwbG90LXBlbmd1aW5zDQojfCB3YXJuaW5nOiBmYWxzZQ0KI3wgZWNobzogZmFsc2UNCg0KZ2dwbG90KHBlbmd1aW5zLCANCiAgICAgICBhZXMoeCA9IGZsaXBwZXJfbGVuZ3RoX21tLCB5ID0gYmlsbF9sZW5ndGhfbW0pKSArDQogIGdlb21fcG9pbnQoYWVzKGNvbG9yID0gc3BlY2llcywgc2hhcGUgPSBzcGVjaWVzKSkgKw0KICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gYygiZGFya29yYW5nZSIsInB1cnBsZSIsImN5YW40IikpICsNCiAgbGFicygNCiAgICB0aXRsZSA9ICJGbGlwcGVyIGFuZCBiaWxsIGxlbmd0aCIsDQogICAgc3VidGl0bGUgPSAiRGltZW5zaW9ucyBmb3IgcGVuZ3VpbnMgYXQgUGFsbWVyIFN0YXRpb24gTFRFUiIsDQogICAgeCA9ICJGbGlwcGVyIGxlbmd0aCAobW0pIiwgeSA9ICJCaWxsIGxlbmd0aCAobW0pIiwNCiAgICBjb2xvciA9ICJQZW5ndWluIHNwZWNpZXMiLCBzaGFwZSA9ICJQZW5ndWluIHNwZWNpZXMiDQogICkgKw0KICB0aGVtZV9taW5pbWFsKCkNCmBgYA0K').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none'; // Hide the link
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'binaries.qmd';
+      a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+      return false;
+    });" output_extension=".zip"><i class="fa fa-file-csv"></i> Download hello.qmd</button>
+</div>
+</div>
 </div>
 </div>
 </section>
+</section>
 <section id="further-study" class="level2">
-<h2 class="anchored" data-anchor-id="further-study">Further Study</h2>
+<h2 class="anchored" data-anchor-id="further-study"><em>Further Study</em></h2>
 <p>still to come…</p>
 
 
@@ -766,6 +803,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">

@@ -313,7 +313,7 @@ fsr.simple$plot
 Here we can check the marginal likelihoods for the different K values. The recommended K is then the one with the highest marginal likelihood at the lowest K possible. So here we would decide on K=4.
 As before we can plot the Q matrix and the spatial structure plot.
 
-```{r, eval = FALSE}
+```{r}
 qmat.simple <- gl.plot.faststructure(fsr.simple$q_list, k.range = 4,clumpak = T)
 gm <-gl.map.structure(qmat.simple, K = 4, x = possums, scalex = 1, scaley = 0.5)
 
@@ -338,7 +338,7 @@ fsr.log <- readRDS(("./data/fsr.log.rds"))
 
 Here is the output of the run:
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 fsr.log$plot
 ```
 
