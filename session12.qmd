@@ -43,7 +43,6 @@ gl.plot.heatmap(D)
 
 ```
 
-
 ### PCA
 
 ```{r}
@@ -71,7 +70,6 @@ pco <- gl.pcoa(D)
 gl.pcoa.plot(pco,temp,pop.labels="legend")
 
 ```
-
 
 ## **Structure and FastStructure**
 
@@ -158,7 +156,7 @@ To run structure we use an dartR implementation of functions which is based on t
 The possible arguments are listed below:
 
 | parameter    | description                                                                                                                                                          |
-|---------------------------------|---------------------------------------|
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | k.range      | vector of values to for maxpop in multiple runs. If set to NULL, a single STRUCTURE run is conducted with maxpops groups. If specified, do not also specify maxpops. |
 | num.k.rep    | number of replicates for each value in k.range.                                                                                                                      |
 | label        | label to use for input and output files                                                                                                                              |
@@ -236,8 +234,7 @@ gm <- gl.map.structure(qmat = qmatnoad, x = possums,K=5, scalex=1, scaley=0.5 )
 ::: callout-note
 ## Exercise: Study the results using different Ks
 
-![](images/task.png){.class width="48" height="48"}
-The above run was a structure run using the no-admixture model for a range of K=2:7. Study the results by plotting it for various Ks and try to interpret the results in the light of the simulated population structure.
+![](images/task.png){.class width="48" height="48"} The above run was a structure run using the no-admixture model for a range of K=2:7. Study the results by plotting it for various Ks and try to interpret the results in the light of the simulated population structure.
 :::
 
 ### Structure run (no-admixture=FALSE :-))
@@ -258,25 +255,24 @@ saveRDS(srad, "./data/srad.rds")
 
 ```
 
-
 And again the evanno plots
 
 ```{r}
 ev <- gl.evanno(srad)
 ```
 
-
-Something between 4-5 seems to be a good number of K. 
+Something between 4-5 seems to be a good number of K.
 
 Hence lets look at the qmat (for K=4) and then you can check the same for K=5
-
 
 ```{r}
 
 qmatad <- gl.plot.structure(srad, K=4)
 head(qmatad[[1]])
 ```
+
 An the spatial version
+
 ```{r,eval=FALSE}
 gm <- gl.map.structure(qmat = qmatad, x = possums,K=4, scalex=1, scaley=0.5 )
 
@@ -289,7 +285,6 @@ gm <- gl.map.structure(qmat = qmatad, x = possums,K=4, scalex=1, scaley=0.5 )
 Faststructure is a faster implementation of the structure algorithm. Be aware though it is named Fast'structure' it is a fairly different implementation of the original approach, hence the results might differ from the original STRUCTURE. The method is based on a variational Bayesian framework and is designed to be faster and more scalable than the original STRUCTURE software. It is particularly useful for analyzing large datasets with many individuals and/or many SNPs (\>5000). One of the most important differences is that there is no no-admixture model in Faststructure, but you can run two models that allow for "complex" situtations (logistic prior) and situations where the ancestry is more evenly distributed (simple prior). Also the way how to identify K differ between the methods. We will run the previous examples with both settings and compare the results.
 
 The method is now implemented in the `gl.run.faststructure` function. Unfortunatley noone to my knowledge has compiled Faststructure for windows, so it is only available for Linux and Mac. We also need to have plink installed as this is the required input format for faststructure.
-
 
 ### Faststructure simple prior
 
@@ -310,8 +305,7 @@ fsr.simple$plot
 
 ![faststructure simple prior plot](images/fs.sim.ev.png){fig-align="center"}
 
-Here we can check the marginal likelihoods for the different K values. The recommended K is then the one with the highest marginal likelihood at the lowest K possible. So here we would decide on K=4.
-As before we can plot the Q matrix and the spatial structure plot.
+Here we can check the marginal likelihoods for the different K values. The recommended K is then the one with the highest marginal likelihood at the lowest K possible. So here we would decide on K=4. As before we can plot the Q matrix and the spatial structure plot.
 
 ```{r}
 qmat.simple <- gl.plot.faststructure(fsr.simple$q_list, k.range = 4,clumpak = T)
@@ -319,12 +313,7 @@ gm <-gl.map.structure(qmat.simple, K = 4, x = possums, scalex = 1, scaley = 0.5)
 
 ```
 
-
-
-
 ### Faststructure logistic prior
-
-
 
 ```{r}
 #takes about 4 minutes
@@ -334,7 +323,6 @@ fsr.log <- readRDS(("./data/fsr.log.rds"))
 
 
 ```
-
 
 Here is the output of the run:
 
@@ -357,32 +345,23 @@ gm <-gl.map.structure(qmat.log, K = 4, x = possums, scalex = 1, scaley = 0.5)
 ::: callout-note
 ## Exercise: Compare Structure and Faststructure runs
 
-![](images/task.png){.class width="48" height="48"} Now it is time to compare the results from all four previous runs. 
+![](images/task.png){.class width="48" height="48"} Now it is time to compare the results from all four previous runs.
 :::
-
 
 ::: callout-note
 ## Exercise: Crocodiles
 
 ![](images/task.png){.class width="48" height="48"} If you are feeling energetic, you can try to run the structure and faststructure on the crocodile dataset. (crocs.rds)
 
-This is a publically available dataset (though it has been filtered and pruned) from the paper:) to make is a bit easier to run. Nevertheless it still has >1500 SNPs and more then 400 individuals, so it takes a bit of time to run. If you do not want to wait I did two faststructure runs for you.
-* prior = simple, K=2:18 (max number of populations), but only 3 repeat (num.k.rep)
-* prior = logistic, K=2:18 (max number of populations), but only 3 repeat (num.k.rep)
+This is a publically available dataset (though it has been filtered and pruned) from the paper:) to make is a bit easier to run. Nevertheless it still has \>1500 SNPs and more then 400 individuals, so it takes a bit of time to run. If you do not want to wait I did two faststructure runs for you. \* prior = simple, K=2:18 (max number of populations), but only 3 repeat (num.k.rep) \* prior = logistic, K=2:18 (max number of populations), but only 3 repeat (num.k.rep)
 
-Maybe plot the data first, have a look at a PCA and then decide on the number of populations (range of K) you want to run the faststructure on. It might also make sense to simplify the number of populations in a smaller number of subunits.
-A description of the dataset (and the original paper) can be found here: @fukuda2024
-
-
+Maybe plot the data first, have a look at a PCA and then decide on the number of populations (range of K) you want to run the faststructure on. It might also make sense to simplify the number of populations in a smaller number of subunits. A description of the dataset (and the original paper) can be found here: @fukuda2024
 :::
 
 ```{r}
 crocs <- readRDS("./data/crocs.rds")
 gl.map.interactive(crocs)
 ```
-
-
-
 
 ## *Further Study*
 

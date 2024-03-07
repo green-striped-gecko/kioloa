@@ -25,7 +25,7 @@ library(qvalue)
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
 
-## GEA analysis of SNP and environmental data using RDA
+## **GEA analysis of SNP and environmental data using RDA**
 
 First lets load in some functions we will be using.
 
@@ -33,7 +33,7 @@ First lets load in some functions we will be using.
 source("utils.R")
 ```
 
-### 1. Data preparation
+## 1. Data preparation
 
 ```{r}
 # load genlight object
@@ -239,7 +239,270 @@ env.site <- cbind(env.site, env.dat)
 
 ```
 
-line 210
+### No missing data
+
+```{r}
+# we now have our SNP data with no missing genotypes
+# to get a feel for the data we can run quick PCA using the rda function
+pc <- rda(AF)
+plot(pc)
+
+# set some plotting variables to make it easier to interpret
+# set colours, markers and labels for plotting and add to env.site df
+
+env.site$cols <- c('darkturquoise', 'darkturquoise', 'darkturquoise', 'limegreen', 'limegreen', 'darkorange1', 'slategrey', 'slategrey', 'slategrey',
+                   'slategrey', 'slategrey', 'dodgerblue3', 'gold', 'gold')
+
+env.site$pch <- c(15, 16, 17, 17, 15, 15, 16, 15, 18, 16, 16, 8, 16, 16)
+
+# generate labels for each axis
+x.lab <- paste0("PC1 (", paste(round((pc$CA$eig[1]/pc$tot.chi*100),2)),"%)")
+y.lab <- paste0("PC2 (", paste(round((pc$CA$eig[2]/pc$tot.chi*100),2)),"%)")
+
+```
+
+### Plot PCA
+
+```{r, eval=FALSE}
+# plot PCA
+
+{pdf(file = "./images/Mf_PCA.pdf", height = 6, width = 6)
+pcaplot <- plot(pc, choices = c(1, 2), type = "n", xlab=x.lab, ylab=y.lab, cex.lab=1)
+with(env.site, points(pc, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
+legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
+dev.off()
+}
+```
+
+```{r, echo = FALSE}
+{png(file = "./images/Mf_PCA.png", units = 'in', height = 6, width = 6, res = 200)
+  pcaplot <- plot(pc, choices = c(1, 2), type = "n", xlab=x.lab, ylab=y.lab, cex.lab=1)
+  with(env.site, points(pc, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
+  legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
+  dev.off()
+}
+
+```
+
+![](images/Mf_PCA.png)
+## 2. Variable filtering
+
+```{r}
+
+# extract predictor variables to matrix
+env_var <- env.site[ , c("WC_bio1", "WC_bio5", "WC_bio15", "WC_bio19")]
+
+# check for obvious correlations between variables
+pairs.panels(env_var, scale=T, lm = TRUE)
+
+## reduce variance associated with correlated environmental PCs using VIF analyses
+# run procedure to remove variables with the highest VIF one at a time until all remaining variables are below 10
+keep.env <-vif_func(in_frame=env_var,thresh=2,trace=T)
+keep.env  # the retained environmental variables
+reduced.env <- subset(as.data.frame(env_var), select=c(keep.env))
+scaled.env <- as.data.frame(scale(reduced.env))
+
+# lets have another look
+pairs.panels(reduced.env, scale=T, lm = TRUE)
+
+```
+
+## 3. Run analysis
+
+So we have formatted genotypes, environmental data
+
+What about controlling for spatial population structure in the model?
+
+::: callout-note
+
+## Decision time:
+
+Decision time:
+ 1. do I need to control for spatial structure?
+ 
+     No? Great!
+
+  Yes? How do I do that?
+     
+- simple xy coordinates (or some transformation, MDS, polynomial...)
+- Principal Coordinates of Neighbourhood Matrix (PCNM; R package vegan)
+- Moran's Eigenvector Maps (R package memgene)
+- Fst, admixture Q values
+- population allele frequency covariance matrix (BayPass omega)
+
+:::
+
+We are going to use the scaled allelic covariance (Ω) estimated by BayPass to control for spatial structure in the data, see BayPass and Gates et al. 2023
+
+```{r}
+# format spatial coordinates as matrix
+xy <- as.matrix(cbind(env.site$omegaX, env.site$omegaY))
+
+################################################################################
+
+
+# reduced RDA model using the retained environmental PCs 
+# conditioned on the retained spatial variables
+Mf.RDA <- rda(AF ~ WC_bio5 + WC_bio15 + WC_bio19 + Condition(xy), data = scaled.env)
+Mf.RDA
+
+
+# So how much genetic variation can be explained by our environmental model?
+RsquareAdj(Mf.RDA)$r.squared
+
+# how much inertia is associated with each axis
+screeplot(Mf.RDA)
+
+# calculate significance of the reduced model, marginal effect of each term and significance of each axis
+#   (this can take several hours, depending on your computer)
+mod_perm <- anova.cca(Mf.RDA, nperm=1000) #test significance of the model
+mod_perm
+
+#generate x and y labels (% constrained variation)
+x.lab <- paste0("RDA1 (", paste(round((Mf.RDA$CCA$eig[1]/Mf.RDA$CCA$tot.chi*100),2)),"%)")
+y.lab <- paste0("RDA2 (", paste(round((Mf.RDA$CCA$eig[2]/Mf.RDA$CCA$tot.chi*100),2)),"%)")
+
+
+```
+
+### Plot RDA
+```{r, eval=FALSE}
+#plot RDA1, RDA2
+{pdf(file = "./images/Mf_RDA.pdf", height = 6, width = 6)
+pRDAplot <- plot(Mf.RDA, choices = c(1, 2), type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
+with(env.site, points(Mf.RDA, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
+text(Mf.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", "WC_bio19"), col="blue", cex=0.6)
+legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
+dev.off()}
+
+```
+
+```{r, echo=FALSE}
+#plot RDA1, RDA2
+{png(file = "./images/Mf_RDA.png", units = 'in', res = 200, height = 6, width = 6)
+pRDAplot <- plot(Mf.RDA, choices = c(1, 2), type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
+with(env.site, points(Mf.RDA, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
+text(Mf.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", "WC_bio19"), col="blue", cex=0.6)
+legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
+dev.off()}
+
+```
+
+![](images/Mf_RDA.png)
+
+## 4. Identify candidate loci
+
+Estimate p values following: <https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches> and the R function rdadapt (see <https://github.com/Capblancq/RDA-genome-scan>)
+
+```{r}
+
+k = 2 # number of RDA axes to retain
+rda.q <- rdadapt(Mf.RDA, K = k)
+sum(rda.q$q.values <= 0.01)
+candidate.loci <- colnames(AF)[which(rda.q[,2] < 0.01)]
+
+
+# check the distribution of candidates and q-values
+ggplot() +
+  geom_point(aes(x=c(1:length(rda.q[,2])), y=-log10(rda.q[,2])), col="gray83") +
+  geom_point(aes(x=c(1:length(rda.q[,2]))[which(rda.q[,2] < 0.01)], y=-log10(rda.q[which(rda.q[,2] < 0.01),2])), col="orange") +
+  xlab("SNPs") + ylab("-log10(q.values") +
+  theme_bw()
+
+
+# check correlations between candidate loci and environmental predictors
+npred <- 3
+env_mat <- matrix(nrow=(sum(rda.q$q.values < 0.01)), ncol=npred)  # n columns for n predictors
+colnames(env_mat) <- colnames(reduced.env)
+
+
+# calculate correlation between candidate snps and environmental variables
+for (i in 1:length(candidate.loci)) {
+  nam <- candidate.loci[i]
+  snp.gen <- AF[,nam]
+  env_mat[i,] <- apply(reduced.env,2,function(x) cor(x,snp.gen))
+}
+
+cand <- cbind.data.frame(as.data.frame(candidate.loci),env_mat)  
+
+for (i in 1:length(cand$candidate.loci)) {
+  bar <- cand[i,]
+  cand[i,npred+2] <- names(which.max(abs(bar[,2:4]))) # gives the variable
+  cand[i,npred+3] <- max(abs(bar[,2:4]))              # gives the correlation
+}
+
+colnames(cand)[npred+2] <- "predictor"
+colnames(cand)[npred+3] <- "correlation"
+
+table(cand$predictor) 
+write.csv(cand, "./data/RDA_candidates.csv", row.names = FALSE)
+
+```
+
+### Individual level
+Now let's have a look at an individual level biplot first expand environmental data from population to individual dataframe.
+
+```{r}
+env.ind <- expand_pop2ind(Mf5000_gl, env.site)
+
+# now subset our genotype objects to the candidate loci
+candidate.gl <- gl.keep.loc(gi2gl(imputed.sorted.gi), loc.list=candidate.loci)
+candidate.gi <- gl2gi(candidate.gl)
+
+# get genotypes (counts of reference allele) and clean up locus names
+candidate.alleles <- candidate.gi@tab
+candidate.snps <- candidate.alleles[,seq(1,ncol(candidate.alleles),2)]
+colnames(candidate.snps) <- locNames(candidate.gi)
+
+# finally run the individual based RDA
+# no need to control for pop structure this time
+Mfcandidate.RDA <- rda(candidate.snps ~ WC_bio5 + WC_bio15 + WC_bio19, data = env.ind)
+Mfcandidate.RDA
+
+ind.mod_perm <- anova.cca(Mfcandidate.RDA, nperm=1000, parallel=4) #test significance of the model
+ind.mod_perm
+
+x.lab <- paste0("RDA1 (", paste(round((Mfcandidate.RDA$CA$eig[1]/Mfcandidate.RDA$tot.chi*100),2)),"%)")
+y.lab <- paste0("RDA2 (", paste(round((Mfcandidate.RDA$CA$eig[2]/Mfcandidate.RDA$tot.chi*100),2)),"%)")
+
+
+```
+
+### Plot RDA
+
+```{r, eval=FALSE}
+
+#plot RDA1, RDA2
+{pdf(file = "Mfcandidate_RDA.pdf", height = 6, width = 6)
+pRDAplot <- plot(Mfcandidate.RDA, choices = c(1, 2), type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
+points(Mfcandidate.RDA, display = "sites", col = env.ind$cols, pch = env.ind$pch, cex=0.8, bg = env.ind$cols)
+text(Mfcandidate.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", "WC_bio19"), col="blue", cex=0.6)
+legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
+dev.off()
+}
+
+
+```
+
+
+```{r, echo = FALSE}
+
+#plot RDA1, RDA2
+{png(file = "Mfcandidate_RDA.png", units = 'in', res = 200, height = 6, width = 6)
+pRDAplot <- plot(Mfcandidate.RDA, choices = c(1, 2), type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
+points(Mfcandidate.RDA, display = "sites", col = env.ind$cols, pch = env.ind$pch, cex=0.8, bg = env.ind$cols)
+text(Mfcandidate.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", "WC_bio19"), col="blue", cex=0.6)
+legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
+dev.off()
+}
+
+unlink(c('dat.geno', 'dat.lfmm', 'dat.snmfProject', 'dat.snmf', 'dat.lfmm_imputed.lfmm',
+         'individual_env_data.csv'), recursive = T)
+
+```
+
+
+![](images/Mfcandidate_RDA.png)
 
 ## EXERCISE
 
