@@ -17,10 +17,8 @@ library(palmerpenguins)
 
 ### Quarto files
 
-
-::: callout-note 
-## Exercise 
-
+::: callout-note
+## Exercise
 
 ![](images/task.png){#id .class width="48" height="48"} Download an example quarto file and try running it on your own.
 
@@ -56,8 +54,6 @@ library(downloadthis)
   )
 
 ```
-
-
 :::
 
 ## *Further Study*

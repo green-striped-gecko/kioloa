@@ -1,4 +1,4 @@
-# Intro to `dartR`
+# Intro to dartR
 
 *Session Presenters*
 
@@ -437,4 +437,12 @@ gl.filter.overshoot()
 
 For more tuturials see the [dartR Tutorials](tutorials.qmd) section.
 
-And check out this interesting paper, @jaya_population_2022.
+### Readings
+
+@gruber2018
+
+@mijangos2022
+
+@jaya_population_2022
+
+@sopniewski_estimates_2024

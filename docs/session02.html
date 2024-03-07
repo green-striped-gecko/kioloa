@@ -188,7 +188,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./session01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to <code>dartR</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to dartR</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -319,7 +319,10 @@ div.csl-indent {
   <li><a href="#filtering-for-tajimas-d" id="toc-filtering-for-tajimas-d" class="nav-link" data-scroll-target="#filtering-for-tajimas-d">Filtering for Tajima’s D</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
   </ul></li>
-  <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study"><em>Further Study</em></a></li>
+  <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study"><em>Further Study</em></a>
+  <ul class="collapse">
+  <li><a href="#readings" id="toc-readings" class="nav-link" data-scroll-target="#readings">Readings</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -363,7 +366,9 @@ div.csl-indent {
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Bill’s bits</p>
+<p>Here is an introductory video on genetic diversity measures that is assumed knowledge for this session.</p>
+<p><video src="data/Sherwin_TREE_Box_1_Tutorial_170920.mp4" class="img-fluid" controls=""><a href="data/Sherwin_TREE_Box_1_Tutorial_170920.mp4">Video</a></video></p>
+<p>For more details see <span class="citation" data-cites="sherwin_information_2017">Sherwin et al. (<a href="references.html#ref-sherwin_information_2017" role="doc-biblioref">2017</a>)</span>.</p>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
@@ -960,8 +965,7 @@ gl.clean
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nInd</span>(gl.structure)</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(gl.structure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>you can write this file out for various analyses that we will not go into here</p>
-<p><code>gl2structure(XXXX)</code> <code>gl2faststructure(XXXX)</code></p>
+<p>you can write this file out for various analyses that we will not go into here (e.g.&nbsp;<code>gl2structure(x)</code> or <code>gl2faststructure(x)</code>)</p>
 </section>
 </section>
 <section id="run-snmf-lea" class="level3">
@@ -1763,14 +1767,34 @@ Interpreting results
 </section>
 <section id="further-study" class="level2">
 <h2 class="anchored" data-anchor-id="further-study"><em>Further Study</em></h2>
-<p>Another teaching app in R, covering only Shannon for genes and its change over time, produced by some Computer Science and Engineering third-years doing a project with Carlo Pacioni: <a href="https://evolutionaryecology.shinyapps.io/learningEE" class="uri">https://evolutionaryecology.shinyapps.io/learningEE</a></p>
+<p>Another teaching app in R, covering only Shannon for genes and its change over time, produced by Computer Science and Engineering third-year students: <a href="https://evolutionaryecology.shinyapps.io/learningEE" class="uri">https://evolutionaryecology.shinyapps.io/learningEE</a></p>
+<section id="readings" class="level3">
+<h3 class="anchored" data-anchor-id="readings">Readings</h3>
+<p><span class="citation" data-cites="oreilly_predicting_2020">O’Reilly et al. (<a href="references.html#ref-oreilly_predicting_2020" role="doc-biblioref">2020</a>)</span></p>
+<p><span class="citation" data-cites="sherwin_bray-curtis_2022">Sherwin (<a href="references.html#ref-sherwin_bray-curtis_2022" role="doc-biblioref">2022</a>)</span></p>
+<p><span class="citation" data-cites="sherwin_information_2017">Sherwin et al. (<a href="references.html#ref-sherwin_information_2017" role="doc-biblioref">2017</a>)</span></p>
+<p><span class="citation" data-cites="sherwin_information_2021">Sherwin et al. (<a href="references.html#ref-sherwin_information_2021" role="doc-biblioref">2021</a>)</span></p>
+<p><span class="citation" data-cites="jaya_population_2022">Jaya et al. (<a href="references.html#ref-jaya_population_2022" role="doc-biblioref">2022</a>)</span></p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-jaya_population_2022" class="csl-entry" role="listitem">
 Jaya, Frederick R., Jessie C. Tanner, Michael R. Whitehead, Paul Doughty, J. Scott Keogh, Craig C. Moritz, and Renee A. Catullo. 2022. <span>“Population Genomics and Sexual Signals Support Reproductive Character Displacement in <span>Uperoleia</span> (<span>Anura</span>: <span>Myobatrachidae</span>) in a Contact Zone.”</span> <em>Molecular Ecology</em> 31 (17): 4527–43. <a href="https://doi.org/10.1111/mec.16597">https://doi.org/10.1111/mec.16597</a>.
 </div>
+<div id="ref-oreilly_predicting_2020" class="csl-entry" role="listitem">
+O’Reilly, G. D., F. Jabot, M. R. Gunn, and W. B. Sherwin. 2020. <span>“Predicting <span>Shannon</span>’s Information for Genes in Finite Populations: New Uses for Old Equations.”</span> <em>Conservation Genetics Resources</em> 12 (2): 245–55. <a href="https://doi.org/10.1007/s12686-018-1079-z">https://doi.org/10.1007/s12686-018-1079-z</a>.
 </div>
+<div id="ref-sherwin_bray-curtis_2022" class="csl-entry" role="listitem">
+Sherwin, W. B. 2022. <span>“Bray-<span>Curtis</span> (<span>AFD</span>) Differentiation in Molecular Ecology: <span>Forecasting</span>, an Adjustment (<span>AA</span>), and Comparative Performance in Selection Detection.”</span> <em>Ecology and Evolution</em> 12 (9): e9176. <a href="https://doi.org/10.1002/ece3.9176">https://doi.org/10.1002/ece3.9176</a>.
+</div>
+<div id="ref-sherwin_information_2017" class="csl-entry" role="listitem">
+Sherwin, W. B., A. Chao, L. Jost, and P. E. Smouse. 2017. <span>“Information <span>Theory</span> <span>Broadens</span> the <span>Spectrum</span> of <span>Molecular</span> <span>Ecology</span> and <span>Evolution</span>.”</span> <em>Trends in Ecology &amp; Evolution</em> 32 (12): 948–63. <a href="https://doi.org/10.1016/j.tree.2017.09.012">https://doi.org/10.1016/j.tree.2017.09.012</a>.
+</div>
+<div id="ref-sherwin_information_2021" class="csl-entry" role="listitem">
+———. 2021. <span>“Information Theory Broadens the Spectrum of Molecular Ecology and Evolution: (<span>Trends</span> in <span>Ecology</span> and <span>Evolution</span> 32:12, p:948–963, 2017).”</span> <em>Trends in Ecology &amp; Evolution</em> 36 (10): 955–56. <a href="https://doi.org/10.1016/j.tree.2021.07.005">https://doi.org/10.1016/j.tree.2021.07.005</a>.
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -2232,7 +2256,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./session01.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to <code>dartR</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to dartR</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

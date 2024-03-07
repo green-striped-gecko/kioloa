@@ -14,6 +14,35 @@ library(ggplot2)
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
 
+## **DArT sequencing**
+
+![](images/DArT_logo.png)
+
+![](images/dart_sequencing.png)
+
+DArTseq is our proprietary genome complexity reduction-based sequencing technology.
+
+It differs from other methods through its ability to intelligently select the predominantly active – low copy sequence – areas in a genome, which are the ones containing the most useful information. At the same time, DArTseq masks the lesser value, repetitive sequences. It does this through the application of a combination of restriction enzymes to fragment DNA samples in a highly reproducible manner.
+
+A key component of DArTseq is its complexity reduction step. This involves reducing complexity of the genome by cutting it down to a consistent and reproducible fraction from which markers are discovered and called. This process does not introduce ascertainment bias because we are discovering markers within the (restriction) fragment set without the bias.
+
+### Characteristics
+
+DArTseq is designed to provide a consistent genomic representation across samples within and between experiments, even over a decade of operations. DArTseq has been used to process tens of thousands of samples from hundreds of organisms, and is capable of co-analysing thousands of samples together, with the great majority of markers called across all of the samples. These advantages come from the library processing methods of DArTseq which distinguish it from all other complexity reduced genotyping technologies using restriction enzymes.
+
+### Standardised
+
+Laboratory sample processing is performed in a very high throughput streamlined operation utilising end-to-end pipetting robotics and informatics integration, with a Laboratory Information Management System (LIMS). All the physical sample processing steps undertaken in the lab are linked with the data storage and analysis components via tight integration with the LIMS. Sample processing robots have automated data exchange with the LIMS. 
+
+Manual operations have been minimised and plate based sample handling prevents the introduction of sample-tracking mistakes after arrival. The analytical components for processing DArTseq data and generating marker calls have been tailored specifically to the unique DArTseq complexity reduction and library construction methods. This results in a streamlined and highly effective data analysis pipeline, enabling rapid generation of high-quality marker data from thousands or even tens of thousands of assays in a single analysis. Ability to co-analysis with past services of 14 years despite 5 generations of the illumina sequences. The population of fragments in the genomic representation does not vary across multiple sample submissions despite the many years.
+
+
+
+
+See more at <https://www.diversityarrays.com/>
+
+
+## **SNP-based heterozygosity estimates**
 
 ## 1. Estimating heterozygosity: 70% callrate
 
@@ -45,7 +74,7 @@ for(name in names(kimberley)){
 }
 ```
 
-### Calculate heterozygosity 
+### Calculate heterozygosity
 
 ```{r}
 # List all object names in the environment
@@ -78,6 +107,7 @@ for(name in names(kimberley)) {
 knitr::kable(heterozygosity_reports_df)
 
 ```
+
 ### Plotting results
 
 ```{r}
@@ -93,9 +123,7 @@ kimberley_Ho_0.7callrate
 ::: callout-caution
 ## Sampling
 
-As you can see, different numbers samples can substantially 
-change your heterozygosity estimate.
-
+As you can see, different numbers samples can substantially change your heterozygosity estimate.
 :::
 
 ## 2. Estimating heterozygosity: 95% callrate
@@ -128,8 +156,7 @@ for(name in names(kimberley)){
 }
 ```
 
-
-### Calculate heterozygosity 
+### Calculate heterozygosity
 
 ```{r}
 # List all object names in the environment
@@ -183,13 +210,11 @@ kimberley_Ho_0.7callrate +kimberley_Ho_0.95callrate
 
 ```
 
-
 ::: callout-caution
 ## Call rate filters
+
 Higher call rate filters can reduce your slightly reduce your heterozygosity estimate
-
 :::
-
 
 ## 3. Estimating heterozygosity: Even sampling
 
@@ -256,19 +281,17 @@ kimberley_Ho_subsampling
 
 ```
 
-
 ::: callout-tip
 ## subsampling
 
 There are some minor differences but it's not too bad
-
 :::
 
 ### Subsampling more populations
 
 *There appears to be minor differences between sample sizes for the Kimberley population, but is this true for all populations?*
 
-#### Southeast 
+#### Southeast
 
 ```{r}
 #create a list of the southeast genlights
@@ -281,8 +304,6 @@ southeast <- mget(Southeast_names)
 #who are the individuals
 inds <- indNames(SouthEast_n_05.vcf)
 
-#Initialize an empty data frame
-heterozygosity_when_subsampling_southeast <- data.frame()
 
 for(name in names(southeast)) {
   # Access the genlight object from your list
@@ -313,8 +334,6 @@ southeast_Ho_subsampling <- ggplot(heterozygosity_when_subsampling, aes(x = Obje
        x = "SNP Calling", y = "Observed Heterozygosity (Ho)")
 ```
 
-
-
 #### Central
 
 ```{r}
@@ -327,9 +346,6 @@ central <- mget(central_names)
 #so that the only difference is our SNP calling
 #who are the individuals
 inds <- indNames(Central_n_05.vcf)
-
-#Initialize an empty data frame
-heterozygosity_when_subsampling_central <- data.frame()
 
 for(name in names(central)) {
   # Access the genlight object from your list
@@ -370,10 +386,9 @@ central_Ho_subsampling
 ```
 
 ::: callout-caution
-
 ## Subsampling
-so we're not seeing too much impact of subsampling if SNPs are called 
-separately on populations.
+
+so we're not seeing too much impact of subsampling if SNPs are called separately on populations.
 
 **BUT**, BUT, BUT, BUT, BUT, BUT, BUT...
 
@@ -382,36 +397,89 @@ The kimberley population has the highest actual heterozygosity (see the paper) t
 **This is very problematic and is an ongoing bioinformatic issue.**
 
 Therefore, calling SNPs separately on populations and keeping sample sizesthe same does not resolve the issues with heterozygosity based on SNPs.
-
 :::
-
 
 ## Calling populations together
 
 *Does this resolve the issue?*
 
-*What about calling SNPs together but with different sample sizes?*
+Lets look at a file where SNPs were called on all three populations at once, and the samples were equal numbers.
 
+```{r}
+#first we assign populations to the individuals in the genlight
+individual_names <- as.vector(indNames(combined_kim_15_cen_15_se_15.vcf))
 
+# Split each name at the underscore and keep the first part
+modified_names <- sapply(individual_names, function(name) {
+  parts <- strsplit(name, "_")[[1]]
+  parts[1]
+})
 
+# Convert the output to a factor
+modified_names <- factor(modified_names)
 
-#### Calling SNPs together with different sample sizes for each population then subsetting to equal sample sizes
+#then we assign the populations
+combined_kim_15_cen_15_se_15.vcf@pop <- modified_names
 
+#then we apply a call rate filter
+combined_kim_15_cen_15_se_15.vcf_0.7 <- gl.filter.callrate(combined_kim_15_cen_15_se_15.vcf,
+                                                           threshold = 0.95, mono.rm = T)
 
+#then we look at the heterozygosity estimates by population
+diversity_equal_sample_15_ind <- gl.report.heterozygosity(combined_kim_15_cen_15_se_15.vcf_0.7)
+```
 
+We now see that our heterozygosity if found to be highest in the Kimberley and lowest in Central Australia, which is true.
 
-#### Calling SNPs together, but with the same sample sizes ###########
+### Calling SNPs together but with different sample sizes
 
+Lots of times we have different numbers of samples... so what does this do to our estimates? Lets look at what happens when we have different sample numbers across all populations
+
+```{r}
+individual_names <- as.vector(indNames(combined_kim_15_cen_5_se_10.vcf))
+
+# Split each name at the underscore and keep the first part
+modified_names <- sapply(individual_names, function(name) {
+  parts <- strsplit(name, "_")[[1]]
+  parts[1]
+})
+
+# Convert the output to a factor
+modified_names <- factor(modified_names)
+
+#then we assign the populations
+combined_kim_15_cen_5_se_10.vcf@pop <- modified_names
+
+#then we apply a call rate filter
+combined_kim_15_cen_5_se_10.vcf_0.95 <- gl.filter.callrate(combined_kim_15_cen_5_se_10.vcf, threshold = 0.95, mono.rm = T)
+
+#then we look at the heterozygosity estimates by population
+diversity_unequal_sample <- gl.report.heterozygosity(combined_kim_15_cen_5_se_10.vcf_0.95)
+
+#how much more heterozygosity does kimberley have than central in different analyses?
+
+#where our samples are equal?
+diversity_equal_sample_15_ind$Ho[1]/diversity_equal_sample_15_ind$Ho[3]
+
+#where our samples are equal?
+diversity_unequal_sample$Ho[1]/diversity_unequal_sample$Ho[3]
+```
+
+::: callout-tip
+## Take away
+
+What you need to take away here is that as the sample size of our most diverse population grows, the less diverse populations become more similar in this case, if you use really unequal sample sizes, you can get so biased that your less diverse population can be calculated as more diverse than your most diverse population.
+
+#### **Think of the conservation implications!**
+:::
 
 ::: callout-warning
 ## SNP-based heterozygosity
 
-SNP-based heterozygosity is bad and cannot be used to compare different populations, and there are no clear workarounds that will give you reliable answers.
+SNP-based heterozygosity is extremely biased and cannot be used to compare different populations, and there are no clear workarounds that will give you reliable answers.
 
 You need to report autosomal heterozygosity at a minimum, which means doing your own bioinformatics from raw data at this time.
-
 :::
-
 
 ## *Further Study*
 

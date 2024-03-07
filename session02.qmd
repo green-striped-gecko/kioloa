@@ -5,6 +5,7 @@
 ![](images/Presenters2.png)
 
 ## *Required packages*
+
 ```{r setup, include = FALSE}
 library(knitr)
 library(formatR)
@@ -30,10 +31,13 @@ library(LEA)
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
 
-
 ## Introduction
 
-Bill's bits
+Here is an introductory video on genetic diversity measures that is assumed knowledge for this session.
+
+![](data/Sherwin_TREE_Box_1_Tutorial_170920.mp4)
+
+For more details see @sherwin_information_2017.
 
 ## Exercise
 
@@ -95,7 +99,6 @@ nLoc(glw)
 glw <- gl.filter.monomorphs(glw, verbose = 5)
 ```
 
-
 ### Calculate Relatedness
 
 ```{r}
@@ -125,6 +128,7 @@ ibd9DT[, mean(as.numeric(`r(1,2)`)), by=PDes]
 ```
 
 ### Relatedness results
+
 Mean relatedness for animals trapped in the grid is 3 times those trapped with a transect. There are also a series of other interesting things that happens: Mean relatedness of animals trapped in the grid is just marginally above the mean expected for first cousins (\~0.06). However, more than half of the comparisons were between half sibs or more related individuals:
 
 ```{r}
@@ -165,8 +169,6 @@ gl.pcoa.plot(glPca = pcaglsim, x = glsim)
 hwe <- gl.report.hwe(glsim, multi_comp = TRUE)
 
 ```
-
-
 
 ## **Assessing Populations: structure and demographic history**
 
@@ -233,8 +235,8 @@ rm(gl.1, gl.2, gl.3, gl.4, gl.5)
 
 ::: callout-tip
 ## gl.clean
-This file is now your starting file for other filtering
 
+This file is now your starting file for other filtering
 :::
 
 ### Filtering
@@ -279,9 +281,7 @@ nLoc(gl.structure)
 
 ```
 
-you can write this file out for various analyses that we will not go into here
-
-`gl2structure(XXXX)` `gl2faststructure(XXXX)`
+you can write this file out for various analyses that we will not go into here (e.g. `gl2structure(x)` or `gl2faststructure(x)`)
 
 ### Run SNMF (LEA)
 
@@ -521,6 +521,7 @@ D_wOUT_filtering_Rdepth <- get_tajima_D(gl.D_withOutfilteringRDepth)
 ```
 
 ### Results
+
 ##### *lets look at all three*
 
 ```{r}
@@ -530,16 +531,27 @@ D_wOUT_filtering_Rdepth
 ```
 
 ::: callout-caution
-
 ### Interpreting results
 
 For our Kimberley population, removing minor alleles give the actual wrong answer and suggests the population is contracting. This would have contradicted the rest of the findings of the paper, and been an artifact of the filtering process.
 
 This shows how understanding the population genetic theory for a metric is crucial to useful analyses.
-
 :::
 
 ## *Further Study*
 
-Another teaching app in R, covering only Shannon for genes and its change over time, produced by some Computer Science and Engineering third-years doing a project with Carlo Pacioni: 
-<https://evolutionaryecology.shinyapps.io/learningEE>
+
+
+Another teaching app in R, covering only Shannon for genes and its change over time, produced by Computer Science and Engineering third-year students: <https://evolutionaryecology.shinyapps.io/learningEE>
+
+### Readings
+
+@oreilly_predicting_2020
+
+@sherwin_bray-curtis_2022
+
+@sherwin_information_2017
+
+@sherwin_information_2021
+
+@jaya_population_2022

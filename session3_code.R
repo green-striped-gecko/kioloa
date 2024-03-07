@@ -17,8 +17,6 @@ library(ggplot2)
 #filtered for allele depth in Stacks. SNPs were called independent of other
 #populations, which we will get to later.
 
-load('./data/Session3_data.RData')
-
 #create a list of the kimberley genlights
 kimberley_names <- ls(pattern = "^Kimberley")
 #put all the genlights into a mega list
@@ -217,9 +215,6 @@ southeast <- mget(Southeast_names)
 #who are the individuals
 inds <- indNames(SouthEast_n_05.vcf)
 
-#Initialize an empty data frame
-heterozygosity_when_subsampling_southeast <- data.frame()
-
 for(name in names(southeast)) {
   # Access the genlight object from your list
   genlight_object <- southeast[[name]]
@@ -263,9 +258,6 @@ central <- mget(central_names)
 #so that the only difference is our SNP calling
 #who are the individuals
 inds <- indNames(Central_n_05.vcf)
-
-#Initialize an empty data frame
-heterozygosity_when_subsampling_central <- data.frame()
 
 for(name in names(central)) {
   # Access the genlight object from your list
@@ -315,24 +307,78 @@ central_Ho_subsampling
 
 #### Calling populations together - Does this resolve the issue? #########
 
+#lets look at a file where SNPs were called on all three populations at once,
+#and the samples were equal numbers
+
+#first we assign populations to the individuals in the genlight
+individual_names <- as.vector(indNames(combined_kim_15_cen_15_se_15.vcf))
+
+# Split each name at the underscore and keep the first part
+modified_names <- sapply(individual_names, function(name) {
+  parts <- strsplit(name, "_")[[1]]
+  parts[1]
+})
+
+# Convert the output to a factor
+modified_names <- factor(modified_names)
+
+#then we assign the populations
+combined_kim_15_cen_15_se_15.vcf@pop <- modified_names
+
+#then we apply a call rate filter
+combined_kim_15_cen_15_se_15.vcf_0.7 <- gl.filter.callrate(combined_kim_15_cen_15_se_15.vcf, threshold = 0.95, mono.rm = T)
+
+#then we look at the heterozygosity estimates by population
+diversity_equal_sample_15_ind <- gl.report.heterozygosity(combined_kim_15_cen_15_se_15.vcf_0.7)
+
+#we now see that our heterozygosity if found to be highest in the Kimberley
+#and lowest in Central Australia, which is true.
+
 
 ###Calling SNPs together but with different sample sizes ##########
 
+#Lots of times we have different numbers of samples....so what does this 
+#do to our estimates?
+
+#lets look at what happens when we have different sample numbers across all populations
+individual_names <- as.vector(indNames(combined_kim_15_cen_5_se_10.vcf))
+
+# Split each name at the underscore and keep the first part
+modified_names <- sapply(individual_names, function(name) {
+  parts <- strsplit(name, "_")[[1]]
+  parts[1]
+})
+
+# Convert the output to a factor
+modified_names <- factor(modified_names)
+
+#then we assign the populations
+combined_kim_15_cen_5_se_10.vcf@pop <- modified_names
+
+#then we apply a call rate filter
+combined_kim_15_cen_5_se_10.vcf_0.95 <- gl.filter.callrate(combined_kim_15_cen_5_se_10.vcf, threshold = 0.95, mono.rm = T)
+
+#then we look at the heterozygosity estimates by population
+diversity_unequal_sample <- gl.report.heterozygosity(combined_kim_15_cen_5_se_10.vcf_0.95)
+
+#how much more heterozygosity does kimberley have than central in different analyses?
+
+#where our samples are equal?
+diversity_equal_sample_15_ind$Ho[1]/diversity_equal_sample_15_ind$Ho[3]
+
+#where our samples are equal?
+diversity_unequal_sample$Ho[1]/diversity_unequal_sample$Ho[3]
+
+
+#what you need to take away here is that as the sample size of our most 
+#diverse population grows, the less diverse populations become more similar
+#in this case, if you use really unequal sample sizes, you can get so 
+#biased that your less diverse population can be calculated as more more diverse
+#than your actual most diverse. Think of the conservation implications!
 
 
 
-#######Calling SNPs together with different sample sizes for each population then #########
-#######subsetting to equal sample sizes ########
-
-
-
-
-###Calling SNPs together, but with the same sample sizes ###########
-
-
-
-
-### SNP-based heterozygosity is bad and cannot be used to compare different
+### SNP-based heterozygosity is extremely biased and cannot be used to compare different
 ### Populations, and there are no clear workarounds that will give you
 ### reliable answers.
 

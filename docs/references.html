@@ -277,6 +277,11 @@ Barriers and Philopatry in the Genetic Structuring of a Cosmopolitan
 Coastal Predator.”</span> <em>Ecology and Evolution</em> 13 (2): e9837.
 <a href="https://doi.org/10.1002/ece3.9837">https://doi.org/10.1002/ece3.9837</a>.
 </div>
+<div id="ref-archer2016" class="csl-entry" role="listitem">
+F. Archer, B. Schneiders, P. Adams. 2016. <span>“strataG: An r Package
+for Manipulating, Summarizing and Analysing Population Genetic
+Data.”</span> <em>Molecular Ecology Resources</em>. <a href="https://doi.org/10.1111/1755-0998.12559">https://doi.org/10.1111/1755-0998.12559</a>.
+</div>
 <div id="ref-gruber2018" class="csl-entry" role="listitem">
 Gruber, Bernd, Peter J. Unmack, Oliver F. Berry, and Arthur Georges.
 2018. <span>“<span>DARTR</span> : <span>An</span> <span>R</span> Package
@@ -319,6 +324,12 @@ Noskova, Clément Rougeux, Chrystelle Delord, Philippe Borsa, et al.
 the Worldwide Distributed Blue Shark <span>Prionace</span>
 Glauca.”</span> <em>Molecular Ecology</em> 32 (5): 1000–1019. <a href="https://doi.org/10.1111/mec.16822">https://doi.org/10.1111/mec.16822</a>.
 </div>
+<div id="ref-oreilly_predicting_2020" class="csl-entry" role="listitem">
+O’Reilly, G. D., F. Jabot, M. R. Gunn, and W. B. Sherwin. 2020.
+<span>“Predicting <span>Shannon</span>’s Information for Genes in Finite
+Populations: New Uses for Old Equations.”</span> <em>Conservation
+Genetics Resources</em> 12 (2): 245–55. <a href="https://doi.org/10.1007/s12686-018-1079-z">https://doi.org/10.1007/s12686-018-1079-z</a>.
+</div>
 <div id="ref-robledo2023" class="csl-entry" role="listitem">
 Robledo-Ruiz, Diana A., Lana Austin, J. Nevil Amos, Jesús
 Castrejón-Figueroa, Daniel K. P. Harley, Michael J. L. Magrath, Paul
@@ -332,6 +343,31 @@ Santiago, E., I. Novo, A. F. Pardiñas, M. Saura, J. Wang, and A.
 Caballero. 2020. <span>“Recent Demographic History Inferred by
 High-Resolution Analysis of Linkage Disequilibrium.”</span>
 <em>Molecular Biology and Evolution</em> 37 (12): 3642–53. <a href="https://doi.org/10.1093/molbev/msaa174">https://doi.org/10.1093/molbev/msaa174</a>.
+</div>
+<div id="ref-sherwin_bray-curtis_2022" class="csl-entry" role="listitem">
+Sherwin, W. B. 2022. <span>“Bray-<span>Curtis</span> (<span>AFD</span>)
+Differentiation in Molecular Ecology: <span>Forecasting</span>, an
+Adjustment (<span>AA</span>), and Comparative Performance in Selection
+Detection.”</span> <em>Ecology and Evolution</em> 12 (9): e9176. <a href="https://doi.org/10.1002/ece3.9176">https://doi.org/10.1002/ece3.9176</a>.
+</div>
+<div id="ref-sherwin_information_2017" class="csl-entry" role="listitem">
+Sherwin, W. B., A. Chao, L. Jost, and P. E. Smouse. 2017.
+<span>“Information <span>Theory</span> <span>Broadens</span> the
+<span>Spectrum</span> of <span>Molecular</span> <span>Ecology</span> and
+<span>Evolution</span>.”</span> <em>Trends in Ecology &amp;
+Evolution</em> 32 (12): 948–63. <a href="https://doi.org/10.1016/j.tree.2017.09.012">https://doi.org/10.1016/j.tree.2017.09.012</a>.
+</div>
+<div id="ref-sherwin_information_2021" class="csl-entry" role="listitem">
+———. 2021. <span>“Information Theory Broadens the Spectrum of Molecular
+Ecology and Evolution: (<span>Trends</span> in <span>Ecology</span> and
+<span>Evolution</span> 32:12, p:948–963, 2017).”</span> <em>Trends in
+Ecology &amp; Evolution</em> 36 (10): 955–56. <a href="https://doi.org/10.1016/j.tree.2021.07.005">https://doi.org/10.1016/j.tree.2021.07.005</a>.
+</div>
+<div id="ref-sopniewski_estimates_2024" class="csl-entry" role="listitem">
+Sopniewski, Jarrod, and Renee A. Catullo. 2024. <span>“Estimates of
+Heterozygosity from Single Nucleotide Polymorphism Markers Are
+Context-Dependent and Often Wrong.”</span> <em>Molecular Ecology
+Resources</em>, March, e13947. <a href="https://doi.org/10.1111/1755-0998.13947">https://doi.org/10.1111/1755-0998.13947</a>.
 </div>
 </div>
 
@@ -775,6 +811,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
