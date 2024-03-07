@@ -172,9 +172,7 @@ hwe <- gl.report.hwe(glsim, multi_comp = TRUE)
 
 ### Load data and explore
 
-read in data
-
-this dataset is to assess population structure and diversity in Uperoleia crassa, from @jaya_population_2022.
+This dataset is to assess population structure and diversity in Uperoleia crassa, from @jaya_population_2022.
 
 ```{r}
 # gl <- dartR::gl.read.dart("Report_DUp20-4995_1_moreOrders_SNP_mapping_2.csv",

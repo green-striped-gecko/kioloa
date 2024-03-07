@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -95,6 +114,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-binding-2.2.1/leaflet.js"></script>
+<script src="site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="site_libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
 
 
 <link rel="stylesheet" href="css.css">
@@ -156,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./session01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to dartR</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to <code>dartR</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -265,10 +295,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages">Required packages</a></li>
+  <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages"><em>Required packages</em></a></li>
   <li><a href="#session-content" id="toc-session-content" class="nav-link" data-scroll-target="#session-content">Session Content</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">EXERCISE</a></li>
-  <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study">Further Study</a></li>
+  <li><a href="#genetic-distance-and-visualization" id="toc-genetic-distance-and-visualization" class="nav-link" data-scroll-target="#genetic-distance-and-visualization">Genetic Distance and Visualization</a>
+  <ul class="collapse">
+  <li><a href="#load-data-and-explore" id="toc-load-data-and-explore" class="nav-link" data-scroll-target="#load-data-and-explore">Load data and explore</a></li>
+  <li><a href="#calculate-distance" id="toc-calculate-distance" class="nav-link" data-scroll-target="#calculate-distance">Calculate Distance</a></li>
+  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca">PCA</a></li>
+  <li><a href="#select-one-cluster" id="toc-select-one-cluster" class="nav-link" data-scroll-target="#select-one-cluster">Select one cluster</a></li>
+  </ul></li>
+  <li><a href="#structure-and-faststructure" id="toc-structure-and-faststructure" class="nav-link" data-scroll-target="#structure-and-faststructure"><strong>Structure and FastStructure</strong></a>
+  <ul class="collapse">
+  <li><a href="#running-structure" id="toc-running-structure" class="nav-link" data-scroll-target="#running-structure">Running STRUCTURE</a></li>
+  <li><a href="#a-more-serious-example-simulated-possums" id="toc-a-more-serious-example-simulated-possums" class="nav-link" data-scroll-target="#a-more-serious-example-simulated-possums">A more serious example: simulated possums</a></li>
+  <li><a href="#structure-run-no-admixture" id="toc-structure-run-no-admixture" class="nav-link" data-scroll-target="#structure-run-no-admixture">Structure run (no-admixture)</a></li>
+  <li><a href="#admixture-model" id="toc-admixture-model" class="nav-link" data-scroll-target="#admixture-model">Admixture Model</a></li>
+  <li><a href="#no-admixture-model" id="toc-no-admixture-model" class="nav-link" data-scroll-target="#no-admixture-model">No-Admixture Model</a></li>
+  </ul></li>
+  <li><a href="#structure-results" id="toc-structure-results" class="nav-link" data-scroll-target="#structure-results">Structure Results</a>
+  <ul class="collapse">
+  <li><a href="#evanno-plots" id="toc-evanno-plots" class="nav-link" data-scroll-target="#evanno-plots">Evanno Plots</a></li>
+  <li><a href="#plotting-the-results-q-matrix" id="toc-plotting-the-results-q-matrix" class="nav-link" data-scroll-target="#plotting-the-results-q-matrix">Plotting the results (Q matrix)</a></li>
+  <li><a href="#a-spatial-structure-plot" id="toc-a-spatial-structure-plot" class="nav-link" data-scroll-target="#a-spatial-structure-plot">A “spatial” structure plot</a></li>
+  <li><a href="#structure-run-no-admixturefalse--" id="toc-structure-run-no-admixturefalse--" class="nav-link" data-scroll-target="#structure-run-no-admixturefalse--">Structure run (no-admixture=FALSE :-))</a></li>
+  </ul></li>
+  <li><a href="#faststructure" id="toc-faststructure" class="nav-link" data-scroll-target="#faststructure">Faststructure</a>
+  <ul class="collapse">
+  <li><a href="#faststructure-simple-prior" id="toc-faststructure-simple-prior" class="nav-link" data-scroll-target="#faststructure-simple-prior">Faststructure simple prior</a></li>
+  <li><a href="#faststructure-logistic-prior" id="toc-faststructure-logistic-prior" class="nav-link" data-scroll-target="#faststructure-logistic-prior">Faststructure logistic prior</a></li>
+  </ul></li>
+  <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study"><em>Further Study</em></a></li>
   </ul>
 </nav>
     </div>
@@ -293,39 +349,637 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p><em>Session Presenters</em></p>
-<p><img src="images/Presentersxx.png" class="img-fluid"></p>
+<p><img src="images/Presenters12.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
-<h2 class="anchored" data-anchor-id="required-packages">Required packages</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.base)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
+<p>As always we need to have dartRverse installed and loaded. In addition you need to have dartR.popgen installend.</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-1_42f51c84119eac0ee0459c58aaa9ae23">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages('gplots')</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages('iterpc')</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages('expm')</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.popgen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>make sure you have the packages installed, see</em> <a href="./install.html">Install dartRverse</a></p>
 </section>
 <section id="session-content" class="level2">
 <h2 class="anchored" data-anchor-id="session-content">Session Content</h2>
-<p>Still to come…</p>
 </section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">EXERCISE</h2>
+<section id="genetic-distance-and-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="genetic-distance-and-visualization">Genetic Distance and Visualization</h2>
+<section id="load-data-and-explore" class="level3">
+<h3 class="anchored" data-anchor-id="load-data-and-explore">Load data and explore</h3>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-2_b7f53593b12b558184b510725190adf9">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the example data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/Example_12.1_SNP.Rdata"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Interrogate to see what the data are</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10529</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nInd</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 113</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(gl))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   signata   farnorth   krefftii      nigra  gunabarra   emmottii  macquarii 
+        11         10         10         10         10         10         10 
+subglobosa   worrelli tanybaraga  victoriae 
+        10         10         12         10 </code></pre>
+</div>
+</div>
+</section>
+<section id="calculate-distance" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-distance">Calculate Distance</h3>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-3_da82d58de77704b3cd06ef75c873c24a">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate an Euclidean Distance Matrix on individuals</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">gl.dist.ind</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.dist.ind 
+  Processing genlight object with SNP data
+  Calculating raw Euclidean Distances between individuals</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Returning a stat::dist object
+Completed: gl.dist.ind </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Represent visually as a heat map</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.plot.heatmap</span>(D)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.plot.heatmap 
+  Processing a distance matrix
+Starting gl.colors 
+Selected color type div 
+Completed: gl.colors </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.plot.heatmap </code></pre>
+</div>
+</div>
+</section>
+<section id="pca" class="level3">
+<h3 class="anchored" data-anchor-id="pca">PCA</h3>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-4_6a525c0bff106344da7ff192889957d1">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Undertake a PCA on the raw data</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.pcoa 
+  Processing genlight object with SNP data
+  Performing a PCA, individuals as entities, loci as attributes, SNP genotype as state
+Starting gl.colors 
+Selected color type 2 
+Completed: gl.colors </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.pcoa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the first two dimensions of the PCA</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pc,gl,<span class="at">pop.labels=</span><span class="st">"legend"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.pcoa.plot 
+  Processing an ordination file (glPca)
+  Processing genlight object with SNP data
+  Plotting populations identified by a legend
+  Preparing plot .... please wait</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.pcoa.plot </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the first and third dimensions of the PCA</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pc,gl,<span class="at">xaxis=</span><span class="dv">1</span>,<span class="at">yaxis=</span><span class="dv">3</span>, <span class="at">pop.labels=</span><span class="st">"legend"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.pcoa.plot 
+  Processing an ordination file (glPca)
+  Processing genlight object with SNP data
+  Plotting populations identified by a legend
+  Preparing plot .... please wait</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.pcoa.plot </code></pre>
+</div>
+</div>
+</section>
+<section id="select-one-cluster" class="level3">
+<h3 class="anchored" data-anchor-id="select-one-cluster">Select one cluster</h3>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-5_6a5674d2849244eb93a9c66ccf18648b">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the data from one cluster in the primary PCA</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">gl.drop.pop</span>(gl, <span class="at">pop.list=</span><span class="fu">c</span>(<span class="st">"victoriae"</span>,<span class="st">"subglobosa"</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"worrelli"</span>,<span class="st">"tanybaraga"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.drop.pop 
+  Processing genlight object with SNP data
+  Checking for presence of nominated populations, deleting them
+  Warning: Resultant dataset may contain monomorphic loci
+  Locus metrics not recalculated
+Completed: gl.drop.pop </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the first two dimensions of the secondary PCA</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.pcoa 
+  Processing genlight object with SNP data
+  Performing a PCA, individuals as entities, loci as attributes, SNP genotype as state
+Starting gl.colors 
+Selected color type 2 
+Completed: gl.colors </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.pcoa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pc, temp,<span class="at">pop.labels=</span><span class="st">"legend"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.pcoa.plot 
+  Processing an ordination file (glPca)
+  Processing genlight object with SNP data
+  Plotting populations identified by a legend
+  Preparing plot .... please wait</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.pcoa.plot </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeat the analysis as a PCoA</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">gl.dist.ind</span>(temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.dist.ind 
+  Processing genlight object with SNP data
+  Calculating raw Euclidean Distances between individuals</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Returning a stat::dist object
+Completed: gl.dist.ind </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pco <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(D)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.pcoa 
+  Processing a distance matrix
+  Performing a PCoA, individuals as entities, no correction applied
+Starting gl.colors 
+Selected color type 2 
+Completed: gl.colors </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.pcoa </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pco,temp,<span class="at">pop.labels=</span><span class="st">"legend"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.pcoa.plot 
+  Processing an ordination file (glPca)
+  Processing genlight object with SNP data
+  Plotting populations identified by a legend
+  Preparing plot .... please wait</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.pcoa.plot </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="structure-and-faststructure" class="level2">
+<h2 class="anchored" data-anchor-id="structure-and-faststructure"><strong>Structure and FastStructure</strong></h2>
+<p>To run STRUCTURE from within R, we need to install the non-GUI executable (the version without frontend) for your operating system [e.g windows, mac or linux]. You can download STRUCTURE for your OS from <a href="http://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/html/structure.html" class="uri">http://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/html/structure.html</a>.</p>
+<p>To let R know where the executable is, you need to set the path to the executable. For example, under windows, if you have the executable in <code>d:/programms/structure/structure.exe</code>, you can use the command below.</p>
+<section id="running-structure" class="level3">
+<h3 class="anchored" data-anchor-id="running-structure">Running STRUCTURE</h3>
+<p>The small example below is just to test if the programm is set up correctly, hence the binary for your system is in the right place and the path is set correctly.</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-6_cfa3fb6495a34e56309f12ccf769c0b7">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#quick test to run on windows</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> bandicoot.gl[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>sr <span class="ot">&lt;-</span> <span class="fu">gl.run.structure</span>(bc, <span class="at">k.range =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">num.k.rep =</span> <span class="dv">5</span>, <span class="at">exec =</span> <span class="st">'d:/programms/structure/structure.exe'</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>for Linux/Mac the command might look like this:</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-7_6b4e31a9d75d54af1f5181dce1416e19">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#quick test to run on linux/mac</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> bandicoot.gl[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>sr <span class="ot">&lt;-</span> <span class="fu">gl.run.structure</span>(bc, <span class="at">k.range =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">num.k.rep =</span> <span class="dv">5</span>, <span class="at">exec =</span> <span class="st">'../binaries/linux/structure'</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a-more-serious-example-simulated-possums" class="level3">
+<h3 class="anchored" data-anchor-id="a-more-serious-example-simulated-possums">A more serious example: simulated possums</h3>
+<p>For this example we will run STRUCTURE on a simulated dataset of possums. The dataset is a genlight object and contains 10 populations of 30 individuals each and 1000 loci and is part of the dartRverse package. The populations are fairly independent but are linked by some imigration, so a typical Metapopulation scenario. The populations are named A to J and follow more or less an isolation by distance (actually an isolation by resistance model). So population next to each other (e.g.&nbsp;B and C) are fairly well mixed and populations further apart from the rest (e.g.&nbsp;D) are more isolated.</p>
+<p>To simplify this further we limit our exercise to the first 150 individuals only (which entails now 5 populations a 30 individuals, A to $E). To get an overview on the population we use the function: <code>gl.map.interactive</code> which plots the individuals on a map. Please note the genlight/dartR object needs to have valid lat long coordinates for each individual to be able to do so.</p>
+<p>Also be aware this tutorial will not talk about how to filter your data set before running structure. For this please refer to the previous tutorials on filtering and data preparation.</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-8_42b9d8e4f6ad9f4e4af23543e46830a0">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>possums <span class="ot">&lt;-</span> possums.gl[<span class="dv">1</span><span class="sc">:</span><span class="dv">150</span>,]  <span class="co">#only the first 150 individuals</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(possums)) <span class="co">#check the individuals and the populations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ A  B  C  D  E 
+30 30 30 30 30 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.map.interactive</span>(possums)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.map.interactive 
+  Processing genlight object with SNP data
+Completed: gl.map.interactive </code></pre>
+</div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-f3c304cc741de2d748d0" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f3c304cc741de2d748d0">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[-35.06726602006179,-35.06955064191888,-35.07673446942515,-35.06253077174035,-35.06596335361223,-35.07240653278109,-35.06945030472441,-35.05851152550337,-35.05985319383298,-35.06269461665501,-35.07283232198104,-35.06785969168114,-35.06140452612459,-35.07000849226291,-35.06262776758465,-35.0700717233947,-35.06763775026968,-35.06326203785833,-35.07286252370781,-35.05929856231865,-35.06097874939351,-35.06590367721348,-35.05911385039392,-35.06511327075684,-35.06618017560768,-35.0597295335847,-35.06424845372028,-35.06585027391014,-35.06321742421637,-35.07252226008766,-35.46055211706051,-35.45161364369143,-35.45902228106662,-35.44643386742302,-35.46243693185566,-35.45417959421039,-35.45018417344416,-35.45924311403174,-35.44890760005696,-35.4521796574947,-35.45988605372478,-35.45539809735926,-35.45501903103015,-35.4586703397519,-35.45686504707611,-35.46479149128798,-35.45078857294831,-35.45815868254312,-35.45466795585465,-35.45039956768484,-35.46205083650445,-35.4598597488244,-35.45619141886416,-35.4635740328022,-35.4552718590738,-35.45678531683682,-35.45158548805967,-35.46508625696213,-35.45351399235329,-35.45707818180141,-35.4305411459387,-35.42685899024227,-35.42643498625106,-35.42482238917844,-35.42153397361244,-35.42609105710914,-35.42688871882999,-35.42255791970729,-35.42931971756748,-35.42770966763658,-35.42101151611572,-35.42404413631208,-35.43260612963641,-35.42462356150683,-35.43076173989826,-35.4333022917218,-35.4283444715299,-35.43703873162963,-35.42927860409449,-35.425665365613,-35.42956965923308,-35.41644235863421,-35.42824801358195,-35.43278182931387,-35.42581793190112,-35.43272295602974,-35.42391325313334,-35.43013284624325,-35.42606939645366,-35.43503345463999,-35.32169712970318,-35.32487649457556,-35.32495027923733,-35.33010001632034,-35.32848842711304,-35.3353022348978,-35.32360991543328,-35.32751590778332,-35.33408666786472,-35.33098529253679,-35.32566957462272,-35.33030282665679,-35.32736989170276,-35.33371917323233,-35.33427961601613,-35.32578978209212,-35.32223144080267,-35.32890169955976,-35.33132488967286,-35.33897980880262,-35.32566382444671,-35.33328290822069,-35.32046076559659,-35.33062493966311,-35.3265500114555,-35.33813236025612,-35.33011564763665,-35.31420499230119,-35.33712599234254,-35.32168066764579,-35.49654258663418,-35.49899275331744,-35.5048623541982,-35.50897616359301,-35.50732866799677,-35.50435741531738,-35.50153906471473,-35.49747680818017,-35.51219887330005,-35.49873652856476,-35.5074862336104,-35.50094566490483,-35.51078683806539,-35.50913604553858,-35.5120312775928,-35.50008343959731,-35.50845015630614,-35.50583768547352,-35.50527204642832,-35.49769860328301,-35.50403030919819,-35.49791225538618,-35.50292484675087,-35.50526535650319,-35.50240994663054,-35.49825727661457,-35.49989444335558,-35.50989606944871,-35.49314753231366,-35.51073280268131],[149.2869862369311,149.2746309785811,149.2722429154469,149.2812307278812,149.2750973419055,149.2781025173445,149.2788742249669,149.2860977673041,149.2932414893118,149.2755740248056,149.2836017973049,149.2668731448335,149.2834512457887,149.2751440245323,149.2874537547859,149.2808386423436,149.2931575381382,149.2800710287609,149.2786355442883,149.2725685188075,149.2777926804528,149.2841536843803,149.286859204825,149.2756010351737,149.2798786167938,149.2803295265397,149.2749598709062,149.274843528577,149.2798726878657,149.2833821406627,149.0288179804404,149.0277180830705,149.0312045633892,149.0376413352734,149.020213771592,149.031464519822,149.0263965249884,149.0334447890848,149.0319666754673,149.0267593928923,149.0246837668797,149.0305891411105,149.0333227917825,149.0300755275159,149.0274354086494,149.0256585381179,149.0270384143907,149.0356977904418,149.0268846492132,149.0368917779229,149.0228416033965,149.0324760640069,149.0282992350292,149.0314982386245,149.0360673401843,149.0207172222744,149.0400934578165,149.0233656493286,149.0341314983903,149.0283495735485,149.0574687540712,149.0642340451419,149.0677556332095,149.054291984695,149.0602994007142,149.0601359082545,149.0628131330281,149.0535954115097,149.058145221787,149.0569703969507,149.0554037144645,149.0595432368244,149.0596963628989,149.0647007349419,149.0597112056045,149.0626633884261,149.0547451500818,149.05438612097,149.0635747895413,149.0658366566245,149.06260850334,149.0572024129704,149.0577147431848,149.0545997458017,149.0626555521874,149.0533198080399,149.0632658470781,149.0584276835635,149.0592254429095,149.0664611869001,149.3407810789724,149.3443086887442,149.345574440209,149.3294786770262,149.3432051441674,149.3387756642478,149.3385776355366,149.3318337391863,149.3357765252715,149.3425597241434,149.3345677489617,149.3461888279114,149.333187906449,149.3404463687952,149.3384208988126,149.3380757594117,149.334741497081,149.337551214032,149.3371697887127,149.3375770393958,149.3465796576442,149.3371321827274,149.3361313733821,149.3415461243541,149.3430198145683,149.3401600929371,149.3385720295742,149.3343231627318,149.3345616070885,149.3359777747675,149.1903751584785,149.1761015620989,149.1874076466016,149.1773022850008,149.1768425444278,149.1701853415744,149.1718366901681,149.1819735472706,149.1920093709055,149.1782511233533,149.1754055348819,149.1812874032252,149.1732527262135,149.1762625588293,149.1804589981038,149.1780983213944,149.1745326252297,149.1852313994641,149.1754605771461,149.1718831677804,149.1845883622531,149.1797244901746,149.1738832290481,149.1745917459272,149.1744087375343,149.171940248434,149.1769928678676,149.1778069240305,149.1864311912754,149.1771088042872],10,null,null,{"interactive":true,"className":"","stroke":true,"color":["#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF"],"weight":10,"opacity":0.8,"fill":true,"fillColor":["#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#FF0000","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#CCFF00","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#00FF66","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#0066FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF","#CC00FF"],"fillOpacity":0.2},["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addMarkers","args":[[-35.06585614987745,-35.45634649838929,-35.42767222710986,-35.32860077260636,-35.50377366818333],[149.280051548008,149.0297248441548,149.0597150725238,149.3385600728948,149.1783878394327],{"iconUrl":{"data":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=","index":0},"iconWidth":1,"iconHeight":1},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["A","B","C","D","E"],{"interactive":false,"permanent":true,"direction":"top","opacity":1,"offset":[0,0],"textsize":"12px","textOnly":true,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Esri.NatGeoWorldMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"limits":{"lat":[-35.51219887330005,-35.05851152550337],"lng":[149.020213771592,149.3465796576442]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>As mentioned this is a simulated data set and we know the true population structure. Populations B and C are very close to each other so those are basically one population and E is at least somewhat in the vicinity. To confirm that our simulation was successful, we quickly can run a pcoa to confirm the population structure.</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-9_2b111eff1b0d43dbf2c7ebecc954deb6">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>pcoa <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(possums, <span class="at">plot.out =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.colors 
+Selected color type 2 
+Completed: gl.colors </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pcoaplot <span class="ot">&lt;-</span> <span class="fu">gl.pcoa.plot</span>(pcoa, possums, <span class="at">verbose =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>And yes it looks like expected.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise PCOA and a map
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="images/task.png" id="id" class="class" width="48" height="48"> Confirm that you understand how the map and the pcoa plot relate to each other.</p>
+</div>
+</div>
+<p>Now, lets see what kind of information we can get from a structure run.</p>
+<p>Different to the above we run structure with at least some repetitions for each K (num.k.rep=10) and also over a suitable range. Unfortunately, this takes a while and we will not run it here. Instead we will load the results from a previous run that is saved in the data folder of this repository. [In case you want to re-run structure simply rename or delete the file in your folder, but be aware that this will take a while.].</p>
+<div class="cell" data-hash="session12_cache/html/cached run_e6cd22330b1b339e5439ed4665870f49">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(<span class="st">"./data/srnoad.rds"</span>)) {</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>srnoad<span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/srnoad.rds"</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>possums <span class="ot">&lt;-</span> possums.gl[<span class="dv">1</span><span class="sc">:</span><span class="dv">150</span>,]</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>srnoad <span class="ot">&lt;-</span> <span class="fu">gl.run.structure</span>(possums, <span class="at">k.range =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">num.k.rep =</span> <span class="dv">10</span>, <span class="at">exec =</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>                       <span class="st">'./binaries/structure'</span>,<span class="at">plot.out =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">burnin=</span><span class="dv">50000</span>, <span class="at">numreps=</span><span class="dv">100000</span>, <span class="at">noadmix=</span><span class="cn">FALSE</span>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(srnoad, <span class="st">"./data/srnoad.rds"</span>)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Hey this was quick! We have the results of the structure run. Let’s see what we can do with it.</p>
+</section>
+<section id="structure-run-no-admixture" class="level3">
+<h3 class="anchored" data-anchor-id="structure-run-no-admixture">Structure run (no-admixture)</h3>
+<p>To run structure we use an dartR implementation of functions which is based on the functions provided by the strataG package (<span class="citation" data-cites="archer2016">F. Archer (<a href="references.html#ref-archer2016" role="doc-biblioref">2016</a>)</span>). There you can find a detailed description of the function and its arguments. We had to integrate the functionality because strataG is no longer on CRAN.</p>
+<p>The possible arguments are listed below:</p>
+<table class="table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>k.range</td>
+<td>vector of values to for maxpop in multiple runs. If set to NULL, a single STRUCTURE run is conducted with maxpops groups. If specified, do not also specify maxpops.</td>
+</tr>
+<tr class="even">
+<td>num.k.rep</td>
+<td>number of replicates for each value in k.range.</td>
+</tr>
+<tr class="odd">
+<td>label</td>
+<td>label to use for input and output files</td>
+</tr>
+<tr class="even">
+<td>delete.files</td>
+<td>logical. Delete all files when STRUCTURE is finished?</td>
+</tr>
+<tr class="odd">
+<td>exec</td>
+<td>name of executable for STRUCTURE. Defaults to “structure”.</td>
+</tr>
+<tr class="even">
+<td>burnin</td>
+<td>number of iterations for MCMC burnin.</td>
+</tr>
+<tr class="odd">
+<td>numreps</td>
+<td>number of MCMC replicates.</td>
+</tr>
+<tr class="even">
+<td>noadmix</td>
+<td>logical. No admixture?</td>
+</tr>
+<tr class="odd">
+<td>freqscorr</td>
+<td>logical. Correlated frequencies?</td>
+</tr>
+<tr class="even">
+<td>randomize</td>
+<td>randomize.</td>
+</tr>
+<tr class="odd">
+<td>pop.prior</td>
+<td>a character specifying which population prior model to use: “locprior” or “usepopinfo”.</td>
+</tr>
+<tr class="even">
+<td>locpriorinit</td>
+<td>parameterizes locprior parameter r - how informative the populations are. Only used when pop.prior = “locprior”.</td>
+</tr>
+<tr class="odd">
+<td>maxlocprior</td>
+<td>specifies range of locprior parameter r. Only used when pop.prior = “locprior”.</td>
+</tr>
+<tr class="even">
+<td>gensback</td>
+<td>integer defining the number of generations back to test for immigrant ancestry. Only used when pop.prior = “usepopinfo”.</td>
+</tr>
+<tr class="odd">
+<td>migrprior</td>
+<td>numeric between 0 and 1 listing migration prior. Only used when pop.prior = “usepopinfo”.</td>
+</tr>
+<tr class="even">
+<td>popflag</td>
+<td>a vector of integers (0, 1) or logicals identifiying whether or not to use strata information. Only used when pop.prior = “usepopinfo”.</td>
+</tr>
+<tr class="odd">
+<td>pops</td>
+<td>vector of population labels to be used in place of numbers in STRUCTURE file.</td>
+</tr>
+</tbody>
+</table>
+<p>Some words about admixture</p>
+</section>
+<section id="admixture-model" class="level3">
+<h3 class="anchored" data-anchor-id="admixture-model">Admixture Model</h3>
+<ul>
+<li><p><strong>Definition</strong>: The admixture model assumes that individuals can have ancestry from multiple populations. This means that the genetic makeup of an individual can be a mixture of two or more populations. This model is particularly useful for analyzing genetic data from populations that are known to have mixed or where there is gene flow between populations.</p></li>
+<li><p><strong>Application</strong>: It is applied when there is historical or recent admixture between populations, and it allows for the estimation of individual ancestry proportions from each of the inferred clusters. For example, an individual might be 50% from population A, 30% from population B, and 20% from population C under the admixture model.</p></li>
+<li><p><strong>Utility</strong>: The admixture model can uncover complex patterns of genetic structure that are not apparent under the assumption of discrete, non-overlapping populations.</p></li>
+</ul>
+</section>
+<section id="no-admixture-model" class="level3">
+<h3 class="anchored" data-anchor-id="no-admixture-model">No-Admixture Model</h3>
+<ul>
+<li><p><strong>Definition</strong>: The no-admixture model assumes that individuals have ancestry from only one population. This model is particularly useful for analyzing genetic data from populations that are known to be isolated from one another.</p></li>
+<li><p><strong>Application</strong>: This model is used in situations where populations are relatively well-defined and isolated, with little to no gene flow between them. It simplifies the analysis by considering that an individual’s entire genetic information originates from one of the K clusters without any mixture.</p></li>
+<li><p><strong>Utility</strong>: The no-admixture model is useful for identifying distinct populations and their members, especially in cases where populations are clearly separated geographically or temporally.</p></li>
+</ul>
+</section>
+</section>
+<section id="structure-results" class="level2">
+<h2 class="anchored" data-anchor-id="structure-results">Structure Results</h2>
+<p>Okay now that we got that out of our way lets see how to interprete the results of the structure run.</p>
+<section id="evanno-plots" class="level3">
+<h3 class="anchored" data-anchor-id="evanno-plots">Evanno Plots</h3>
+<p>The Evanno method is a statistical approach used to determine the most likely number of genetic clusters (K) present in a dataset analyzed by STRUCTURE software. STRUCTURE is a computational tool used for inferring population structure using genetic data. Identifying the correct number of clusters (K) is crucial for accurately interpreting genetic data in the context of population structure, evolutionary biology, and conservation genetics. The Evanno method specifically addresses the challenge of choosing the optimal K by analyzing the rate of change in the likelihood of data between successive K values, rather than just relying on the maximum likelihood. This is done through the calculation of ΔK, a quantity based on the second order rate of change of the likelihood function with respect to K. The method suggests that the value of K corresponding to the highest ΔK should be considered the most likely number of clusters present in the dataset.</p>
+<p>The Evanno method is a method to determine the most likely number of populations. It is based on the second order rate of change of the likelihood function with respect to K. The method is implemented in the <code>gl.evanno</code> function.</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-10_db9dc94f2fe5369058c79ca850f96b08">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ev <span class="ot">&lt;-</span> <span class="fu">gl.evanno</span>(srnoad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plotting-the-results-q-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-the-results-q-matrix">Plotting the results (Q matrix)</h3>
+<p>The Q matrix represents the estimated ancestry proportions of individuals across different inferred genetic clusters. STRUCTURE aims to identify K clusters (populations) that best explain the patterns of genetic variation observed in the data, with K either being predefined by the user or determined using methods like the Evanno method.</p>
+<p>The Q matrix is essentially a matrix where each row corresponds to an individual in the dataset, and each column represents one of the K inferred genetic clusters. The entries in the matrix are the estimated proportions (ranging from 0 to 1) of each individual’s genome that originated from each cluster. The sum of an individual’s ancestry proportions across all K clusters equals 1.</p>
+<p>The values in the Q matrix can be interpreted as the fraction of an individual’s ancestry that comes from each of the K clusters. The Q matrix is often visualized using bar plots or stacked bar graphs, where each individual’s ancestry proportions are shown as segments of a bar colored differently for each cluster.</p>
+<p>To get a plot for a certain level you need to specify K or at least a range of K.</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-11_f5e76ff0efcdaf86daeb89771969f48c">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>qmatnoad <span class="ot">&lt;-</span> <span class="fu">gl.plot.structure</span>(srnoad, <span class="at">K=</span><span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.plot.structure </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.plot.structure </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(qmatnoad[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Label cluster1 cluster2 cluster3      K orig.pop   ord
+   &lt;char&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt; &lt;char&gt;   &lt;fctr&gt; &lt;int&gt;
+1:      1        0        0        1    3.1        A     1
+2:     10        0        0        1    3.1        A     2
+3:    100        0        1        0    3.1        D    91
+4:    101        0        1        0    3.1        D    92
+5:    102        0        1        0    3.1        D    93
+6:    103        0        1        0    3.1        D    94</code></pre>
+</div>
+</div>
+</section>
+<section id="a-spatial-structure-plot" class="level3">
+<h3 class="anchored" data-anchor-id="a-spatial-structure-plot">A “spatial” structure plot</h3>
+<div class="cell" data-hash="session12_cache/html/structure map_9bb0b12a00df4b7883926797d16d75a7">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> <span class="fu">gl.map.structure</span>(<span class="at">qmat =</span> qmatnoad, <span class="at">x =</span> possums,<span class="at">K=</span><span class="dv">5</span>, <span class="at">scalex=</span><span class="dv">1</span>, <span class="at">scaley=</span><span class="fl">0.5</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/srnoad.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">spatial qmat plot</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercise
+Exercise: Study the results using different Ks
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><img src="images/task.png" id="id" class="class" width="48" height="48"> Still to come…</p>
+<p><img src="images/task.png" class="class" width="48" height="48"> The above run was a structure run using the no-admixture model for a range of K=2:7. Study the results by plotting it for various Ks and try to interpret the results in the light of the simulated population structure.</p>
 </div>
 </div>
 </section>
+<section id="structure-run-no-admixturefalse--" class="level3">
+<h3 class="anchored" data-anchor-id="structure-run-no-admixturefalse--">Structure run (no-admixture=FALSE :-))</h3>
+<p>We will now run the same example using the admixture model. The only difference is that we will set the no-admixture parameter to FALSE.</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-12_960ca8c324ac68a6ba333c226d878af4">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(<span class="st">"./data/srnoad.rds"</span>)) {</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>srad<span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/srad.rds"</span>)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>possums <span class="ot">&lt;-</span> possums.gl[<span class="dv">1</span><span class="sc">:</span><span class="dv">150</span>,]</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>srad <span class="ot">&lt;-</span> <span class="fu">gl.run.structure</span>(possums, <span class="at">k.range =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">num.k.rep =</span> <span class="dv">10</span>, <span class="at">exec =</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>                       <span class="st">'../binaries/linux/structure'</span>,<span class="at">plot.out =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">burnin=</span><span class="dv">50000</span>, <span class="at">numreps=</span><span class="dv">100000</span>, <span class="at">noadmix=</span><span class="cn">FALSE</span>)</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(srad, <span class="st">"./data/srad.rds"</span>)</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And again the evanno plots</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-13_4f6cf849173737738a6170a865f87d7e">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>ev <span class="ot">&lt;-</span> <span class="fu">gl.evanno</span>(srad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Something between 4-5 seems to be a good number of K.</p>
+<p>Hence lets look at the qmat (for K=4) and then you can check the same for K=5</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-14_3e8e1e8762e6a9a0ece7cc84c1f760b0">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>qmatad <span class="ot">&lt;-</span> <span class="fu">gl.plot.structure</span>(srad, <span class="at">K=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.plot.structure </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session12_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.plot.structure </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(qmatad[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Label   cluster1   cluster2   cluster3   cluster4      K orig.pop   ord
+   &lt;char&gt;      &lt;num&gt;      &lt;num&gt;      &lt;num&gt;      &lt;num&gt; &lt;char&gt;   &lt;fctr&gt; &lt;int&gt;
+1:      1 0.01889411 0.92092396 0.02099371 0.03918822      4        A    23
+2:     10 0.01700341 0.94348888 0.01950371 0.02000401      4        A    24
+3:    100 0.93530017 0.01900001 0.01869981 0.02700001      4        D   115
+4:    101 0.94469458 0.02400241 0.01430130 0.01700171      4        D   111
+5:    102 0.94820537 0.01479831 0.01999801 0.01699831      4        D   107
+6:    103 0.91689208 0.02110211 0.03420331 0.02780251      4        D   118</code></pre>
+</div>
+</div>
+<p>An the spatial version</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-15_ae250d2278214db85b2dc4ca75d84b8c">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> <span class="fu">gl.map.structure</span>(<span class="at">qmat =</span> qmatad, <span class="at">x =</span> possums,<span class="at">K=</span><span class="dv">4</span>, <span class="at">scalex=</span><span class="dv">1</span>, <span class="at">scaley=</span><span class="fl">0.5</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/srad.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">spatial qmat plot</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="faststructure" class="level2">
+<h2 class="anchored" data-anchor-id="faststructure">Faststructure</h2>
+<p>Faststructure is a faster implementation of the structure algorithm. Be aware though it is named Fast’structure’ it is a fairly different implementation of the original approach, hence the results might differ from the original STRUCTURE. The method is based on a variational Bayesian framework and is designed to be faster and more scalable than the original STRUCTURE software. It is particularly useful for analyzing large datasets with many individuals and/or many SNPs (&gt;5000). One of the most important differences is that there is no no-admixture model in Faststructure, but you can run two models that allow for “complex” situtations (logistic prior) and situations where the ancestry is more evenly distributed (simple prior). Also the way how to identify K differ between the methods. We will run the previous examples with both settings and compare the results.</p>
+<p>The method is now implemented in the <code>gl.run.faststructure</code> function. Unfortunatley noone to my knowledge has compiled Faststructure for windows, so it is only available for Linux and Mac. We also need to have plink installed as this is the required input format for faststructure.</p>
+<section id="faststructure-simple-prior" class="level3">
+<h3 class="anchored" data-anchor-id="faststructure-simple-prior">Faststructure simple prior</h3>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-17_75fd7a904fe77380058a593abf4646ac">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#takes about 3 minutes</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="co">#fsr.sim &lt;- gl.run.faststructure(possums, k.range = 2:7, num.k.rep = 10, </span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                                exec = "./binaries/fastStructure", output = tempdir(),</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co">#                                exec.plink="./binaries", prior = "simple")</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="co">#load from the previous run</span></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>fsr.simple <span class="ot">&lt;-</span> <span class="fu">readRDS</span>((<span class="st">"./data/fsr.sim.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here is the output of the run:</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-18_883fe810dd00ef5c07c6ee1054edabad">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>fs.simple<span class="sc">$</span>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fs.sim.ev.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">faststructure simple prior plot</figcaption>
+</figure>
+</div>
+<p>Here we can check the marginal likelihoods for the different K values. The recommended K is then the one with the highest marginal likelihood at the lowest K possible. So here we would decide on K=4. As before we can plot the Q matrix and the spatial structure plot.</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-19_b42af4f15676d8e40b232319bb674d1d">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>qmat.simple <span class="ot">&lt;-</span> <span class="fu">gl.plot.faststructure</span>(fsr.simple<span class="sc">$</span>q_list, <span class="at">k.range =</span> <span class="dv">4</span>,<span class="at">clumpak =</span> T)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span><span class="fu">gl.map.structure</span>(qmat.simple, <span class="at">K =</span> <span class="dv">4</span>, <span class="at">x =</span> possums, <span class="at">scalex =</span> <span class="dv">1</span>, <span class="at">scaley =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="faststructure-logistic-prior" class="level3">
+<h3 class="anchored" data-anchor-id="faststructure-logistic-prior">Faststructure logistic prior</h3>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-20_16b3f904a96166ea505f1cc5b784904c">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#takes about 4 minutes</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co">#fsr.log &lt;- gl.run.faststructure(possums, k.range = 2:7, num.k.rep = 10, exec = "./binaries/fastStructure", output = tempdir(), exec.plink="./binaries", prior = "logistic",)</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>fsr.log <span class="ot">&lt;-</span> <span class="fu">readRDS</span>((<span class="st">"./data/fsr.log.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here is the output of the run:</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-21_06e9ca677ceb078ec8d1d6a45d81a3fd">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>fsr.log<span class="sc">$</span>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fst.log.ev.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">faststructure logistic prior plot</figcaption>
+</figure>
+</div>
+<p>As before we can plot the Q matrix and the spatial structure plot.</p>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-22_72b32531ce486d00e01f398c616ed3fa">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>qmat.log <span class="ot">&lt;-</span> <span class="fu">gl.plot.faststructure</span>(fsr.log<span class="sc">$</span>q_list, <span class="at">k.range =</span> <span class="dv">4</span>,<span class="at">clumpak =</span> T)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span><span class="fu">gl.map.structure</span>(qmat.log, <span class="at">K =</span> <span class="dv">4</span>, <span class="at">x =</span> possums, <span class="at">scalex =</span> <span class="dv">1</span>, <span class="at">scaley =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise: Compare Structure and Faststructure runs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="images/task.png" class="class" width="48" height="48"> Now it is time to compare the results from all four previous runs.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise: Crocodiles
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="images/task.png" class="class" width="48" height="48"> If you are feeling energetic, you can try to run the structure and faststructure on the crocodile dataset. (crocs.rds)</p>
+<p>This is a publically available dataset (though it has been filtered and pruned) from the paper:) to make is a bit easier to run. Nevertheless it still has &gt;1500 SNPs and more then 400 individuals, so it takes a bit of time to run. If you do not want to wait I did two faststructure runs for you. * prior = simple, K=2:18 (max number of populations), but only 3 repeat (num.k.rep) * prior = logistic, K=2:18 (max number of populations), but only 3 repeat (num.k.rep)</p>
+<p>Maybe plot the data first, have a look at a PCA and then decide on the number of populations (range of K) you want to run the faststructure on. It might also make sense to simplify the number of populations in a smaller number of subunits. A description of the dataset (and the original paper) can be found here: <span class="citation" data-cites="fukuda2024">(<a href="references.html#ref-fukuda2024" role="doc-biblioref"><strong>fukuda2024?</strong></a>)</span></p>
+</div>
+</div>
+<div class="cell" data-hash="session12_cache/html/unnamed-chunk-23_76c677a614f1df3a77b513c6f273528c">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">#crocs &lt;- readRDS("./data/crocs.rds")</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co">#gl.map.interactive(crocs)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
 <section id="further-study" class="level2">
-<h2 class="anchored" data-anchor-id="further-study">Further Study</h2>
+<h2 class="anchored" data-anchor-id="further-study"><em>Further Study</em></h2>
 <p>still to come…</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-archer2016" class="csl-entry" role="listitem">
+F. Archer, B. Schneiders, P. Adams. 2016. <span>“strataG: An r Package for Manipulating, Summarizing and Analysing Population Genetic Data.”</span> <em>Molecular Ecology Resources</em>. <a href="https://doi.org/10.1111/1755-0998.12559">https://doi.org/10.1111/1755-0998.12559</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -766,6 +1420,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
