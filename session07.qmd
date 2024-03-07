@@ -6,15 +6,240 @@
 
 ## Required packages
 
-```{r, eval=FALSE}
-library(dartR.base)
+```{r, warning=FALSE, message=FALSE}
+#devtools::install_github("pygmyperch/melfuR")
+#BiocManager::install('qvalue')
+library(adegenet)
+library(LEA)
+library(vegan)
+library(fmsb)
+library(psych)
+library(dartRverse)
+library(melfuR)
+library(sdmpredictors)
+library(sf)
+library(raster)
+library(robust)
+library(qvalue)
 ```
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
 
-## Session Content
+## GEA analysis of SNP and environmental data using RDA
 
-Still to come...
+First lets load in some functions we will be using.
+
+```{r}
+source("utils.R")
+```
+
+### 1. Data preparation
+
+```{r}
+# load genlight object
+load("data/Mf5000_gl.RData")
+Mf5000_gl
+Mf5000_gl@pop
+
+# Factors in R can make you question your life choices like nothing else...
+# re-order the pop levels to match the order of individuals in your data
+Mf5000_gl@pop <- factor(Mf5000_gl@pop, levels = as.character(unique(Mf5000_gl@pop)))
+Mf5000_gl@pop
+
+# convert to genind
+Mf5000.genind <- gl2gi(Mf5000_gl)
+Mf5000.genind
+
+```
+
+::: callout-caution
+## Ordination analyses cannot handle missing data...
+
+Impute missing data
+
+**Decision time**
+
+1.  remove loci with missing data?
+
+2.  remove individuals with missing data?
+
+3.  impute missing data, ok how?
+
+    3a. most common genotype across all data?
+
+    3b. most common genotype per site/population/other?
+
+    3c. based on population allele frequencies characterised using snmf (admixture)?\
+:::
+
+```{r}
+# ADMIXTURE results most likely 6 pops
+imputed.gi <- melfuR::impute.data(Mf5000.genind, K = 6)
+
+# order major/minor alleles (generally no reason to do this... but might be useful for someone)
+imputed.sorted.gi <- sort_alleles(imputed.gi)
+
+# check results
+imputed.gi@tab[1:10,1:6]
+imputed.sorted.gi@tab[1:10,1:6]
+
+
+```
+
+Format SNP data for ordination analysis in vegan. You want a matrix of allele counts per locus, per individual can use population allele frequencies instead
+
+### Individual based
+
+```{r}
+
+# for individual based analyses
+# get allele counts
+alleles <- imputed.sorted.gi@tab
+
+# get genotypes (counts of reference allele) and clean up locus names
+snps <- alleles[,seq(1,ncol(alleles),2)]
+colnames(snps) <- locNames(imputed.sorted.gi)
+snps[1:10,1:10]
+
+
+# Alternative: impute missing data with most common genotype across all data
+# alleles <- Mf5000.genind@tab
+# snps <- alleles[,seq(1,ncol(alleles),2)]
+# colnames(snps) <- locNames(Mf5000.genind)
+# snps <- apply(snps, 2, function(x) replace(x, is.na(x), as.numeric(names(which.max(table(x))))))
+# check total % missing data
+# (sum(is.na(snps)))/(dim(snps)[1]*dim(snps)[2])*100
+ 
+```
+
+### Population based
+
+```{r}
+# for population based analyses
+# get pop allele frequencies
+gp <- genind2genpop(imputed.sorted.gi)
+AF <- makefreq(gp)
+
+# drop one (redundant) allele per locus
+AF <- AF[,seq(1,ncol(AF),2)]
+colnames(AF) <- locNames(gp)
+rownames(AF) <- levels(imputed.sorted.gi@pop)
+AF[1:14,1:6]
+
+```
+
+### Get environmental data
+
+::: callout-note
+## Decision time:
+
+What are the variables you want to use? Considerations: Prior/expert knowledge, hypotheses, species distribution models (SDMs), most important variables, data availability, think about surrogates/proxies if specific data not available, raw variables, PCA, other transformations?
+
+In this case we are going to keep it simple and just use a few WorldClim variables Bio01 (annual mean temperature), Bio05 (temperature in hottest month), Bio15 (rainfall seasonality) and Bio19 (rainfall in coldest quarter)
+:::
+
+```{r}
+# set the data dir and extend the waiting time (sometimes the database can be slow to respond)
+options(sdmpredictors_datadir="data/spatial_data")
+options(timeout = max(300, getOption("timeout")))
+
+# Explore datasets in the package 
+sdmpredictors::list_datasets()
+sdmpredictors::list_layers("WorldClim")
+
+# Explore environmental layers
+layers <- as.data.frame(sdmpredictors::list_layers("WorldClim"))
+write.csv(layers, "./data/WorldClim.csv")
+
+# Download specific layers to the datadir
+# Bio01 (annual mean temperature), Bio05 (temperature in hottest month), Bio15 (rainfall seasonality) and Bio19 (rainfall in coldest quarter)
+WC <- load_layers(c("WC_bio1", "WC_bio5", "WC_bio15", "WC_bio19"))
+plot(WC)
+
+
+# Crop rasters to study area and align CRS
+# get Murray-Darling Basin polygon
+mdb <- st_read("data/spatial_data/MDB_polygon/MDB.shp")
+
+# set CRS
+mdb <- st_transform(mdb, 4326)
+
+# convert to sf format
+mdb <- as(mdb, "Spatial")
+
+# crop WorldClim rasters to MDB extent, then mask pixels outside of the MDB
+ENV <- crop(WC, extent(mdb))
+ENV <- mask(ENV, mdb)
+
+
+# get sampling sites, format as sf
+sites <- read.csv("data/Mf_xy.csv", header = TRUE)
+sites_sf <- st_as_sf(sites, coords = c("X", "Y"), crs = 4326)
+
+
+# Generate a nice color ramp and plot the rasters 
+my.colors = colorRampPalette(c("#5E85B8","#EDF0C0","#C13127"))
+
+# include other spatial data that you might want to show
+rivers <- st_read("data/spatial_data/Mf_streams/Mf_streams.shp")
+rivers <- st_transform(rivers, 4326)
+rivers <- as(rivers, "Spatial")
+
+# plot a layer
+plot(ENV$WC_bio1, col=my.colors(100), main=names(ENV$WC_bio1))
+lines(rivers, col="blue", lwd=0.3)
+text(st_coordinates(sites_sf)[,1], st_coordinates(sites_sf)[,2], labels=sites_sf$site, cex=0.5)
+
+```
+
+##### Save PDF
+
+```{r}
+
+# format nicely and export as pdf
+{pdf("./images/env_rasters.pdf")
+for(i in 1:nlayers(ENV)) {
+  rasterLayer <- ENV[[i]]
+  
+  # skew the colour ramp to improve visualisation (not necessary, but nice for data like this)
+  p95 <- quantile(values(rasterLayer), probs = 0.05, na.rm = TRUE)
+  breaks <- c(minValue(rasterLayer), seq(p95, maxValue(rasterLayer), length.out = 50))
+  breaks <- unique(c(seq(minValue(rasterLayer), p95, length.out = 10), breaks))
+  color.palette <- my.colors(length(breaks) - 1)
+  layerColors <- if(i < 4) color.palette else rev(color.palette)
+  
+  # tidy up the values displayed in the legend
+  simplifiedBreaks <- c(min(breaks), quantile(breaks, probs = c(0.25, 0.5, 0.75)), max(breaks))
+  
+  # plot the rasters
+  plot(rasterLayer, breaks=breaks, col=layerColors, main=names(rasterLayer),
+       axis.args=list(at=simplifiedBreaks, labels=as.character(round(simplifiedBreaks))),
+       legend.args=list(text='', side=3, line=2, at=simplifiedBreaks))
+  lines(rivers, col="blue", lwd=0.3, labels(rivers$Name))
+  text(st_coordinates(sites_sf)[,1], st_coordinates(sites_sf)[,2], labels=sites_sf$site, cex=0.5)
+}
+dev.off()}
+
+```
+
+### Extract site environmental data
+
+```{r}
+
+# and finally extract the environmental data for your sample sites
+env.site <- data.frame(site = sites_sf$site,
+                       X = st_coordinates(sites_sf)[,1],
+                       Y = st_coordinates(sites_sf)[,2],
+                       omegaX = sites_sf$omegaX,
+                       omegaY = sites_sf$omegaY)
+
+env.dat <- as.data.frame(raster::extract(ENV,st_coordinates(sites_sf)))
+env.site <- cbind(env.site, env.dat)
+
+
+```
+
+line 210
 
 ## EXERCISE
 

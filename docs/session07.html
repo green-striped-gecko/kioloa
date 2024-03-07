@@ -266,7 +266,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages">Required packages</a></li>
-  <li><a href="#session-content" id="toc-session-content" class="nav-link" data-scroll-target="#session-content">Session Content</a></li>
+  <li><a href="#gea-analysis-of-snp-and-environmental-data-using-rda" id="toc-gea-analysis-of-snp-and-environmental-data-using-rda" class="nav-link" data-scroll-target="#gea-analysis-of-snp-and-environmental-data-using-rda">GEA analysis of SNP and environmental data using RDA</a>
+  <ul class="collapse">
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">1. Data preparation</a></li>
+  <li><a href="#individual-based" id="toc-individual-based" class="nav-link" data-scroll-target="#individual-based">Individual based</a></li>
+  <li><a href="#population-based" id="toc-population-based" class="nav-link" data-scroll-target="#population-based">Population based</a></li>
+  <li><a href="#get-environmental-data" id="toc-get-environmental-data" class="nav-link" data-scroll-target="#get-environmental-data">Get environmental data</a></li>
+  <li><a href="#extract-site-environmental-data" id="toc-extract-site-environmental-data" class="nav-link" data-scroll-target="#extract-site-environmental-data">Extract site environmental data</a></li>
+  </ul></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">EXERCISE</a></li>
   <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study">Further Study</a></li>
   </ul>
@@ -296,14 +303,1693 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/Presentersxx.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages">Required packages</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartR.base)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-1_fb5d76809ea623f0834012d3d145e89f">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#devtools::install_github("pygmyperch/melfuR")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#BiocManager::install('qvalue')</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(adegenet)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(LEA)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fmsb)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(melfuR)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sdmpredictors)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(robust)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qvalue)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>make sure you have the packages installed, see</em> <a href="./install.html">Install dartRverse</a></p>
 </section>
-<section id="session-content" class="level2">
-<h2 class="anchored" data-anchor-id="session-content">Session Content</h2>
-<p>Still to come…</p>
+<section id="gea-analysis-of-snp-and-environmental-data-using-rda" class="level2">
+<h2 class="anchored" data-anchor-id="gea-analysis-of-snp-and-environmental-data-using-rda">GEA analysis of SNP and environmental data using RDA</h2>
+<p>First lets load in some functions we will be using.</p>
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-2_c4811a36e9ad6f2bc418e3f91af2c971">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"utils.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="data-preparation">1. Data preparation</h3>
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-3_5b4986dd2aa522727ae9ace2c9035e62">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load genlight object</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/Mf5000_gl.RData"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Mf5000_gl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> /// GENLIGHT OBJECT /////////
+
+ // 249 genotypes,  5,000 binary SNPs, size: 1.1 Mb
+ 12917 (1.04 %) missing data
+
+ // Basic content
+   @gen: list of 249 SNPbin
+   @ploidy: ploidy of each individual  (range: 2-2)
+
+ // Optional content
+   @ind.names:  249 individual labels
+   @loc.names:  5000 locus labels
+   @pop: population of each individual (group size range: 9-30)
+   @other: a list containing: X </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Mf5000_gl<span class="sc">@</span>pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR
+ [19] MBR MBR MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC
+ [37] MDC MDC MDC MDC MDC MDC GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL
+ [55] GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL
+ [73] WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK BEN BEN
+ [91] BEN BEN BEN BEN BEN BEN BEN BEN BEN BEN BEN BEN BOG BOG BOG BOG BOG BOG
+[109] BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG PEL PEL PEL PEL PEL PEL PEL PEL
+[127] PEL GWY GWY GWY GWY GWY GWY GWY GWY GWY GWY GWY GWY DUM DUM DUM DUM DUM
+[145] DUM DUM DUM DUM DUM DUM DUM DUM DUM MIB MIB MIB MIB MIB MIB MIB MIB MIB
+[163] MIB MIB MIB MIB MIB MIB MIB MIB MIB MIB MIB STG STG STG STG STG STG STG
+[181] STG STG STG STG STG STG STG STG STG STG STG STG STG OAK OAK OAK OAK OAK
+[199] OAK OAK OAK OAK OAK OAK OAK OAK OAK OAK OAK OAK OAK WAR WAR WAR WAR WAR
+[217] WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR KIL KIL KIL
+[235] KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL
+Levels: BEN BOG DUM GGL GWY KIL MBR MDC MIB OAK PEL STG WAK WAR</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Factors in R can make you question your life choices like nothing else...</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># re-order the pop levels to match the order of individuals in your data</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Mf5000_gl<span class="sc">@</span>pop <span class="ot">&lt;-</span> <span class="fu">factor</span>(Mf5000_gl<span class="sc">@</span>pop, <span class="at">levels =</span> <span class="fu">as.character</span>(<span class="fu">unique</span>(Mf5000_gl<span class="sc">@</span>pop)))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>Mf5000_gl<span class="sc">@</span>pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR MBR
+ [19] MBR MBR MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC MDC
+ [37] MDC MDC MDC MDC MDC MDC GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL
+ [55] GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL GGL
+ [73] WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK WAK BEN BEN
+ [91] BEN BEN BEN BEN BEN BEN BEN BEN BEN BEN BEN BEN BOG BOG BOG BOG BOG BOG
+[109] BOG BOG BOG BOG BOG BOG BOG BOG BOG BOG PEL PEL PEL PEL PEL PEL PEL PEL
+[127] PEL GWY GWY GWY GWY GWY GWY GWY GWY GWY GWY GWY GWY DUM DUM DUM DUM DUM
+[145] DUM DUM DUM DUM DUM DUM DUM DUM DUM MIB MIB MIB MIB MIB MIB MIB MIB MIB
+[163] MIB MIB MIB MIB MIB MIB MIB MIB MIB MIB MIB STG STG STG STG STG STG STG
+[181] STG STG STG STG STG STG STG STG STG STG STG STG STG OAK OAK OAK OAK OAK
+[199] OAK OAK OAK OAK OAK OAK OAK OAK OAK OAK OAK OAK OAK WAR WAR WAR WAR WAR
+[217] WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR WAR KIL KIL KIL
+[235] KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL KIL
+Levels: MBR MDC GGL WAK BEN BOG PEL GWY DUM MIB STG OAK WAR KIL</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to genind</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Mf5000.genind <span class="ot">&lt;-</span> <span class="fu">gl2gi</span>(Mf5000_gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl2gi 
+  Processing genlight object with SNP data
+Matrix converted.. Prepare genind object...
+Completed: gl2gi </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Mf5000.genind</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/// GENIND OBJECT /////////
+
+ // 249 individuals; 5,000 loci; 10,000 alleles; size: 12.2 Mb
+
+ // Basic content
+   @tab:  249 x 10000 matrix of allele counts
+   @loc.n.all: number of alleles per locus (range: 2-2)
+   @loc.fac: locus factor for the 10000 columns of @tab
+   @all.names: list of allele names for each locus
+   @ploidy: ploidy of each individual  (range: 2-2)
+   @type:  codom
+   @call: df2genind(X = xx[, ], sep = "/", ncode = 1, ind.names = x@ind.names, 
+    pop = x@pop, NA.char = "-", ploidy = 2)
+
+ // Optional content
+   @pop: population of each individual (group size range: 9-30)
+   @other: a list containing: X </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ordination analyses cannot handle missing data…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Impute missing data</p>
+<p><strong>Decision time</strong></p>
+<ol type="1">
+<li><p>remove loci with missing data?</p></li>
+<li><p>remove individuals with missing data?</p></li>
+<li><p>impute missing data, ok how?</p>
+<p>3a. most common genotype across all data?</p>
+<p>3b. most common genotype per site/population/other?</p>
+<p>3c. based on population allele frequencies characterised using snmf (admixture)?<br>
+</p></li>
+</ol>
+</div>
+</div>
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-4_3e0d27b1c56d8e1315ada091f93c0825">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ADMIXTURE results most likely 6 pops</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>imputed.gi <span class="ot">&lt;-</span> melfuR<span class="sc">::</span><span class="fu">impute.data</span>(Mf5000.genind, <span class="at">K =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total missing data =  1.04 %
+[1] "*********************************************************"
+[1] " Conversion from the lfmm format to the geno format"
+[1] "*********************************************************"
+
+    - number of detected individuals:   249
+    - number of detected loci:      5000
+
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+[1] 42
+[1] "*************************************"
+[1] "*          create.dataset            *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)                 249
+        -L (number of loci)                        5000
+        -s (seed random init)                      42
+        -r (percentage of masked data)             0.05
+        -x (genotype file in .geno format)         C:\repositories\dartR_workshop\kioloa\dat.geno
+        -o (output file in .geno format)           C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+
+ Write genotype file with masked data, C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+[1] "*************************************"
+[1] "* sNMF K = 6  repetition 1      *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)             249
+        -L (number of loci)                    5000
+        -K (number of ancestral pops)          6
+        -x (input file)                        C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        -q (individual admixture file)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run1/dat_r1.6.Q
+        -g (ancestral frequencies file)        C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run1/dat_r1.6.G
+        -i (number max of iterations)          200
+        -a (regularization parameter)          10
+        -s (seed random init)                  42
+        -e (tolerance error)                   1E-05
+        -p (number of processes)               1
+        - diploid
+
+Read genotype file C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+
+Main algorithm:
+    [                                                                           ]
+    [=====================================]
+Number of iterations: 98
+
+Least-square error: 388910.818678
+Write individual ancestry coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run1/dat_r1.6.Q:       OK.
+Write ancestral allele frequency coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run1/dat_r1.6.G:    OK.
+
+[1] "*************************************"
+[1] "*    cross-entropy estimation       *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)         249
+        -L (number of loci)                5000
+        -K (number of ancestral pops)      6
+        -x (genotype file)                 C:\repositories\dartR_workshop\kioloa\dat.geno
+        -q (individual admixture)          C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run1/dat_r1.6.Q
+        -g (ancestral frequencies)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run1/dat_r1.6.G
+        -i (with masked genotypes)         C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        - diploid
+
+Cross-Entropy (all data):    0.515314
+Cross-Entropy (masked data):     0.550054
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+[1] 2036314816
+[1] "*************************************"
+[1] "*          create.dataset            *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)                 249
+        -L (number of loci)                        5000
+        -s (seed random init)                      2036314816
+        -r (percentage of masked data)             0.05
+        -x (genotype file in .geno format)         C:\repositories\dartR_workshop\kioloa\dat.geno
+        -o (output file in .geno format)           C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+
+ Write genotype file with masked data, C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+[1] "*************************************"
+[1] "* sNMF K = 6  repetition 2      *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)             249
+        -L (number of loci)                    5000
+        -K (number of ancestral pops)          6
+        -x (input file)                        C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        -q (individual admixture file)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run2/dat_r2.6.Q
+        -g (ancestral frequencies file)        C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run2/dat_r2.6.G
+        -i (number max of iterations)          200
+        -a (regularization parameter)          10
+        -s (seed random init)                  2036314816
+        -e (tolerance error)                   1E-05
+        -p (number of processes)               1
+        - diploid
+
+Read genotype file C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+
+Main algorithm:
+    [                                                                           ]
+    [======================================]
+Number of iterations: 102
+
+Least-square error: 390122.868041
+Write individual ancestry coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run2/dat_r2.6.Q:       OK.
+Write ancestral allele frequency coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run2/dat_r2.6.G:    OK.
+
+[1] "*************************************"
+[1] "*    cross-entropy estimation       *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)         249
+        -L (number of loci)                5000
+        -K (number of ancestral pops)      6
+        -x (genotype file)                 C:\repositories\dartR_workshop\kioloa\dat.geno
+        -q (individual admixture)          C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run2/dat_r2.6.Q
+        -g (ancestral frequencies)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run2/dat_r2.6.G
+        -i (with masked genotypes)         C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        - diploid
+
+Cross-Entropy (all data):    0.51454
+Cross-Entropy (masked data):     0.558075
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+[1] 1372102712
+[1] "*************************************"
+[1] "*          create.dataset            *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)                 249
+        -L (number of loci)                        5000
+        -s (seed random init)                      1372102712
+        -r (percentage of masked data)             0.05
+        -x (genotype file in .geno format)         C:\repositories\dartR_workshop\kioloa\dat.geno
+        -o (output file in .geno format)           C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+
+ Write genotype file with masked data, C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+[1] "*************************************"
+[1] "* sNMF K = 6  repetition 3      *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)             249
+        -L (number of loci)                    5000
+        -K (number of ancestral pops)          6
+        -x (input file)                        C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        -q (individual admixture file)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run3/dat_r3.6.Q
+        -g (ancestral frequencies file)        C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run3/dat_r3.6.G
+        -i (number max of iterations)          200
+        -a (regularization parameter)          10
+        -s (seed random init)                  1372102712
+        -e (tolerance error)                   1E-05
+        -p (number of processes)               1
+        - diploid
+
+Read genotype file C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+
+Main algorithm:
+    [                                                                           ]
+    [=====================================]
+Number of iterations: 98
+
+Least-square error: 390123.414335
+Write individual ancestry coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run3/dat_r3.6.Q:       OK.
+Write ancestral allele frequency coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run3/dat_r3.6.G:    OK.
+
+[1] "*************************************"
+[1] "*    cross-entropy estimation       *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)         249
+        -L (number of loci)                5000
+        -K (number of ancestral pops)      6
+        -x (genotype file)                 C:\repositories\dartR_workshop\kioloa\dat.geno
+        -q (individual admixture)          C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run3/dat_r3.6.Q
+        -g (ancestral frequencies)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run3/dat_r3.6.G
+        -i (with masked genotypes)         C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        - diploid
+
+Cross-Entropy (all data):    0.515192
+Cross-Entropy (masked data):     0.546855
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+[1] 501538892
+[1] "*************************************"
+[1] "*          create.dataset            *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)                 249
+        -L (number of loci)                        5000
+        -s (seed random init)                      501538892
+        -r (percentage of masked data)             0.05
+        -x (genotype file in .geno format)         C:\repositories\dartR_workshop\kioloa\dat.geno
+        -o (output file in .geno format)           C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+
+ Write genotype file with masked data, C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+[1] "*************************************"
+[1] "* sNMF K = 6  repetition 4      *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)             249
+        -L (number of loci)                    5000
+        -K (number of ancestral pops)          6
+        -x (input file)                        C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        -q (individual admixture file)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run4/dat_r4.6.Q
+        -g (ancestral frequencies file)        C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run4/dat_r4.6.G
+        -i (number max of iterations)          200
+        -a (regularization parameter)          10
+        -s (seed random init)                  501538892
+        -e (tolerance error)                   1E-05
+        -p (number of processes)               1
+        - diploid
+
+Read genotype file C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+
+Main algorithm:
+    [                                                                           ]
+    [==================================]
+Number of iterations: 92
+
+Least-square error: 389969.387848
+Write individual ancestry coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run4/dat_r4.6.Q:       OK.
+Write ancestral allele frequency coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run4/dat_r4.6.G:    OK.
+
+[1] "*************************************"
+[1] "*    cross-entropy estimation       *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)         249
+        -L (number of loci)                5000
+        -K (number of ancestral pops)      6
+        -x (genotype file)                 C:\repositories\dartR_workshop\kioloa\dat.geno
+        -q (individual admixture)          C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run4/dat_r4.6.Q
+        -g (ancestral frequencies)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run4/dat_r4.6.G
+        -i (with masked genotypes)         C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        - diploid
+
+Cross-Entropy (all data):    0.514871
+Cross-Entropy (masked data):     0.554227
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+[1] 1497835296
+[1] "*************************************"
+[1] "*          create.dataset            *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)                 249
+        -L (number of loci)                        5000
+        -s (seed random init)                      1497835296
+        -r (percentage of masked data)             0.05
+        -x (genotype file in .geno format)         C:\repositories\dartR_workshop\kioloa\dat.geno
+        -o (output file in .geno format)           C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+
+ Write genotype file with masked data, C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+[1] "*************************************"
+[1] "* sNMF K = 6  repetition 5      *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)             249
+        -L (number of loci)                    5000
+        -K (number of ancestral pops)          6
+        -x (input file)                        C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        -q (individual admixture file)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run5/dat_r5.6.Q
+        -g (ancestral frequencies file)        C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run5/dat_r5.6.G
+        -i (number max of iterations)          200
+        -a (regularization parameter)          10
+        -s (seed random init)                  1497835296
+        -e (tolerance error)                   1E-05
+        -p (number of processes)               1
+        - diploid
+
+Read genotype file C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+
+Main algorithm:
+    [                                                                           ]
+    [=======================================]
+Number of iterations: 105
+
+Least-square error: 390133.766506
+Write individual ancestry coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run5/dat_r5.6.Q:       OK.
+Write ancestral allele frequency coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run5/dat_r5.6.G:    OK.
+
+[1] "*************************************"
+[1] "*    cross-entropy estimation       *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)         249
+        -L (number of loci)                5000
+        -K (number of ancestral pops)      6
+        -x (genotype file)                 C:\repositories\dartR_workshop\kioloa\dat.geno
+        -q (individual admixture)          C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run5/dat_r5.6.Q
+        -g (ancestral frequencies)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run5/dat_r5.6.G
+        -i (with masked genotypes)         C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        - diploid
+
+Cross-Entropy (all data):    0.515216
+Cross-Entropy (masked data):     0.547343
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+[1] 2046585485
+[1] "*************************************"
+[1] "*          create.dataset            *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)                 249
+        -L (number of loci)                        5000
+        -s (seed random init)                      2046585485
+        -r (percentage of masked data)             0.05
+        -x (genotype file in .geno format)         C:\repositories\dartR_workshop\kioloa\dat.geno
+        -o (output file in .geno format)           C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+
+ Write genotype file with masked data, C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+[1] "*************************************"
+[1] "* sNMF K = 6  repetition 6      *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)             249
+        -L (number of loci)                    5000
+        -K (number of ancestral pops)          6
+        -x (input file)                        C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        -q (individual admixture file)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run6/dat_r6.6.Q
+        -g (ancestral frequencies file)        C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run6/dat_r6.6.G
+        -i (number max of iterations)          200
+        -a (regularization parameter)          10
+        -s (seed random init)                  2046585485
+        -e (tolerance error)                   1E-05
+        -p (number of processes)               1
+        - diploid
+
+Read genotype file C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+
+Main algorithm:
+    [                                                                           ]
+    [==================================================]
+Number of iterations: 133
+
+Least-square error: 388974.296211
+Write individual ancestry coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run6/dat_r6.6.Q:       OK.
+Write ancestral allele frequency coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run6/dat_r6.6.G:    OK.
+
+[1] "*************************************"
+[1] "*    cross-entropy estimation       *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)         249
+        -L (number of loci)                5000
+        -K (number of ancestral pops)      6
+        -x (genotype file)                 C:\repositories\dartR_workshop\kioloa\dat.geno
+        -q (individual admixture)          C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run6/dat_r6.6.Q
+        -g (ancestral frequencies)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run6/dat_r6.6.G
+        -i (with masked genotypes)         C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        - diploid
+
+Cross-Entropy (all data):    0.515075
+Cross-Entropy (masked data):     0.55581
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+[1] 1629520877
+[1] "*************************************"
+[1] "*          create.dataset            *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)                 249
+        -L (number of loci)                        5000
+        -s (seed random init)                      1629520877
+        -r (percentage of masked data)             0.05
+        -x (genotype file in .geno format)         C:\repositories\dartR_workshop\kioloa\dat.geno
+        -o (output file in .geno format)           C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+
+ Write genotype file with masked data, C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+[1] "*************************************"
+[1] "* sNMF K = 6  repetition 7      *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)             249
+        -L (number of loci)                    5000
+        -K (number of ancestral pops)          6
+        -x (input file)                        C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        -q (individual admixture file)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run7/dat_r7.6.Q
+        -g (ancestral frequencies file)        C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run7/dat_r7.6.G
+        -i (number max of iterations)          200
+        -a (regularization parameter)          10
+        -s (seed random init)                  1629520877
+        -e (tolerance error)                   1E-05
+        -p (number of processes)               1
+        - diploid
+
+Read genotype file C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+
+Main algorithm:
+    [                                                                           ]
+    [=========]
+Number of iterations: 23
+
+Least-square error: 390786.553313
+Write individual ancestry coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run7/dat_r7.6.Q:       OK.
+Write ancestral allele frequency coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run7/dat_r7.6.G:    OK.
+
+[1] "*************************************"
+[1] "*    cross-entropy estimation       *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)         249
+        -L (number of loci)                5000
+        -K (number of ancestral pops)      6
+        -x (genotype file)                 C:\repositories\dartR_workshop\kioloa\dat.geno
+        -q (individual admixture)          C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run7/dat_r7.6.Q
+        -g (ancestral frequencies)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run7/dat_r7.6.G
+        -i (with masked genotypes)         C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        - diploid
+
+Cross-Entropy (all data):    0.518724
+Cross-Entropy (masked data):     0.559747
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+[1] 1792160697
+[1] "*************************************"
+[1] "*          create.dataset            *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)                 249
+        -L (number of loci)                        5000
+        -s (seed random init)                      1792160697
+        -r (percentage of masked data)             0.05
+        -x (genotype file in .geno format)         C:\repositories\dartR_workshop\kioloa\dat.geno
+        -o (output file in .geno format)           C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+
+ Write genotype file with masked data, C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+[1] "*************************************"
+[1] "* sNMF K = 6  repetition 8      *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)             249
+        -L (number of loci)                    5000
+        -K (number of ancestral pops)          6
+        -x (input file)                        C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        -q (individual admixture file)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run8/dat_r8.6.Q
+        -g (ancestral frequencies file)        C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run8/dat_r8.6.G
+        -i (number max of iterations)          200
+        -a (regularization parameter)          10
+        -s (seed random init)                  1792160697
+        -e (tolerance error)                   1E-05
+        -p (number of processes)               1
+        - diploid
+
+Read genotype file C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+
+Main algorithm:
+    [                                                                           ]
+    [=====================================================]
+Number of iterations: 141
+
+Least-square error: 389482.108053
+Write individual ancestry coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run8/dat_r8.6.Q:       OK.
+Write ancestral allele frequency coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run8/dat_r8.6.G:    OK.
+
+[1] "*************************************"
+[1] "*    cross-entropy estimation       *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)         249
+        -L (number of loci)                5000
+        -K (number of ancestral pops)      6
+        -x (genotype file)                 C:\repositories\dartR_workshop\kioloa\dat.geno
+        -q (individual admixture)          C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run8/dat_r8.6.Q
+        -g (ancestral frequencies)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run8/dat_r8.6.G
+        -i (with masked genotypes)         C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        - diploid
+
+Cross-Entropy (all data):    0.515373
+Cross-Entropy (masked data):     0.552094
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+[1] 1478357482
+[1] "*************************************"
+[1] "*          create.dataset            *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)                 249
+        -L (number of loci)                        5000
+        -s (seed random init)                      1478357482
+        -r (percentage of masked data)             0.05
+        -x (genotype file in .geno format)         C:\repositories\dartR_workshop\kioloa\dat.geno
+        -o (output file in .geno format)           C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+
+ Write genotype file with masked data, C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+[1] "*************************************"
+[1] "* sNMF K = 6  repetition 9      *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)             249
+        -L (number of loci)                    5000
+        -K (number of ancestral pops)          6
+        -x (input file)                        C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        -q (individual admixture file)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run9/dat_r9.6.Q
+        -g (ancestral frequencies file)        C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run9/dat_r9.6.G
+        -i (number max of iterations)          200
+        -a (regularization parameter)          10
+        -s (seed random init)                  1478357482
+        -e (tolerance error)                   1E-05
+        -p (number of processes)               1
+        - diploid
+
+Read genotype file C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+
+Main algorithm:
+    [                                                                           ]
+    [==================================================]
+Number of iterations: 134
+
+Least-square error: 389483.213088
+Write individual ancestry coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run9/dat_r9.6.Q:       OK.
+Write ancestral allele frequency coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run9/dat_r9.6.G:    OK.
+
+[1] "*************************************"
+[1] "*    cross-entropy estimation       *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)         249
+        -L (number of loci)                5000
+        -K (number of ancestral pops)      6
+        -x (genotype file)                 C:\repositories\dartR_workshop\kioloa\dat.geno
+        -q (individual admixture)          C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run9/dat_r9.6.Q
+        -g (ancestral frequencies)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run9/dat_r9.6.G
+        -i (with masked genotypes)         C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        - diploid
+
+Cross-Entropy (all data):    0.51554
+Cross-Entropy (masked data):     0.549863
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+[1] 1849722938
+[1] "*************************************"
+[1] "*          create.dataset            *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)                 249
+        -L (number of loci)                        5000
+        -s (seed random init)                      1849722938
+        -r (percentage of masked data)             0.05
+        -x (genotype file in .geno format)         C:\repositories\dartR_workshop\kioloa\dat.geno
+        -o (output file in .geno format)           C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+
+ Write genotype file with masked data, C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+[1] "*************************************"
+[1] "* sNMF K = 6  repetition 10      *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)             249
+        -L (number of loci)                    5000
+        -K (number of ancestral pops)          6
+        -x (input file)                        C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        -q (individual admixture file)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run10/dat_r10.6.Q
+        -g (ancestral frequencies file)        C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run10/dat_r10.6.G
+        -i (number max of iterations)          200
+        -a (regularization parameter)          10
+        -s (seed random init)                  1849722938
+        -e (tolerance error)                   1E-05
+        -p (number of processes)               1
+        - diploid
+
+Read genotype file C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno:        OK.
+
+
+Main algorithm:
+    [                                                                           ]
+    [=================================]
+Number of iterations: 87
+
+Least-square error: 389102.635227
+Write individual ancestry coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run10/dat_r10.6.Q:     OK.
+Write ancestral allele frequency coefficient file C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run10/dat_r10.6.G:  OK.
+
+[1] "*************************************"
+[1] "*    cross-entropy estimation       *"
+[1] "*************************************"
+summary of the options:
+
+        -n (number of individuals)         249
+        -L (number of loci)                5000
+        -K (number of ancestral pops)      6
+        -x (genotype file)                 C:\repositories\dartR_workshop\kioloa\dat.geno
+        -q (individual admixture)          C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run10/dat_r10.6.Q
+        -g (ancestral frequencies)         C:/repositories/dartR_workshop/kioloa/dat.snmf/K6/run10/dat_r10.6.G
+        -i (with masked genotypes)         C:/repositories/dartR_workshop/kioloa/dat.snmf/masked/dat_I.geno
+        - diploid
+
+Cross-Entropy (all data):    0.515332
+Cross-Entropy (masked data):     0.550284
+The project is saved into :
+ dat.snmfProject 
+
+To load the project, use:
+ project = load.snmfProject("dat.snmfProject")
+
+To remove the project, use:
+ remove.snmfProject("dat.snmfProject")
+
+Missing genotype imputation for K = 6 
+Missing genotype imputation for run = 3 
+Results are written in the file:  dat.lfmm_imputed.lfmm 
+Total missing data was =  1.04 %
+Total missing data now =  0 %</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order major/minor alleles (generally no reason to do this... but might be useful for someone)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>imputed.sorted.gi <span class="ot">&lt;-</span> <span class="fu">sort_alleles</span>(imputed.gi)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check results</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>imputed.gi<span class="sc">@</span>tab[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       SNP_1.C SNP_1.G SNP_2.A SNP_2.T SNP_3.T SNP_3.A
+MBR_10       1       1       1       1       2       0
+MBR_11       1       1       1       1       2       0
+MBR_12       1       1       2       0       2       0
+MBR_14       0       2       2       0       2       0
+MBR_15       0       2       1       1       2       0
+MBR_16       0       2       2       0       2       0
+MBR_17       0       2       0       2       2       0
+MBR_18       0       2       1       1       2       0
+MBR_19       1       1       2       0       2       0
+MBR_1        0       2       1       1       2       0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>imputed.sorted.gi<span class="sc">@</span>tab[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       SNP_1.G SNP_1.C SNP_2.A SNP_2.T SNP_3.T SNP_3.A
+MBR_10       1       1       1       1       2       0
+MBR_11       1       1       1       1       2       0
+MBR_12       1       1       2       0       2       0
+MBR_14       2       0       2       0       2       0
+MBR_15       2       0       1       1       2       0
+MBR_16       2       0       2       0       2       0
+MBR_17       2       0       0       2       2       0
+MBR_18       2       0       1       1       2       0
+MBR_19       1       1       2       0       2       0
+MBR_1        2       0       1       1       2       0</code></pre>
+</div>
+</div>
+<p>Format SNP data for ordination analysis in vegan. You want a matrix of allele counts per locus, per individual can use population allele frequencies instead</p>
+</section>
+<section id="individual-based" class="level3">
+<h3 class="anchored" data-anchor-id="individual-based">Individual based</h3>
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-5_a57c8e0680bce811d1f01cb66a757132">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for individual based analyses</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get allele counts</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>alleles <span class="ot">&lt;-</span> imputed.sorted.gi<span class="sc">@</span>tab</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get genotypes (counts of reference allele) and clean up locus names</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>snps <span class="ot">&lt;-</span> alleles[,<span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">ncol</span>(alleles),<span class="dv">2</span>)]</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(snps) <span class="ot">&lt;-</span> <span class="fu">locNames</span>(imputed.sorted.gi)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>snps[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       SNP_1 SNP_2 SNP_3 SNP_4 SNP_5 SNP_6 SNP_7 SNP_8 SNP_9 SNP_10
+MBR_10     1     1     2     2     2     2     1     1     2      1
+MBR_11     1     1     2     2     2     2     2     2     2      0
+MBR_12     1     2     2     2     2     1     2     2     2      1
+MBR_14     2     2     2     2     2     2     1     1     2      2
+MBR_15     2     1     2     2     2     2     1     1     2      2
+MBR_16     2     2     2     2     2     2     2     2     2      2
+MBR_17     2     0     2     2     2     2     0     2     2      2
+MBR_18     2     1     2     2     2     1     1     2     2      0
+MBR_19     1     2     2     2     2     1     2     2     2      2
+MBR_1      2     1     2     2     1     2     2     2     2      2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative: impute missing data with most common genotype across all data</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alleles &lt;- Mf5000.genind@tab</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># snps &lt;- alleles[,seq(1,ncol(alleles),2)]</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># colnames(snps) &lt;- locNames(Mf5000.genind)</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># snps &lt;- apply(snps, 2, function(x) replace(x, is.na(x), as.numeric(names(which.max(table(x))))))</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check total % missing data</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (sum(is.na(snps)))/(dim(snps)[1]*dim(snps)[2])*100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="population-based" class="level3">
+<h3 class="anchored" data-anchor-id="population-based">Population based</h3>
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-6_d25d1a817c654c99e95cc3c3eb3f9bea">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for population based analyses</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get pop allele frequencies</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>gp <span class="ot">&lt;-</span> <span class="fu">genind2genpop</span>(imputed.sorted.gi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Converting data from a genind to a genpop object... 
+
+...done.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>AF <span class="ot">&lt;-</span> <span class="fu">makefreq</span>(gp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Finding allelic frequencies from a genpop object... 
+
+...done.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop one (redundant) allele per locus</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>AF <span class="ot">&lt;-</span> AF[,<span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">ncol</span>(AF),<span class="dv">2</span>)]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(AF) <span class="ot">&lt;-</span> <span class="fu">locNames</span>(gp)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(AF) <span class="ot">&lt;-</span> <span class="fu">levels</span>(imputed.sorted.gi<span class="sc">@</span>pop)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>AF[<span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         SNP_1     SNP_2     SNP_3     SNP_4     SNP_5     SNP_6
+MBR 0.87500000 0.8250000 0.9750000 1.0000000 0.9750000 0.8250000
+MDC 0.70454545 0.7045455 0.8409091 0.9545455 0.8863636 0.8181818
+GGL 0.71666667 0.7833333 0.9000000 0.9166667 0.8500000 0.8000000
+WAK 0.93750000 1.0000000 1.0000000 1.0000000 1.0000000 0.3125000
+BEN 0.92857143 1.0000000 1.0000000 1.0000000 1.0000000 0.6071429
+BOG 0.75000000 0.8125000 0.7812500 1.0000000 0.7812500 0.9062500
+PEL 0.83333333 0.7222222 0.9444444 0.9444444 0.8888889 1.0000000
+GWY 0.75000000 0.9166667 1.0000000 1.0000000 1.0000000 0.8333333
+DUM 0.82142857 1.0000000 0.9285714 0.9285714 1.0000000 0.8571429
+MIB 0.92500000 0.7750000 0.9250000 0.8250000 0.9750000 0.8500000
+STG 0.97500000 0.8750000 0.6500000 0.8000000 1.0000000 0.8000000
+OAK 0.02777778 0.6388889 0.6388889 0.6666667 0.3333333 1.0000000
+WAR 0.20000000 0.9000000 0.7000000 0.5750000 0.2750000 1.0000000
+KIL 0.25000000 0.7777778 0.5277778 0.7222222 0.3055556 1.0000000</code></pre>
+</div>
+</div>
+</section>
+<section id="get-environmental-data" class="level3">
+<h3 class="anchored" data-anchor-id="get-environmental-data">Get environmental data</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Decision time:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What are the variables you want to use? Considerations: Prior/expert knowledge, hypotheses, species distribution models (SDMs), most important variables, data availability, think about surrogates/proxies if specific data not available, raw variables, PCA, other transformations?</p>
+<p>In this case we are going to keep it simple and just use a few WorldClim variables Bio01 (annual mean temperature), Bio05 (temperature in hottest month), Bio15 (rainfall seasonality) and Bio19 (rainfall in coldest quarter)</p>
+</div>
+</div>
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-7_b983bbb421175499faec3c5f3dbd0cd1">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the data dir and extend the waiting time (sometimes the database can be slow to respond)</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">sdmpredictors_datadir=</span><span class="st">"data/spatial_data"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">timeout =</span> <span class="fu">max</span>(<span class="dv">300</span>, <span class="fu">getOption</span>(<span class="st">"timeout"</span>)))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore datasets in the package </span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>sdmpredictors<span class="sc">::</span><span class="fu">list_datasets</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  dataset_code terrestrial marine                              url
+1    WorldClim        TRUE  FALSE        http://www.worldclim.org/
+2   Bio-ORACLE       FALSE   TRUE          https://bio-oracle.org/
+3      MARSPEC       FALSE   TRUE              http://marspec.org/
+4      ENVIREM        TRUE  FALSE       https://envirem.github.io/
+5   Freshwater        TRUE  FALSE https://www.earthenv.org/streams
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               description
+1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   WorldClim is a set of global climate layers (climate grids). Note that all data has been transformed back to real values, so there is no need to e.g. divide temperature layers by 10.
+2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Bio-ORACLE is a set of GIS rasters providing geophysical, biotic and environmental data for surface and benthic marine realms at a spatial resolution 5 arcmin (9.2 km) in the ESRI ascii and tif format.
+3 MARSPEC is a set of high resolution climatic and geophysical GIS data layers for the world ocean. Seven geophysical variables were derived from the SRTM30_PLUS high resolution bathymetry dataset.  These layers characterize the horizontal orientation (aspect), slope, and curvature of the seafloor and the distance from shore.  Ten "bioclimatic" variables were derived from NOAA's World Ocean Atlas and NASA's MODIS satellite imagery and characterize the inter-annual means, extremes, and variances in sea surface temperature and salinity. These variables will be useful to those interested in the spatial ecology of marine shallow-water and surface-associated pelagic organisms across the globe. Note that, in contrary to the original MARSPEC, all layers have unscaled values.
+4                                                                                                                                 The ENVIREM dataset is a set of 16 climatic and 2 topographic variables that can be used in modeling species' distributions. The strengths of this dataset include their close ties to ecological processes, and their availability at a global scale, at several spatial resolutions, and for several time periods. The underlying temperature and precipitation data that went into their construction comes from the WorldClim dataset (www.worldclim.org), and the solar radiation data comes from the Consortium for Spatial Information (www.cgiar-csi.org). The data are compatible with and expand the set of variables from WorldClim v1.4 (www.worldclim.org).
+5                                                      The dataset consists of near-global, spatially continuous, and freshwater-specific environmental variables in a standardized 1km grid. We delineated the sub-catchment for each grid cell along the HydroSHEDS river network and summarized the upstream environment (climate, topography, land cover, surface geology and soil) to each grid cell using various metrics (average, minimum, maximum, range, sum, inverse distance-weighted average and sum). All variables were subsequently averaged across single lakes and reservoirs of the Global lakes and Wetlands Database that are connected to the river network. Monthly climate variables were summarized into 19 long-term climatic variables following the \xd2bioclim\xd3 framework.
+                                                                                                                                                                                                                                  citation
+1                                   Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+2 Tyberghein L., Verbruggen H., Pauly K., Troupin C., Mineur F. &amp; De Clerck O. Bio-ORACLE: a global environmental dataset for marine species distribution modeling. Global Ecology and Biogeography. doi: 10.1111/j.1466-8238.2011.00656.x
+3                                                                                                      Sbrocco, EJ and Barber, PH (2013) MARSPEC: Ocean climate layers for marine spatial ecology. Ecology 94: 979. doi: 10.1890/12-1358.1
+4                       Title, P.O., Bemmels, J.B. 2017. ENVIREM: An expanded set of bioclimatic and topographic variables increases flexibility and improves performance of ecological niche modeling. Ecography doi: 10.1111/ecog.02880.
+5                                 Domisch, S., Amatulli, G., and Jetz, W. (2015) Near-global freshwater-specific environmental variables for biodiversity analyses in 1 km resolution. Scientific Data 2:150073 doi: 10.1038/sdata.2015.73</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>sdmpredictors<span class="sc">::</span><span class="fu">list_layers</span>(<span class="st">"WorldClim"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   dataset_code layer_code                                name
+1     WorldClim     WC_alt                            Altitude
+2     WorldClim    WC_bio1             Annual mean temperature
+3     WorldClim    WC_bio2      Mean diurnal temperature range
+4     WorldClim    WC_bio3                       Isothermality
+5     WorldClim    WC_bio4             Temperature seasonality
+6     WorldClim    WC_bio5                 Maximum temperature
+7     WorldClim    WC_bio6                 Minimum temperature
+8     WorldClim    WC_bio7            Annual temperature range
+9     WorldClim    WC_bio8 Mean temperature of wettest quarter
+10    WorldClim    WC_bio9  Mean temperature of driest quarter
+11    WorldClim   WC_bio10 Mean temperature of warmest quarter
+12    WorldClim   WC_bio11 Mean temperature of coldest quarter
+13    WorldClim   WC_bio12                Annual precipitation
+14    WorldClim   WC_bio13      Precipitation of wettest month
+15    WorldClim   WC_bio14       Precipitation of driest month
+16    WorldClim   WC_bio15           Precipitation seasonality
+17    WorldClim   WC_bio16    Precipitation of wettest quarter
+18    WorldClim   WC_bio17     Precipitation of driest quarter
+19    WorldClim   WC_bio18    Precipitation of warmest quarter
+20    WorldClim   WC_bio19    Precipitation of coldest quarter
+21    WorldClim   WC_prec1             Precipitation (January)
+22    WorldClim   WC_prec2            Precipitation (February)
+23    WorldClim   WC_prec3               Precipitation (March)
+24    WorldClim   WC_prec4               Precipitation (April)
+25    WorldClim   WC_prec5                 Precipitation (May)
+26    WorldClim   WC_prec6                Precipitation (June)
+27    WorldClim   WC_prec7                Precipitation (July)
+28    WorldClim   WC_prec8              Precipitation (August)
+29    WorldClim   WC_prec9           Precipitation (September)
+30    WorldClim  WC_prec10             Precipitation (October)
+31    WorldClim  WC_prec11            Precipitation (November)
+32    WorldClim  WC_prec12            Precipitation (December)
+33    WorldClim   WC_tmax1       Maximum temperature (January)
+34    WorldClim   WC_tmax2      Maximum temperature (February)
+35    WorldClim   WC_tmax3         Maximum temperature (March)
+36    WorldClim   WC_tmax4         Maximum temperature (April)
+37    WorldClim   WC_tmax5           Maximum temperature (May)
+38    WorldClim   WC_tmax6          Maximum temperature (June)
+39    WorldClim   WC_tmax7          Maximum temperature (July)
+40    WorldClim   WC_tmax8        Maximum temperature (August)
+41    WorldClim   WC_tmax9     Maximum temperature (September)
+42    WorldClim  WC_tmax10       Maximum temperature (October)
+43    WorldClim  WC_tmax11      Maximum temperature (November)
+44    WorldClim  WC_tmax12      Maximum temperature (December)
+45    WorldClim  WC_tmean1          Mean temperature (January)
+46    WorldClim  WC_tmean2         Mean temperature (February)
+47    WorldClim  WC_tmean3            Mean temperature (March)
+48    WorldClim  WC_tmean4            Mean temperature (April)
+49    WorldClim  WC_tmean5              Mean temperature (May)
+50    WorldClim  WC_tmean6             Mean temperature (June)
+51    WorldClim  WC_tmean7             Mean temperature (July)
+52    WorldClim  WC_tmean8           Mean temperature (August)
+53    WorldClim  WC_tmean9        Mean temperature (September)
+54    WorldClim WC_tmean10          Mean temperature (October)
+55    WorldClim WC_tmean11         Mean temperature (November)
+56    WorldClim WC_tmean12         Mean temperature (December)
+57    WorldClim   WC_tmin1       Minimum temperature (January)
+58    WorldClim   WC_tmin2      Minimum temperature (February)
+59    WorldClim   WC_tmin3         Minimum temperature (March)
+60    WorldClim   WC_tmin4         Minimum temperature (April)
+61    WorldClim   WC_tmin5           Minimum temperature (May)
+62    WorldClim   WC_tmin6          Minimum temperature (June)
+63    WorldClim   WC_tmin7          Minimum temperature (July)
+64    WorldClim   WC_tmin8        Minimum temperature (August)
+65    WorldClim   WC_tmin9     Minimum temperature (September)
+66    WorldClim  WC_tmin10       Minimum temperature (October)
+67    WorldClim  WC_tmin11      Minimum temperature (November)
+68    WorldClim  WC_tmin12      Minimum temperature (December)
+                                                               description
+1                                                                 Altitude
+2                                                  Annual mean temperature
+3          Mean of the monthly (maximum temperature - minimum temperature)
+4  Mean diurnal temperature range (bio2) / Annual temperature range (bio7)
+5                        Standard deviation of the annual mean temperature
+6                                 Maximum temperature of the warmest month
+7                                 Minimum temperature of the coldest month
+8                  Maximum temperature (bio5) - minimum temperature (bio6)
+9                                      Mean temperature of wettest quarter
+10                                      Mean temperature of driest quarter
+11                                     Mean temperature of warmest quarter
+12                                     Mean temperature of coldest quarter
+13                                                    Annual precipitation
+14                                          Precipitation of wettest month
+15                                           Precipitation of driest month
+16                   Coefficient of variation of the monthly precipitation
+17                                        Precipitation of wettest quarter
+18                                         Precipitation of driest quarter
+19                                        Precipitation of warmest quarter
+20                                        Precipitation of coldest quarter
+21                                           Average January precipitation
+22                                          Average February precipitation
+23                                             Average March precipitation
+24                                             Average April precipitation
+25                                               Average May precipitation
+26                                              Average June precipitation
+27                                              Average July precipitation
+28                                            Average August precipitation
+29                                         Average September precipitation
+30                                           Average October precipitation
+31                                          Average November precipitation
+32                                                        Average December
+33                                             Maximum January temperature
+34                                            Maximum February temperature
+35                                               Maximum March temperature
+36                                               Maximum April temperature
+37                                                 Maximum May temperature
+38                                                Maximum June temperature
+39                                                Maximum July temperature
+40                                              Maximum August temperature
+41                                           Maximum September temperature
+42                                             Maximum October temperature
+43                                            Maximum November temperature
+44                                            Maximum December temperature
+45                                             Average January temperature
+46                                            Average February temperature
+47                                               Average March temperature
+48                                               Average April temperature
+49                                                 Average May temperature
+50                                                Average June temperature
+51                                                Average July temperature
+52                                              Average August temperature
+53                                           Average September temperature
+54                                             Average October temperature
+55                                            Average November temperature
+56                                            Average December temperature
+57                                             Minimum January temperature
+58                                            Minimum February temperature
+59                                               Minimum March temperature
+60                                               Minimum April temperature
+61                                                 Minimum May temperature
+62                                                Minimum June temperature
+63                                                Minimum July temperature
+64                                              Minimum August temperature
+65                                           Minimum September temperature
+66                                             Minimum October temperature
+67                                            Minimum November temperature
+68                                            Minimum December temperature
+   terrestrial marine freshwater cellsize_equalarea cellsize_lonlat   units
+1         TRUE  FALSE      FALSE               7000      0.08333333  meters
+2         TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+3         TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+4         TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+5         TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+6         TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+7         TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+8         TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+9         TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+10        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+11        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+12        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+13        TRUE  FALSE      FALSE               7000      0.08333333      mm
+14        TRUE  FALSE      FALSE               7000      0.08333333      mm
+15        TRUE  FALSE      FALSE               7000      0.08333333      mm
+16        TRUE  FALSE      FALSE               7000      0.08333333      mm
+17        TRUE  FALSE      FALSE               7000      0.08333333      mm
+18        TRUE  FALSE      FALSE               7000      0.08333333      mm
+19        TRUE  FALSE      FALSE               7000      0.08333333      mm
+20        TRUE  FALSE      FALSE               7000      0.08333333      mm
+21        TRUE  FALSE      FALSE               7000      0.08333333      mm
+22        TRUE  FALSE      FALSE               7000      0.08333333      mm
+23        TRUE  FALSE      FALSE               7000      0.08333333      mm
+24        TRUE  FALSE      FALSE               7000      0.08333333      mm
+25        TRUE  FALSE      FALSE               7000      0.08333333      mm
+26        TRUE  FALSE      FALSE               7000      0.08333333      mm
+27        TRUE  FALSE      FALSE               7000      0.08333333      mm
+28        TRUE  FALSE      FALSE               7000      0.08333333      mm
+29        TRUE  FALSE      FALSE               7000      0.08333333      mm
+30        TRUE  FALSE      FALSE               7000      0.08333333      mm
+31        TRUE  FALSE      FALSE               7000      0.08333333      mm
+32        TRUE  FALSE      FALSE               7000      0.08333333      mm
+33        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+34        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+35        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+36        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+37        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+38        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+39        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+40        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+41        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+42        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+43        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+44        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+45        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+46        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+47        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+48        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+49        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+50        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+51        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+52        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+53        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+54        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+55        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+56        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+57        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+58        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+59        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+60        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+61        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+62        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+63        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+64        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+65        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+66        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+67        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+68        TRUE  FALSE      FALSE               7000      0.08333333 Celsius
+                primary_type primary_spatial_resolution
+1  Satellite (SRTM), GTOPO30   3 arcsecond, 30 arsecond
+2        in situ measurement                         ''
+3        in situ measurement                         ''
+4        in situ measurement                         ''
+5        in situ measurement                         ''
+6        in situ measurement                         ''
+7        in situ measurement                         ''
+8        in situ measurement                         ''
+9        in situ measurement                         ''
+10       in situ measurement                         ''
+11       in situ measurement                         ''
+12       in situ measurement                         ''
+13       in situ measurement                         ''
+14       in situ measurement                         ''
+15       in situ measurement                         ''
+16       in situ measurement                         ''
+17       in situ measurement                         ''
+18       in situ measurement                         ''
+19       in situ measurement                         ''
+20       in situ measurement                         ''
+21       in situ measurement                         ''
+22       in situ measurement                         ''
+23       in situ measurement                         ''
+24       in situ measurement                         ''
+25       in situ measurement                         ''
+26       in situ measurement                         ''
+27       in situ measurement                         ''
+28       in situ measurement                         ''
+29       in situ measurement                         ''
+30       in situ measurement                         ''
+31       in situ measurement                         ''
+32       in situ measurement                         ''
+33       in situ measurement                         ''
+34       in situ measurement                         ''
+35       in situ measurement                         ''
+36       in situ measurement                         ''
+37       in situ measurement                         ''
+38       in situ measurement                         ''
+39       in situ measurement                         ''
+40       in situ measurement                         ''
+41       in situ measurement                         ''
+42       in situ measurement                         ''
+43       in situ measurement                         ''
+44       in situ measurement                         ''
+45       in situ measurement                         ''
+46       in situ measurement                         ''
+47       in situ measurement                         ''
+48       in situ measurement                         ''
+49       in situ measurement                         ''
+50       in situ measurement                         ''
+51       in situ measurement                         ''
+52       in situ measurement                         ''
+53       in situ measurement                         ''
+54       in situ measurement                         ''
+55       in situ measurement                         ''
+56       in situ measurement                         ''
+57       in situ measurement                         ''
+58       in situ measurement                         ''
+59       in situ measurement                         ''
+60       in situ measurement                         ''
+61       in situ measurement                         ''
+62       in situ measurement                         ''
+63       in situ measurement                         ''
+64       in situ measurement                         ''
+65       in situ measurement                         ''
+66       in situ measurement                         ''
+67       in situ measurement                         ''
+68       in situ measurement                         ''
+                                                                                                                                                                                                                                           primary_source
+1   SRTM: CGIAR-CSI, reference: Jarvis, A., H.I. Reuter, A. Nelson, E. Guevara, 2008, Hole-filled SRTM for the globe Version 4, available from the CGIAR-CSI SRTM 90m Database (http://srtm.csi.cgiar.org). GTOPO30: url: https://lta.cr.usgs.gov/GTOPO30
+2  Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+3  Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+4  Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+5  Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+6  Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+7  Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+8  Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+9  Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+10 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+11 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+12 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+13 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+14 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+15 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+16 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+17 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+18 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+19 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+20 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+21 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+22 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+23 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+24 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+25 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+26 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+27 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+28 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+29 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+30 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+31 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+32 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+33 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+34 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+35 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+36 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+37 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+38 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+39 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+40 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+41 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+42 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+43 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+44 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+45 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+46 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+47 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+48 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+49 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+50 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+51 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+52 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+53 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+54 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+55 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+56 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+57 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+58 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+59 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+60 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+61 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+62 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+63 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+64 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+65 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+66 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+67 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+68 Weather station data from multiple sources, see Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+   start_year start_month start_day end_year end_month end_day
+1        1950           1         1     2000         1       1
+2        1950           1         1     2000         1       1
+3        1950           1         1     2000         1       1
+4        1950           1         1     2000         1       1
+5        1950           1         1     2000         1       1
+6        1950           1         1     2000         1       1
+7        1950           1         1     2000         1       1
+8        1950           1         1     2000         1       1
+9        1950           1         1     2000         1       1
+10       1950           1         1     2000         1       1
+11       1950           1         1     2000         1       1
+12       1950           1         1     2000         1       1
+13       1950           1         1     2000         1       1
+14       1950           1         1     2000         1       1
+15       1950           1         1     2000         1       1
+16       1950           1         1     2000         1       1
+17       1950           1         1     2000         1       1
+18       1950           1         1     2000         1       1
+19       1950           1         1     2000         1       1
+20       1950           1         1     2000         1       1
+21       1950           1         1     2000         1       1
+22       1950           1         1     2000         1       1
+23       1950           1         1     2000         1       1
+24       1950           1         1     2000         1       1
+25       1950           1         1     2000         1       1
+26       1950           1         1     2000         1       1
+27       1950           1         1     2000         1       1
+28       1950           1         1     2000         1       1
+29       1950           1         1     2000         1       1
+30       1950           1         1     2000         1       1
+31       1950           1         1     2000         1       1
+32       1950           1         1     2000         1       1
+33       1950           1         1     2000         1       1
+34       1950           1         1     2000         1       1
+35       1950           1         1     2000         1       1
+36       1950           1         1     2000         1       1
+37       1950           1         1     2000         1       1
+38       1950           1         1     2000         1       1
+39       1950           1         1     2000         1       1
+40       1950           1         1     2000         1       1
+41       1950           1         1     2000         1       1
+42       1950           1         1     2000         1       1
+43       1950           1         1     2000         1       1
+44       1950           1         1     2000         1       1
+45       1950           1         1     2000         1       1
+46       1950           1         1     2000         1       1
+47       1950           1         1     2000         1       1
+48       1950           1         1     2000         1       1
+49       1950           1         1     2000         1       1
+50       1950           1         1     2000         1       1
+51       1950           1         1     2000         1       1
+52       1950           1         1     2000         1       1
+53       1950           1         1     2000         1       1
+54       1950           1         1     2000         1       1
+55       1950           1         1     2000         1       1
+56       1950           1         1     2000         1       1
+57       1950           1         1     2000         1       1
+58       1950           1         1     2000         1       1
+59       1950           1         1     2000         1       1
+60       1950           1         1     2000         1       1
+61       1950           1         1     2000         1       1
+62       1950           1         1     2000         1       1
+63       1950           1         1     2000         1       1
+64       1950           1         1     2000         1       1
+65       1950           1         1     2000         1       1
+66       1950           1         1     2000         1       1
+67       1950           1         1     2000         1       1
+68       1950           1         1     2000         1       1
+                                         derivation month is_surface version
+1                                                ''    NA       TRUE      10
+2                mean, thin-plate smoothing splines    NA       TRUE      10
+3          mean range, thin-plate smoothing splines    NA       TRUE      10
+4                                                ''    NA       TRUE      10
+5  standard deviation, thin-plate smoothing splines    NA       TRUE      10
+6             maximum, thin-plate smoothing splines    NA       TRUE      10
+7             minimum, thin-plate smoothing splines    NA       TRUE      10
+8               range, thin-plate smoothing splines    NA       TRUE      10
+9                mean, thin-plate smoothing splines    NA       TRUE      10
+10               mean, thin-plate smoothing splines    NA       TRUE      10
+11               mean, thin-plate smoothing splines    NA       TRUE      10
+12               mean, thin-plate smoothing splines    NA       TRUE      10
+13                                               ''    NA       TRUE      10
+14            maximum, thin-plate smoothing splines    NA       TRUE      10
+15            minimum, thin-plate smoothing splines    NA       TRUE      10
+16                                               ''    NA       TRUE      10
+17            maximum, thin-plate smoothing splines    NA       TRUE      10
+18            minimum, thin-plate smoothing splines    NA       TRUE      10
+19                                               ''    NA       TRUE      10
+20                                               ''    NA       TRUE      10
+21                                               ''     1       TRUE      10
+22                                               ''     2       TRUE      10
+23                                               ''     3       TRUE      10
+24                                               ''     4       TRUE      10
+25                                               ''     5       TRUE      10
+26                                               ''     6       TRUE      10
+27                                               ''     7       TRUE      10
+28                                               ''     8       TRUE      10
+29                                               ''     9       TRUE      10
+30                                               ''    10       TRUE      10
+31                                               ''    11       TRUE      10
+32                                               ''    12       TRUE      10
+33            maximum, thin-plate smoothing splines     1       TRUE      10
+34            maximum, thin-plate smoothing splines     2       TRUE      10
+35            maximum, thin-plate smoothing splines     3       TRUE      10
+36            maximum, thin-plate smoothing splines     4       TRUE      10
+37            maximum, thin-plate smoothing splines     5       TRUE      10
+38            maximum, thin-plate smoothing splines     6       TRUE      10
+39            maximum, thin-plate smoothing splines     7       TRUE      10
+40            maximum, thin-plate smoothing splines     8       TRUE      10
+41            maximum, thin-plate smoothing splines     9       TRUE      10
+42            maximum, thin-plate smoothing splines    10       TRUE      10
+43            maximum, thin-plate smoothing splines    11       TRUE      10
+44            maximum, thin-plate smoothing splines    12       TRUE      10
+45               mean, thin-plate smoothing splines     1       TRUE      10
+46               mean, thin-plate smoothing splines     2       TRUE      10
+47               mean, thin-plate smoothing splines     3       TRUE      10
+48               mean, thin-plate smoothing splines     4       TRUE      10
+49               mean, thin-plate smoothing splines     5       TRUE      10
+50               mean, thin-plate smoothing splines     6       TRUE      10
+51               mean, thin-plate smoothing splines     7       TRUE      10
+52               mean, thin-plate smoothing splines     8       TRUE      10
+53               mean, thin-plate smoothing splines     9       TRUE      10
+54               mean, thin-plate smoothing splines    10       TRUE      10
+55               mean, thin-plate smoothing splines    11       TRUE      10
+56               mean, thin-plate smoothing splines    12       TRUE      10
+57            minimum, thin-plate smoothing splines     1       TRUE      10
+58            minimum, thin-plate smoothing splines     2       TRUE      10
+59            minimum, thin-plate smoothing splines     3       TRUE      10
+60            minimum, thin-plate smoothing splines     4       TRUE      10
+61            minimum, thin-plate smoothing splines     5       TRUE      10
+62            minimum, thin-plate smoothing splines     6       TRUE      10
+63            minimum, thin-plate smoothing splines     7       TRUE      10
+64            minimum, thin-plate smoothing splines     8       TRUE      10
+65            minimum, thin-plate smoothing splines     9       TRUE      10
+66            minimum, thin-plate smoothing splines    10       TRUE      10
+67            minimum, thin-plate smoothing splines    11       TRUE      10
+68            minimum, thin-plate smoothing splines    12       TRUE      10
+                                                      layer_url
+1      https://www.lifewatch.be/sdmpredictors/WC_alt_lonlat.tif
+2     https://www.lifewatch.be/sdmpredictors/WC_bio1_lonlat.tif
+3     https://www.lifewatch.be/sdmpredictors/WC_bio2_lonlat.tif
+4     https://www.lifewatch.be/sdmpredictors/WC_bio3_lonlat.tif
+5     https://www.lifewatch.be/sdmpredictors/WC_bio4_lonlat.tif
+6     https://www.lifewatch.be/sdmpredictors/WC_bio5_lonlat.tif
+7     https://www.lifewatch.be/sdmpredictors/WC_bio6_lonlat.tif
+8     https://www.lifewatch.be/sdmpredictors/WC_bio7_lonlat.tif
+9     https://www.lifewatch.be/sdmpredictors/WC_bio8_lonlat.tif
+10    https://www.lifewatch.be/sdmpredictors/WC_bio9_lonlat.tif
+11   https://www.lifewatch.be/sdmpredictors/WC_bio10_lonlat.tif
+12   https://www.lifewatch.be/sdmpredictors/WC_bio11_lonlat.tif
+13   https://www.lifewatch.be/sdmpredictors/WC_bio12_lonlat.tif
+14   https://www.lifewatch.be/sdmpredictors/WC_bio13_lonlat.tif
+15   https://www.lifewatch.be/sdmpredictors/WC_bio14_lonlat.tif
+16   https://www.lifewatch.be/sdmpredictors/WC_bio15_lonlat.tif
+17   https://www.lifewatch.be/sdmpredictors/WC_bio16_lonlat.tif
+18   https://www.lifewatch.be/sdmpredictors/WC_bio17_lonlat.tif
+19   https://www.lifewatch.be/sdmpredictors/WC_bio18_lonlat.tif
+20   https://www.lifewatch.be/sdmpredictors/WC_bio19_lonlat.tif
+21   https://www.lifewatch.be/sdmpredictors/WC_prec1_lonlat.tif
+22   https://www.lifewatch.be/sdmpredictors/WC_prec2_lonlat.tif
+23   https://www.lifewatch.be/sdmpredictors/WC_prec3_lonlat.tif
+24   https://www.lifewatch.be/sdmpredictors/WC_prec4_lonlat.tif
+25   https://www.lifewatch.be/sdmpredictors/WC_prec5_lonlat.tif
+26   https://www.lifewatch.be/sdmpredictors/WC_prec6_lonlat.tif
+27   https://www.lifewatch.be/sdmpredictors/WC_prec7_lonlat.tif
+28   https://www.lifewatch.be/sdmpredictors/WC_prec8_lonlat.tif
+29   https://www.lifewatch.be/sdmpredictors/WC_prec9_lonlat.tif
+30  https://www.lifewatch.be/sdmpredictors/WC_prec10_lonlat.tif
+31  https://www.lifewatch.be/sdmpredictors/WC_prec11_lonlat.tif
+32  https://www.lifewatch.be/sdmpredictors/WC_prec12_lonlat.tif
+33   https://www.lifewatch.be/sdmpredictors/WC_tmax1_lonlat.tif
+34   https://www.lifewatch.be/sdmpredictors/WC_tmax2_lonlat.tif
+35   https://www.lifewatch.be/sdmpredictors/WC_tmax3_lonlat.tif
+36   https://www.lifewatch.be/sdmpredictors/WC_tmax4_lonlat.tif
+37   https://www.lifewatch.be/sdmpredictors/WC_tmax5_lonlat.tif
+38   https://www.lifewatch.be/sdmpredictors/WC_tmax6_lonlat.tif
+39   https://www.lifewatch.be/sdmpredictors/WC_tmax7_lonlat.tif
+40   https://www.lifewatch.be/sdmpredictors/WC_tmax8_lonlat.tif
+41   https://www.lifewatch.be/sdmpredictors/WC_tmax9_lonlat.tif
+42  https://www.lifewatch.be/sdmpredictors/WC_tmax10_lonlat.tif
+43  https://www.lifewatch.be/sdmpredictors/WC_tmax11_lonlat.tif
+44  https://www.lifewatch.be/sdmpredictors/WC_tmax12_lonlat.tif
+45  https://www.lifewatch.be/sdmpredictors/WC_tmean1_lonlat.tif
+46  https://www.lifewatch.be/sdmpredictors/WC_tmean2_lonlat.tif
+47  https://www.lifewatch.be/sdmpredictors/WC_tmean3_lonlat.tif
+48  https://www.lifewatch.be/sdmpredictors/WC_tmean4_lonlat.tif
+49  https://www.lifewatch.be/sdmpredictors/WC_tmean5_lonlat.tif
+50  https://www.lifewatch.be/sdmpredictors/WC_tmean6_lonlat.tif
+51  https://www.lifewatch.be/sdmpredictors/WC_tmean7_lonlat.tif
+52  https://www.lifewatch.be/sdmpredictors/WC_tmean8_lonlat.tif
+53  https://www.lifewatch.be/sdmpredictors/WC_tmean9_lonlat.tif
+54 https://www.lifewatch.be/sdmpredictors/WC_tmean10_lonlat.tif
+55 https://www.lifewatch.be/sdmpredictors/WC_tmean11_lonlat.tif
+56 https://www.lifewatch.be/sdmpredictors/WC_tmean12_lonlat.tif
+57   https://www.lifewatch.be/sdmpredictors/WC_tmin1_lonlat.tif
+58   https://www.lifewatch.be/sdmpredictors/WC_tmin2_lonlat.tif
+59   https://www.lifewatch.be/sdmpredictors/WC_tmin3_lonlat.tif
+60   https://www.lifewatch.be/sdmpredictors/WC_tmin4_lonlat.tif
+61   https://www.lifewatch.be/sdmpredictors/WC_tmin5_lonlat.tif
+62   https://www.lifewatch.be/sdmpredictors/WC_tmin6_lonlat.tif
+63   https://www.lifewatch.be/sdmpredictors/WC_tmin7_lonlat.tif
+64   https://www.lifewatch.be/sdmpredictors/WC_tmin8_lonlat.tif
+65   https://www.lifewatch.be/sdmpredictors/WC_tmin9_lonlat.tif
+66  https://www.lifewatch.be/sdmpredictors/WC_tmin10_lonlat.tif
+67  https://www.lifewatch.be/sdmpredictors/WC_tmin11_lonlat.tif
+68  https://www.lifewatch.be/sdmpredictors/WC_tmin12_lonlat.tif</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore environmental layers</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sdmpredictors<span class="sc">::</span><span class="fu">list_layers</span>(<span class="st">"WorldClim"</span>))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(layers, <span class="st">"./data/WorldClim.csv"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Download specific layers to the datadir</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bio01 (annual mean temperature), Bio05 (temperature in hottest month), Bio15 (rainfall seasonality) and Bio19 (rainfall in coldest quarter)</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>WC <span class="ot">&lt;-</span> <span class="fu">load_layers</span>(<span class="fu">c</span>(<span class="st">"WC_bio1"</span>, <span class="st">"WC_bio5"</span>, <span class="st">"WC_bio15"</span>, <span class="st">"WC_bio19"</span>))</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(WC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session07_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop rasters to study area and align CRS</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get Murray-Darling Basin polygon</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>mdb <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/spatial_data/MDB_polygon/MDB.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `MDB' from data source 
+  `C:\repositories\dartR_workshop\kioloa\data\spatial_data\MDB_polygon\MDB.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 1 feature and 18 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 138.57 ymin: -37.68 xmax: 152.49 ymax: -24.585
+Geodetic CRS:  GDA94</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set CRS</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>mdb <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(mdb, <span class="dv">4326</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to sf format</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>mdb <span class="ot">&lt;-</span> <span class="fu">as</span>(mdb, <span class="st">"Spatial"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># crop WorldClim rasters to MDB extent, then mask pixels outside of the MDB</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>ENV <span class="ot">&lt;-</span> <span class="fu">crop</span>(WC, <span class="fu">extent</span>(mdb))</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>ENV <span class="ot">&lt;-</span> <span class="fu">mask</span>(ENV, mdb)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co"># get sampling sites, format as sf</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>sites <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Mf_xy.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>sites_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(sites, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a nice color ramp and plot the rasters </span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>my.colors <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#5E85B8"</span>,<span class="st">"#EDF0C0"</span>,<span class="st">"#C13127"</span>))</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="co"># include other spatial data that you might want to show</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>rivers <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/spatial_data/Mf_streams/Mf_streams.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `Mf_streams' from data source 
+  `C:\repositories\dartR_workshop\kioloa\data\spatial_data\Mf_streams\Mf_streams.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 2826 features and 31 fields
+Geometry type: LINESTRING
+Dimension:     XY
+Bounding box:  xmin: 138.7888 ymin: -36.52625 xmax: 152.2712 ymax: -26.75375
+Geodetic CRS:  GDA94</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>rivers <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(rivers, <span class="dv">4326</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>rivers <span class="ot">&lt;-</span> <span class="fu">as</span>(rivers, <span class="st">"Spatial"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a layer</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ENV<span class="sc">$</span>WC_bio1, <span class="at">col=</span><span class="fu">my.colors</span>(<span class="dv">100</span>), <span class="at">main=</span><span class="fu">names</span>(ENV<span class="sc">$</span>WC_bio1))</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(rivers, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">1</span>], <span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">2</span>], <span class="at">labels=</span>sites_sf<span class="sc">$</span>site, <span class="at">cex=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session07_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="save-pdf" class="level5">
+<h5 class="anchored" data-anchor-id="save-pdf">Save PDF</h5>
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-8_9acc78347002ff879433da40d806f84a">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># format nicely and export as pdf</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>{<span class="fu">pdf</span>(<span class="st">"./images/env_rasters.pdf"</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nlayers</span>(ENV)) {</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  rasterLayer <span class="ot">&lt;-</span> ENV[[i]]</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># skew the colour ramp to improve visualisation (not necessary, but nice for data like this)</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  p95 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="fu">values</span>(rasterLayer), <span class="at">probs =</span> <span class="fl">0.05</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">minValue</span>(rasterLayer), <span class="fu">seq</span>(p95, <span class="fu">maxValue</span>(rasterLayer), <span class="at">length.out =</span> <span class="dv">50</span>))</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  breaks <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(<span class="fu">seq</span>(<span class="fu">minValue</span>(rasterLayer), p95, <span class="at">length.out =</span> <span class="dv">10</span>), breaks))</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  color.palette <span class="ot">&lt;-</span> <span class="fu">my.colors</span>(<span class="fu">length</span>(breaks) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  layerColors <span class="ot">&lt;-</span> <span class="cf">if</span>(i <span class="sc">&lt;</span> <span class="dv">4</span>) color.palette <span class="cf">else</span> <span class="fu">rev</span>(color.palette)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tidy up the values displayed in the legend</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  simplifiedBreaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">min</span>(breaks), <span class="fu">quantile</span>(breaks, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)), <span class="fu">max</span>(breaks))</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># plot the rasters</span></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(rasterLayer, <span class="at">breaks=</span>breaks, <span class="at">col=</span>layerColors, <span class="at">main=</span><span class="fu">names</span>(rasterLayer),</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">axis.args=</span><span class="fu">list</span>(<span class="at">at=</span>simplifiedBreaks, <span class="at">labels=</span><span class="fu">as.character</span>(<span class="fu">round</span>(simplifiedBreaks))),</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend.args=</span><span class="fu">list</span>(<span class="at">text=</span><span class="st">''</span>, <span class="at">side=</span><span class="dv">3</span>, <span class="at">line=</span><span class="dv">2</span>, <span class="at">at=</span>simplifiedBreaks))</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(rivers, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">lwd=</span><span class="fl">0.3</span>, <span class="fu">labels</span>(rivers<span class="sc">$</span>Name))</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">1</span>], <span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">2</span>], <span class="at">labels=</span>sites_sf<span class="sc">$</span>site, <span class="at">cex=</span><span class="fl">0.5</span>)</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>png 
+  2 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="extract-site-environmental-data" class="level3">
+<h3 class="anchored" data-anchor-id="extract-site-environmental-data">Extract site environmental data</h3>
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-9_35326369d6559b34c855a62bb5f47876">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and finally extract the environmental data for your sample sites</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>env.site <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">site =</span> sites_sf<span class="sc">$</span>site,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">X =</span> <span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">1</span>],</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Y =</span> <span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">2</span>],</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">omegaX =</span> sites_sf<span class="sc">$</span>omegaX,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">omegaY =</span> sites_sf<span class="sc">$</span>omegaY)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>env.dat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(raster<span class="sc">::</span><span class="fu">extract</span>(ENV,<span class="fu">st_coordinates</span>(sites_sf)))</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>env.site <span class="ot">&lt;-</span> <span class="fu">cbind</span>(env.site, env.dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>line 210</p>
+</section>
 </section>
 <section id="exercise" class="level2">
 <h2 class="anchored" data-anchor-id="exercise">EXERCISE</h2>
@@ -766,6 +2452,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">

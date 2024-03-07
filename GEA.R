@@ -23,7 +23,7 @@ library(qvalue)
 # set the working directory to wherever you downloaded the files
 #setwd("/Users/chrisbrauer/Library/CloudStorage/GoogleDrive-pygmyperch@gmail.com/My Drive/workshops/CBA_Workshop_Kioloa_2024")
 
-source("./R/utils.R")
+source("utils.R")
 
 ############################
 # 1. Data preparation
@@ -128,7 +128,7 @@ sdmpredictors::list_layers("WorldClim")
 
 # Explore environmental layers
 layers <- as.data.frame(sdmpredictors::list_layers("WorldClim"))
-write.csv(layers, "WorldClim.csv")
+write.csv(layers, "./data/WorldClim.csv")
 
 # Download specific layers to the datadir
 # Bio01 (annual mean temperature), Bio05 (temperature in hottest month), Bio15 (rainfall seasonality) and Bio19 (rainfall in coldest quarter)
@@ -171,7 +171,7 @@ text(st_coordinates(sites_sf)[,1], st_coordinates(sites_sf)[,2], labels=sites_sf
 
 
 # format nicely and export as pdf
-{pdf("env_rasters.pdf")
+{pdf("./images/env_rasters.pdf")
 for(i in 1:nlayers(ENV)) {
   rasterLayer <- ENV[[i]]
   
@@ -230,14 +230,14 @@ y.lab <- paste0("PC2 (", paste(round((pc$CA$eig[2]/pc$tot.chi*100),2)),"%)")
 
 # plot PCA
 
-{pdf(file = "Mf_PCA.pdf", height = 6, width = 6)
+{pdf(file = "./images/Mf_PCA.pdf", height = 6, width = 6)
 pcaplot <- plot(pc, choices = c(1, 2), type = "n", xlab=x.lab, ylab=y.lab, cex.lab=1)
 with(env.site, points(pc, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
 legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
 dev.off()
 }
 
-{png(file = "Mf_PCA.png", units = 'in', height = 6, width = 6, res = 300)
+{png(file = "./images/Mf_PCA.png", units = 'in', height = 6, width = 6, res = 300)
   pcaplot <- plot(pc, choices = c(1, 2), type = "n", xlab=x.lab, ylab=y.lab, cex.lab=1)
   with(env.site, points(pc, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
   legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
@@ -326,7 +326,7 @@ y.lab <- paste0("RDA2 (", paste(round((Mf.RDA$CCA$eig[2]/Mf.RDA$CCA$tot.chi*100)
 
 
 #plot RDA1, RDA2
-{pdf(file = "Mf_RDA.pdf", height = 6, width = 6)
+{pdf(file = "./images/Mf_RDA.pdf", height = 6, width = 6)
 pRDAplot <- plot(Mf.RDA, choices = c(1, 2), type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
 with(env.site, points(Mf.RDA, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
 text(Mf.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", "WC_bio19"), col="blue", cex=0.6)
@@ -381,7 +381,7 @@ colnames(cand)[npred+2] <- "predictor"
 colnames(cand)[npred+3] <- "correlation"
 
 table(cand$predictor) 
-write.csv(cand, "RDA_candidates.csv", row.names = FALSE)
+write.csv(cand, "./data/RDA_candidates.csv", row.names = FALSE)
 
 
 
@@ -419,4 +419,6 @@ text(Mfcandidate.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", 
 legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
 dev.off()
 }
-
+list.files()
+unlink(c('dat.geno', 'dat.lfmm', 'dat.snmfProject', 'dat.snmf', 'dat.lfmm_imputed.lfmm',
+         'individual_env_data.csv'), recursive = T)
