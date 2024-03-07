@@ -1,21 +1,101 @@
 # Data Management, Reproducibility & Integrity
 
-*Session Presenters*
+*Session Presenter*
 
-![](images/Presentersxx.png)
+![](images/Presenters4.png)
 
 ## *Required packages*
 
-```{r, eval=FALSE}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(palmerpenguins)
 ```
 
-*make sure you have the packages installed, see* [Install dartRverse](install.qmd)
+## Reproducible research
 
-## Session Content
+::: callout-tip
 
-### Quarto files
+## Goal
+
+_Our goal is to make *reproducible* research, and *data management* and *integrity* are the necessary steps to achieve this goal_
+
+::: 
+
+
+::: panel-tabset
+##### Question
+
+![](images/task.png){.class width="48" height="48"} Have you ever had problems reproducing your own or someone else’s research?
+
+```{r}
+#| echo: false
+#| results: asis
+
+# Define the questions
+q1 <- "Have you ever had problems reproducing your own or someone else’s research?"
+
+
+# Define the answer choices
+q1_choices <- c(answer = "My own research", answer = "Someone else's",answer= "Both",answer= "I have never had problems reproducing r...")
+
+
+cat(q1,longmcq(q1_choices))
+
+```
+
+##### Answer
+
+![](images/repro4.png)
+
+Check out  <https://www.repro4everyone.org/>
+
+
+:::
+
+
+
+
+
+### Things to consider when it comes to research
+
+We will go through some of the practical steps for reproducible research:
+
+![](images/reproducibility.png)
+
+## Quarto for Reproducibility
+
+### Meet Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+### Meet the penguins
+
+![](https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/get-started/hello/rstudio/lter_penguins.png){style="float:right;" fig-alt="Illustration of three species of Palmer Archipelago penguins: Chinstrap, Gentoo, and Adelie. Artwork by @allison_horst." width="401"}
+
+The `penguins` data from the [**palmerpenguins**](https://allisonhorst.github.io/palmerpenguins "palmerpenguins R package") package contains size measurements for `{r} nrow(penguins)` penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.
+
+The plot below shows the relationship between flipper and bill lengths of these penguins.
+
+```{r}
+#| label: plot-penguins
+#| warning: false
+#| echo: false
+
+ggplot(penguins, 
+       aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(
+    title = "Flipper and bill length",
+    subtitle = "Dimensions for penguins at Palmer Station LTER",
+    x = "Flipper length (mm)", y = "Bill length (mm)",
+    color = "Penguin species", shape = "Penguin species"
+  ) +
+  theme_minimal()
+```
+
+
+### Quarto file
 
 ::: callout-note
 ## Exercise
@@ -44,9 +124,9 @@ library(palmerpenguins)
 ```{r, echo=FALSE, warning=FALSE}
 library(downloadthis)
 
-  download_file(path = './hello.qmd',
-    output_name = "binaries",
-    output_extension = ".zip",
+  download_file(path = './session04_code.qmd',
+    output_name = "hello",
+    output_extension = ".qmd",
     button_label = "Download hello.qmd",
     button_type = "default",
     has_icon = TRUE,
@@ -58,4 +138,7 @@ library(downloadthis)
 
 ## *Further Study*
 
-still to come...
+Check out the information life cycle <https://data.uq.edu.au/data-essentials/information-lifecycle>
+
+Check out the push for open research, research that is reproducible and accessible <https://www.repro4everyone.org/>
+

@@ -267,9 +267,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages"><em>Required packages</em></a></li>
-  <li><a href="#session-content" id="toc-session-content" class="nav-link" data-scroll-target="#session-content">Session Content</a>
+  <li><a href="#reproducible-research" id="toc-reproducible-research" class="nav-link" data-scroll-target="#reproducible-research">Reproducible research</a>
   <ul class="collapse">
-  <li><a href="#quarto-files" id="toc-quarto-files" class="nav-link" data-scroll-target="#quarto-files">Quarto files</a></li>
+  <li><a href="#things-to-consider-when-it-comes-to-research" id="toc-things-to-consider-when-it-comes-to-research" class="nav-link" data-scroll-target="#things-to-consider-when-it-comes-to-research">Things to consider when it comes to research</a></li>
+  </ul></li>
+  <li><a href="#quarto-for-reproducibility" id="toc-quarto-for-reproducibility" class="nav-link" data-scroll-target="#quarto-for-reproducibility">Quarto for Reproducibility</a>
+  <ul class="collapse">
+  <li><a href="#meet-quarto" id="toc-meet-quarto" class="nav-link" data-scroll-target="#meet-quarto">Meet Quarto</a></li>
+  <li><a href="#meet-the-penguins" id="toc-meet-the-penguins" class="nav-link" data-scroll-target="#meet-the-penguins">Meet the penguins</a></li>
+  <li><a href="#quarto-file" id="toc-quarto-file" class="nav-link" data-scroll-target="#quarto-file">Quarto file</a></li>
   </ul></li>
   <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study"><em>Further Study</em></a></li>
   </ul>
@@ -295,20 +301,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><em>Session Presenters</em></p>
-<p><img src="images/Presentersxx.png" class="img-fluid"></p>
+<p><em>Session Presenter</em></p>
+<p><img src="images/Presenters4.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
-<div class="cell" data-hash="session04_cache/html/unnamed-chunk-1_8aa24cc4bdaba07e0ee14953ac5aec3f">
+<div class="cell" data-hash="session04_cache/html/unnamed-chunk-1_512d227ebad65ee1a4b86409183b414a">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>make sure you have the packages installed, see</em> <a href="./install.html">Install dartRverse</a></p>
 </section>
-<section id="session-content" class="level2">
-<h2 class="anchored" data-anchor-id="session-content">Session Content</h2>
-<section id="quarto-files" class="level3">
-<h3 class="anchored" data-anchor-id="quarto-files">Quarto files</h3>
+<section id="reproducible-research" class="level2">
+<h2 class="anchored" data-anchor-id="reproducible-research">Reproducible research</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Goal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Our goal is to make <em>reproducible</em> research, and <em>data management</em> and <em>integrity</em> are the necessary steps to achieve this goal</em></p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Question</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Answer</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><img src="images/task.png" class="class" width="48" height="48"> Have you ever had problems reproducing your own or someone else’s research?</p>
+<div class="cell" data-hash="session04_cache/html/unnamed-chunk-2_e58b5ee4a2e473b04bb8f6ef24b8aaf4">
+Have you ever had problems reproducing your own or someone else’s research?
+<div id="radio_TKSLKRSPQL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TKSLKRSPQL" value="answer"> <span>My own research</span></label><label><input type="radio" autocomplete="off" name="radio_TKSLKRSPQL" value="answer"> <span>Someone else's</span></label><label><input type="radio" autocomplete="off" name="radio_TKSLKRSPQL" value="answer"> <span>Both</span></label><label><input type="radio" autocomplete="off" name="radio_TKSLKRSPQL" value="answer"> <span>I have never had problems reproducing r…</span></label>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><img src="images/repro4.png" class="img-fluid"></p>
+<p>Check out <a href="https://www.repro4everyone.org/" class="uri">https://www.repro4everyone.org/</a></p>
+</div>
+</div>
+</div>
+<section id="things-to-consider-when-it-comes-to-research" class="level3">
+<h3 class="anchored" data-anchor-id="things-to-consider-when-it-comes-to-research">Things to consider when it comes to research</h3>
+<p>We will go through some of the practical steps for reproducible research:</p>
+<p><img src="images/reproducibility.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="quarto-for-reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-for-reproducibility">Quarto for Reproducibility</h2>
+<section id="meet-quarto" class="level3">
+<h3 class="anchored" data-anchor-id="meet-quarto">Meet Quarto</h3>
+<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+</section>
+<section id="meet-the-penguins" class="level3">
+<h3 class="anchored" data-anchor-id="meet-the-penguins">Meet the penguins</h3>
+<p><img src="https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/get-started/hello/rstudio/lter_penguins.png" class="img-fluid" style="float:right;" alt="Illustration of three species of Palmer Archipelago penguins: Chinstrap, Gentoo, and Adelie. Artwork by @allison_horst." width="401"></p>
+<p>The <code>penguins</code> data from the <a href="https://allisonhorst.github.io/palmerpenguins" title="palmerpenguins R package"><strong>palmerpenguins</strong></a> package contains size measurements for <code>{r} nrow(penguins)</code> penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.</p>
+<p>The plot below shows the relationship between flipper and bill lengths of these penguins.</p>
+<div class="cell" data-hash="session04_cache/html/plot-penguins_bbb25356cd0953e25612cdd880a16937">
+<div class="cell-output-display">
+<p><img src="session04_files/figure-html/plot-penguins-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="quarto-file" class="level3">
+<h3 class="anchored" data-anchor-id="quarto-file">Quarto file</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -320,7 +379,7 @@ Exercise
 </div>
 <div class="callout-body-container callout-body">
 <p><img src="images/task.png" id="id" class="class" width="48" height="48"> Download an example quarto file and try running it on your own.</p>
-<div class="cell" data-hash="session04_cache/html/unnamed-chunk-2_ce257ea8bd7d01adbf9b033fb499d7a0">
+<div class="cell" data-hash="session04_cache/html/unnamed-chunk-4_f6158e3f0ef9364d7882d26c87f8cdcb">
 <style type="text/css">
 .btn-default,
 .btn-default:hover,
@@ -338,7 +397,7 @@ Exercise
 
 </style>
 </div>
-<div class="cell" data-hash="session04_cache/html/unnamed-chunk-3_847699dcb5189146cabcd2051c712a4a">
+<div class="cell" data-hash="session04_cache/html/unnamed-chunk-5_c44396e6feeed8e8e01570b51351bf3d">
 <div class="cell-output-display">
 <button class="btn btn-default" onclick="fetch('data:application/octet-stream;base64,LS0tDQp0aXRsZTogIkhlbGxvLCBRdWFydG8iDQpmb3JtYXQ6IGh0bWwNCmVkaXRvcjogdmlzdWFsDQotLS0NCg0KYGBge3J9DQojfCBsYWJlbDogbG9hZC1wYWNrYWdlcw0KI3wgaW5jbHVkZTogZmFsc2UNCg0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KHBhbG1lcnBlbmd1aW5zKQ0KYGBgDQoNCiMjIE1lZXQgUXVhcnRvDQoNClF1YXJ0byBlbmFibGVzIHlvdSB0byB3ZWF2ZSB0b2dldGhlciBjb250ZW50IGFuZCBleGVjdXRhYmxlIGNvZGUgaW50byBhIGZpbmlzaGVkIGRvY3VtZW50LiBUbyBsZWFybiBtb3JlIGFib3V0IFF1YXJ0byBzZWUgPGh0dHBzOi8vcXVhcnRvLm9yZz4uDQoNCiMjIE1lZXQgdGhlIHBlbmd1aW5zDQoNCiFbXShodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vcXVhcnRvLWRldi9xdWFydG8td2ViL21haW4vZG9jcy9nZXQtc3RhcnRlZC9oZWxsby9yc3R1ZGlvL2x0ZXJfcGVuZ3VpbnMucG5nKXtzdHlsZT0iZmxvYXQ6cmlnaHQ7IiBmaWctYWx0PSJJbGx1c3RyYXRpb24gb2YgdGhyZWUgc3BlY2llcyBvZiBQYWxtZXIgQXJjaGlwZWxhZ28gcGVuZ3VpbnM6IENoaW5zdHJhcCwgR2VudG9vLCBhbmQgQWRlbGllLiBBcnR3b3JrIGJ5IEBhbGxpc29uX2hvcnN0LiIgd2lkdGg9IjQwMSJ9DQoNClRoZSBgcGVuZ3VpbnNgIGRhdGEgZnJvbSB0aGUgWyoqcGFsbWVycGVuZ3VpbnMqKl0oaHR0cHM6Ly9hbGxpc29uaG9yc3QuZ2l0aHViLmlvL3BhbG1lcnBlbmd1aW5zICJwYWxtZXJwZW5ndWlucyBSIHBhY2thZ2UiKSBwYWNrYWdlIGNvbnRhaW5zIHNpemUgbWVhc3VyZW1lbnRzIGZvciBge3J9IG5yb3cocGVuZ3VpbnMpYCBwZW5ndWlucyBmcm9tIHRocmVlIHNwZWNpZXMgb2JzZXJ2ZWQgb24gdGhyZWUgaXNsYW5kcyBpbiB0aGUgUGFsbWVyIEFyY2hpcGVsYWdvLCBBbnRhcmN0aWNhLg0KDQpUaGUgcGxvdCBiZWxvdyBzaG93cyB0aGUgcmVsYXRpb25zaGlwIGJldHdlZW4gZmxpcHBlciBhbmQgYmlsbCBsZW5ndGhzIG9mIHRoZXNlIHBlbmd1aW5zLg0KDQpgYGB7cn0NCiN8IGxhYmVsOiBwbG90LXBlbmd1aW5zDQojfCB3YXJuaW5nOiBmYWxzZQ0KI3wgZWNobzogZmFsc2UNCg0KZ2dwbG90KHBlbmd1aW5zLCANCiAgICAgICBhZXMoeCA9IGZsaXBwZXJfbGVuZ3RoX21tLCB5ID0gYmlsbF9sZW5ndGhfbW0pKSArDQogIGdlb21fcG9pbnQoYWVzKGNvbG9yID0gc3BlY2llcywgc2hhcGUgPSBzcGVjaWVzKSkgKw0KICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gYygiZGFya29yYW5nZSIsInB1cnBsZSIsImN5YW40IikpICsNCiAgbGFicygNCiAgICB0aXRsZSA9ICJGbGlwcGVyIGFuZCBiaWxsIGxlbmd0aCIsDQogICAgc3VidGl0bGUgPSAiRGltZW5zaW9ucyBmb3IgcGVuZ3VpbnMgYXQgUGFsbWVyIFN0YXRpb24gTFRFUiIsDQogICAgeCA9ICJGbGlwcGVyIGxlbmd0aCAobW0pIiwgeSA9ICJCaWxsIGxlbmd0aCAobW0pIiwNCiAgICBjb2xvciA9ICJQZW5ndWluIHNwZWNpZXMiLCBzaGFwZSA9ICJQZW5ndWluIHNwZWNpZXMiDQogICkgKw0KICB0aGVtZV9taW5pbWFsKCkNCmBgYA0K').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
@@ -346,12 +405,12 @@ Exercise
       a.style.display = 'none'; // Hide the link
       document.body.appendChild(a);
       a.href = downloadURL;
-      a.download = 'binaries.qmd';
+      a.download = 'hello.qmd';
       a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
       return false;
-    });" output_extension=".zip"><i class="fa fa-file-csv"></i> Download hello.qmd</button>
+    });" output_extension=".qmd"><i class="fa fa-file-csv"></i> Download hello.qmd</button>
 </div>
 </div>
 </div>
@@ -360,7 +419,8 @@ Exercise
 </section>
 <section id="further-study" class="level2">
 <h2 class="anchored" data-anchor-id="further-study"><em>Further Study</em></h2>
-<p>still to come…</p>
+<p>Check out the information life cycle <a href="https://data.uq.edu.au/data-essentials/information-lifecycle" class="uri">https://data.uq.edu.au/data-essentials/information-lifecycle</a></p>
+<p>Check out the push for open research, research that is reproducible and accessible <a href="https://www.repro4everyone.org/" class="uri">https://www.repro4everyone.org/</a></p>
 
 
 </section>

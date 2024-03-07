@@ -179,14 +179,14 @@
     "href": "session04.html#required-packages",
     "title": "4  Data Management, Reproducibility & Integrity",
     "section": "Required packages",
-    "text": "Required packages\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nmake sure you have the packages installed, see Install dartRverse"
+    "text": "Required packages\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)"
   },
   {
     "objectID": "session04.html#session-content",
     "href": "session04.html#session-content",
     "title": "4  Data Management, Reproducibility & Integrity",
     "section": "Session Content",
-    "text": "Session Content\n\nQuarto files\n\n\n\n\n\n\nExercise\n\n\n\n Download an example quarto file and try running it on your own.\n\n\n\n\n\n Download hello.qmd"
+    "text": "Session Content\nOur goal is to make reproducible research, and data management/integrity are the necessary steps to do to make sure we achieve this goal\n\nCheck out the information life cycle https://data.uq.edu.au/data-essentials/information-lifecycle\nAnd what about the idea of open research at scale, that is research that is reproducible and accessible. Check out https://www.repro4everyone.org/\n\n\nQuarto files\n\n\n\n\n\n\nExercise\n\n\n\n Download an example quarto file and try running it on your own.\n\n\n\n\n\n Download hello.qmd"
   },
   {
     "objectID": "session04.html#exercise",
@@ -200,7 +200,7 @@
     "href": "session04.html#further-study",
     "title": "4  Data Management, Reproducibility & Integrity",
     "section": "Further Study",
-    "text": "Further Study\nstill to come…"
+    "text": "Further Study\nCheck out the information life cycle https://data.uq.edu.au/data-essentials/information-lifecycle\nCheck out the push for open research, research that is reproducible and accessible https://www.repro4everyone.org/"
   },
   {
     "objectID": "session05.html#required-packages",
@@ -761,5 +761,26 @@
     "title": "3  Sequencing Technologies",
     "section": "DArT sequencing",
     "text": "DArT sequencing\n\n\nDArTseq is our proprietary genome complexity reduction-based sequencing technology.\nIt differs from other methods through its ability to intelligently select the predominantly active – low copy sequence – areas in a genome, which are the ones containing the most useful information. At the same time, DArTseq masks the lesser value, repetitive sequences. It does this through the application of a combination of restriction enzymes to fragment DNA samples in a highly reproducible manner.\nA key component of DArTseq is its complexity reduction step. This involves reducing complexity of the genome by cutting it down to a consistent and reproducible fraction from which markers are discovered and called. This process does not introduce ascertainment bias because we are discovering markers within the (restriction) fragment set without the bias.\n\nCharacteristics\nDArTseq is designed to provide a consistent genomic representation across samples within and between experiments, even over a decade of operations. DArTseq has been used to process tens of thousands of samples from hundreds of organisms, and is capable of co-analysing thousands of samples together, with the great majority of markers called across all of the samples. These advantages come from the library processing methods of DArTseq which distinguish it from all other complexity reduced genotyping technologies using restriction enzymes.\n\n\nStandardised\nLaboratory sample processing is performed in a very high throughput streamlined operation utilising end-to-end pipetting robotics and informatics integration, with a Laboratory Information Management System (LIMS). All the physical sample processing steps undertaken in the lab are linked with the data storage and analysis components via tight integration with the LIMS. Sample processing robots have automated data exchange with the LIMS.\nManual operations have been minimised and plate based sample handling prevents the introduction of sample-tracking mistakes after arrival. The analytical components for processing DArTseq data and generating marker calls have been tailored specifically to the unique DArTseq complexity reduction and library construction methods. This results in a streamlined and highly effective data analysis pipeline, enabling rapid generation of high-quality marker data from thousands or even tens of thousands of assays in a single analysis. Ability to co-analysis with past services of 14 years despite 5 generations of the illumina sequences. The population of fragments in the genomic representation does not vary across multiple sample submissions despite the many years.\nSee more at https://www.diversityarrays.com/"
+  },
+  {
+    "objectID": "session04.html#reproducible-research",
+    "href": "session04.html#reproducible-research",
+    "title": "4  Data Management, Reproducibility & Integrity",
+    "section": "Reproducible research",
+    "text": "Reproducible research\n\n\n\n\n\n\nGoal\n\n\n\nOur goal is to make reproducible research, and data management and integrity are the necessary steps to achieve this goal\n\n\n\nQuestionAnswer\n\n\n Have you ever had problems reproducing your own or someone else’s research?\n\nHave you ever had problems reproducing your own or someone else’s research?\n\n My own research Someone else's Both I have never had problems reproducing r…\n\n\n\n\n\nCheck out https://www.repro4everyone.org/\n\n\n\n\nThings to consider when it comes to research\nWe will go through some of the practical steps for reproducible research:"
+  },
+  {
+    "objectID": "session04.html#quarto",
+    "href": "session04.html#quarto",
+    "title": "4  Data Management, Reproducibility & Integrity",
+    "section": "Quarto",
+    "text": "Quarto\n\nMeet Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org.\n\n\nMeet the penguins\n\nThe penguins data from the palmerpenguins package contains size measurements for {r} nrow(penguins) penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.\nThe plot below shows the relationship between flipper and bill lengths of these penguins.\n\n\n\n\n\n\n\nQuarto file\n\n\n\n\n\n\nExercise\n\n\n\n Download an example quarto file and try running it on your own.\n\n\n\n\n\n Download hello.qmd"
+  },
+  {
+    "objectID": "session04.html#quarto-for-reproducibility",
+    "href": "session04.html#quarto-for-reproducibility",
+    "title": "4  Data Management, Reproducibility & Integrity",
+    "section": "Quarto for Reproducibility",
+    "text": "Quarto for Reproducibility\n\nMeet Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org.\n\n\nMeet the penguins\n\nThe penguins data from the palmerpenguins package contains size measurements for {r} nrow(penguins) penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.\nThe plot below shows the relationship between flipper and bill lengths of these penguins.\n\n\n\n\n\n\n\nQuarto file\n\n\n\n\n\n\nExercise\n\n\n\n Download an example quarto file and try running it on your own.\n\n\n\n\n\n Download hello.qmd"
   }
 ]
