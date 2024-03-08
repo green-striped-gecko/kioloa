@@ -1,3 +1,12 @@
+---
+title: "Session 1: Intro to dartR"
+
+project:
+  execute-dir: project
+---
+
+
+
 # Intro to dartR
 
 *Session Presenters*

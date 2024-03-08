@@ -1,3 +1,10 @@
+---
+title: "Session 2: Pop Gen In Conservation"
+
+project:
+  execute-dir: project
+---
+
 # Pop Gen In Conservation
 
 *Session Presenters*
@@ -14,6 +21,7 @@ library(gifski)
 knitr::opts_chunk$set(tidy = TRUE, tidy.opts = list(width.cutoff = 72), 
                       cache =TRUE, 
                       echo = TRUE)
+
 ```
 
 ```{r, warning=FALSE, message=FALSE}

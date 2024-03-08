@@ -1,3 +1,7 @@
+---
+title: "Session 10: Sex Linked Markers"
+---
+
 # Sex Linked Markers
 
 *Session presenters*
@@ -371,6 +375,7 @@ res <- dartR.sexlinked::gl.filter.sexlinked(gl = data.gl, system = "xy", plots =
 #### 2. Individuals with wrong sexID?
 
 ```{r, results="hold"}
+#check if you can increase the number of cores
 sexID <- dartR.sexlinked::gl.infer.sex(gl_sex_filtered = res, system = "xy", seed = 124)
 knitr::kable(head(sexID))
 
@@ -398,13 +403,18 @@ table(data.gl@other$ind.metrics$sex, useNA = "ifany")
 #### 1. Number of sex-linked markers?
 
 ```{r, results="hold"}
-res <- dartR.sexlinked::gl.filter.sexlinked(gl = data.gl, system = "xy", plots = TRUE, ncores = 1)
+#check if you can increase the number of cores
+#takes very long, you can load the results via the line below
+#resbull <- dartR.sexlinked::gl.filter.sexlinked(gl = data.gl, system = "xy", plots = TRUE, ncores = 1)
+
+resbull <- readRDS("./data/resbull.rds")
 ```
 
 #### 2. Individuals with wrong sexID?
 
 ```{r, results="hold"}
-sexID <- dartR.sexlinked::gl.infer.sex(gl_sex_filtered = res, system = "xy", seed = 124)
+#check if you can increase the number of cores
+sexID <- dartR.sexlinked::gl.infer.sex(gl_sex_filtered = resbull, system = "xy", seed = 124)
 knitr::kable(head(sexID))
 
 agreed.sex <- sub(pattern = "\\*", replacement = "", x = sexID$agreed.sex) # remove asterisk
