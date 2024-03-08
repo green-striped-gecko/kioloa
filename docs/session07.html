@@ -95,6 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/font-awesome-5.13.0/js/script.js"></script>
 
 
 <link rel="stylesheet" href="css.css">
@@ -337,10 +338,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-hash="session07_cache/html/unnamed-chunk-2_c4811a36e9ad6f2bc418e3f91af2c971">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"utils.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>If you do not already have it, <strong>download</strong> the <code>utils.R</code> file:</p>
+<div class="download_btn">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-3_d67e20dbcc9dbe086e15ba0cebb4c4d6">
+<style type="text/css">
+.btn-default,
+.btn-default:hover,
+.btn-default:active {
+  font-size: 20px;
+  color: black;
+  background-color: transparent;
+  border-color: lightgreen;
+}
+
+.btn-default:hover {
+  color: grey;
+  transition: 0.2s;
+}
+
+</style>
+</div>
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-4_c1ac01f8d7b17f99f916f027ed1247c6">
+<div class="cell-output-display">
+<button class="btn btn-default" onclick="fetch('data:text/plain;base64,DQojIGZ1bmN0aW9uIHRvIHNvcnQgZ2VubGlnaHQgb3IgZ2VuaW5kIGFsbGVsZXMgbWFqb3IvbWlub3INCiMgY2FuIHNwZWNpZnkgcG9wKHMpIHRvIHVzZSBhcyByZWZlcmVuY2UgaWYgeW91IHdhbnQgdG8gYW5hbHlzZSByZWxhdGl2ZSB0byBzb21lIGZvY2FsIHBvcCAob3B0aW9uYWwpDQpzb3J0X2FsbGVsZXMgPC0gZnVuY3Rpb24oZ2VubywgcG9wcz1OVUxMKSB7DQogIA0KICAjIENoZWNrIGlmIGdsIG9yIGdpIHN1cHBsaWVkDQogIGlucHV0LmNsYXNzIDwtIGNsYXNzKGdlbm8pWzFdDQogIA0KICAjIENvbnZlcnQgZ2VubGlnaHQgdG8gZ2VuaW5kIGlmIG5lY2Vzc2FyeQ0KICB3YXNHZW5saWdodCA8LSBGQUxTRQ0KICBpZihpbnB1dC5jbGFzcyA9PSAiZ2VubGlnaHQiKSB7DQogICAgZ2VubyA8LSBnbDJnaShnZW5vKQ0KICAgIHdhc0dlbmxpZ2h0IDwtIFRSVUUNCiAgfQ0KICANCiAgDQogICMgaWYgZm9jYWwgcG9wdWxhdGlvbiBub3Qgc3VwcGxpZWQsIGNhbGN1bGF0ZSBtaW5vciBhbGxlbGUgYWNyb3NzIGFsbCBkYXRhDQogIGlmKGlzLm51bGwocG9wcykpIHsNCiAgICBwb3BzIDwtIGxldmVscyhnZW5vQHBvcCkNCiAgfQ0KICANCiAgdGFiIDwtIGFzLmRhdGEuZnJhbWUoZ2Vub0B0YWIpDQogIHRhYiRwb3AgPC0gZ2Vub0Bwb3ANCiAgdGFiIDwtIHRhYlt0YWIkcG9wICVpbiUgcG9wcyxdDQogIHRhYiA8LSB3aXRoaW4odGFiLCBybShwb3ApKQ0KICANCiAgcmVzIDwtIGFzLmRhdGEuZnJhbWUoY29sU3Vtcyh0YWIsIG5hLnJtID0gVCkpDQogIGNvbG5hbWVzKHJlcykgPC0gImFsbGVsZV9jb3VudCINCiAgcmVzJGFsbGVsZV9uYW1lIDwtIHJvd25hbWVzKHJlcykNCiAgDQogIA0KICBteS5vcmQgPC0gZG8uY2FsbChjLCBsYXBwbHkoc2VxKDIsIG5yb3cocmVzKSwgYnkgPSAyKSwgKGZ1bmN0aW9uKGkpew0KICAgIGMoaS0xLCBpKVtvcmRlcihyZXMkYWxsZWxlX2NvdW50WyhpLTEpOmldLCBkZWNyZWFzaW5nID0gVCldfSkpKQ0KICANCiAgDQogIHJlczEgPC0gZGF0YS5mcmFtZShyZXNbbXkub3JkLF0pDQogIA0KICBnZW5vQHRhYiA8LSBnZW5vQHRhYlssIHJlczEkYWxsZWxlX25hbWVdDQogIA0KICAjIENvbnZlcnQgYmFjayB0byBnZW5saWdodCBpZiB0aGUgb3JpZ2luYWwgaW5wdXQgd2FzIGdlbmxpZ2h0DQogIGlmKHdhc0dlbmxpZ2h0KSB7DQogICAgZ2VubyA8LSBnaTJnbChnZW5vKSAjIEFzc3VtaW5nIGEgaHlwb3RoZXRpY2FsIGdpMmdsIGZ1bmN0aW9uIGZvciBjb252ZXJzaW9uDQogIH0NCiAgDQogIHJldHVybihnZW5vKQ0KICANCn0NCg0KIyBiYWNrd2FyZCBzZWxlY3Rpb24gVklGIGZ1bmN0aW9uDQp2aWZfZnVuYzwtZnVuY3Rpb24oaW5fZnJhbWUsdGhyZXNoPTEwLHRyYWNlPVQsLi4uKXsNCiAgDQogIHJlcXVpcmUoZm1zYikNCiAgDQogIGlmKGNsYXNzKGluX2ZyYW1lKSAhPSAnZGF0YS5mcmFtZScpIGluX2ZyYW1lPC1kYXRhLmZyYW1lKGluX2ZyYW1lKQ0KICANCiAgI2dldCBpbml0aWFsIHZpZiB2YWx1ZSBmb3IgYWxsIGNvbXBhcmlzb25zIG9mIHZhcmlhYmxlcw0KICB2aWZfaW5pdDwtTlVMTA0KICB2YXJfbmFtZXMgPC0gbmFtZXMoaW5fZnJhbWUpDQogIGZvcih2YWwgaW4gdmFyX25hbWVzKXsNCiAgICByZWdyZXNzb3JzIDwtIHZhcl9uYW1lc1std2hpY2godmFyX25hbWVzID09IHZhbCldDQogICAgZm9ybSA8LSBwYXN0ZShyZWdyZXNzb3JzLCBjb2xsYXBzZSA9ICcrJykNCiAgICBmb3JtX2luIDwtIGZvcm11bGEocGFzdGUodmFsLCAnficsIGZvcm0pKQ0KICAgIHZpZl9pbml0PC1yYmluZCh2aWZfaW5pdCwgYyh2YWwsIFZJRihsbShmb3JtX2luLCBkYXRhID0gaW5fZnJhbWUsIC4uLikpKSkNCiAgfQ0KICB2aWZfbWF4PC1tYXgoYXMubnVtZXJpYyh2aWZfaW5pdFssMl0pKQ0KICANCiAgaWYodmlmX21heCA8IHRocmVzaCl7DQogICAgaWYodHJhY2U9PVQpeyAjcHJpbnQgb3V0cHV0IG9mIGVhY2ggaXRlcmF0aW9uDQogICAgICBwcm1hdHJpeCh2aWZfaW5pdCxjb2xsYWI9YygndmFyJywndmlmJykscm93bGFiPXJlcCgnJyxucm93KHZpZl9pbml0KSkscXVvdGU9RikNCiAgICAgIGNhdCgnXG4nKQ0KICAgICAgY2F0KHBhc3RlKCdBbGwgdmFyaWFibGVzIGhhdmUgVklGIDwgJywgdGhyZXNoLCcsIG1heCBWSUYgJyxyb3VuZCh2aWZfbWF4LDIpLCBzZXA9JycpLCdcblxuJykNCiAgICB9DQogICAgcmV0dXJuKHZhcl9uYW1lcykNCiAgfQ0KICBlbHNlew0KICAgIA0KICAgIGluX2RhdDwtaW5fZnJhbWUNCiAgICANCiAgICAjYmFja3dhcmRzIHNlbGVjdGlvbiBvZiBleHBsYW5hdG9yeSB2YXJpYWJsZXMsIHN0b3BzIHdoZW4gYWxsIFZJRiB2YWx1ZXMgYXJlIGJlbG93ICd0aHJlc2gnDQogICAgd2hpbGUodmlmX21heCA+PSB0aHJlc2gpew0KICAgICAgDQogICAgICB2aWZfdmFsczwtTlVMTA0KICAgICAgdmFyX25hbWVzIDwtIG5hbWVzKGluX2RhdCkNCiAgICAgIA0KICAgICAgZm9yKHZhbCBpbiB2YXJfbmFtZXMpew0KICAgICAgICByZWdyZXNzb3JzIDwtIHZhcl9uYW1lc1std2hpY2godmFyX25hbWVzID09IHZhbCldDQogICAgICAgIGZvcm0gPC0gcGFzdGUocmVncmVzc29ycywgY29sbGFwc2UgPSAnKycpDQogICAgICAgIGZvcm1faW4gPC0gZm9ybXVsYShwYXN0ZSh2YWwsICd+JywgZm9ybSkpDQogICAgICAgIHZpZl9hZGQ8LVZJRihsbShmb3JtX2luLCBkYXRhID0gaW5fZGF0LCAuLi4pKQ0KICAgICAgICB2aWZfdmFsczwtcmJpbmQodmlmX3ZhbHMsYyh2YWwsdmlmX2FkZCkpDQogICAgICB9DQogICAgICBtYXhfcm93PC13aGljaCh2aWZfdmFsc1ssMl0gPT0gbWF4KGFzLm51bWVyaWModmlmX3ZhbHNbLDJdKSkpWzFdDQogICAgICANCiAgICAgIHZpZl9tYXg8LWFzLm51bWVyaWModmlmX3ZhbHNbbWF4X3JvdywyXSkNCiAgICAgIA0KICAgICAgaWYodmlmX21heDx0aHJlc2gpIGJyZWFrDQogICAgICANCiAgICAgIGlmKHRyYWNlPT1UKXsgI3ByaW50IG91dHB1dCBvZiBlYWNoIGl0ZXJhdGlvbg0KICAgICAgICBwcm1hdHJpeCh2aWZfdmFscyxjb2xsYWI9YygndmFyJywndmlmJykscm93bGFiPXJlcCgnJyxucm93KHZpZl92YWxzKSkscXVvdGU9RikNCiAgICAgICAgY2F0KCdcbicpDQogICAgICAgIGNhdCgncmVtb3ZlZDogJyx2aWZfdmFsc1ttYXhfcm93LDFdLHZpZl9tYXgsJ1xuXG4nKQ0KICAgICAgICBmbHVzaC5jb25zb2xlKCkNCiAgICAgIH0NCiAgICAgIA0KICAgICAgaW5fZGF0PC1pbl9kYXRbLCFuYW1lcyhpbl9kYXQpICVpbiUgdmlmX3ZhbHNbbWF4X3JvdywxXV0NCiAgICAgIA0KICAgIH0NCiAgICANCiAgICByZXR1cm4obmFtZXMoaW5fZGF0KSkNCiAgICANCiAgfQ0KICANCn0NCg0KDQojIFIgZnVuY3Rpb24gcmRhZGFwdCAoc2VlIGdpdGh1Yi5jb20vQ2FwYmxhbmNxL1JEQS1nZW5vbWUtc2NhbikNCnJkYWRhcHQ8LWZ1bmN0aW9uKHJkYSxLKSB7DQogIGxvYWRpbmdzPC1yZGEkQ0NBJHZbLDE6YXMubnVtZXJpYyhLKV0NCiAgcmVzc2NhbGUgPC0gYXBwbHkobG9hZGluZ3MsIDIsIHNjYWxlKQ0KICByZXNtYWhhIDwtIGNvdlJvYihyZXNzY2FsZSwgZGlzdGFuY2UgPSBUUlVFLCBuYS5hY3Rpb249IG5hLm9taXQsIGVzdGltPSJwYWlyd2lzZUdLIikkZGlzdA0KICBsYW1iZGEgPC0gbWVkaWFuKHJlc21haGEpL3FjaGlzcSgwLjUsZGY9SykNCiAgcmVzY2hpMnRlc3QgPC0gcGNoaXNxKHJlc21haGEvbGFtYmRhLEssbG93ZXIudGFpbD1GQUxTRSkNCiAgcXZhbCA8LSBxdmFsdWUocmVzY2hpMnRlc3QpDQogIHEudmFsdWVzX3JkYWRhcHQ8LXF2YWwkcXZhbHVlcw0KICByZXR1cm4oZGF0YS5mcmFtZShwLnZhbHVlcz1yZXNjaGkydGVzdCwgcS52YWx1ZXM9cS52YWx1ZXNfcmRhZGFwdCkpDQp9DQoNCiMgZnVuY3Rpb24gdG8gZXhwYW5kIHBvcC1sZXZlbCBtZXRhZGF0YSB0byBpbmRpdmlkdWFsLWxldmVsIGRhdGFmcmFtZQ0KZXhwYW5kX3BvcDJpbmQgPC0gZnVuY3Rpb24oZ2wsIG1ldGEuZGF0YSkgew0KICAjIEV4dHJhY3QgaW5kaXZpZHVhbCBuYW1lcyBmcm9tIGdlbmxpZ2h0IG9iamVjdA0KICBpbmRfbmFtZXMgPC0gaW5kTmFtZXMoZ2wpDQogIA0KICAjIEV4dHJhY3QgcG9wdWxhdGlvbiBhc3NpZ25tZW50cyBmb3IgZWFjaCBpbmRpdmlkdWFsDQogIHBvcHMgPC0gcG9wKGdsKQ0KICANCiAgIyBDcmVhdGUgYSBkYXRhIGZyYW1lIHdpdGggaW5kaXZpZHVhbCBuYW1lcyBhbmQgdGhlaXIgcG9wdWxhdGlvbg0KICBpbmRfZGYgPC0gZGF0YS5mcmFtZShpbmQubmFtZXMgPSBpbmRfbmFtZXMsIHNpdGUgPSBwb3BzLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpDQogIG1ldGEuZGF0YSRzaXRlIDwtIGFzLmNoYXJhY3RlcihtZXRhLmRhdGEkc2l0ZSkNCiAgDQogICMgVXNlIGxlZnRfam9pbiB0byBtZXJnZQ0KICBleHBhbmRlZF9kZiA8LSBpbmRfZGYgJT4lDQogICAgbGVmdF9qb2luKG1ldGEuZGF0YSwgYnkgPSAic2l0ZSIpDQogIA0KICB3cml0ZS5jc3YoZXhwYW5kZWRfZGYsICJpbmRpdmlkdWFsX2Vudl9kYXRhLmNzdiIsIHF1b3RlID0gRkFMU0UsIHJvdy5uYW1lcyA9IEZBTFNFKQ0KICByZXR1cm4oZXhwYW5kZWRfZGYpDQogIA0KfQ0KDQo=').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none'; // Hide the link
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'utils.R';
+      a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+      return false;
+    });" output_extension=".R"><i class="fa fa-file-csv"></i> Download utils.R</button>
+</div>
+</div>
+</div>
 </section>
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">1. Data preparation</h2>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-3_5b4986dd2aa522727ae9ace2c9035e62">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-5_2ca78adad055251ee36a96f898af22a2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load genlight object</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/Mf5000_gl.RData"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Mf5000_gl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -451,7 +489,7 @@ Ordination analyses cannot handle missing data…
 </ol>
 </div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-4_3e0d27b1c56d8e1315ada091f93c0825">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-6_ea4f634b86fa86fa760f7f65a32326a9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ADMIXTURE results most likely 6 pops</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>imputed.gi <span class="ot">&lt;-</span> melfuR<span class="sc">::</span><span class="fu">impute.data</span>(Mf5000.genind, <span class="at">K =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -459,10 +497,6 @@ Ordination analyses cannot handle missing data…
 [1] "*********************************************************"
 [1] " Conversion from the lfmm format to the geno format"
 [1] "*********************************************************"
-
-    - number of detected individuals:   249
-    - number of detected loci:      5000
-
 The project is saved into :
  dat.snmfProject 
 
@@ -1214,7 +1248,7 @@ MBR_1        2       0       1       1       2       0</code></pre>
 <p>Format SNP data for ordination analysis in vegan. You want a matrix of allele counts per locus, per individual can use population allele frequencies instead</p>
 <section id="individual-based" class="level3">
 <h3 class="anchored" data-anchor-id="individual-based">Individual based</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-5_a57c8e0680bce811d1f01cb66a757132">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-7_1c71f208784e3d6bce60b7e65c470067">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for individual based analyses</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get allele counts</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>alleles <span class="ot">&lt;-</span> imputed.sorted.gi<span class="sc">@</span>tab</span>
@@ -1247,7 +1281,7 @@ MBR_1      2     1     2     2     1     2     2     2     2      2</code></pre>
 </section>
 <section id="population-based" class="level3">
 <h3 class="anchored" data-anchor-id="population-based">Population based</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-6_d25d1a817c654c99e95cc3c3eb3f9bea">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-8_1df18593058811942557a43c700f1548">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for population based analyses</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get pop allele frequencies</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>gp <span class="ot">&lt;-</span> <span class="fu">genind2genpop</span>(imputed.sorted.gi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1304,7 +1338,7 @@ Decision time:
 <p>In this case we are going to keep it simple and just use a few WorldClim variables Bio01 (annual mean temperature), Bio05 (temperature in hottest month), Bio15 (rainfall seasonality) and Bio19 (rainfall in coldest quarter)</p>
 </div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-7_b983bbb421175499faec3c5f3dbd0cd1">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-9_90ca734e5f1cde491af415aa75355ec5">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the data dir and extend the waiting time (sometimes the database can be slow to respond)</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">sdmpredictors_datadir=</span><span class="st">"data/spatial_data"</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">timeout =</span> <span class="fu">max</span>(<span class="dv">300</span>, <span class="fu">getOption</span>(<span class="st">"timeout"</span>)))</span>
@@ -1895,7 +1929,7 @@ Decision time:
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>WC <span class="ot">&lt;-</span> <span class="fu">load_layers</span>(<span class="fu">c</span>(<span class="st">"WC_bio1"</span>, <span class="st">"WC_bio5"</span>, <span class="st">"WC_bio15"</span>, <span class="st">"WC_bio19"</span>))</span>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(WC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="session07_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop rasters to study area and align CRS</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get Murray-Darling Basin polygon</span></span>
@@ -1949,12 +1983,12 @@ Geodetic CRS:  GDA94</code></pre>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(rivers, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)</span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">1</span>], <span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">2</span>], <span class="at">labels=</span>sites_sf<span class="sc">$</span>site, <span class="at">cex=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+<p><img src="session07_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <section id="save-pdf" class="level5">
 <h5 class="anchored" data-anchor-id="save-pdf">Save PDF</h5>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-8_ace0a88a20cfc478ad4c5ad4f46c79d3">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-10_ef51be39789c55c78058986a221bbebd">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># format nicely and export as pdf</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>{<span class="fu">pdf</span>(<span class="st">"./images/env_rasters.pdf"</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nlayers</span>(ENV)) {</span>
@@ -1983,7 +2017,7 @@ Geodetic CRS:  GDA94</code></pre>
 </section>
 <section id="extract-site-environmental-data" class="level3">
 <h3 class="anchored" data-anchor-id="extract-site-environmental-data">Extract site environmental data</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-9_35326369d6559b34c855a62bb5f47876">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-11_cadbc73760e4453bcd97490735f21cdc">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and finally extract the environmental data for your sample sites</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>env.site <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">site =</span> sites_sf<span class="sc">$</span>site,</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">X =</span> <span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">1</span>],</span>
@@ -1997,13 +2031,13 @@ Geodetic CRS:  GDA94</code></pre>
 </section>
 <section id="no-missing-data" class="level3">
 <h3 class="anchored" data-anchor-id="no-missing-data">No missing data</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-10_137d628b2a23cc835abd2dc314f091db">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-12_cd67957ab49fcb85bfe1597fea91382d">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we now have our SNP data with no missing genotypes</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to get a feel for the data we can run quick PCA using the rda function</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">rda</span>(AF)</span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="session07_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set some plotting variables to make it easier to interpret</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set colours, markers and labels for plotting and add to env.site df</span></span>
@@ -2020,7 +2054,7 @@ Geodetic CRS:  GDA94</code></pre>
 </section>
 <section id="plot-pca" class="level3">
 <h3 class="anchored" data-anchor-id="plot-pca">Plot PCA</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-11_f0f2a118fd84dd2365321989cbf7ef27">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-13_6fc77319e68f08459cfcebc40c27bf36">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot PCA</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>{<span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">"./images/Mf_PCA.pdf"</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">width =</span> <span class="dv">6</span>)</span>
@@ -2031,14 +2065,14 @@ Geodetic CRS:  GDA94</code></pre>
 <span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="images/Mf_PCA.png" class="img-fluid"> ## 2. Variable filtering</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-13_7444275287b5b611b3bb26f3ed022942">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-15_906b6ed7d161bbec5b1270c94cd12ba7">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract predictor variables to matrix</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>env_var <span class="ot">&lt;-</span> env.site[ , <span class="fu">c</span>(<span class="st">"WC_bio1"</span>, <span class="st">"WC_bio5"</span>, <span class="st">"WC_bio15"</span>, <span class="st">"WC_bio19"</span>)]</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check for obvious correlations between variables</span></span>
 <span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(env_var, <span class="at">scale=</span>T, <span class="at">lm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="session07_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="do">## reduce variance associated with correlated environmental PCs using VIF analyses</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># run procedure to remove variables with the highest VIF one at a time until all remaining variables are below 10</span></span>
@@ -2062,7 +2096,7 @@ removed:  WC_bio1 21.53714 </code></pre>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># lets have another look</span></span>
 <span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(reduced.env, <span class="at">scale=</span>T, <span class="at">lm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
+<p><img src="session07_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -2096,7 +2130,7 @@ Yes? How do I do that?
 </div>
 </div>
 <p>We are going to use the scaled allelic covariance (Ω) estimated by BayPass to control for spatial structure in the data, see BayPass and Gates et al.&nbsp;2023</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-14_bb5bdf0ccdcecb21a43161d9a8346c7c">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-16_e4e91d7ac2322772092eb80e5e54c81a">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># format spatial coordinates as matrix</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">cbind</span>(env.site<span class="sc">$</span>omegaX, env.site<span class="sc">$</span>omegaY))</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2134,7 +2168,7 @@ Eigenvalues for unconstrained axes:
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how much inertia is associated with each axis</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(Mf.RDA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="session07_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate significance of the reduced model, marginal effect of each term and significance of each axis</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   (this can take several hours, depending on your computer)</span></span>
@@ -2158,7 +2192,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <section id="plot-rda" class="level3">
 <h3 class="anchored" data-anchor-id="plot-rda">Plot RDA</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-15_97e631460a79f897f58b3edcc8cc31b5">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-17_86b1bf1e5fed1467c9979d39cabcdd20">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot RDA1, RDA2</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>{<span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">"./images/Mf_RDA.pdf"</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">width =</span> <span class="dv">6</span>)</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>pRDAplot <span class="ot">&lt;-</span> <span class="fu">plot</span>(Mf.RDA, <span class="at">choices =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">type=</span><span class="st">"n"</span>, <span class="at">cex.lab=</span><span class="dv">1</span>, <span class="at">xlab=</span>x.lab, <span class="at">ylab=</span>y.lab)</span>
@@ -2173,7 +2207,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="identify-candidate-loci" class="level2">
 <h2 class="anchored" data-anchor-id="identify-candidate-loci">4. Identify candidate loci</h2>
 <p>Estimate p values following:&nbsp;<a href="https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches" class="uri">https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches</a> and the R function rdadapt (see <a href="https://github.com/Capblancq/RDA-genome-scan" class="uri">https://github.com/Capblancq/RDA-genome-scan</a>)</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-17_7c537923cbe454339783f8a462dfe9b0">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-19_f12784b04e5d0aa6cce539c8151538b4">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">2</span> <span class="co"># number of RDA axes to retain</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>rda.q <span class="ot">&lt;-</span> <span class="fu">rdadapt</span>(Mf.RDA, <span class="at">K =</span> k)</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(rda.q<span class="sc">$</span>q.values <span class="sc">&lt;=</span> <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2192,7 +2226,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"SNPs"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"-log10(q.values"</span>) <span class="sc">+</span></span>
 <span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="session07_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check correlations between candidate loci and environmental predictors</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>npred <span class="ot">&lt;-</span> <span class="dv">3</span></span>
@@ -2230,7 +2264,7 @@ WC_bio15 WC_bio19  WC_bio5
 <section id="individual-level" class="level3">
 <h3 class="anchored" data-anchor-id="individual-level">Individual level</h3>
 <p>Now let’s have a look at an individual level biplot first expand environmental data from population to individual dataframe.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-18_d7847aa50f6b06ab6f99fc31348bfce2">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-20_a9d53e067a1c44acef2428445d6e8689">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>env.ind <span class="ot">&lt;-</span> <span class="fu">expand_pop2ind</span>(Mf5000_gl, env.site)</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co"># now subset our genotype objects to the candidate loci</span></span>
@@ -2321,7 +2355,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="plot-rda-1" class="level3">
 <h3 class="anchored" data-anchor-id="plot-rda-1">Plot RDA</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-19_914515ccef97dd74ca106f85efb2f748">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-21_cd213ad4d8a85de03c9779d739665bc9">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot RDA1, RDA2</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>{<span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">"Mfcandidate_RDA.pdf"</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">width =</span> <span class="dv">6</span>)</span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>pRDAplot <span class="ot">&lt;-</span> <span class="fu">plot</span>(Mfcandidate.RDA, <span class="at">choices =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), </span>

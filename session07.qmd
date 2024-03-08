@@ -33,6 +33,47 @@ First lets load in some functions we will be using.
 source("utils.R")
 ```
 
+If you do not already have it, **download** the `utils.R` file:
+
+
+::: download_btn
+
+```{css}
+#| echo: false
+
+.btn-default,
+.btn-default:hover,
+.btn-default:active {
+  font-size: 20px;
+  color: black;
+  background-color: transparent;
+  border-color: lightgreen;
+}
+
+.btn-default:hover {
+  color: grey;
+  transition: 0.2s;
+}
+
+```
+
+```{r, echo=FALSE, warning=FALSE}
+library(downloadthis)
+
+
+  download_file(path = './utils.R',
+    output_name = "utils",
+    output_extension = ".R",
+    button_label = "Download utils.R",
+    button_type = "default",
+    has_icon = TRUE,
+    icon = "fa fa-file-csv"
+  )
+
+```
+
+:::
+
 ## 1. Data preparation
 
 ```{r}

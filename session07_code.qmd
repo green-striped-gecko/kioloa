@@ -33,6 +33,7 @@ First lets load in some functions we will be using.
 source("utils.R")
 ```
 
+
 ## 1. Data preparation
 
 ```{r}
@@ -222,7 +223,6 @@ dev.off()}
 
 ```
 
-
 ### Extract site environmental data
 
 ```{r}
@@ -285,8 +285,7 @@ dev.off()
 
 ```
 
-![](images/Mf_PCA.png)
-## 2. Variable filtering
+![](images/Mf_PCA.png) \## 2. Variable filtering
 
 ```{r}
 
@@ -315,22 +314,22 @@ So we have formatted genotypes, environmental data
 What about controlling for spatial population structure in the model?
 
 ::: callout-note
-
 ## Decision time:
 
-Decision time:
- 1. do I need to control for spatial structure?
+Decision time: 1. do I need to control for spatial structure?
+
+```         
+ No? Great!
+
+Yes? How do I do that?
  
-     No? Great!
+```
 
-    Yes? How do I do that?
-     
-- simple xy coordinates (or some transformation, MDS, polynomial...)
-- Principal Coordinates of Neighbourhood Matrix (PCNM; R package vegan)
-- Moran's Eigenvector Maps (R package memgene)
-- Fst, admixture Q values
-- population allele frequency covariance matrix (BayPass omega)
-
+-   simple xy coordinates (or some transformation, MDS, polynomial...)
+-   Principal Coordinates of Neighbourhood Matrix (PCNM; R package vegan)
+-   Moran's Eigenvector Maps (R package memgene)
+-   Fst, admixture Q values
+-   population allele frequency covariance matrix (BayPass omega)
 :::
 
 We are going to use the scaled allelic covariance (Ω) estimated by BayPass to control for spatial structure in the data, see BayPass and Gates et al. 2023
@@ -367,6 +366,7 @@ y.lab <- paste0("RDA2 (", paste(round((Mf.RDA$CCA$eig[2]/Mf.RDA$CCA$tot.chi*100)
 ```
 
 ### Plot RDA
+
 ```{r, eval=FALSE}
 #plot RDA1, RDA2
 {pdf(file = "./images/Mf_RDA.pdf", height = 6, width = 6)
@@ -393,7 +393,7 @@ dev.off()}
 
 ## 4. Identify candidate loci
 
-Estimate p values following:\ <https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches> and the R function rdadapt (see <https://github.com/Capblancq/RDA-genome-scan>)
+Estimate p values following: <https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches> and the R function rdadapt (see <https://github.com/Capblancq/RDA-genome-scan>)
 
 ```{r}
 
@@ -444,6 +444,7 @@ write.csv(cand, "./data/RDA_candidates.csv", row.names = FALSE)
 ```
 
 ### Individual level
+
 Now let's have a look at an individual level biplot first expand environmental data from population to individual dataframe.
 
 ```{r}
@@ -495,7 +496,6 @@ dev.off()
 
 ```
 
-
 ```{r, include = FALSE}
 
 #plot RDA1, RDA2
@@ -511,7 +511,6 @@ unlink(c('dat.geno', 'dat.lfmm', 'dat.snmfProject', 'dat.snmf', 'dat.lfmm_impute
          'individual_env_data.csv'), recursive = T)
 
 ```
-
 
 ![](images/Mfcandidate_RDA.png)
 
