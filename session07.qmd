@@ -194,7 +194,7 @@ text(st_coordinates(sites_sf)[,1], st_coordinates(sites_sf)[,2], labels=sites_sf
 
 ##### Save PDF
 
-```{r}
+```{r, output=FALSE}
 
 # format nicely and export as pdf
 {pdf("./images/env_rasters.pdf")
@@ -221,6 +221,7 @@ for(i in 1:nlayers(ENV)) {
 dev.off()}
 
 ```
+
 
 ### Extract site environmental data
 
@@ -274,7 +275,7 @@ dev.off()
 }
 ```
 
-```{r, echo = FALSE}
+```{r, include = FALSE}
 {png(file = "./images/Mf_PCA.png", units = 'in', height = 6, width = 6, res = 200)
   pcaplot <- plot(pc, choices = c(1, 2), type = "n", xlab=x.lab, ylab=y.lab, cex.lab=1)
   with(env.site, points(pc, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
@@ -322,7 +323,7 @@ Decision time:
  
      No? Great!
 
-  Yes? How do I do that?
+    Yes? How do I do that?
      
 - simple xy coordinates (or some transformation, MDS, polynomial...)
 - Principal Coordinates of Neighbourhood Matrix (PCNM; R package vegan)
@@ -377,7 +378,7 @@ dev.off()}
 
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 #plot RDA1, RDA2
 {png(file = "./images/Mf_RDA.png", units = 'in', res = 200, height = 6, width = 6)
 pRDAplot <- plot(Mf.RDA, choices = c(1, 2), type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
@@ -392,7 +393,7 @@ dev.off()}
 
 ## 4. Identify candidate loci
 
-Estimate p values following: <https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches> and the R function rdadapt (see <https://github.com/Capblancq/RDA-genome-scan>)
+Estimate p values following:\ <https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches> and the R function rdadapt (see <https://github.com/Capblancq/RDA-genome-scan>)
 
 ```{r}
 
@@ -404,15 +405,18 @@ candidate.loci <- colnames(AF)[which(rda.q[,2] < 0.01)]
 
 # check the distribution of candidates and q-values
 ggplot() +
-  geom_point(aes(x=c(1:length(rda.q[,2])), y=-log10(rda.q[,2])), col="gray83") +
-  geom_point(aes(x=c(1:length(rda.q[,2]))[which(rda.q[,2] < 0.01)], y=-log10(rda.q[which(rda.q[,2] < 0.01),2])), col="orange") +
+  geom_point(aes(x=c(1:length(rda.q[,2])), 
+                 y=-log10(rda.q[,2])), col="gray83") +
+  geom_point(aes(x=c(1:length(rda.q[,2]))[which(rda.q[,2] < 0.01)], 
+                 y=-log10(rda.q[which(rda.q[,2] < 0.01),2])), col="orange") +
   xlab("SNPs") + ylab("-log10(q.values") +
   theme_bw()
 
 
 # check correlations between candidate loci and environmental predictors
 npred <- 3
-env_mat <- matrix(nrow=(sum(rda.q$q.values < 0.01)), ncol=npred)  # n columns for n predictors
+env_mat <- matrix(nrow=(sum(rda.q$q.values < 0.01)), 
+                  ncol=npred)  # n columns for n predictors
 colnames(env_mat) <- colnames(reduced.env)
 
 
@@ -459,11 +463,14 @@ colnames(candidate.snps) <- locNames(candidate.gi)
 Mfcandidate.RDA <- rda(candidate.snps ~ WC_bio5 + WC_bio15 + WC_bio19, data = env.ind)
 Mfcandidate.RDA
 
-ind.mod_perm <- anova.cca(Mfcandidate.RDA, nperm=1000, parallel=4) #test significance of the model
+ind.mod_perm <- anova.cca(Mfcandidate.RDA, nperm=1000, 
+                          parallel=4) #test significance of the model
 ind.mod_perm
 
-x.lab <- paste0("RDA1 (", paste(round((Mfcandidate.RDA$CA$eig[1]/Mfcandidate.RDA$tot.chi*100),2)),"%)")
-y.lab <- paste0("RDA2 (", paste(round((Mfcandidate.RDA$CA$eig[2]/Mfcandidate.RDA$tot.chi*100),2)),"%)")
+x.lab <- paste0("RDA1 (",
+                paste(round((Mfcandidate.RDA$CA$eig[1]/Mfcandidate.RDA$tot.chi*100),2)),"%)")
+y.lab <- paste0("RDA2 (",
+                paste(round((Mfcandidate.RDA$CA$eig[2]/Mfcandidate.RDA$tot.chi*100),2)),"%)")
 
 
 ```
@@ -474,10 +481,14 @@ y.lab <- paste0("RDA2 (", paste(round((Mfcandidate.RDA$CA$eig[2]/Mfcandidate.RDA
 
 #plot RDA1, RDA2
 {pdf(file = "Mfcandidate_RDA.pdf", height = 6, width = 6)
-pRDAplot <- plot(Mfcandidate.RDA, choices = c(1, 2), type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
-points(Mfcandidate.RDA, display = "sites", col = env.ind$cols, pch = env.ind$pch, cex=0.8, bg = env.ind$cols)
-text(Mfcandidate.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", "WC_bio19"), col="blue", cex=0.6)
-legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
+pRDAplot <- plot(Mfcandidate.RDA, choices = c(1, 2), 
+                 type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
+points(Mfcandidate.RDA, display = "sites", col = env.ind$cols,
+       pch = env.ind$pch, cex=0.8, bg = env.ind$cols)
+text(Mfcandidate.RDA, "bp",choices = c(1, 2), 
+     labels = c("WC_bio5", "WC_bio15", "WC_bio19"), col="blue", cex=0.6)
+legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch,
+       pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
 dev.off()
 }
 
@@ -485,10 +496,10 @@ dev.off()
 ```
 
 
-```{r, echo = FALSE}
+```{r, include = FALSE}
 
 #plot RDA1, RDA2
-{png(file = "Mfcandidate_RDA.png", units = 'in', res = 200, height = 6, width = 6)
+{png(file = "./images/Mfcandidate_RDA.png", units = 'in', res = 200, height = 6, width = 6)
 pRDAplot <- plot(Mfcandidate.RDA, choices = c(1, 2), type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
 points(Mfcandidate.RDA, display = "sites", col = env.ind$cols, pch = env.ind$pch, cex=0.8, bg = env.ind$cols)
 text(Mfcandidate.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", "WC_bio19"), col="blue", cex=0.6)

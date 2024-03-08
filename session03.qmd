@@ -32,15 +32,11 @@ DArTseq is designed to provide a consistent genomic representation across sample
 
 ### Standardised
 
-Laboratory sample processing is performed in a very high throughput streamlined operation utilising end-to-end pipetting robotics and informatics integration, with a Laboratory Information Management System (LIMS). All the physical sample processing steps undertaken in the lab are linked with the data storage and analysis components via tight integration with the LIMS. Sample processing robots have automated data exchange with the LIMS. 
+Laboratory sample processing is performed in a very high throughput streamlined operation utilising end-to-end pipetting robotics and informatics integration, with a Laboratory Information Management System (LIMS). All the physical sample processing steps undertaken in the lab are linked with the data storage and analysis components via tight integration with the LIMS. Sample processing robots have automated data exchange with the LIMS.
 
 Manual operations have been minimised and plate based sample handling prevents the introduction of sample-tracking mistakes after arrival. The analytical components for processing DArTseq data and generating marker calls have been tailored specifically to the unique DArTseq complexity reduction and library construction methods. This results in a streamlined and highly effective data analysis pipeline, enabling rapid generation of high-quality marker data from thousands or even tens of thousands of assays in a single analysis. Ability to co-analysis with past services of 14 years despite 5 generations of the illumina sequences. The population of fragments in the genomic representation does not vary across multiple sample submissions despite the many years.
 
-
-
-
 See more at <https://www.diversityarrays.com/>
-
 
 ## **SNP-based heterozygosity estimates**
 
@@ -483,4 +479,5 @@ You need to report autosomal heterozygosity at a minimum, which means doing your
 
 ## *Further Study*
 
-still to come...
+Jason Dobry will be giving a detailed tutorial on combining DArTseq data with whole genome sequencing in [session 13](session13.qmd). The associated papers are @dobry_fixed_2023 and @dobry_widespread_2023
+

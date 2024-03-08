@@ -540,8 +540,6 @@ This shows how understanding the population genetic theory for a metric is cruci
 
 ## *Further Study*
 
-
-
 Another teaching app in R, covering only Shannon for genes and its change over time, produced by Computer Science and Engineering third-year students: <https://evolutionaryecology.shinyapps.io/learningEE>
 
 ### Readings
