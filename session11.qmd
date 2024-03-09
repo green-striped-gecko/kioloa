@@ -70,7 +70,7 @@ Below is a table modified from Speed & Balding ([2015](https://doi.org/10.1038/n
 
 ## The Quest to Quash the Cane Toad Conundrum in Mandalong
 
-![*Cane toad (Rhinella marinus)*](../images/cane_toad.png){fig-align="left" width="300"}
+![*Cane toad (Rhinella marinus)*](./images/cane_toad.png){fig-align="left" width="300"}
 
 Introduced to Australia in the 1930s to combat cane beetles, cane toads have since become a significant invasive threat, adapting to diverse habitats and reproducing prolifically. Lacking natural predators and possessing toxic secretions, they've harmed native wildlife and disrupted ecosystems across eastern and northern Australia.
 
@@ -415,7 +415,7 @@ ggplot(rel_plot_2,aes(y=value,x=variable,color = variable,fill = variable)) +
 
 ## Feathers of Laughter: Unveiling the Mysteries of the Amazonian Giggletuft (Hilaroplumis amazoniana)"
 
-![*Amazonian Giggletuft (Hilaroplumis amazoniana)*](../images/New_bird.png){fig-align="left" width="300"}
+![*Amazonian Giggletuft (Hilaroplumis amazoniana)*](./images/New_bird.png){fig-align="left" width="300"}
 
 A new bird species has recently been identified in the Amazon region, characterized by its distinctive and intriguing appearance. Scientists are keen to explore the possibility of multiple paternity occurrences within clutches for this species. To delve into this question, the research team employs SNP data to conduct relatedness analyses. Egg samples have been collected from three separate clutches.
 
@@ -487,11 +487,11 @@ print(
 
 ## From the Brink and Back: The Arabian Oryx's Oman Odyssey
 
-![*Arabian oryx (Oryx leucoryx)*](../images/Arabian_Oryx.png){fig-align="left" width="300"}
+![*Arabian oryx (Oryx leucoryx)*](./images/Arabian_Oryx.png){fig-align="left" width="300"}
 
 The Arabian oryx, once extinct in the wild by 1972, found a lifeline through global zoo and private collection breeding efforts. Thanks to "The World Herd" in the Phoenix Zoo and Saudi Arabian private reserves, these oryxes were reintroduced into the wild. Now, we've got about 1,000 roaming free and another 6,000-7,000 in captivity, marking a historic comeback from extinction to vulnerable status. Quite the turnaround for these majestic creatures in Oman!
 
-![Arabian oryx (Oryx leucoryx)](../images/oryx_timeline.png){fig-align="left" width="100%"} Timeline of the Arabian oryx reintroduction program in Oman and establishment of the “World Herd”. Top row displays the years when the animals were captured, translocated or released and the country where the event took place. Middle boxes show the major event and activity at that time. Bottom boxes show the number and sex of animals which had been used.
+![Arabian oryx (Oryx leucoryx)](./images/oryx_timeline.png){fig-align="left" width="100%"} Timeline of the Arabian oryx reintroduction program in Oman and establishment of the “World Herd”. Top row displays the years when the animals were captured, translocated or released and the country where the event took place. Middle boxes show the major event and activity at that time. Bottom boxes show the number and sex of animals which had been used.
 
 ### Load dataset and filtering
 

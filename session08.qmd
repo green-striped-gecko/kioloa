@@ -271,7 +271,7 @@ These results are not surprising, since we set our distance classes based on the
 While the sample size would be great, we might lose the signal of female philopatry. Give it a try above and see what happens.
 :::
 
-::: blackbox
+::: callout-note
 ### Exercise
 
 *What happens when you vary the dispersal distances? Can you pick up small differences between the sexes?*
@@ -580,7 +580,7 @@ eems.comp <- readRDS("data/eems_comp.rds")
 We have not looked at all of the output. There are actually 8 figures that are produced by the EEMS method. You can access the using the notation `eems.comp[[1]] or eems.comp$mrates01`.
 
 | Plot       | Description                                                                                                                                                                                                                                                                                                                                                                      |
-|-----------------|-------------------------------------------------------|
+|------------------|------------------------------------------------------|
 | `mrates01` | Effective migration surface. This contour plot visualizes the estimated effective migration rates (m), on the log10 scale after mean centering.                                                                                                                                                                                                                                  |
 | `mrates02` | Posterior probability contours ($P(\log(m) > 0) = p$) and ($P(\log(m) < 0) = p$) for the given probability level (p). Since migration rates are visualized on the log10 scale after mean centering, 0 corresponds to the overall mean migration rate. This contour plot emphasizes regions with effective migration that is significantly higher/lower than the overall average. |
 | `qrates01` | Effective diversity surface. This contour plot visualizes the estimated effective diversity rates (q), on the log10 scale after mean centering.                                                                                                                                                                                                                                  |
@@ -802,21 +802,22 @@ A bit mean is that we have not recoded the resistance layers, so you have to do 
 names(antechinus@other)
 ```
 
-
 ### Elevation layer
+
 ```{r}
 gl.map.interactive(antechinus, provider = "Esri.WorldImagery") %>% addRasterImage(elevation, opacity = 0.8)
 
 ```
 
 Roads layer
+
 ```{r}
 gl.map.interactive(antechinus, provider = "Esri.WorldImagery") %>% addRasterImage(roads, opacity = 0.5)
 
 ```
 
-
 Forest layer
+
 ```{r}
 gl.map.interactive(antechinus, provider = "Esri.WorldImagery") %>% addRasterImage(forest, opacity = 0.7)
 

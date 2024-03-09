@@ -125,8 +125,7 @@ imputed.gi@tab[1:10,1:6]
 imputed.sorted.gi@tab[1:10,1:6]
 
 #delelte intermediate files
-unlink(c('dat.geno', 'dat.lfmm', 'dat.snmfProject', 'dat.snmf', 'dat.lfmm_imputed.lfmm',
-         'individual_env_data.csv'), recursive = T)
+unlink(c('dat.geno', 'dat.lfmm', 'dat.snmfProject', 'dat.snmf', 'dat.lfmm_imputed.lfmm'), recursive = T)
 ```
 
 Format SNP data for ordination analysis in vegan. You want a matrix of allele counts per locus, per individual can use population allele frequencies instead
@@ -554,6 +553,8 @@ text(Mfcandidate.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", 
 legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
 dev.off()
 }
+
+unlink('individual_env_data.csv')
 
 ```
 

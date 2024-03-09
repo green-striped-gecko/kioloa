@@ -23,7 +23,7 @@ library(dartR.data)
 
 ##### From 1 package to 7
 
-![](images/dartR7.png) *See the section* [Install dartRverse](install.qmd) *to learn about the reasoning behind how the dartRverse came to be...*
+![](images/dartR7.png)
 
 
 ### Introduction
