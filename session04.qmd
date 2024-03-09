@@ -14,13 +14,10 @@ library(palmerpenguins)
 ## Reproducible research
 
 ::: callout-tip
-
 ## Goal
 
-_Our goal is to make *reproducible* research, and *data management* and *integrity* are the necessary steps to achieve this goal_
-
-::: 
-
+*Our goal is to make reproducible* research, and *data management* and *integrity* are the necessary steps to achieve this goal
+:::
 
 ::: panel-tabset
 ##### Question
@@ -47,14 +44,8 @@ cat(q1,longmcq(q1_choices))
 
 ![](images/repro4.png)
 
-Check out  <https://www.repro4everyone.org/>
-
-
+Check out <https://www.repro4everyone.org/>
 :::
-
-
-
-
 
 ### Things to consider when it comes to research
 
@@ -93,7 +84,6 @@ ggplot(penguins,
   ) +
   theme_minimal()
 ```
-
 
 ### Quarto file
 
@@ -141,4 +131,3 @@ library(downloadthis)
 Check out the information life cycle <https://data.uq.edu.au/data-essentials/information-lifecycle>
 
 Check out the push for open research, research that is reproducible and accessible <https://www.repro4everyone.org/>
-

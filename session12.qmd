@@ -156,7 +156,7 @@ To run structure we use an dartR implementation of functions which is based on t
 The possible arguments are listed below:
 
 | parameter    | description                                                                                                                                                          |
-|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-------------|-----------------------------------------------------------|
 | k.range      | vector of values to for maxpop in multiple runs. If set to NULL, a single STRUCTURE run is conducted with maxpops groups. If specified, do not also specify maxpops. |
 | num.k.rep    | number of replicates for each value in k.range.                                                                                                                      |
 | label        | label to use for input and output files                                                                                                                              |
@@ -219,7 +219,7 @@ To get a plot for a certain level you need to specify K or at least a range of K
 
 ```{r}
 
-qmatnoad <- gl.plot.structure(srnoad, K=3:5)
+qmatnoad <- gl.plot.structure(srnoad, K=3, clumpak = TRUE)
 head(qmatnoad[[1]])
 ```
 
@@ -363,6 +363,12 @@ crocs <- readRDS("./data/crocs.rds")
 gl.map.interactive(crocs)
 ```
 
-## *Further Study*
+## Further Study: Foxes in Australia
 
-still to come...
+This is a data set (only a subset) of foxes in Australia, which I had lying around. Admittedly the dataset has been pruned, but maybe run a faststructure analysis to check for the population structure between foxes from the west and to the east. 
+
+```{r}
+foxes <- readRDS("../data/foxes.rds")
+gl.map.interactive(foxes, pop.labels = FALSE)
+```
+

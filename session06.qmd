@@ -20,17 +20,18 @@ library(hierfstat)
 
 The data is a subset of the genome-wide SNPs that are publicly available from the following study, @farquharson_restoring_2022.
 
-**The study aims were to investigate:**
+**The study aims were to investigate:** 
 
-1)  The current genetic diversity of Tasmanian devils across their entire range
-2)  Whether the genetic diversity of the insurance population is representative of the species
+1) The current genetic diversity of Tasmanian devils across their entire range
+2) Whether the genetic diversity of the insurance population is representative of the species
 
 ::: callout-note
-## Questions
 
--   How many SNPs are there?
--   How many individuals are in the dataset?
--   What is the distribution of individuals in populations?
+## Questions
+- How many SNPs are there? 
+- How many individuals are in the dataset?
+- What is the distribution of individuals in populations?
+
 :::
 
 ```{r}
@@ -54,10 +55,12 @@ tascols <- c("skyblue", "#74c476", "skyblue", "#74c476", "#FDD835", "orange", "s
 ### Report minor allele frequency (MAF)
 
 ::: callout-note
+
 ## Questions
 
--   Do you notice any patterns in minor allele frequency?
--   Are there differences between the overall MAF distribution and that of individual populations?
+- Do you notice any patterns in minor allele frequency?
+- Are there differences between the overall MAF distribution and that of individual populations?
+
 :::
 
 ```{r}
@@ -66,13 +69,14 @@ gl.report.maf(gl)
 
 ### Visualise population structure by PCoA
 
-Run the PCoA, with points shaded by locations.
+Run the PCoA, with points shaded by locations. 
 
 ::: callout-note
-## Questions
 
--   How would you describe any patterns in population structure?
--   How does the population structure of the insurance population (orange) compare to that of the wild?
+## Questions
+- How would you describe any patterns in population structure? 
+- How does the population structure of the insurance population (orange) compare to that of the wild?
+
 :::
 
 ```{r}
@@ -85,7 +89,7 @@ gl.pcoa.plot(pcoa, gl, pt.colors=tascols)
 
 ## Calculate allelic richness for each population
 
-This calculation requires the hierfstat package, so make sure the hierfstat is loaded using the library function.
+This calculation requires the hierfstat package, so make sure the  hierfstat is loaded using the library function.
 
 ```{r}
 
@@ -110,13 +114,16 @@ Calculate a measure of variance for allelic richness, e.g. standard error. Stand
 sd(ar$Bronte, na.rm=TRUE)/sqrt(nrow(ar) - length(which(is.na(ar$Bronte))))
 ```
 
-Boxplot of allelic richness per population:
+Boxplot of allelic richness per population: 
+
 
 ::: callout-note
+
 ## Questions
 
--   Which populations have the highest and the lowest allelic richness?
--   Can you think of any explanation?
+- Which populations have the highest and the lowest allelic richness? 
+- Can you think of any explanation?
+
 :::
 
 ```{r}
@@ -136,12 +143,14 @@ The function gl.report.heterozygosity reports the observed, expected, and unbias
 
 Calculate heterozygosity and inbreeding statistics for each population. Note that the plot is ordered by default from lowest to highest heterozygosity.
 
-::: callout-note
-## Questions
 
--   Which populations have the highest and lowest heterozygosity?
--   Within a population, do you notice any patterns of observed compared to expected heterozygosity from the graph?
--   What about Fis?
+::: callout-note
+
+## Questions
+- Which populations have the highest and lowest heterozygosity?
+- Within a population, do you notice any patterns of observed compared to expected heterozygosity from the graph? 
+- What about Fis?
+
 :::
 
 ```{r}
@@ -153,9 +162,10 @@ hets <- gl.report.heterozygosity(gl, method="pop",plot.colors.pop = tascols)
 We can use the same function, but switch the method from "pop" to "ind" to calculate individual-level observed heterozygosity. This can be useful if you are investigating invidiual-level diversity, and may also be useful in assessing the impact of sample quality and missing data on your results.
 
 ::: callout-note
-## Question
 
--   What are some possible explanations for outliers with low individual observed heterozygosity?
+## Question
+- What are some possible explanations for outliers with low individual observed heterozygosity?
+
 :::
 
 ```{r}
@@ -164,18 +174,22 @@ ind.hets <- gl.report.heterozygosity(gl, method="ind")
 
 ## Genetic differentiation by Fst
 
-Calculate pairwise Fsts between populations.
+Calculate pairwise Fsts between populations. 
 
 ::: callout-note
-## Questions
 
--   Which populations have the largest pairwise Fst value? Where are these populations located?
--   Compare the largest Fst value with the PCoA you made earlier. What do you notice?
+## Questions
+- Which populations have the largest pairwise Fst value? Where are these populations located? 
+- Compare the largest Fst value with the PCoA you made earlier. What do you notice?
+
 :::
 
 ```{r}
-fsts <- gl.fst.pop(gl, nboots=1000, percent=95)
-knitr::kable((fsts$Fsts))
+nclusters <- min(4,parallel::detectCores()) #run with 4 cores if available
+#to run faster nboots are set to 100 instead of 1000
+#takes about a minute to run
+fsts <- gl.fst.pop(gl, nboots=100, percent=95, nclusters = nclusters)
+knitr::kable((round(fsts$Fsts,3)))
 #summary(fsts$Fsts)
 ```
 

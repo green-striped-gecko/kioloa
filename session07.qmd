@@ -37,7 +37,6 @@ If you do not already have it, **download** the `utils.R` file:
 
 
 ::: download_btn
-
 ```{css}
 #| echo: false
 
@@ -71,7 +70,6 @@ library(downloadthis)
   )
 
 ```
-
 :::
 
 ## 1. Data preparation
@@ -124,7 +122,9 @@ imputed.sorted.gi <- sort_alleles(imputed.gi)
 imputed.gi@tab[1:10,1:6]
 imputed.sorted.gi@tab[1:10,1:6]
 
-
+#delelte intermediate files
+unlink(c('dat.geno', 'dat.lfmm', 'dat.snmfProject', 'dat.snmf', 'dat.lfmm_imputed.lfmm',
+         'individual_env_data.csv'), recursive = T)
 ```
 
 Format SNP data for ordination analysis in vegan. You want a matrix of allele counts per locus, per individual can use population allele frequencies instead
@@ -238,7 +238,7 @@ text(st_coordinates(sites_sf)[,1], st_coordinates(sites_sf)[,2], labels=sites_sf
 ```{r, output=FALSE}
 
 # format nicely and export as pdf
-{pdf("./images/env_rasters.pdf")
+{pdf("./env_rasters.pdf")
 for(i in 1:nlayers(ENV)) {
   rasterLayer <- ENV[[i]]
   
@@ -262,7 +262,6 @@ for(i in 1:nlayers(ENV)) {
 dev.off()}
 
 ```
-
 
 ### Extract site environmental data
 
@@ -308,7 +307,7 @@ y.lab <- paste0("PC2 (", paste(round((pc$CA$eig[2]/pc$tot.chi*100),2)),"%)")
 ```{r, eval=FALSE}
 # plot PCA
 
-{pdf(file = "./images/Mf_PCA.pdf", height = 6, width = 6)
+{pdf(file = "Mf_PCA.pdf", height = 6, width = 6)
 pcaplot <- plot(pc, choices = c(1, 2), type = "n", xlab=x.lab, ylab=y.lab, cex.lab=1)
 with(env.site, points(pc, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
 legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
@@ -326,8 +325,7 @@ dev.off()
 
 ```
 
-![](images/Mf_PCA.png)
-## 2. Variable filtering
+![](images/Mf_PCA.png) \## 2. Variable filtering
 
 ```{r}
 
@@ -356,22 +354,22 @@ So we have formatted genotypes, environmental data
 What about controlling for spatial population structure in the model?
 
 ::: callout-note
-
 ## Decision time:
 
-Decision time:
- 1. do I need to control for spatial structure?
+Decision time: 1. do I need to control for spatial structure?
+
+```         
+ No? Great!
+
+Yes? How do I do that?
  
-     No? Great!
+```
 
-    Yes? How do I do that?
-     
-- simple xy coordinates (or some transformation, MDS, polynomial...)
-- Principal Coordinates of Neighbourhood Matrix (PCNM; R package vegan)
-- Moran's Eigenvector Maps (R package memgene)
-- Fst, admixture Q values
-- population allele frequency covariance matrix (BayPass omega)
-
+-   simple xy coordinates (or some transformation, MDS, polynomial...)
+-   Principal Coordinates of Neighbourhood Matrix (PCNM; R package vegan)
+-   Moran's Eigenvector Maps (R package memgene)
+-   Fst, admixture Q values
+-   population allele frequency covariance matrix (BayPass omega)
 :::
 
 We are going to use the scaled allelic covariance (Ω) estimated by BayPass to control for spatial structure in the data, see BayPass and Gates et al. 2023
@@ -408,9 +406,10 @@ y.lab <- paste0("RDA2 (", paste(round((Mf.RDA$CCA$eig[2]/Mf.RDA$CCA$tot.chi*100)
 ```
 
 ### Plot RDA
+
 ```{r, eval=FALSE}
 #plot RDA1, RDA2
-{pdf(file = "./images/Mf_RDA.pdf", height = 6, width = 6)
+{pdf(file = "Mf_RDA.pdf", height = 6, width = 6)
 pRDAplot <- plot(Mf.RDA, choices = c(1, 2), type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
 with(env.site, points(Mf.RDA, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
 text(Mf.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", "WC_bio19"), col="blue", cex=0.6)
@@ -434,7 +433,7 @@ dev.off()}
 
 ## 4. Identify candidate loci
 
-Estimate p values following:\ <https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches> and the R function rdadapt (see <https://github.com/Capblancq/RDA-genome-scan>)
+Estimate p values following: <https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches> and the R function rdadapt (see <https://github.com/Capblancq/RDA-genome-scan>)
 
 ```{r}
 
@@ -485,6 +484,7 @@ write.csv(cand, "./data/RDA_candidates.csv", row.names = FALSE)
 ```
 
 ### Individual level
+
 Now let's have a look at an individual level biplot first expand environmental data from population to individual dataframe.
 
 ```{r}
@@ -536,7 +536,6 @@ dev.off()
 
 ```
 
-
 ```{r, include = FALSE}
 
 #plot RDA1, RDA2
@@ -548,11 +547,7 @@ legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, p
 dev.off()
 }
 
-unlink(c('dat.geno', 'dat.lfmm', 'dat.snmfProject', 'dat.snmf', 'dat.lfmm_imputed.lfmm',
-         'individual_env_data.csv'), recursive = T)
-
 ```
-
 
 ![](images/Mfcandidate_RDA.png)
 
