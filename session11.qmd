@@ -2,7 +2,7 @@
 
 *Session Presenters*
 
-![](images/Presentersxx.png)
+![](imaPresenters11.png)
 
 ### *Required packages*
 
@@ -13,7 +13,6 @@ knitr::opts_chunk$set(tidy = TRUE,
                       tidy.opts = list(width.cutoff = 72), 
                       cache = TRUE, 
                       echo = TRUE)
-knitr::opts_knit$set(root.dir = "C:/repositories/dartR_workshop/PopGenR/")
 switch(Sys.info()[['sysname']],
        Windows= {
          path.plink <- "./binaries/winbinaries"
@@ -117,7 +116,7 @@ We will use [Diana Robledo's](https://doi.org/10.1111/1755-0998.13844) function 
 
 ```{r}
 # loading gl2colony function from Diana Robledo 
-source("./Session 11 From Genes to Kin/functions/gl2colony.R")
+source("./functions/gl2colony.R")
 t3 <- t1_dup
 t3$other$ind.metrics$offspring <- "yes"
 t3$other$ind.metrics$mother <- "no"
@@ -222,7 +221,7 @@ t2 <- gl.filter.ld(t2,ld.report = ld_rep, threshold = 0.2, verbose = 5)
 
 We first run COANCESTRY ([Wang, 2011](https://doi.org/10.1111/j.1755-0998.2010.02885.x)) using [related](https://github.com/timothyfrasier/related) package and Wang's unbiased estimator ([Wang, 2017](https://doi.org/10.1038/hdy.2017.52)).
 
-```{r, warning=FALSE, results='hide', message=FALSE}
+```{r, eval = FALSE, warning=FALSE, results='hide', message=FALSE}
 # converting to related format 
 related <- gl2related(t2, save=FALSE)
 # using Wang's unbiased estimator
@@ -247,7 +246,7 @@ coan_col$Freq <- coan_col$Freq/2
 
 Now let's estimate kinship using new Wang's method which uses a likelihood approach as implemented in the software EMIBD9 ([Wang 2022](https://doi.org/10.1111/2041-210X.13963)).
 
-```{r, warning=FALSE, results='hide', message=FALSE}
+```{r, eval = FALSE, warning=FALSE, results='hide', message=FALSE}
 # Uncomment to run 
  # system.time(EMIBD9 <- gl.run.EMIBD9(t2,emibd9.path = path.EMIBD9))
 # user  system elapsed 
@@ -264,7 +263,7 @@ EMIBD9_col <- as.data.frame(as.table(as.matrix(EMIBD9_col)))
 
 Relatedness estimation using a genetic relationship matrix ([Lee et al., 2011](https://doi.org/10.1016/j.ajhg.2011.02.002)) as implemented in the program GCTA ([Yang et al., 2011](10.1016/j.ajhg.2010.11.011)).
 
-```{r, warning=FALSE, results='hide', message=FALSE}
+```{r, eval=FALSE, warning=FALSE, results='hide', message=FALSE}
 # function to read the GRM binary file
 ReadGRMBin <- function(prefix, AllN=FALSE, size=4){
   sum_i <- function(i){
@@ -340,7 +339,8 @@ GRM_col$Freq <- GRM_col$Freq/2
 
 ```{r, warning=FALSE, results='hide', message=FALSE}
 #Sibling/Parent-Offspring
-source("./Session 11 From Genes to Kin/functions/gl.grm.network_2.R")
+source("./functions/gl.grm.network_2.R")
+mat_coan <- readRDS('./data/session11coancestry_mat_coan.rds')
 grm_sib <- gl.grm.network_2(mat_coan, t2,
                             node.size = 10,
                             method_relatedness = "fr",
@@ -367,6 +367,15 @@ grm_first_cos <- gl.grm.network_2(mat_coan, t2,
                                   palette_discrete = gl.colors(type = "dis"),
                                   method = "kk",
                                   title="Coancestry relatedness > 0.125 \n(parent–offspring & full sibs + half sibs + first cousins) ")
+```
+
+```{r, include=FALSE}
+
+coan_col <- readRDS('./data/session11_coan_col.rds')
+EMIBD9_col <- readRDS('./data/session11_EMIBD9_col.rds')
+GCTA_col <- readRDS('./data/session11_GCTA_col.rds')
+GRM_col <- readRDS('./data/session11_GRM_col.rds')
+
 ```
 
 ```{r, warning=FALSE, results='hide', message=FALSE}
@@ -428,7 +437,7 @@ new_bird_grm <- gl.grm(new_bird,palette_convergent = gl.colors(type="con"))
 
 ### COANCESTRY
 
-```{r, warning=FALSE, results='hide', message=FALSE}
+```{r, eval = FALSE, warning=FALSE, results='hide', message=FALSE}
 new_bird_related <- gl2related(new_bird)
 # The mean relatedness for each clutch is calculated, with 1,000 bootstrap interactions performed to determine 95% confidence intervals.
 res_coancestry <- coancestry(new_bird_related,wang=2,ci95.num.bootstrap = 1000)
@@ -449,6 +458,11 @@ analysis_coancestry_2$clutch_1 <- as.factor(analysis_coancestry_2$clutch_1)
 ### Plotting
 
 All the individuals had a coefficient of relatedness within clutches greater than 0.25, with means within each clutch close to 0.50. We can therefore conclude that all individuals within each clutch were full siblings who share the same mother and father.
+
+```{r, include=FALSE}
+analysis_coancestry_2 <- readRDS('./data/session11_analysis_coancestry_2.rds')
+
+```
 
 ```{r, warning=FALSE, results='hide', message=FALSE}
 
@@ -507,11 +521,10 @@ oryx_gl <- gl.drop.ind(oryx_gl,ind.list = res_dup$ind.list.drop)
 
 Heatmap of the probabilities of identity by descent in the group formed by the herds of WWR-Oman and WWR-UAE. As described by Endelman & Jannink (68), each diagonal element has a mean that equals 1+f, where f is the inbreeding coefficient (i.e. the probability that the two alleles at a randomly chosen locus are IBD from the base population). As this probability lies between 0 and 1, the diagonal elements range from 1 to 2. Because the inbreeding coefficients are expressed relative to the current population, the mean of the off-diagonal elements is -(1+f)/n, where n is the number of loci. Yellow and red colours indicate those individuals that are more related to each other. The identification number of each individual is shown in the margins of the figure, where the last letter denotes whether the individual is male (M) or female (F).
 
-```{r, warning=FALSE, results='hide', message=FALSE}
+```{r, eval=FALSE, warning=FALSE, results='hide', message=FALSE}
 oryx_related_matrix_all <- gl.grm(oryx_gl,palette_convergent = gl.colors(type="con"))
-```
 
-```{r, warning=FALSE, results='hide', message=FALSE}
+
 gl.grm.network(oryx_related_matrix_all,
                oryx_gl)
 
@@ -519,7 +532,7 @@ gl.grm.network(oryx_related_matrix_all,
 
 ### SEQUOIA
 
-```{r, warning=FALSE, results='hide', message=FALSE}
+```{r, eval = FALSE, warning=FALSE, results='hide', message=FALSE}
 LifeHistData_2 <- as.data.frame(oryx_gl$ind.names)
 LifeHistData_2$Sex <- as.character(oryx_gl$other$ind.metrics$Gender)
 LifeHistData_2[LifeHistData_2=="Female"] <- 1
