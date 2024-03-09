@@ -19,20 +19,15 @@ library(dartR.data)
 
 ## [`dartR`](https://green-striped-gecko.github.io/dartR/)
 
-
-
 ##### From 1 package to 7
 
 ![](images/dartR7.png)
-
 
 ### Introduction
 
 ##### *An accessible genetic analysis platform for conservation, ecology and agriculture*
 
-`dartRverse` aims to support the installation of R packages of the
-dartRverse that are user-friendly and deliver a variety of analyses and pipelines on the one platform. Currently there are two core R packages that need to be
-installed to use dartR:
+`dartRverse` aims to support the installation of R packages of the dartRverse that are user-friendly and deliver a variety of analyses and pipelines on the one platform. Currently there are two core R packages that need to be installed to use dartR:
 
 -   dartR.base
 -   dartR.data
@@ -45,19 +40,9 @@ Additional packages are
 -   dartR.captive
 -   dartR.sexlinked
 
-`dartR` is a collaboration between the University of Canberra, CSIRO and
-Diversity Arrays Technology, and is supported with funding from the ACT
-Priority Investment Program, CSIRO and the University of Canberra.
+`dartR` is a collaboration between the University of Canberra, CSIRO and Diversity Arrays Technology, and is supported with funding from the ACT Priority Investment Program, CSIRO and the University of Canberra.
 
-
-
-<img src="images/UC.png" height="80"/>    
-<img src="images/csiro_logo.png" height="80"/>    
-<img src="images/DArT-removebg-preview.png" height="80"/>    
-<img src="images/ACT.png" height="80"/>
-
-
-
+<img src="images/UC.png" height="80"/>     <img src="images/csiro_logo.png" height="80"/>     <img src="images/DArT-removebg-preview.png" height="80"/>     <img src="images/ACT.png" height="80"/>
 
 ### `dartR`'s Reach
 

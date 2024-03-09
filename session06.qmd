@@ -72,7 +72,7 @@ maf_report <- gl.report.maf(gl)
 maf_report %>% 
   pivot_longer(cols = Bronte:wukalina) %>% 
 ggplot(aes(x = value, fill = name))+
-  geom_histogram(colour = 'grey')+
+  geom_histogram(colour = 'grey', bins = 30)+
   facet_wrap(~name)+
   theme_bw()+
   xlab('Minor Allele Frequency')+

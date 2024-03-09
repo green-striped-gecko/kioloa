@@ -499,7 +499,7 @@ Ordination analyses cannot handle missing data…
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ADMIXTURE results most likely 6 pops</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>imputed.gi <span class="ot">&lt;-</span> melfuR<span class="sc">::</span><span class="fu">impute.data</span>(Mf5000.genind, <span class="at">K =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-7_8c9fd6f08a05e495eff796a1729665c1">
+<div class="cell" data-hash="session07_cache/html/unnamed-chunk-7_1cfc990cf50d3595eb8acc9313bd2a6f">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order major/minor alleles (generally no reason to do this... but might be useful for someone)</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>imputed.sorted.gi <span class="ot">&lt;-</span> <span class="fu">sort_alleles</span>(imputed.gi)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -533,8 +533,7 @@ MBR_19       1       1       2       0       2       0
 MBR_1        2       0       1       1       2       0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#delelte intermediate files</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">c</span>(<span class="st">'dat.geno'</span>, <span class="st">'dat.lfmm'</span>, <span class="st">'dat.snmfProject'</span>, <span class="st">'dat.snmf'</span>, <span class="st">'dat.lfmm_imputed.lfmm'</span>,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">'individual_env_data.csv'</span>), <span class="at">recursive =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">c</span>(<span class="st">'dat.geno'</span>, <span class="st">'dat.lfmm'</span>, <span class="st">'dat.snmfProject'</span>, <span class="st">'dat.snmf'</span>, <span class="st">'dat.lfmm_imputed.lfmm'</span>), <span class="at">recursive =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Format SNP data for ordination analysis in vegan. You want a matrix of allele counts per locus, per individual can use population allele frequencies instead</p>
 <section id="individual-based" class="level3">

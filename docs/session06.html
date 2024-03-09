@@ -431,10 +431,7 @@ Questions
 <div class="cell" data-hash="session06_cache/html/unnamed-chunk-4_807e8f37dbe0ddacc895ab0c175e521f">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.maf</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="session06_cache/html/unnamed-chunk-6_6889d5daf367ffc74c8a100917b76a98">
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
+<div class="cell" data-hash="session06_cache/html/unnamed-chunk-6_69afb923720138f9e71bafe4723d09f1">
 <div class="cell-output-display">
 <p><img src="session06_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -460,7 +457,7 @@ Questions
 </div>
 </div>
 <div class="cell" data-hash="session06_cache/html/unnamed-chunk-7_11a9d834d4ac438753a1556bf118b977">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pcoa <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pcoa <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.pcoa 
   Processing genlight object with SNP data
@@ -475,7 +472,7 @@ Completed: gl.colors </code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pcoa, gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pcoa, gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.pcoa.plot 
   Processing an ordination file (glPca)
@@ -492,8 +489,8 @@ Completed: gl.colors </code></pre>
 <div class="cell-output-display">
 <p><img src="session06_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#visualise PCoA using the colour groupings of east/central/west/insurance population</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pcoa, gl, <span class="at">pt.colors=</span>tascols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#visualise PCoA using the colour groupings of east/central/west/insurance population</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pcoa, gl, <span class="at">pt.colors=</span>tascols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.pcoa.plot 
   Processing an ordination file (glPca)
@@ -517,28 +514,28 @@ Completed: gl.colors </code></pre>
 <h2 class="anchored" data-anchor-id="calculate-allelic-richness-for-each-population">Calculate allelic richness for each population</h2>
 <p>This calculation requires the hierfstat package, so make sure the hierfstat is loaded using the library function.</p>
 <div class="cell" data-hash="session06_cache/html/unnamed-chunk-8_51025165c834610f04883affcf078148">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#convert the genlight object to genind format</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>gi <span class="ot">&lt;-</span> <span class="fu">gl2gi</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#convert the genlight object to genind format</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>gi <span class="ot">&lt;-</span> <span class="fu">gl2gi</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl2gi 
   Processing genlight object with SNP data
 Matrix converted.. Prepare genind object...
 Completed: gl2gi </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#convert genind object to hierfstat format</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>hfstat <span class="ot">&lt;-</span> <span class="fu">genind2hierfstat</span>(gi)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate allelic richness</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>ar <span class="ot">&lt;-</span> <span class="fu">allelic.richness</span>(hfstat)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#convert genind object to hierfstat format</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>hfstat <span class="ot">&lt;-</span> <span class="fu">genind2hierfstat</span>(gi)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate allelic richness</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>ar <span class="ot">&lt;-</span> <span class="fu">allelic.richness</span>(hfstat)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "min.all" "Ar"     </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ar<span class="sc">$</span>min.all <span class="co"># rarefied to 12, the smallest sample size for a genotyped locus</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ar<span class="sc">$</span>min.all <span class="co"># rarefied to 12, the smallest sample size for a genotyped locus</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ar<span class="sc">$</span>Ar) <span class="co">#gives mean AR for each population</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ar<span class="sc">$</span>Ar) <span class="co">#gives mean AR for each population</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Bronte         Buckland       Fentonbury    ForestierMurdunna
  Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000    
@@ -569,12 +566,12 @@ Completed: gl2gi </code></pre>
  3rd Qu.:1.981   3rd Qu.:1.948   3rd Qu.:1.976  
  Max.   :2.000   Max.   :2.000   Max.   :2.000  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ar <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ar<span class="sc">$</span>Ar)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>mean.ar <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(ar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ar <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ar<span class="sc">$</span>Ar)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>mean.ar <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(ar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Calculate a measure of variance for allelic richness, e.g.&nbsp;standard error. Standard error = standard deviation / sqrt(n), where n is the number of genotyped loci</p>
 <div class="cell" data-hash="session06_cache/html/unnamed-chunk-9_e435c0b495eaef9a7c5f5b68d37088a4">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(ar<span class="sc">$</span>Bronte, <span class="at">na.rm=</span><span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">nrow</span>(ar) <span class="sc">-</span> <span class="fu">length</span>(<span class="fu">which</span>(<span class="fu">is.na</span>(ar<span class="sc">$</span>Bronte))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(ar<span class="sc">$</span>Bronte, <span class="at">na.rm=</span><span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">nrow</span>(ar) <span class="sc">-</span> <span class="fu">length</span>(<span class="fu">which</span>(<span class="fu">is.na</span>(ar<span class="sc">$</span>Bronte))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01017173</code></pre>
 </div>
@@ -597,16 +594,16 @@ Questions
 </div>
 </div>
 <div class="cell" data-hash="session06_cache/html/unnamed-chunk-10_5cf2015a3b587dfc28f2539d54570a2a">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#first, extend the margins of the graphing window to fit long axis labels</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ar, <span class="at">ylab=</span><span class="st">"Allelic richness"</span>, <span class="at">las=</span><span class="dv">2</span>, <span class="at">col=</span>tascols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#first, extend the margins of the graphing window to fit long axis labels</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ar, <span class="at">ylab=</span><span class="st">"Allelic richness"</span>, <span class="at">las=</span><span class="dv">2</span>, <span class="at">col=</span>tascols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="session06_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#order boxplot to group locations by west, central, east, insurance population</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>ar.ordered <span class="ot">&lt;-</span> ar[,<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">13</span>, <span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">8</span>)]</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>tascols.ordered <span class="ot">&lt;-</span> tascols[<span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">14</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">11</span>,<span class="dv">9</span>,<span class="dv">7</span>,<span class="dv">13</span>,<span class="dv">4</span>,<span class="dv">12</span>,<span class="dv">15</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">8</span>)]</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ar.ordered, <span class="at">ylab=</span><span class="st">"Allelic richness"</span>, <span class="at">las=</span><span class="dv">2</span>, <span class="at">col=</span>tascols.ordered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#order boxplot to group locations by west, central, east, insurance population</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ar.ordered <span class="ot">&lt;-</span> ar[,<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">13</span>, <span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">8</span>)]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>tascols.ordered <span class="ot">&lt;-</span> tascols[<span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">14</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">11</span>,<span class="dv">9</span>,<span class="dv">7</span>,<span class="dv">13</span>,<span class="dv">4</span>,<span class="dv">12</span>,<span class="dv">15</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">8</span>)]</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ar.ordered, <span class="at">ylab=</span><span class="st">"Allelic richness"</span>, <span class="at">las=</span><span class="dv">2</span>, <span class="at">col=</span>tascols.ordered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="session06_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
 </div>
@@ -634,9 +631,9 @@ Questions
 </div>
 </div>
 <div class="cell" data-hash="session06_cache/html/unnamed-chunk-11_1f57b9130413b486dc09e3e9ce3e8633">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#use the ? to search the help for a function and see what options can be specified</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#?gl.report.heterozygosity</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>hets <span class="ot">&lt;-</span> <span class="fu">gl.report.heterozygosity</span>(gl, <span class="at">method=</span><span class="st">"pop"</span>,<span class="at">plot.colors.pop =</span> tascols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#use the ? to search the help for a function and see what options can be specified</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#?gl.report.heterozygosity</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>hets <span class="ot">&lt;-</span> <span class="fu">gl.report.heterozygosity</span>(gl, <span class="at">method=</span><span class="st">"pop"</span>,<span class="at">plot.colors.pop =</span> tascols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -716,7 +713,7 @@ Question
 </div>
 </div>
 <div class="cell" data-hash="session06_cache/html/unnamed-chunk-12_4da3ef86f5acec3956caebcd900b5816">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ind.hets <span class="ot">&lt;-</span> <span class="fu">gl.report.heterozygosity</span>(gl, <span class="at">method=</span><span class="st">"ind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ind.hets <span class="ot">&lt;-</span> <span class="fu">gl.report.heterozygosity</span>(gl, <span class="at">method=</span><span class="st">"ind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -1055,16 +1052,16 @@ Questions
 </div>
 </div>
 <div class="cell" data-hash="session06_cache/html/unnamed-chunk-13_7b88300c9d2c75e4ae42379ba5a5a8aa">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>nclusters <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="dv">4</span>,parallel<span class="sc">::</span><span class="fu">detectCores</span>()) <span class="co">#run with 4 cores if available</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#to run faster nboots are set to 100 instead of 1000</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co">#takes about a minute to run</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>fsts <span class="ot">&lt;-</span> <span class="fu">gl.fst.pop</span>(gl, <span class="at">nboots=</span><span class="dv">100</span>, <span class="at">percent=</span><span class="dv">95</span>, <span class="at">nclusters =</span> nclusters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>nclusters <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="dv">4</span>,parallel<span class="sc">::</span><span class="fu">detectCores</span>()) <span class="co">#run with 4 cores if available</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#to run faster nboots are set to 100 instead of 1000</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">#takes about a minute to run</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>fsts <span class="ot">&lt;-</span> <span class="fu">gl.fst.pop</span>(gl, <span class="at">nboots=</span><span class="dv">100</span>, <span class="at">percent=</span><span class="dv">95</span>, <span class="at">nclusters =</span> nclusters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.fst.pop 
   Processing genlight object with SNP data
 Completed: gl.fst.pop </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>((<span class="fu">round</span>(fsts<span class="sc">$</span>Fsts,<span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>((<span class="fu">round</span>(fsts<span class="sc">$</span>Fsts,<span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -1379,7 +1376,7 @@ Completed: gl.fst.pop </code></pre>
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(fsts$Fsts)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(fsts$Fsts)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="further-study" class="level2">
