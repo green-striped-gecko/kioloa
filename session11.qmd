@@ -2,7 +2,7 @@
 
 *Session Presenters*
 
-![](imaPresenters11.png)
+![](images/Presenters11.png)
 
 ### *Required packages*
 

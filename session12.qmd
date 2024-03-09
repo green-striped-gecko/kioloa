@@ -18,8 +18,6 @@ library(dartR.popgen)
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
 
-## Session Content
-
 ## **Genetic Distance and Visualization**
 
 ### Load data and explore
@@ -224,6 +222,8 @@ qmatnoad <- readRDS('./data/session12_qmatnoad.rds')
 qmatnoad <- gl.plot.structure(srnoad, K=3, clumpak = TRUE)
 ```
 
+![](images/session12_structureK3.png)
+
 ```{r}
 head(qmatnoad[[1]])
 ```
@@ -277,6 +277,8 @@ qmatad <- readRDS('./data/session12_qmatad.rds')
 ```{r, eval = F}
 qmatad <- gl.plot.structure(srad, K=4)
 ```
+
+![](images/session12_structureK4.png)
 
 ```{r}
 head(qmatad[[1]])
@@ -373,7 +375,9 @@ crocs <- readRDS("./data/crocs.rds")
 gl.map.interactive(crocs)
 ```
 
-## Further Study: Foxes in Australia
+## *Further Study*
+
+### Foxes in Australia
 
 This is a data set (only a subset) of foxes in Australia, which I had lying around. Admittedly the dataset has been pruned, but maybe run a faststructure analysis to check for the population structure between foxes from the west and to the east.
 

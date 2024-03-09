@@ -35,7 +35,6 @@ source("utils.R")
 
 If you do not already have it, **download** the `utils.R` file:
 
-
 ::: download_btn
 ```{css}
 #| echo: false
@@ -235,7 +234,7 @@ text(st_coordinates(sites_sf)[,1], st_coordinates(sites_sf)[,2], labels=sites_sf
 
 ##### Save PDF
 
-```{r, output=FALSE}
+```{r, eval=FALSE}
 
 # format nicely and export as pdf
 {pdf("./env_rasters.pdf")

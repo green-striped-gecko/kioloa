@@ -403,8 +403,8 @@ table(data.gl@other$ind.metrics$sex, useNA = "ifany")
 
 ```{r, results="hold"}
 #check if you can increase the number of cores
-#ncores <- min(4,parallel::detectCores())
-#resbull <- dartR.sexlinked::gl.filter.sexlinked(gl = data.gl, system = "xy", plots = TRUE, ncores = ncores)
+# ncores <- min(4,parallel::detectCores())
+# resbull <- dartR.sexlinked::gl.filter.sexlinked(gl = data.gl, system = "xy", plots = TRUE, ncores = ncores)
 #load results from previous run
 resbull <- readRDS("./data/resbull.rds")
 ```

@@ -243,8 +243,7 @@ This file is now your starting file for other filtering
 
 ##### **Filtering data for population structure and phylogenetic analyses**
 
-Loci on the same fragment and missing data are not well supported in these analyses, as they expect all loci to be independently inherited. This means very very close loci are not going to be split through recombination and should be removed. 
-Structure-like analyses dislike missing data. We are also going to filter harder than normal here just so that we can see a result within the workshop.
+Loci on the same fragment and missing data are not well supported in these analyses, as they expect all loci to be independently inherited. This means very very close loci are not going to be split through recombination and should be removed. Structure-like analyses dislike missing data. We are also going to filter harder than normal here just so that we can see a result within the workshop.
 
 ```{r, output = FALSE}
 gl.report.callrate(gl.clean)
@@ -289,20 +288,19 @@ You can write this file out for various analyses that we will not go into here (
 This is a structure-like analysis called SNMF. This code is not all you would need to publish this result, but it is a good first look. You need to test your parameter settings (alpha and tolerance) in a real analysis.
 
 ```{r, output = FALSE}
-
 #takes quite a while to run (about 15 minutes)
 #in case you want to run it uncomment the following lines and comment the readRDS line
 
 # LEA requires the genotype style file
-#gl2faststructure(gl.structure, outfile = "gl_structure.fstr",
-#                 outpath = './data/')
-#struct2geno("./data/gl_structure.fstr", ploidy = 2, FORMAT = 2) 
+gl2faststructure(gl.structure, outfile = "gl_structure.fstr",
+                outpath = './data/')
+struct2geno("./data/gl_structure.fstr", ploidy = 2, FORMAT = 2)
 ###this hates any loci with all heterozygotes
 
-#snmf.Sy.K1_8.10 = snmf("./data/gl_structure.fstr.geno", K = 1:8,
-#                       entropy = T, ploidy = 2, project="new", repetitions = 10)
+snmf.Sy.K1_8.10 = snmf("./data/gl_structure.fstr.geno", K = 1:8,
+                      entropy = T, ploidy = 2, project="new", repetitions = 10)
 
-snmf.Sy.K1_8.10 <- readRDS("./data/snmf.Sy.K1_8.10.rds")
+
 
 ```
 
@@ -334,7 +332,7 @@ One thing that regularly changes with MAF filters is the amount of variance expl
 
 ### Filtering for Tajima's D
 
-Now we are going to look at how filtering can affect your understanding of demographic processes that population is undergoing. In this case we are going to look at the metric Tajima's D. Significant negative values of Tajima's D are due to an excess of rare alleles and are consistent with range expansion. Significant positive values are associated with population contraction. 
+Now we are going to look at how filtering can affect your understanding of demographic processes that population is undergoing. In this case we are going to look at the metric Tajima's D. Significant negative values of Tajima's D are due to an excess of rare alleles and are consistent with range expansion. Significant positive values are associated with population contraction.
 
 The moral of the story here is that rare alleles matter, especially when looking at population demographics! Lets look at how singletons impact our estimations of whether a population is expanding or contracting.
 
@@ -416,8 +414,10 @@ get_tajima_D <- function(x){
 
 We are going to focus on key filters and how they impact estimates
 
-1.  1.  Minor allele frequency (MAF) filtering, which explicitly removes rare alleles
+1.  Minor allele frequency (MAF) filtering, which explicitly removes rare alleles
+
 2.  No MAF allele filtering and taking all data as it comes
+
 3.  No MAF filtering but filtering on read depth so we are confident in our rare alleles
 
 #### 1. **MAF filtering**
