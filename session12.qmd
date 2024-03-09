@@ -154,7 +154,7 @@ To run structure we use an dartR implementation of functions which is based on t
 The possible arguments are listed below:
 
 | parameter    | description                                                                                                                                                          |
-|----------------|--------------------------------------------------------|
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | k.range      | vector of values to for maxpop in multiple runs. If set to NULL, a single STRUCTURE run is conducted with maxpops groups. If specified, do not also specify maxpops. |
 | num.k.rep    | number of replicates for each value in k.range.                                                                                                                      |
 | label        | label to use for input and output files                                                                                                                              |
@@ -214,6 +214,7 @@ The Q matrix is essentially a matrix where each row corresponds to an individual
 The values in the Q matrix can be interpreted as the fraction of an individual's ancestry that comes from each of the K clusters. The Q matrix is often visualized using bar plots or stacked bar graphs, where each individual's ancestry proportions are shown as segments of a bar colored differently for each cluster.
 
 To get a plot for a certain level you need to specify K or at least a range of K.
+
 ```{r, include=FALSE}
 qmatnoad <- readRDS('./data/session12_qmatnoad.rds')
 ```
@@ -233,7 +234,6 @@ head(qmatnoad[[1]])
 ```{r structure map}
 gm <- gl.map.structure(qmat = qmatnoad, x = possums, K=3, scalex=1, scaley=0.5 )
 ```
-
 
 ::: callout-note
 ## Exercise: Study the results using different Ks
@@ -273,7 +273,6 @@ Hence lets look at the qmat (for K=4) and then you can check the same for K=5
 qmatad <- readRDS('./data/session12_qmatad.rds')
 ```
 
-
 ```{r, eval = F}
 qmatad <- gl.plot.structure(srad, K=4)
 ```
@@ -290,7 +289,6 @@ An the spatial version
 gm <- gl.map.structure(qmat = qmatad, x = possums,K=4, scalex=1, scaley=0.5 )
 
 ```
-
 
 ## Faststructure
 
