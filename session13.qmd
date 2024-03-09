@@ -4,7 +4,7 @@
 
 ![](images/Presenters13.png)
 
-## Required packages
+## *Required packages*
 
 ```{r, warning=FALSE, message=FALSE}
 library(dartRverse) 
@@ -19,8 +19,6 @@ library(otuSummary)
 ```
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
-
-## Session Content
 
 ## Geneflow between Karyotypes
 
@@ -60,7 +58,6 @@ popcolors <- c(East = "#0571b0", North = "#404040",
 karyocolors <- c("MM" = "red", "MA" = "black", "AA" = "blue")
 
 ```
-
 
 ```{r}
 ## pcoa ------------------------------------------------------------------------
@@ -124,7 +121,6 @@ gl.ibd(vac.gl17, distance = "propShared",
 gl.ibd(vac.gl18, distance = "propShared",
                    paircols = "pop", Dgeo_trans = "Dgeo")
 ```
-
 
 ```{r}
 ## reviewer figures -------------------------------------------------------------
@@ -415,14 +411,10 @@ vac.pops_temp
 
 ```
 
-
-
-## Further Study
+## *Further Study*
 
 Link to github repository of GENESPACE: <https://github.com/jtlovell/GENESPACE/tree/master>
-
 
 @dobry_fixed_2023
 
 @dobry_widespread_2023
-

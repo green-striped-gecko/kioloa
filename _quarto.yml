@@ -3,11 +3,12 @@ project:
   output-dir: docs
 book:
   title: Kioloa PopGen
-  author: Bernd Gruber, Arthur Georges, Carlo Pacioni, Luis Mijangos
+  author: Bernd Gruber, Arthur Georges, Carlo Pacioni, Luis Mijangos, and Emily Stringer
   date: 02/28/2024
   chapters:
   - index.qmd
   - schedule.qmd
+  - speakers.qmd
   - install.qmd
   - session01.qmd
   - session02.qmd

@@ -2,28 +2,49 @@
 
 *Session Presenters*
 
-![](images/Presentersxx.png)
+![](images/Presenters9.png)
 
-## Required packages
+## *Required packages*
 
 ```{r, eval=FALSE}
-library(dartR.base)
+library(dartRverse)
 ```
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
 
-## Session Content
+::: callout-caution
+## external software
 
-Still to come...
+This session will introduce a number of software programs for phylogenetics,
+for example:
 
-## EXERCISE
+* SVDquarets
+* IQTree2 
+* TreeMix 
 
-::: callout-note
-## Exercise
-
-![](images/task.png){#id .class width="48" height="48"} Still to come...
 :::
 
-## Further Study
+## Introduction
+Phylogenetics is the study of the evolutionary relationships among entities whether they be species, lineages within species, genes or proteins. The objective of phylogenetic analysis is to recover the evolutionary history of a target group of organisms.
+
+In the absence of fossil material, or as a complement to the information contained in fossils, phylogenetic relationships are inferred from data associated with heritable traits such DNA sequences, amino acid sequences or morphological attributes. These data are collected from individuals collected from a snapshot in time, the present.
+
+From the patterns so revealed, a defensible phylogenetic history can be inferred. As such, the fodder of phylogenetics is a matrix of individuals by traits (e.g. a genetic locus), with the body of the matrix containing the character state for each individual (e.g. DNA sequence).
+
+The end product of a phylogenetic analysis is a phylogenetic tree which represents the inferred evolutionary relationships – the pattern of ancestry and descent in the form of a bifurcating tree.
+Unfortunately, the evolutionary history of a group of organisms is not uniquely defined by the data we can collect from the extant terminal entities or fossils. The challenge is to extract the phylogenetic signal in the context of a substantial body of noise. This noise arises from homoplasy, that is, arises by chance under drift or by convergence under selection.
+
+The phylogenetic tree that emerges from the analysis as the best representation of the evolutionary history of the target group can be the one most parsimoniously consistent with available data, or the one most likely given the available data, or the best guess given the available data and some additional relevant prior knowledge.
+
+In this sense, a phylogenetic tree should be viewed as a phylogenetic hypothesis, one to be tested in the light of new evidence as it comes to hand. This mindset encourages collection of additional data to address areas of contention rather than focussing on confirming areas with unqualified support
+
+
+## Phylogenetics Tutorial
+
+{{< pdf tutorials/Tutorial_phylogenetics_9-Mar-2024.pdf width=100% height=600 >}}
+
+
+
+## **Further Study**
 
 still to come...

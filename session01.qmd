@@ -17,7 +17,49 @@ library(dartR.data)
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
 
-## `dartR`'s Reach
+## [`dartR`](https://green-striped-gecko.github.io/dartR/)
+
+
+
+##### From 1 package to 7
+
+![](images/dartR7.png) *See the section* [Install dartRverse](install.qmd) *to learn about the reasoning behind how the dartRverse came to be...*
+
+
+### Introduction
+
+##### *An accessible genetic analysis platform for conservation, ecology and agriculture*
+
+`dartRverse` aims to support the installation of R packages of the
+dartRverse that are user-friendly and deliver a variety of analyses and pipelines on the one platform. Currently there are two core R packages that need to be
+installed to use dartR:
+
+-   dartR.base
+-   dartR.data
+
+Additional packages are
+
+-   dartR.sim (functions to simulate SNP data)
+-   dartR.spatial (spatial analysis)
+-   dartR.popgenomics (popgenomics analysis)
+-   dartR.captive
+-   dartR.sexlinked
+
+`dartR` is a collaboration between the University of Canberra, CSIRO and
+Diversity Arrays Technology, and is supported with funding from the ACT
+Priority Investment Program, CSIRO and the University of Canberra.
+
+
+
+<img src="images/UC.png" height="80"/>    
+<img src="images/csiro_logo.png" height="80"/>    
+<img src="images/DArT-removebg-preview.png" height="80"/>    
+<img src="images/ACT.png" height="80"/>
+
+
+
+
+### `dartR`'s Reach
 
 ![](images/dartr_reach.png){#id .class width="500" fig-align="centre"}
 
@@ -34,12 +76,6 @@ You can also learn more about the methods by checking out the tutorial on **Data
 #### Their mission:
 
 ![](images/dart_mission.png)
-
-## The `dartRverse`
-
-#### From 1 package to 7
-
-![](images/dartR7.png) *See the section* [Install dartRverse](install.qmd) *to learn about the reasoning behind how the dartRverse came to be...*
 
 ## The magical world of RStudio Cloud
 
