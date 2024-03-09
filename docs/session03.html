@@ -54,26 +54,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -164,6 +145,12 @@ div.csl-indent {
   <div class="sidebar-item-container"> 
   <a href="./schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Program</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./speakers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Speaker Bios</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -372,10 +359,10 @@ div.csl-indent {
 <section id="estimating-heterozygosity-70-callrate" class="level2">
 <h2 class="anchored" data-anchor-id="estimating-heterozygosity-70-callrate">1. Estimating heterozygosity: 70% callrate</h2>
 <p><em>How do estimates of heterozygosity change as the number of individuals changes in your SNP calling?</em></p>
-<p>This uses data from Litoria rubella, a very abundant and widespread frog species we are using data following <a href="https://onlinelibrary.wiley.com/doi/10.1111/1755-0998.13947" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/1755-0998.13947</a>. Let’s focus on the Kimberley, where we have lots of samples, and we expect the diversity to be really high because there are millions of them everywhere. SNPs were called on different numbers of individuals, in increments of 5 using the Stacks pipeline. We are only going to do a simple filter for call rates because we already filtered for allele depth in Stacks. SNPs were called independent of other populations, which we will get to later.</p>
+<p>This uses data from Litoria rubella, a very abundant and widespread frog species. We are using data following <a href="https://onlinelibrary.wiley.com/doi/10.1111/1755-0998.13947" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/1755-0998.13947</a>. Let’s focus on the Kimberley, where we have lots of samples, and we expect the diversity to be really high because there are millions of them everywhere. SNPs were called on different numbers of individuals, in increments of 5 using the Stacks pipeline. We are only going to do a simple filter for call rates because we already filtered for allele depth in Stacks. SNPs were called independent of other populations, which we will get to later.</p>
 <section id="load-data" class="level3">
 <h3 class="anchored" data-anchor-id="load-data">Load data</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-2_6d7b8e1ff8d032f10baa528d14c76f8f">
+<div class="cell" data-hash="session03_cache/html/unnamed-chunk-2_52228a6fc292bc1f97f79aded52f0377">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">'./data/Session3_data.RData'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -941,12 +928,12 @@ Completed: gl.report.heterozygosity </code></pre>
 </section>
 <section id="plotting-results" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-results">Plotting results</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-4_a60982ad5201acd5535f498fce980804">
+<div class="cell" data-hash="session03_cache/html/unnamed-chunk-4_36a006897766bfcf045b3e1d564318a5">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_0<span class="fl">.7</span>callrate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(heterozygosity_reports_df, <span class="fu">aes</span>(<span class="at">x =</span> ObjectName, <span class="at">y =</span> Ho)) <span class="sc">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">65</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Observed Heterozygosity by Sample number"</span>, <span class="at">x =</span> <span class="st">"Sample Number"</span>, <span class="at">y =</span> <span class="st">"Observed Heterozygosity (Ho)"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Observed Heterozygosity by Sample number"</span>, <span class="at">x =</span> <span class="st">"Sample Number"</span>, <span class="at">y =</span> <span class="st">"Observed Heterozygosity (Ho) at 0.7 Call Rate"</span>)</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_0<span class="fl">.7</span>callrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -963,7 +950,7 @@ Sampling
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>As you can see, different numbers samples can substantially change your heterozygosity estimate.</p>
+<p>As you can see, different numbers of samples can substantially change your heterozygosity estimate.</p>
 </div>
 </div>
 </section>
@@ -973,7 +960,7 @@ Sampling
 <p><em>Lets redo our heterozygosity estimates, but see how changing your call rate filter impacts estimates</em></p>
 <section id="reload-data" class="level3">
 <h3 class="anchored" data-anchor-id="reload-data">Reload data</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-5_5cd2b90fd9a97392a09cc77257e6980b">
+<div class="cell" data-hash="session03_cache/html/unnamed-chunk-5_e8da821f9ebac8d99cafde431c1d4b03">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reload data</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">'./data/Session3_data.RData'</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># List all object names in the environment</span></span>
@@ -991,7 +978,7 @@ Sampling
 <span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  genlight_object <span class="ot">&lt;-</span> kimberley[[name]]</span>
 <span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply the filter call rate function</span></span>
 <span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Assuming gl.filter.callrate is a function that operates on a genlight object</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  filtered_object <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(genlight_object, <span class="at">threshold =</span> .<span class="dv">95</span>, <span class="at">mono.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>   filtered_object <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(genlight_object, <span class="at">threshold =</span> .<span class="dv">95</span>, <span class="at">mono.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Assign the filtered object back to the environment with a new name</span></span>
 <span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assign</span>(<span class="fu">paste0</span>(name, <span class="st">"_0.95"</span>), filtered_object)</span>
 <span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1542,7 +1529,7 @@ Completed: gl.report.heterozygosity </code></pre>
 </section>
 <section id="plotting-results-1" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-results-1">Plotting results</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-7_32abc06dd1fb8450b669d43b4fa19eda">
+<div class="cell" data-hash="session03_cache/html/unnamed-chunk-7_586c37063cd34e3345fd8b7ec4de144a">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example using ggplot2 to plot the data</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_0<span class="fl">.95</span>callrate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(heterozygosity_reports_df_0<span class="fl">.95</span>, <span class="fu">aes</span>(<span class="at">x =</span> ObjectName, <span class="at">y =</span> Ho)) <span class="sc">+</span></span>
@@ -1550,9 +1537,8 @@ Completed: gl.report.heterozygosity </code></pre>
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">65</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Observed Heterozygosity by Sample number 0.95 Call Rate"</span>,</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Sample Number"</span>, <span class="at">y =</span> <span class="st">"Observed Heterozygosity (Ho)"</span>)</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_0<span class="fl">.95</span>callrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Sample Number"</span>, <span class="at">y =</span> <span class="st">"Observed Heterozygosity (Ho) at 0.95 Call Rate"</span>)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_0<span class="fl">.95</span>callrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="session03_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1572,7 +1558,7 @@ Call rate filters
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Higher call rate filters can reduce your slightly reduce your heterozygosity estimate</p>
+<p>Higher call rate filters can reduce your slightly reduce your heterozygosity estimate, but the major issue is sample number.</p>
 </div>
 </div>
 </section>
@@ -1580,7 +1566,7 @@ Call rate filters
 <section id="estimating-heterozygosity-even-sampling" class="level2">
 <h2 class="anchored" data-anchor-id="estimating-heterozygosity-even-sampling">3. Estimating heterozygosity: Even sampling</h2>
 <p><em>does subsetting to have the same sample numbers fix the issue?</em></p>
-<p>Let’s compare heterozygosity when SNPs are called on 5 individuals, versus called on 40 individuals and then is subset to 5 individuals.</p>
+<p>Let’s compare heterozygosity when SNPs are called on 5 individuals, versus called on 40 individuals and then subset to 5 individuals.</p>
 <p>If you called SNPs on more individuals than you wanted to make them equal, can you just remove individuals without re-calling SNPS? Let’s test.</p>
 <section id="subsampling" class="level3">
 <h3 class="anchored" data-anchor-id="subsampling">Subsampling</h3>
@@ -1967,7 +1953,7 @@ subsampling
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There are some minor differences but it’s not too bad</p>
+<p>There are some minor differences but it’s not too bad so this may be okay in some circumstances.</p>
 </div>
 </div>
 </section>
@@ -2182,7 +2168,7 @@ Completed: gl.report.heterozygosity </code></pre>
 </section>
 <section id="central" class="level4">
 <h4 class="anchored" data-anchor-id="central">Central</h4>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-11_8ea934b6bf194efd6b3060aa45870a4c">
+<div class="cell" data-hash="session03_cache/html/unnamed-chunk-11_cf3f0fd1a5a15af8dfa34567b3a9c9f2">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create a list of the central australian genlights</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>central_names <span class="ot">&lt;-</span> <span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">"^Central"</span>)</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="co">#put all the genlights into a mega list</span></span>
@@ -2202,7 +2188,7 @@ Completed: gl.report.heterozygosity </code></pre>
 <span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#filter on call rate</span></span>
 <span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(x, <span class="at">threshold =</span> .<span class="dv">7</span>)</span>
+<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a> x <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(x, <span class="at">threshold =</span> .<span class="dv">7</span>)</span>
 <span id="cb77-21"><a href="#cb77-21" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb77-22"><a href="#cb77-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply the function</span></span>
 <span id="cb77-23"><a href="#cb77-23" aria-hidden="true" tabindex="-1"></a>  report <span class="ot">&lt;-</span> <span class="fu">gl.report.heterozygosity</span>(x)</span>
@@ -2369,11 +2355,11 @@ Subsampling
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>so we’re not seeing too much impact of subsampling if SNPs are called separately on populations.</p>
+<p>So we’re not seeing too much impact of subsampling if SNPs are called separately on populations.</p>
 <p><strong>BUT</strong>, BUT, BUT, BUT, BUT, BUT, BUT…</p>
-<p>The kimberley population has the highest actual heterozygosity (see the paper) the difference here is that this population lost a lot of variable sites because 7% of the variable sites have more than two alleles So a comparison between Central &amp; SE and Kimberley Rubella would find the highest in the wrong population.</p>
+<p>The Kimberley population has the highest actual heterozygosity (see the paper). The difference here is that this population lost a lot of variable sites because more than 5% (or &gt;35k) of the variable sites have more than two alleles. So a comparison between Central, Southeast and Kimberley Litoria rubella would find the highest heterozygosity in the wrong population.</p>
 <p><strong>This is very problematic and is an ongoing bioinformatic issue.</strong></p>
-<p>Therefore, calling SNPs separately on populations and keeping sample sizesthe same does not resolve the issues with heterozygosity based on SNPs.</p>
+<p>Therefore, calling SNPs separately on populations and keeping sample sizes the same does not resolve the issues with heterozygosity based on SNPs.</p>
 </div>
 </div>
 </section>
@@ -2447,7 +2433,7 @@ SouthEast 0.004987 0.091166 0.254158    NA
 Completed: gl.report.heterozygosity </code></pre>
 </div>
 </div>
-<p>We now see that our heterozygosity if found to be highest in the Kimberley and lowest in Central Australia, which is true.</p>
+<p>We now see that our heterozygosity is found to be highest in the Kimberley and lowest in Central Australia, which is true.</p>
 <section id="calling-snps-together-but-with-different-sample-sizes" class="level3">
 <h3 class="anchored" data-anchor-id="calling-snps-together-but-with-different-sample-sizes">Calling SNPs together but with different sample sizes</h3>
 <p>Lots of times we have different numbers of samples… so what does this do to our estimates? Lets look at what happens when we have different sample numbers across all populations</p>
@@ -2536,9 +2522,10 @@ Take away
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>What you need to take away here is that as the sample size of our most diverse population grows, the less diverse populations become more similar in this case, if you use really unequal sample sizes, you can get so biased that your less diverse population can be calculated as more diverse than your most diverse population.</p>
+<p>What you need to take away is that as the sample size of our most diverse population grows, the less diverse populations become more similar. In this case, if you use really unequal sample sizes, your results get so biased that your less diverse population can be calculated as more diverse than your most diverse population.</p>
 <section id="think-of-the-conservation-implications" class="level4">
 <h4 class="anchored" data-anchor-id="think-of-the-conservation-implications"><strong>Think of the conservation implications!</strong></h4>
+<p>In a full analysis of all the data, with unequal sample numbers and SNPs called on all populations, we got a result that the Kimberley population was the least diverse. This would then result in a direction that the most genetically important population is actually one of the least.</p>
 </section>
 </div>
 </div>
@@ -2560,17 +2547,9 @@ SNP-based heterozygosity
 </section>
 <section id="further-study" class="level2">
 <h2 class="anchored" data-anchor-id="further-study"><em>Further Study</em></h2>
-<p>Jason Dobry will be giving a detailed tutorial on combining DArTseq data with whole genome sequencing in <a href="./session13.html">session 13</a>. The associated papers are <span class="citation" data-cites="dobry_fixed_2023">Dobry, Zhu, et al. (<a href="references.html#ref-dobry_fixed_2023" role="doc-biblioref">2023</a>)</span> and <span class="citation" data-cites="dobry_widespread_2023">Dobry, Wapstra, et al. (<a href="references.html#ref-dobry_widespread_2023" role="doc-biblioref">2023</a>)</span></p>
+<p>still to come…</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-dobry_widespread_2023" class="csl-entry" role="listitem">
-Dobry, Jason, Erik Wapstra, Emily J. Stringer, Bernd Gruber, Janine E. Deakin, and Tariq Ezaz. 2023. <span>“Widespread Chromosomal Rearrangements Preceded Genetic Divergence in a Monitor Lizard, <span>Varanus</span> Acanthurus (<span>Varanidae</span>).”</span> <em>Chromosome Research</em> 31 (1): 9. <a href="https://doi.org/10.1007/s10577-023-09715-x">https://doi.org/10.1007/s10577-023-09715-x</a>.
-</div>
-<div id="ref-dobry_fixed_2023" class="csl-entry" role="listitem">
-Dobry, Jason, Zexian Zhu, Qi Zhou, Erik Wapstra, Janine E Deakin, and Tariq Ezaz. 2023. <span>“Fixed <span>Allele</span> <span>Differences</span> <span>Associated</span> <span>With</span> the <span>Centromere</span> <span>Reveal</span> <span>Chromosome</span> <span>Morphology</span> and <span>Rearrangements</span> in a <span>Reptile</span> (<span>Varanus</span> Acanthurus <span>BOULENGER</span>).”</span> <em>Molecular Biology and Evolution</em> 40 (6): msad124. <a href="https://doi.org/10.1093/molbev/msad124">https://doi.org/10.1093/molbev/msad124</a>.
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->

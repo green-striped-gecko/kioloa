@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./session01.html" rel="next">
-<link href="./schedule.html" rel="prev">
+<link href="./speakers.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,6 +145,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Program</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./speakers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Speaker Bios</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -298,6 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p><img src="images/dartR7.png" class="img-fluid"></p>
 <section id="rationale" class="level2">
 <h2 class="anchored" data-anchor-id="rationale">Rationale</h2>
 <p>We have developed a new suit of packages called “dartRverse” packages, that will replace the previous dartR package, which soon will be no longer supported. The new suit of packages are meant to be a 1:1 replacement and only in some instance very minor changes will be needed to update previous code. For example we reworked on the “output” of all functions, now being able to save figures in specified folders, which can be easier recovered and manipulated for further tweaking. The main reasons for splitting dartR into several packages and developing the dartRverse suit of packages was difficulty to maintain dartR, because of limits imposed by CRAN, but also limits due the the long time to test new function, when compiling the package. Therefore we were forced to split the package into several smaller packages. This has several advantages and in the best of all cases no disadvantages.</p>
@@ -314,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <section id="install-dartrverse" class="level3">
 <h3 class="anchored" data-anchor-id="install-dartrverse">install dartRverse</h3>
-<div class="cell">
+<div class="cell" data-hash="install_cache/html/unnamed-chunk-1_d57365d56ed7b9cfe2c8c842822b43e3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#installs the necessary bioconductor packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
@@ -326,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The dartRverse package is the first package to install and its only purpose is to support the installation of the other dartRverse packages. It will also be the first port of call to provide links to tutorials and other documentation.</p>
 <p>If everything works well this should install two more packages with form the core version of dartRverse, nameley dartR.base and dartR.data. Those core packages have all the main function of old dartR package that deals with input, conversion, reporting and filtering of data. Also some base function to analysse data (e.g.&nbsp;PCoA, Fst) are included.</p>
 <p>Once the dartRverse package has been installed we can load the package to check which part of the dartRverse has been installed.</p>
-<div class="cell">
+<div class="cell" data-hash="install_cache/html/unnamed-chunk-2_4c1fb7e1101f535be94082c10276343d">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-left">
@@ -340,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now we can install the additional packages that are part of the dartRverse. Depending on your needs you can install all of them or only the one you are interested.</p>
 <p>For example if you are interested in additional functions to analyse population structure (e.g.&nbsp;run STRUCTURE or faststructure) you can install the dartR.popgen package. If you are interested in functions that support the simulation of data you can install the dartR.sim package.</p>
 <p>You can check which packages are avaialbel and which of them you have installed by typing:</p>
-<div class="cell">
+<div class="cell" data-hash="install_cache/html/unnamed-chunk-3_e3435adba83d011b19edb622ca62aae5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dartRverse<span class="sc">::</span><span class="fu">dartRverse_install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-left">
@@ -357,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>dartR.sexlinked (identify sexlinked markers, not ready yet)</li>
 </ul>
 <p>So to install the dartR.sim simply type:</p>
-<div class="cell">
+<div class="cell" data-hash="install_cache/html/unnamed-chunk-4_e87e114d743b72e2545d0bb3b9881aa8">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dartR.sim"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dartR.popgen"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dartR.spatial"</span>)</span>
@@ -389,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="using-dartrverse" class="level2">
 <h2 class="anchored" data-anchor-id="using-dartrverse">Using dartRverse</h2>
 <p>To use dartRverse you can simply load the package and use it as before.</p>
-<div class="cell">
+<div class="cell" data-hash="install_cache/html/unnamed-chunk-5_d13eebe6358836d7bc5936d3bd2d7cef">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -838,12 +845,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./schedule.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Program</span>
+      <a href="./speakers.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Speaker Bios</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

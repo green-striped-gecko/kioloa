@@ -168,6 +168,12 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./speakers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Speaker Bios</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Install dartRverse</span></a>
   </div>
@@ -2904,13 +2910,15 @@ E-ATL  E-IO  Fiji Japan  N-IO W-ATL  W-IO W-PAC
 </section>
 <section id="number-of-sex-linked-markers-1" class="level4">
 <h4 class="anchored" data-anchor-id="number-of-sex-linked-markers-1">1. Number of sex-linked markers?</h4>
-<div class="cell" data-hash="session10_cache/html/unnamed-chunk-19_120b6ca980d0a5296077a3d37ad21acf">
-<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">gl.filter.sexlinked</span>(<span class="at">gl =</span> data.gl, <span class="at">system =</span> <span class="st">"xy"</span>, <span class="at">plots =</span> <span class="cn">TRUE</span>, <span class="at">ncores =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="session10_cache/html/unnamed-chunk-19_b199fe6c4beae6654be4cd9d0d0d1e2d">
+<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>ncores <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="dv">4</span>, parallel<span class="sc">::</span><span class="fu">detectCores</span>())</span>
+<span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="co">#still takes some minutes to run</span></span>
+<span id="cb152-3"><a href="#cb152-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">gl.filter.sexlinked</span>(<span class="at">gl =</span> data.gl, <span class="at">system =</span> <span class="st">"xy"</span>, <span class="at">plots =</span> <span class="cn">TRUE</span>, <span class="at">ncores =</span> ncores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Detected 85 females and 64 males.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Starting phase 1. May take a while...</code></pre>
+<pre><code>Starting phase 1. Working in parallel...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Building call rate plots.</code></pre>
@@ -2949,8 +2957,9 @@ And 93193 autosomal loci.</code></pre>
 </section>
 <section id="individuals-with-wrong-sexid-1" class="level4">
 <h4 class="anchored" data-anchor-id="individuals-with-wrong-sexid-1">2. Individuals with wrong sexID?</h4>
-<div class="cell" data-hash="session10_cache/html/unnamed-chunk-20_18b1e66a57f5773c73d2eddc950f1ce3">
-<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a>sexID <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">gl.infer.sex</span>(<span class="at">gl_sex_filtered =</span> res, <span class="at">system =</span> <span class="st">"xy"</span>, <span class="at">seed =</span> <span class="dv">124</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="session10_cache/html/unnamed-chunk-20_0b8d3132e8813ed8cf0c1baa14dbb902">
+<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check if you can increase the number of cores</span></span>
+<span id="cb160-2"><a href="#cb160-2" aria-hidden="true" tabindex="-1"></a>sexID <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">gl.infer.sex</span>(<span class="at">gl_sex_filtered =</span> res, <span class="at">system =</span> <span class="st">"xy"</span>, <span class="at">seed =</span> <span class="dv">124</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Not enough gametologs (need at least 5). Assigning NA...</code></pre>
 </div>
@@ -3133,63 +3142,29 @@ SWPAC3    WIO
 </section>
 <section id="number-of-sex-linked-markers-2" class="level4">
 <h4 class="anchored" data-anchor-id="number-of-sex-linked-markers-2">1. Number of sex-linked markers?</h4>
-<div class="cell" data-hash="session10_cache/html/unnamed-chunk-22_5ea3ef3002a0245afc37300e2712960e">
-<div class="sourceCode cell-code" id="cb175"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb175-1"><a href="#cb175-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">gl.filter.sexlinked</span>(<span class="at">gl =</span> data.gl, <span class="at">system =</span> <span class="st">"xy"</span>, <span class="at">plots =</span> <span class="cn">TRUE</span>, <span class="at">ncores =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Detected 104 females and 111 males.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Starting phase 1. May take a while...</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Building call rate plots.</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="session10_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Done. Starting phase 2.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Building heterozygosity plots.</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="session10_files/figure-html/unnamed-chunk-22-2.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="session10_files/figure-html/unnamed-chunk-22-3.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Done building heterozygosity plots.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>**FINISHED** Total of analyzed loci: 172384.
-Found 26 sex-linked loci:
-   2 Y-linked loci
-   2 sex-biased loci
-   22 X-linked loci
-   0 XY gametologs.
-And 172358 autosomal loci.</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="session10_files/figure-html/unnamed-chunk-22-4.png" class="img-fluid" width="672"></p>
-</div>
+<div class="cell" data-hash="session10_cache/html/unnamed-chunk-22_8051261d9a22ba5e59295ee1bbe37f80">
+<div class="sourceCode cell-code" id="cb175"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb175-1"><a href="#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check if you can increase the number of cores</span></span>
+<span id="cb175-2"><a href="#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ncores &lt;- min(4,parallel::detectCores())</span></span>
+<span id="cb175-3"><a href="#cb175-3" aria-hidden="true" tabindex="-1"></a><span class="co"># resbull &lt;- dartR.sexlinked::gl.filter.sexlinked(gl = data.gl, system = "xy", plots = TRUE, ncores = ncores)</span></span>
+<span id="cb175-4"><a href="#cb175-4" aria-hidden="true" tabindex="-1"></a><span class="co">#load results from previous run</span></span>
+<span id="cb175-5"><a href="#cb175-5" aria-hidden="true" tabindex="-1"></a>resbull <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/resbull.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="individuals-with-wrong-sexid-2" class="level4">
 <h4 class="anchored" data-anchor-id="individuals-with-wrong-sexid-2">2. Individuals with wrong sexID?</h4>
-<div class="cell" data-hash="session10_cache/html/unnamed-chunk-23_b96cd00872c866e514b9a6b06fe2307c">
-<div class="sourceCode cell-code" id="cb183"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a>sexID <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">gl.infer.sex</span>(<span class="at">gl_sex_filtered =</span> res, <span class="at">system =</span> <span class="st">"xy"</span>, <span class="at">seed =</span> <span class="dv">124</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="session10_cache/html/unnamed-chunk-23_29b2f44684bbfc68ee356b220bdcc563">
+<div class="sourceCode cell-code" id="cb176"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check if you can increase the number of cores</span></span>
+<span id="cb176-2"><a href="#cb176-2" aria-hidden="true" tabindex="-1"></a>sexID <span class="ot">&lt;-</span> dartR.sexlinked<span class="sc">::</span><span class="fu">gl.infer.sex</span>(<span class="at">gl_sex_filtered =</span> resbull, <span class="at">system =</span> <span class="st">"xy"</span>, <span class="at">seed =</span> <span class="dv">124</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Not enough gametologs (need at least 5). Assigning NA...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>***FINISHED***</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb186"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(sexID))</span>
-<span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb186-3"><a href="#cb186-3" aria-hidden="true" tabindex="-1"></a>agreed.sex <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">*"</span>, <span class="at">replacement =</span> <span class="st">""</span>, <span class="at">x =</span> sexID<span class="sc">$</span>agreed.sex) <span class="co"># remove asterisk</span></span>
-<span id="cb186-4"><a href="#cb186-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(data.gl<span class="sc">$</span>other<span class="sc">$</span>ind.metrics<span class="sc">$</span>sex <span class="sc">!=</span> agreed.sex, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb179"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(sexID))</span>
+<span id="cb179-2"><a href="#cb179-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-3"><a href="#cb179-3" aria-hidden="true" tabindex="-1"></a>agreed.sex <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">*"</span>, <span class="at">replacement =</span> <span class="st">""</span>, <span class="at">x =</span> sexID<span class="sc">$</span>agreed.sex) <span class="co"># remove asterisk</span></span>
+<span id="cb179-4"><a href="#cb179-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(data.gl<span class="sc">$</span>other<span class="sc">$</span>ind.metrics<span class="sc">$</span>sex <span class="sc">!=</span> agreed.sex, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -3311,7 +3286,7 @@ And 172358 autosomal loci.</code></pre>
 </table>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 22</code></pre>
+<pre><code>[1] 166</code></pre>
 </div>
 </div>
 

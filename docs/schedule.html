@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./install.html" rel="next">
+<link href="./speakers.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -111,6 +111,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./schedule.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Program</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./speakers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Speaker Bios</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -287,14 +293,14 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">3</td>
 <td>Tue</td>
 <td style="text-align: center;">9 am – 11 am</td>
-<td style="text-align: center;"><strong>Sequencing Technologies</strong></td>
+<td style="text-align: center;"><a href="./session03.html"><strong>Sequencing Technologies</strong></a></td>
 <td style="text-align: center;">Jason Carling, Andrew Kowalczyk, Renee Catullo</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
 <td></td>
 <td style="text-align: center;">12 pm – 2 pm</td>
-<td style="text-align: center;"><strong>Data Management, Reproducibility &amp; Integrity</strong></td>
+<td style="text-align: center;"><a href="./session04.html"><strong>Data Management, Reproducibility &amp; Integrity</strong></a></td>
 <td style="text-align: center;">Jiajia Li</td>
 </tr>
 <tr class="odd">
@@ -315,7 +321,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">7</td>
 <td></td>
 <td style="text-align: center;">12 pm – 2 pm</td>
-<td style="text-align: center;"><strong>Natural Selection</strong></td>
+<td style="text-align: center;"><a href="./session07.html"><strong>Natural Selection</strong></a></td>
 <td style="text-align: center;">Luciano Beheregaray, Chris Brauer, Jonathan Sandoval</td>
 </tr>
 <tr class="even">
@@ -329,7 +335,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">9</td>
 <td>Thu</td>
 <td style="text-align: center;">9 am – 11 am</td>
-<td style="text-align: center;"><strong>Lineage Divergence</strong></td>
+<td style="text-align: center;"><a href="./session09.html"><strong>Lineage Divergence</strong></a></td>
 <td style="text-align: center;">Arthur Georges, Sally Potter, Craig Moritz</td>
 </tr>
 <tr class="even">
@@ -343,21 +349,21 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">11</td>
 <td></td>
 <td style="text-align: center;">7 pm – 9 pm</td>
-<td style="text-align: center;"><strong>From Genes to Kin: Dissecting Relatedness &amp; Kinship</strong></td>
+<td style="text-align: center;"><a href="./session11.html"><strong>From Genes to Kin: Dissecting Relatedness &amp; Kinship</strong></a></td>
 <td style="text-align: center;">Jinliang Wang, Luis Mijangos, Natasha Marosi</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">12</td>
 <td>Fri</td>
 <td style="text-align: center;">9 am – 11 am</td>
-<td style="text-align: center;"><strong>Genetic Structure</strong></td>
+<td style="text-align: center;"><a href="./session12.html"><strong>Genetic Structure</strong></a></td>
 <td style="text-align: center;">Arthur Georges, Bernd Gruber, Bill Sherwin</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">13</td>
 <td></td>
 <td style="text-align: center;">12 pm – 2 pm</td>
-<td style="text-align: center;"><strong>Combining Genomic Resources</strong></td>
+<td style="text-align: center;"><a href="./session13.html"><strong>Combining Genomic Resources</strong></a></td>
 <td style="text-align: center;">Luis Mijangos, Sally Potter</td>
 </tr>
 </tbody>
@@ -803,6 +809,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
@@ -812,8 +834,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./install.html" class="pagination-link">
-        <span class="nav-page-text">Install dartRverse</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./speakers.html" class="pagination-link">
+        <span class="nav-page-text">Speaker Bios</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
