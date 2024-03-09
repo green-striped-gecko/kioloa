@@ -110,10 +110,13 @@ Impute missing data
     3c. based on population allele frequencies characterised using snmf (admixture)?\
 :::
 
-```{r}
+```{r, output = FALSE}
 # ADMIXTURE results most likely 6 pops
 imputed.gi <- melfuR::impute.data(Mf5000.genind, K = 6)
+```
 
+
+```{r}
 # order major/minor alleles (generally no reason to do this... but might be useful for someone)
 imputed.sorted.gi <- sort_alleles(imputed.gi)
 
@@ -185,8 +188,14 @@ options(timeout = max(300, getOption("timeout")))
 
 # Explore datasets in the package 
 sdmpredictors::list_datasets()
-sdmpredictors::list_layers("WorldClim")
 
+```
+
+```{r, output = FALSE}
+sdmpredictors::list_layers("WorldClim")
+```
+
+```{r}
 # Explore environmental layers
 layers <- as.data.frame(sdmpredictors::list_layers("WorldClim"))
 write.csv(layers, "./data/WorldClim.csv")

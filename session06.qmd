@@ -60,8 +60,27 @@ tascols <- c("skyblue", "#74c476", "skyblue", "#74c476", "#FDD835", "orange", "s
 -   Are there differences between the overall MAF distribution and that of individual populations?
 :::
 
-```{r}
+```{r, eval=FALSE}
 gl.report.maf(gl)
+```
+```{r, include=FALSE}
+library(tidyverse)
+maf_report <- gl.report.maf(gl)
+```
+
+```{r, echo = FALSE}
+maf_report %>% 
+  pivot_longer(cols = Bronte:wukalina) %>% 
+ggplot(aes(x = value, fill = name))+
+  geom_histogram(colour = 'grey')+
+  facet_wrap(~name)+
+  theme_bw()+
+  xlab('Minor Allele Frequency')+
+  ylab('Count')+
+  theme(panel.grid = element_blank(),
+        legend.position = 'none',
+        strip.background = element_blank())
+
 ```
 
 ### Visualise population structure by PCoA
