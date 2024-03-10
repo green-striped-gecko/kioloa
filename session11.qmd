@@ -521,7 +521,7 @@ oryx_gl <- gl.drop.ind(oryx_gl,ind.list = res_dup$ind.list.drop)
 
 Heatmap of the probabilities of identity by descent in the group formed by the herds of WWR-Oman and WWR-UAE. As described by Endelman & Jannink (68), each diagonal element has a mean that equals 1+f, where f is the inbreeding coefficient (i.e. the probability that the two alleles at a randomly chosen locus are IBD from the base population). As this probability lies between 0 and 1, the diagonal elements range from 1 to 2. Because the inbreeding coefficients are expressed relative to the current population, the mean of the off-diagonal elements is -(1+f)/n, where n is the number of loci. Yellow and red colours indicate those individuals that are more related to each other. The identification number of each individual is shown in the margins of the figure, where the last letter denotes whether the individual is male (M) or female (F).
 
-```{r, eval=FALSE, warning=FALSE, results='hide', message=FALSE}
+```{r, warning=FALSE, results='hide', message=FALSE}
 oryx_related_matrix_all <- gl.grm(oryx_gl,palette_convergent = gl.colors(type="con"))
 
 
@@ -532,7 +532,7 @@ gl.grm.network(oryx_related_matrix_all,
 
 ### SEQUOIA
 
-```{r, eval = FALSE, warning=FALSE, results='hide', message=FALSE}
+```{r, warning=FALSE, results='hide', message=FALSE}
 LifeHistData_2 <- as.data.frame(oryx_gl$ind.names)
 LifeHistData_2$Sex <- as.character(oryx_gl$other$ind.metrics$Gender)
 LifeHistData_2[LifeHistData_2=="Female"] <- 1
