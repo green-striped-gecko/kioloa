@@ -957,54 +957,61 @@ Note
 <section id="grm" class="level3">
 <h3 class="anchored" data-anchor-id="grm">GRM</h3>
 <p>Heatmap of the probabilities of identity by descent in the group formed by the herds of WWR-Oman and WWR-UAE. As described by Endelman &amp; Jannink (68), each diagonal element has a mean that equals 1+f, where f is the inbreeding coefficient (i.e.&nbsp;the probability that the two alleles at a randomly chosen locus are IBD from the base population). As this probability lies between 0 and 1, the diagonal elements range from 1 to 2. Because the inbreeding coefficients are expressed relative to the current population, the mean of the off-diagonal elements is -(1+f)/n, where n is the number of loci. Yellow and red colours indicate those individuals that are more related to each other. The identification number of each individual is shown in the margins of the figure, where the last letter denotes whether the individual is male (M) or female (F).</p>
-<div class="cell" data-hash="session11_cache/html/unnamed-chunk-19_4c5cf1ea2e7f6621f2385c86d466b3b9">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>oryx_related_matrix_all <span class="ot">&lt;-</span> <span class="fu">gl.grm</span>(oryx_gl,<span class="at">palette_convergent =</span> <span class="fu">gl.colors</span>(<span class="at">type=</span><span class="st">"con"</span>))</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.grm.network</span>(oryx_related_matrix_all,</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>               oryx_gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-19_98519d95819507f86c6e2b12f8c55103">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>oryx_related_matrix_all <span class="ot">&lt;-</span> <span class="fu">gl.grm</span>(oryx_gl,<span class="at">palette_convergent =</span> <span class="fu">gl.colors</span>(<span class="at">type=</span><span class="st">"con"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session11_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.grm.network</span>(oryx_related_matrix_all,</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>               oryx_gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session11_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
 <section id="sequoia" class="level3">
 <h3 class="anchored" data-anchor-id="sequoia">SEQUOIA</h3>
-<div class="cell" data-hash="session11_cache/html/unnamed-chunk-20_50812e1c05a5839806f7fe2bf19bbc4d">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>LifeHistData_2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(oryx_gl<span class="sc">$</span>ind.names)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>LifeHistData_2<span class="sc">$</span>Sex <span class="ot">&lt;-</span> <span class="fu">as.character</span>(oryx_gl<span class="sc">$</span>other<span class="sc">$</span>ind.metrics<span class="sc">$</span>Gender)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Female"</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Male"</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>LifeHistData_2<span class="sc">$</span>Sex <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(LifeHistData_2<span class="sc">$</span>Sex)</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>LifeHistData_2<span class="sc">$</span>BirthYear <span class="ot">&lt;-</span> <span class="fu">as.character</span>(oryx_gl<span class="sc">$</span>other<span class="sc">$</span>ind.metrics<span class="sc">$</span>Age)</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Old"</span>] <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Adult"</span>] <span class="ot">&lt;-</span> <span class="dv">2005</span></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Juvenile"</span>] <span class="ot">&lt;-</span> <span class="dv">2010</span></span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Calf"</span>] <span class="ot">&lt;-</span> <span class="dv">2015</span></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>LifeHistData_2<span class="sc">$</span>BirthYear <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(LifeHistData_2<span class="sc">$</span>BirthYear)</span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(LifeHistData_2)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ID"</span>,<span class="st">"Sex"</span>,<span class="st">"BirthYear"</span>)</span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>oryx_sequoia <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">as.data.frame</span>(oryx_gl))</span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>oryx_sequoia[<span class="fu">is.na</span>(oryx_sequoia)] <span class="ot">&lt;-</span> <span class="st">"-9"</span></span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>oryx_sequoia_2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(oryx_gl<span class="sc">$</span>ind.names,oryx_sequoia)</span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>oryx_sequoia_2 <span class="ot">&lt;-</span> <span class="fu">mapply</span>(oryx_sequoia_2, <span class="at">FUN=</span>as.numeric)</span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>oryx_sequoia_2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span>oryx_sequoia_2, <span class="at">ncol=</span><span class="fu">ncol</span>(oryx_sequoia)<span class="sc">+</span><span class="dv">1</span>, <span class="at">nrow=</span><span class="fu">nrow</span>(oryx_sequoia))</span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>oryx_sequoia_2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(oryx_sequoia_2)</span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>GenoM <span class="ot">&lt;-</span> <span class="fu">GenoConvert</span>(<span class="at">InFile=</span>oryx_sequoia_2, <span class="at">InFormat=</span><span class="st">"seq"</span>,<span class="at">Missing=</span><span class="st">"-9"</span>,<span class="at">IDcol=</span><span class="dv">1</span>)</span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>GenoM_2 <span class="ot">&lt;-</span> GenoM</span>
-<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>sequoia_res <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> GenoM_2,</span>
-<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Plot =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>                       <span class="at">UseAge =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>                       <span class="at">MaxSibshipSize=</span><span class="dv">20</span>)</span>
-<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a>sequoia_res_2 <span class="ot">&lt;-</span> <span class="fu">GetMaybeRel</span>(<span class="at">GenoM =</span> GenoM_2, </span>
-<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a>                             <span class="at">LifeHistData =</span>LifeHistData_2)</span>
-<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a>pedigree_res <span class="ot">&lt;-</span> sequoia_res<span class="sc">$</span>Pedigree</span>
-<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a>pedigree_res<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.character</span>(oryx_gl<span class="sc">$</span>other<span class="sc">$</span>ind.metrics<span class="sc">$</span>Gender),<span class="fu">rep</span>(<span class="st">"Female"</span>,<span class="dv">6</span>),<span class="fu">rep</span>(<span class="st">"Male"</span>,<span class="dv">6</span>))</span>
-<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a>family <span class="ot">&lt;-</span> <span class="fu">pedigree</span>(<span class="at">id=</span>pedigree_res<span class="sc">$</span>id, <span class="at">dadid=</span>pedigree_res<span class="sc">$</span>sire, <span class="at">momid=</span>pedigree_res<span class="sc">$</span>dam,<span class="at">sex=</span>pedigree_res<span class="sc">$</span>sex)</span>
-<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(family)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-20_51317a993c72a954b9091011b397320b">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>LifeHistData_2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(oryx_gl<span class="sc">$</span>ind.names)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>LifeHistData_2<span class="sc">$</span>Sex <span class="ot">&lt;-</span> <span class="fu">as.character</span>(oryx_gl<span class="sc">$</span>other<span class="sc">$</span>ind.metrics<span class="sc">$</span>Gender)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Female"</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Male"</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>LifeHistData_2<span class="sc">$</span>Sex <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(LifeHistData_2<span class="sc">$</span>Sex)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>LifeHistData_2<span class="sc">$</span>BirthYear <span class="ot">&lt;-</span> <span class="fu">as.character</span>(oryx_gl<span class="sc">$</span>other<span class="sc">$</span>ind.metrics<span class="sc">$</span>Age)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Old"</span>] <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Adult"</span>] <span class="ot">&lt;-</span> <span class="dv">2005</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Juvenile"</span>] <span class="ot">&lt;-</span> <span class="dv">2010</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Calf"</span>] <span class="ot">&lt;-</span> <span class="dv">2015</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>LifeHistData_2<span class="sc">$</span>BirthYear <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(LifeHistData_2<span class="sc">$</span>BirthYear)</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(LifeHistData_2)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ID"</span>,<span class="st">"Sex"</span>,<span class="st">"BirthYear"</span>)</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>oryx_sequoia <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">as.data.frame</span>(oryx_gl))</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>oryx_sequoia[<span class="fu">is.na</span>(oryx_sequoia)] <span class="ot">&lt;-</span> <span class="st">"-9"</span></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>oryx_sequoia_2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(oryx_gl<span class="sc">$</span>ind.names,oryx_sequoia)</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>oryx_sequoia_2 <span class="ot">&lt;-</span> <span class="fu">mapply</span>(oryx_sequoia_2, <span class="at">FUN=</span>as.numeric)</span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>oryx_sequoia_2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span>oryx_sequoia_2, <span class="at">ncol=</span><span class="fu">ncol</span>(oryx_sequoia)<span class="sc">+</span><span class="dv">1</span>, <span class="at">nrow=</span><span class="fu">nrow</span>(oryx_sequoia))</span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>oryx_sequoia_2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(oryx_sequoia_2)</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>GenoM <span class="ot">&lt;-</span> <span class="fu">GenoConvert</span>(<span class="at">InFile=</span>oryx_sequoia_2, <span class="at">InFormat=</span><span class="st">"seq"</span>,<span class="at">Missing=</span><span class="st">"-9"</span>,<span class="at">IDcol=</span><span class="dv">1</span>)</span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>GenoM_2 <span class="ot">&lt;-</span> GenoM</span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>sequoia_res <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> GenoM_2,</span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Plot =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a>                       <span class="at">UseAge =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a>                       <span class="at">MaxSibshipSize=</span><span class="dv">20</span>)</span>
+<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a>sequoia_res_2 <span class="ot">&lt;-</span> <span class="fu">GetMaybeRel</span>(<span class="at">GenoM =</span> GenoM_2, </span>
+<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a>                             <span class="at">LifeHistData =</span>LifeHistData_2)</span>
+<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a>pedigree_res <span class="ot">&lt;-</span> sequoia_res<span class="sc">$</span>Pedigree</span>
+<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a>pedigree_res<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.character</span>(oryx_gl<span class="sc">$</span>other<span class="sc">$</span>ind.metrics<span class="sc">$</span>Gender),<span class="fu">rep</span>(<span class="st">"Female"</span>,<span class="dv">6</span>),<span class="fu">rep</span>(<span class="st">"Male"</span>,<span class="dv">6</span>))</span>
+<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a>family <span class="ot">&lt;-</span> <span class="fu">pedigree</span>(<span class="at">id=</span>pedigree_res<span class="sc">$</span>id, <span class="at">dadid=</span>pedigree_res<span class="sc">$</span>sire, <span class="at">momid=</span>pedigree_res<span class="sc">$</span>dam,<span class="at">sex=</span>pedigree_res<span class="sc">$</span>sex)</span>
+<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(family)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="session11_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 
 
