@@ -2,7 +2,7 @@
 
 ## Detailed program
 
-{{< pdf tutorials/workshop_program.pdf width=100% height=400 >}}
+{{< pdf tutorials/Population_Genomics_workshop_program.pdf width=100% height=400 >}}
 
 ## Download Binaries (software)
 

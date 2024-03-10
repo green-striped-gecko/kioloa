@@ -236,7 +236,7 @@ SimDisp <-
 
 Now run the function to simulate a population with 100 individuals, 1000 SNPs, and male-biased dispersal.
 
-::: callout-note
+::: callout-tip
 The simulation goes for 20 generations - you can see an animation below
 :::
 
@@ -382,12 +382,12 @@ We expect a linear relationship between geographic distance (sometimes log-trans
 
 ### Lesser hairy-footed dunnarts in the Pilbara
 
-![*Sminthopsis youngsonii*](Data/Dunnart.png){fig-align="left" width="300"}
+![*Sminthopsis youngsonii*](images/Dunnart.png){fig-align="left" width="300"}
 
 ### Load the data
 
 ```{r, results='hide'}
-load('Data/Sy.gl.RData') # genetic data
+load('data/Sy.gl.RData') # genetic data
 ```
 
 *Sminthopsis youngsonii* (or the lesser hairy footed dunnart), is a small carnivorous dasyurid found across the Australian arid region. As the name suggests, their hind foot is covered in short, bristly hairs, which are thought to help them move on sandy soils. They are usually found on sand dunes, inter dune swale and red sand plains.
