@@ -529,7 +529,7 @@ dev.off()
 
 ```{r}
 ## Get input files 
-load(file = "./data/GWAS.RData")
+load(file = "../data/GWAS.RData")
 ##randomForest
 CaRF$Size <- as.factor(CaRF$Size)
 
@@ -786,10 +786,6 @@ normal.res <- RGWAS.normal(pheno = pheno.GWAS, geno = geno.GWAS,
                            ZETA = ZETA, n.PC = 4, P3D = TRUE)
 
 ```
-
-![Q-Q plot](images/session7_qqplot.png)
-
-![Manhattan plot](images/session7_manhattan.png)
 
 
 We can see, first the QQ plot, it shows that our data has a little deviation from the expected distribution, but this is just at the end of the tail.
