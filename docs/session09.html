@@ -273,7 +273,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#required-packages" id="toc-required-packages" class="nav-link active" data-scroll-target="#required-packages"><em>Required packages</em></a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#phylogenetics-and-snps" id="toc-phylogenetics-and-snps" class="nav-link" data-scroll-target="#phylogenetics-and-snps">Phylogenetics and SNPs</a>
+  <ul class="collapse">
+  <li><a href="#so-what-are-the-strengths-of-snps" id="toc-so-what-are-the-strengths-of-snps" class="nav-link" data-scroll-target="#so-what-are-the-strengths-of-snps">So what are the strengths of SNPs?</a></li>
+  <li><a href="#so-what-are-the-limitations-of-snps" id="toc-so-what-are-the-limitations-of-snps" class="nav-link" data-scroll-target="#so-what-are-the-limitations-of-snps">So what are the limitations of SNPs?</a></li>
+  </ul></li>
+  <li><a href="#this-tutorial" id="toc-this-tutorial" class="nav-link" data-scroll-target="#this-tutorial">This Tutorial</a></li>
+  <li><a href="#session-1-datasets" id="toc-session-1-datasets" class="nav-link" data-scroll-target="#session-1-datasets">Session 1: Datasets</a>
+  <ul class="collapse">
+  <li><a href="#reading-in-the-snp-data" id="toc-reading-in-the-snp-data" class="nav-link" data-scroll-target="#reading-in-the-snp-data">Reading in the SNP data</a></li>
+  <li><a href="#examining-the-contents" id="toc-examining-the-contents" class="nav-link" data-scroll-target="#examining-the-contents">Examining the Contents</a></li>
+  <li><a href="#examining-selected-locus-metrics" id="toc-examining-selected-locus-metrics" class="nav-link" data-scroll-target="#examining-selected-locus-metrics">Examining Selected Locus Metrics</a></li>
+  </ul></li>
+  <li><a href="#session-2-distance-phylogenetics" id="toc-session-2-distance-phylogenetics" class="nav-link" data-scroll-target="#session-2-distance-phylogenetics">Session 2: Distance Phylogenetics</a>
+  <ul class="collapse">
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model Selection</a></li>
+  <li><a href="#missing-sequence-nnnnn" id="toc-missing-sequence-nnnnn" class="nav-link" data-scroll-target="#missing-sequence-nnnnn">Missing Sequence (NNNNN)</a></li>
+  <li><a href="#tree-building-algorithm" id="toc-tree-building-algorithm" class="nav-link" data-scroll-target="#tree-building-algorithm">Tree-building Algorithm</a></li>
+  <li><a href="#outgroup-selection" id="toc-outgroup-selection" class="nav-link" data-scroll-target="#outgroup-selection">Outgroup Selection</a></li>
+  <li><a href="#implementation-in-dartr" id="toc-implementation-in-dartr" class="nav-link" data-scroll-target="#implementation-in-dartr">Implementation in dartR</a></li>
+  <li><a href="#worked-example-distance-trees" id="toc-worked-example-distance-trees" class="nav-link" data-scroll-target="#worked-example-distance-trees">Worked Example: Distance Trees</a></li>
   <li><a href="#phylogenetics-tutorial" id="toc-phylogenetics-tutorial" class="nav-link" data-scroll-target="#phylogenetics-tutorial">Phylogenetics Tutorial</a></li>
+  </ul></li>
   <li><a href="#further-study" id="toc-further-study" class="nav-link" data-scroll-target="#further-study"><strong>Further Study</strong></a></li>
   </ul>
 </nav>
@@ -302,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/Presenters9.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-1_c0a414fc536e974736a8d15ed205e339">
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-1_3ab115b2b6875326fb496140646ff9f3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>make sure you have the packages installed, see</em> <a href="./install.html">Install dartRverse</a></p>
@@ -334,9 +355,385 @@ external software
 <p>The phylogenetic tree that emerges from the analysis as the best representation of the evolutionary history of the target group can be the one most parsimoniously consistent with available data, or the one most likely given the available data, or the best guess given the available data and some additional relevant prior knowledge.</p>
 <p>In this sense, a phylogenetic tree should be viewed as a phylogenetic hypothesis, one to be tested in the light of new evidence as it comes to hand. This mindset encourages collection of additional data to address areas of contention rather than focussing on confirming areas with unqualified support</p>
 </section>
-<section id="phylogenetics-tutorial" class="level2">
-<h2 class="anchored" data-anchor-id="phylogenetics-tutorial">Phylogenetics Tutorial</h2>
+<section id="phylogenetics-and-snps" class="level2">
+<h2 class="anchored" data-anchor-id="phylogenetics-and-snps">Phylogenetics and SNPs</h2>
+<p>SNP markers have traditionally been applied in the domain of population genetics but are increasingly being applied to address phylogenetic hypotheses. SNPs have their strengths and their limitations, especially if applied to resolve deep phylogenies. There is nevertheless utility in the application of phylogenetic analyses for lineages within species or sets of closely related species where the focus may be on identifying lineage diversity or on contributing to decisions on species delimitation. This tutorial has been written on the assumption that the focus is on shallow levels of divergence to complement what can be learned from a population genetics perspective.</p>
+<section id="so-what-are-the-strengths-of-snps" class="level3">
+<h3 class="anchored" data-anchor-id="so-what-are-the-strengths-of-snps">So what are the strengths of SNPs?</h3>
+<p>The obvious value in SNPs is that they are genome-wide and can be considered randomly distributed across the genome. In the case of DArT SNPs, they are sparse and, provided attention is paid to multiple SNPs occurring on the one sequence tag, are unlikely to be linked. There are exceptions to this where there are substantial structural variants (e.g large polymorphic inversions), but these can be identified and accommodated in analyses.</p>
+<p>SNPs are less expensive and time-consuming to produce than other approaches to generating phylogenetic data. This means that many more individuals can be included in scoring the data allowing more comprehensive evaluation of within taxon variation and providing a very productive connection between lineage analyses and population genetics. Multiple individuals can be scored from each site across a comprehensive range of sites that capture variation within species or lineages.</p>
+</section>
+<section id="so-what-are-the-limitations-of-snps" class="level3">
+<h3 class="anchored" data-anchor-id="so-what-are-the-limitations-of-snps">So what are the limitations of SNPs?</h3>
+<p>There is a possibility of ascertainment biases. Were one to establish the SNP panel in a pilot study (as was customary with microsatellites), then rare variants and their associated SNPs are likely to be lost, favouring the inclusion of SNPs that have alleles at intermediate frequencies. This can be managed by combining the development of the SNP panel with the analysis of the full dataset, as is done by DArT.</p>
+<p>A second limitation is that missing data is not random. There are two sources of missing data in a SNP dataset. The first includes missing sequence tags that are present in the genome but absent in the dataset because of low read depth. These are random. The second source of missing data arises from mutations in the restriction enzyme sites used to generate the sequence tags – null alleles. Null alleles arise from heritable variation, and so are differentially retained across individuals. The biases that arise from non-random missing data can be managed by filtering heavily on call rate (for both loci and individuals) and, where appropriate, by imputation. This however can favour of SNPs at sites with low mutation rates with attendant ascertainment bias.</p>
+<p>A third limitation is that the pipelines for generating SNPs are very selective, in that the focus is on identifying SNPs that are essentially biallelic (single point mutations are not inherently biallelic, so again risking ascertainment bias against sites with low mutation rates) and of course polymorphic. Invariant sequence tags do not contain a SNP and so are discarded in the process. This will have implications not so much for tree topology, but certainly for estimation of branch lengths, dating of nodes and comparability across studies.</p>
+<p>A fourth limitation of SNPs is that the sequence tags are very short. In the case of DArT, sequence tags stripped of adaptors range in length from 20 bp to 69 bp. These typically have only one variable site. This together with the sheer number of SNP loci precludes some analysis options such as Austal III and SNAPP that are appropriate for handling gene-tree/species-tree discordance.</p>
+<p>The common practice of concatenating the sequence tags for each individual and running a Maximum Likelihood analysis ignores the challenge of gene-tree/species-tree discordance (independent lineage sorting) by “averaging” as does distance analysis. Both SNAPPER and SVDquartets manage these issues appropriately and computational time is unaffected by the number of SNP loci scored.</p>
+<p>The bottom line is that there are many considerations governing a phylogenetic analysis using SNP, there is no clear consensus on the most appropriate and practical methods to use in the literature, and everyone will have their own opinion and leanings. Resolving this is well beyond the scope of this session in the workshop. We simply present the options and how to execute them and leave you to weave through the complexities of how to craft a defensible workflow. The review by Leache’ and Oaks (2017, Annual Review of Ecology, Evolution and Systematics 48:69-84) is a good place to start.</p>
+</section>
+</section>
+<section id="this-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="this-tutorial">This Tutorial</h2>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/penguin_dartr.png" class="class figure-img" height="70"></p>
+</figure>
+</div>
+<p>In this tutorial, we explore options for generating phylogenetic trees from SNP data and associated SilicoDArT data. We conveniently sidestep the issues of what is and what is not a species and focus on the evolutionary relationships between lineages (and their descendant clades). Such lineages need to be diagnosable to provide a basis for considering them to be on independent evolutionary trajectories and not subject to horizontal exchange of alleles. This is a requirement enforced by the bifurcating character of phylogenetic trees. Where there is a history of such horizontal exchange, a network is arguably a better model than a bifurcating tree. Similarly, where the individuals that contribute to the data matrix are part of an interbreeding population, the techniques applied fall more into the domain of population genetics or genealogy. The tutorial is structured to first introduce the type of data that is generated during a SNP study using the services of Diversity Arrays Technology Pty Ltd (DArT). We then introduce different approaches to phylogenetic analysis first with distance analyses using Phylip, then Maximum likelihood analyses using IQ-Tree, SVDquartets, and then Bayesian analysis using Snapper in BEAST 2. We finish with the application of parsimony approaches to the binary SilicoDArT data.</p>
+</section>
+<section id="session-1-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="session-1-datasets">Session 1: Datasets</h2>
+<section id="reading-in-the-snp-data" class="level3">
+<h3 class="anchored" data-anchor-id="reading-in-the-snp-data">Reading in the SNP data</h3>
+<p>The SNP dataset used in this tutorial is Example_SNP.Rdata which can be read into RStudio using gl.load(“Example_SNP.Rdata”) or readRDS(“Example_SNP.Rdata”).</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-2_eb21e77a032aae4f6c30079272df708b">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.set.verbosity</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.set.verbosity 
+  Global verbosity set to: 3 
+Completed: gl.set.verbosity </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/Example_12.1_SNP.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that this dataset has already been filtered on call rate, reproducibility and read depth.</p>
+</section>
+<section id="examining-the-contents" class="level3">
+<h3 class="anchored" data-anchor-id="examining-the-contents">Examining the Contents</h3>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-3_7df693d1f7f342b6c44142d3d7f240c8">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> /// GENLIGHT OBJECT /////////
+
+ // 113 genotypes,  10,529 binary SNPs, size: 73.5 Mb
+ 14053 (1.18 %) missing data
+
+ // Basic content
+   @gen: list of 113 SNPbin
+   @ploidy: ploidy of each individual  (range: 2-2)
+
+ // Optional content
+   @ind.names:  113 individual labels
+   @loc.names:  10529 locus labels
+   @loc.all:  10529 alleles
+   @position: integer storing positions of the SNPs
+   @pop: population of each individual (group size range: 10-12)
+   @other: a list containing: ind.metrics  loc.metrics  history  loc.metrics.flags  verbose  latlon </code></pre>
+</div>
+</div>
+<p>Simply typing the name of the genlight object provides a substantial amount of information. We can see that there are 113 individuals scored for 10,529 SNP loci, all but 1.18% having been successfully called./ We could have used the adegenet accessors to pull this information, for example,</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-4_bf1c19363bd600f14d4f202d8fc72618">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10529</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nInd</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 113</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nPop</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11</code></pre>
+</div>
+</div>
+<p>and can in addition, list the individual names and population names</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-5_173441af5c875bc594bba557658c7636">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">indNames</span>(gl)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "UC_0126"    "HBS_100900" "HBS_100901" "HBS_100902" "HBS_100922"
+ [6] "UC_0126_1"  "HBS_100745" "AA033593"   "AA033609"   "HBS_101033"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">popNames</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "signata"    "farnorth"   "krefftii"   "nigra"      "gunabarra" 
+ [6] "emmottii"   "macquarii"  "subglobosa" "worrelli"   "tanybaraga"
+[11] "victoriae" </code></pre>
+</div>
+</div>
+<p>Samples sizes can be obtained using</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-6_4d8cd0e019183879b307eb553ed64d70">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(gl))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   signata   farnorth   krefftii      nigra  gunabarra   emmottii  macquarii 
+        11         10         10         10         10         10         10 
+subglobosa   worrelli tanybaraga  victoriae 
+        10         10         12         10 </code></pre>
+</div>
+</div>
+</section>
+<section id="examining-selected-locus-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="examining-selected-locus-metrics">Examining Selected Locus Metrics</h3>
+<p>You can interrogate the locus metrics dataframe associated with the genotype data by accessing various variable in the loc.metrics dataframe associated with the genlight object <code>gl</code>.</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-7_d9635fe5cc67e91d979f82556fd95f02">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gl<span class="sc">@</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>TrimmedSequence[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] TGCAGGTTCTTTTCCTTTGGGAGCCTGTGACAGAATGGGTTTTCAGGGACAAAGAAAAAGCTTCTCTGA
+ [2] TGCAGATATCAGTAAAACCGGAATGTAAAAACAAATATAATCTGAGTTTCATTATCAGTCCCCCATGAT
+ [3] TGCAGGAATTTGTTAGTCTTTAAGGTGCTACAGGACTCTCGGTGTTTGGACTCTATGAAATGCTTGTAA
+ [4] TGCAGTCTGATGGAGACACATGGTGAGTCCCCACTATCAAACAGAATTCATAAGTTGCATG        
+ [5] TGCAGGCCCTGCTCAGTTAGGCATG                                            
+ [6] TGCAGAATGGCAATAGCTATTCCAGTCAATCTCTCCATGTTCCAGGCCAATGTTCCCATCTTATGGCAT
+ [7] TGCAGAGACAAAAGACCCTCAGCATG                                           
+ [8] TGCAGGTAAAGTCTTGCTCAGCCATTGCAAGCCCACACTAGAGCATG                      
+ [9] TGCAGGGCCTGATTGGGTCAGGGTGCTCAGAGCATG                                 
+[10] TGCAGTAATTATACGGAAGAAAAAATCCATTAAATAAAGTATTGTCTTATGCACTCTGATACTTCTGGA
+162884 Levels: TGCAGAAAAAAAAACAATGTGCCAGTTCCCAAGTCTTTTCTGTCCAGATTCCCAGAATTCCCAGAGAGT ...</code></pre>
+</div>
+</div>
+<p>Here we are checking to see if the data contain the sequences trimmed of adaptors which we might want to use for phylogenetic analysis. Note that the sequence tags are of variable length and indeed range from 20 bp to 69 bp. We can examine the distribution of tag lengths using</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-8_12c83659f8a0cd879c4c4d3e15843485">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.taglength</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.taglength 
+  Processing genlight object with SNP data
+  Reporting Tag Length
+  No. of loci = 10529 
+  No. of individuals = 113 
+    Minimum      :  20 
+    1st quantile :  42 
+    Median       :  64 
+    Mean         :  55.68506 
+    3r quantile  :  69 
+    Maximum      :  69 
+    Missing Rate Overall:  0.01 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session09_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Quantile Threshold Retained Percent Filtered Percent
+1      100%        69     5103    48.5     5426    51.5
+2       95%        69     5103    48.5     5426    51.5
+3       90%        69     5103    48.5     5426    51.5
+4       85%        69     5103    48.5     5426    51.5
+5       80%        69     5103    48.5     5426    51.5
+6       75%        69     5103    48.5     5426    51.5
+7       70%        69     5103    48.5     5426    51.5
+8       65%        69     5103    48.5     5426    51.5
+9       60%        69     5103    48.5     5426    51.5
+10      55%        69     5103    48.5     5426    51.5
+11      50%        64     5304    50.4     5225    49.6
+12      45%        59     5876    55.8     4653    44.2
+13      40%        54     6424    61.0     4105    39.0
+14      35%        50     6911    65.6     3618    34.4
+15      30%        46     7432    70.6     3097    29.4
+16      25%        42     7964    75.6     2565    24.4
+17      20%        38     8604    81.7     1925    18.3
+18      15%        35     9017    85.6     1512    14.4
+19      10%        31     9568    90.9      961     9.1
+20       5%        27    10008    95.1      521     4.9
+21       0%        20    10529   100.0        0     0.0
+Completed: gl.report.taglength </code></pre>
+</div>
+</div>
+<p>This information is important because some phylogenetic techniques are brutal in their treatment of missing data. To minimize the impact of this, it might be necessary to filter loci on tag length prior to such analyses. Another locus metric that is of interest to us is the SNP position in the sequence tag, incase we want to look at the details of the transition or transversion mutation.</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-9_d6c7e7b44733d56690de5cdce3ff12f5">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gl<span class="sc">@</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>SnpPosition[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 16 18 40 21  9  7 11 24 19 24</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>                                 <span class="co">#OR</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>gl<span class="sc">@</span>position[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 16 18 40 21  9  7 11 24 19 24</code></pre>
+</div>
+</div>
+<p>The mutations in each sequence tag can be examined with</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-10_5a4394fbf51396b923b19b385f333106">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>gl<span class="sc">@</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>SNP[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 16:C&gt;T 18:A&gt;C 40:A&gt;G 21:A&gt;G 9:C&gt;T  7:C&gt;T  11:C&gt;A 24:C&gt;T 19:G&gt;A 24:T&gt;A
+768 Levels: 10:A&gt;C 10:A&gt;G 10:A&gt;T 10:C&gt;A 10:C&gt;G 10:C&gt;T 10:G&gt;A 10:G&gt;C ... 9:T&gt;G</code></pre>
+</div>
+</div>
+<p>Note that a sequence tag can have more than one SNP mutation, and that each of these SNP markers is represented in the dataset as a separate line entry. All but one SNP mutation can be removed from the dataset using <code>gl.filter.secondaries(gl)</code>. This was done in preparing this example dataset. Base frequencies and transition/transversion (Ts/Tv) ratios can be obtained with</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-11_614557aecc482e35b9cfeb130f49fb41">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.bases</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.report.bases 
+  Processing genlight object with SNP data
+  Counting the bases
+  Counting Transitions and Transversions
+  Average trimmed sequence length: 55.7 ( 20 to 69 ) 
+  Total number of trimmed sequences: 10529 
+  Base frequencies (%)
+    A: 26.59 
+    G: 25.12 
+    T: 26.39 
+    C: 21.9 
+  Transitions  : 62.27 
+  Transversions: 37.73 
+  ts/tv ratio: 1.6501 </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="session09_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Completed: gl.report.bases </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Where have we come?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="images/beer.png" class="class" height="70"> The above Session was designed to give you a very brief overview to the characteristics of a SNP dataset as implemented in the dartR package. Having completed this Session, you should now be familiar the following concepts.</p>
+<ul>
+<li>The means by which SNP genotypes are stored in a genlight object in preparation for phylogenetic analysis.</li>
+<li>The distinction between SNP genotype datasets and SilicoDArT datasets.</li>
+<li>Methods for interrogating the contents of a genlight object, including the associated locus metrics of relevance to phylogenetics.</li>
+<li>How to access and scrutinize the tag sequences, the position of the SNPs in each sequence tag, the mutational change for each SNP and to calculate base frequencies and ts/tv ratios.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="session-2-distance-phylogenetics" class="level2">
+<h2 class="anchored" data-anchor-id="session-2-distance-phylogenetics">Session 2: Distance Phylogenetics</h2>
+<p>Distance methods work with a matrix of genetic distances calculated for individuals or populations. In the case of SNP markers, such a distance matrix could be calculated directly from the SNP scores. There are a number of considerations that complicate a phylogenetic analysis based on distances.</p>
+<ul>
+<li>What distance measure to select, taking into account different rates of mutation at different sites (e.g rates of transition mutations as opposed to transversion mutations).</li>
+<li>If and how to manage missing sequence in the aligned set of sequence tags, given that the sequence tags range in length from 20 to 69 (for DArT data).</li>
+<li>What algorithm is appropriate for extracting the best supported tree (Neighbour-joining, Fitch-Margoliash, Minimum Evolution).</li>
+<li>Choosing an outgroup to provide the phylogeny with a defensible root.</li>
+</ul>
+<section id="model-selection" class="level3">
+<h3 class="anchored" data-anchor-id="model-selection">Model Selection</h3>
+<p>There is a vast body of theory directed at selecting an appropriate substitution model of evolution, most electing to optimize the model to the limited data available for analyses (that is, the statistical sample). An alternative is to look to the literature and select the substitution model that has the greatest consensus across a range of studies (arguably optimized for the statistical population from which the statistical sample is drawn). Options for substitution model selection are provided in the documentation supporting the {ape} package in R. We leave model selection to another day (refer to software options like ModelTest – Posada and Crandall, 2001). Dr Google and Wikipedia (under Computational Phylogenetics) provide some good general advice. Some methods such as IQ-Tree have inbuilt options to estimate and choose the most appropriate model. In this tutorial, we will use here an evolutionary model that is satisfactory for most purposes, the K80 model devised by Kimura (1980), sometimes referred to as Kimura’s 2-parameters distance which adopts different rates transitions (A &lt;-&gt; G, C &lt;-&gt; T) and transversions (A &lt;-&gt; C, A &lt;-&gt; T, C &lt;-&gt; G, G &lt;-&gt; T) and takes into account variable base (A,C,G,T) frequencies.</p>
+</section>
+<section id="missing-sequence-nnnnn" class="level3">
+<h3 class="anchored" data-anchor-id="missing-sequence-nnnnn">Missing Sequence (NNNNN)</h3>
+<p>The method used to convert the trimmed sequences in the dartR genlight object to a form amenable to distance analysis is</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-12_ab25e166706fa1c39fa3d43ee17ee579">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl2fasta</span>(gl,<span class="at">outfile=</span><span class="st">"Example1.fas"</span>,<span class="at">outpath =</span> <span class="st">'./data/'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl2fasta 
+  Processing genlight object with SNP data
+  Assigning ambiguity codes to heterozygote SNPs, concatenating trimmed sequence
+  Removing loci for which SNP position is outside the length of the trimmed sequences
+Generating haplotypes ... This may take some time
+Completed: gl2fasta </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+</div>
+<p>This produces a fastA file of concatenated aligned sequence tags padded where necessary with NNNNNs (Figure 2). Because the sequence tags can vary in length considerably, the substantial addition of Ns can cause problems for distance methods. Some will delete all point information where there is an N for one individual. Filtering on tag length to minimize the impact of this might be considered.</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-13_d28a1a6ea92763fb8b9aa964a9b59d62">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">gl.filter.taglength</span>(gl, <span class="at">lower=</span><span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting gl.filter.taglength 
+  Processing genlight object with SNP data
+Initial no. of loci = 10529 
+  Removing loci with taglength between 40 and 69 
+  No. of loci deleted = 2268 
+  Summary of filtered dataset
+    Sequence Tag Length between 40 and 69 
+    No. of loci: 8261 
+    No. of individuals: 113 
+    No. of populations:  11 
+Completed: gl.filter.taglength </code></pre>
+</div>
+</div>
+<p>Alternatively, the impact of missing data can be minimized by using pairwise calculations where the distance algorithm allows this. We will be disregarding this issue for the sake of the exercise.</p>
+</section>
+<section id="tree-building-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="tree-building-algorithm">Tree-building Algorithm</h3>
+<section id="neighbour-joining" class="level4">
+<h4 class="anchored" data-anchor-id="neighbour-joining">Neighbour-joining</h4>
+<p>A common method of building a phylogenetic tree from distances uses the Neighbour-joining algorithm (Saitou and Nei, 1987). It is a fast agglomerative clustering method which starts with the pair of taxa with the smallest distance between them, joins them, and then progressively adds nearest neighbours. Thus, the optimization is local not global and the final solution is influenced by the order of similarities between taxa.</p>
+</section>
+<section id="fitch-margoliash" class="level4">
+<h4 class="anchored" data-anchor-id="fitch-margoliash">Fitch-Margoliash</h4>
+<p>The Fitch–Margoliash method (F-M) matches the tree with the input distances using weighted least squares, where more similar distances are given greater weight than less similar distances. Thus, the optimization is global not local. Exhaustive searches for the best tree are computationally limited as the number of taxa increases, so heuristic search methods are used to find the best tree.</p>
+<p>Both neighbour-joining and Fitch-Margoliash methods are good for examining relationships among your terminal individuals or groups as a prelude to a more sophisticated analysis.</p>
+</section>
+</section>
+<section id="outgroup-selection" class="level3">
+<h3 class="anchored" data-anchor-id="outgroup-selection">Outgroup Selection</h3>
+<p>Depending on the application, the phylogeny may need to be rooted. This is conventionally done by choosing an outgroup taxon, one that unambiguously lies outside the clade comprising the taxa of primary interest.</p>
+<p>This can be problematic in SNP studies because they work primarily with closely related taxa, the relationships among all of them being of primary interest and no clear taxon that unambiguously lies outside the focal taxa based on a priori considerations. Typically, any clear candidate for an outgroup taxon belongs to a sister species and its inclusion greatly increases the number of null alleles with marginal benefit in terms of numbers of phylogenetically informative SNPs (those with alleles shared between outgroup and some ingroup taxa).</p>
+<p>Alternative methods of rooting the tree based on branch length (mid-point rooting) or a priori knowledge of the taxa may be required.</p>
+<p>Note that whether the tree is rooted or not rooted does not influence the topology of the tree arising from any of the analyses.</p>
+</section>
+<section id="implementation-in-dartr" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-in-dartr">Implementation in dartR</h3>
+<p>The R package {dartR} is essentially a suite of R scripts, managed on CRAN, that provides a link between SNP data generated by DArT (or using ddRAD) and a range of analyses. Where capability is already available to the community, dartR will provide wrappers for existing R scripts developed by other sources, or will provide a script to export data in a form that can be used by other programs ourside the R environment.</p>
+<p>Distance phylogeny in dartR is implemented by drawing upon the capabilities of R package {ape} and program Phylip. The dartR functions to use are</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-14_cffd2de28ea158d8a6dd4778d9ef41a0">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">gl.dist.phylo</span>(gl,<span class="at">subst.model=</span><span class="st">"F81"</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.tree.fitch</span>(<span class="at">D=</span>d,<span class="at">x=</span>gl,<span class="at">bstrap=</span><span class="dv">100</span>, )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>which together allow you to specify the substitution model, the algorithm for tree building, elect to filter out tag lengths below a given threshold and specify an outgroup taxon.</p>
+<p>A neighbour joining tree can be generated with</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-15_3c00cd26763757f8447e39865116da66">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.tree.nj</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>but bootstrapping is not available as an option.</p>
+</section>
+<section id="worked-example-distance-trees" class="level3">
+<h3 class="anchored" data-anchor-id="worked-example-distance-trees">Worked Example: Distance Trees</h3>
+<section id="preparation" class="level4">
+<h4 class="anchored" data-anchor-id="preparation">Preparation</h4>
+<p>To start you need to assign the working directory to the path that contains the datafile Example_SNP.Rdata. Also make a note of the directory that holds the Phylip executables, for example, “D:/workspace/R/phylip-3.695/exe”.</p>
+<p>Read in the data using</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-16_66d3194cc88ab70fd231ab0196b64117">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">gl.load</span>(<span class="st">"Example_SNP.Rdata"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Consider if you want to filter on taglength, say</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">gl.filter.taglength</span>(gl,<span class="at">lower=</span><span class="dv">69</span>, <span class="at">verbose=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="compute-distance-matrix" class="level4">
+<h4 class="anchored" data-anchor-id="compute-distance-matrix">Compute distance matrix</h4>
+<p>Select a substitution model, in this case F81 (Felsenstein (1981) which is a generalized the Jukes–Cantor model that distinguishes different substitution rates for transitions and transversions and relaxes the assumption of equal base frequencies.</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-17_4afb5652e5ae8a7a86e9d1bc409e7341">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span><span class="fu">gl.dist.phylo</span>(gl,<span class="at">by.pop=</span><span class="cn">TRUE</span>, <span class="at">subst.model=</span><span class="st">"F81"</span>,<span class="at">verbose=</span><span class="dv">3</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(dd)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.tree.fitch</span>(<span class="at">D=</span>dd,<span class="at">x=</span>gl, <span class="at">phylip.path=</span><span class="st">"D:/workspace/R/phylip-3.695/exe"</span>,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">outgroup=</span><span class="st">"macquarii"</span>, <span class="at">verbose=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="bootstrapping" class="level4">
+<h4 class="anchored" data-anchor-id="bootstrapping">Bootstrapping</h4>
+<p>We now bootstrap the Fitch-Margoliash tree which is quite computationally expensive.</p>
+<div class="cell" data-hash="session09_cache/html/unnamed-chunk-18_bdfc34aa765e510bbb814efe5cc02529">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.tree.fitch</span>(<span class="at">D=</span>dd,<span class="at">x=</span>gl, <span class="at">phylip.path=</span><span class="st">"D:/workspace/R/phylip-3.695/exe"</span>,</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">outgroup=</span><span class="st">"macquarii"</span>, <span class="at">bstrap=</span><span class="dv">100</span>, <span class="at">verbose=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Where have we come?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="images/beer.png" class="class" data-fig-align="left" height="60"> The above Session was designed to give you an overview on the application of distance methods in phylogeny using a SNP dataset as implemented in the dartR package. Having completed this Session, you should now be familiar the following concepts.</p>
+<ul>
+<li>The considerations to make in constructing a distance matrix from a SNP dataset, including decisions on the nucleotide substitution model and the mode of deletion of missing values.</li>
+<li>Familiarity with two options for phylogenetic tree construction, the Neighbour-joining method and the Fitch-Margoliash method.</li>
+<li>Options for the analysis and mode of display.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="phylogenetics-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="phylogenetics-tutorial">Phylogenetics Tutorial</h3>
+<p><strong>This was just a taste of what the tutorial has to offer, check it out below.</strong></p>
 <p><object data="tutorials/Tutorial_phylogenetics_9-Mar-2024.pdf" type="application/pdf" width="100%" height="600"><p>Unable to display PDF file. <a href="tutorials/Tutorial_phylogenetics_9-Mar-2024.pdf">Download</a> instead.</p></object></p>
+</section>
 </section>
 <section id="further-study" class="level2">
 <h2 class="anchored" data-anchor-id="further-study"><strong>Further Study</strong></h2>

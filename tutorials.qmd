@@ -19,3 +19,7 @@
 ## `dartR` Basic Filtering
 
 {{< pdf tutorials/Tutorial_5_dartR_Basic_Filtering.pdf width=100% height=600 >}}
+
+## Fixed Differences
+
+{{< pdf tutorials/TechNote_fixed_difference_analysis_25-Feb-22.pdf width=100% height=600 >}}
