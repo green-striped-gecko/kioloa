@@ -21,6 +21,11 @@ library(sf)
 library(raster)
 library(robust)
 library(qvalue)
+library(mlbench)
+library(caret)
+library(RAINBOWR)
+library(qqman)
+library(randomForest)
 ```
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
@@ -114,7 +119,6 @@ Impute missing data
 # ADMIXTURE results most likely 6 pops
 imputed.gi <- melfuR::impute.data(Mf5000.genind, K = 6)
 ```
-
 
 ```{r}
 # order major/minor alleles (generally no reason to do this... but might be useful for someone)
@@ -354,7 +358,7 @@ pairs.panels(reduced.env, scale=T, lm = TRUE)
 
 ```
 
-## 3. Run analysis
+## 2. Run analysis
 
 So we have formatted genotypes, environmental data
 
@@ -438,7 +442,7 @@ dev.off()}
 
 ![](images/Mf_RDA.png)
 
-## 4. Identify candidate loci
+## 3. Identify candidate loci
 
 Estimate p values following: <https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches> and the R function rdadapt (see <https://github.com/Capblancq/RDA-genome-scan>)
 
@@ -560,6 +564,370 @@ unlink('individual_env_data.csv')
 
 ![](images/Mfcandidate_RDA.png)
 
-## *Further Study*
 
-still to come...
+## **GWAS genotype and phenotype association**
+
+```{r}
+## Get input files 
+load(file = "./data/GWAS.RData")
+##randomForest
+CaRF$Size <- as.factor(CaRF$Size)
+
+```
+
+## RandomForest
+
+Let's start with randomForest.
+
+The input is a structure file with genotypes codified as counts of the major allele per individual per locus (0 hom minor allele (mA), 1 het, 2 hom major allele (MA)), with sample's phenotype or trait in the first column instead of the population.
+
+::: callout-caution
+
+If the trait or phenotype is categorical instead of continuous, it should be tranformed into a factor.
+:::
+
+```{r}
+
+See(CaRF)
+
+```
+
+The first step is to crate our training and validation data in a 70:30 proportion
+
+Then we run a simple forest to see performance without tuning
+
+```{r}
+
+table(CaRF$Size)
+set.seed(123)
+ind <- sample(2, nrow(CaRF), replace = TRUE, prob = c(0.7, 0.3))
+train <- CaRF[ind==1,]
+test <- CaRF[ind==2,]
+train$Size
+
+
+rf <- randomForest(Size~., data=train,
+                   ntree = 50,       # number of trees
+                   mtry = 10,          # number of variables tried at each split
+                   importance = TRUE,
+                   proximity = TRUE)
+print(rf)
+
+### Expected output 
+# OOB estimate of error rate: 27.69% 
+# Confusion matrix: 
+#    1  2 class.error 
+# 1 93 34 0.2677165 
+# 2 38 95 0.2857143 
+```
+
+70% accuracy is no too bad, but can we improve it
+
+```{r}
+
+control <- trainControl(method="repeatedcv", number=5, repeats=3)
+set.seed(123) 
+metric <- "Accuracy"
+mtry <- sqrt(ncol(CaRF))
+tunegrid <- expand.grid(.mtry=mtry / 2 )
+rf_default <- train(Size~., data=CaRF, method="rf", metric=metric, 
+                    tuneGrid=tunegrid, trControl=control) # ~ 3mins
+print(rf_default)
+# plot(rf_default) Error: There are no tuning parameters with more than 1 value.
+
+# Accuracy  |   Kappa   |
+# 0.7510761 | 0.5020184 |
+
+```
+
+
+Here we have also Kappa, a mesure of how much better the model clasitication is than a random clasification. This is importa when when there is a significant skew in sample sizes.
+
+
+
+### MODEL TUNING: Do not RUN now
+
+The next couple of steps could take **too long**, so here are the commands for you to try in your own time
+
+::: callout-warning
+
+## run in **your own time**
+
+```{r, eval = FALSE}
+control <- trainControl(method="repeatedcv", number=10, repeats=3, search="random")
+set.seed(123) 
+mtry <- sqrt(ncol(CaRF) / 3) 
+rf_random <- train(Size~., data=CaRF, method="rf", metric=metric, 
+                   tuneLength=15, trControl=control) print(rf_random)
+plot(rf_random)
+```
+
+:::
+
+```{r}
+####Expected output
+#No pre-processing 
+#Resampling: Cross-Validated (10 fold, repeated 3 times) 
+#Summary of sample sizes: 327, 327, 327, 326, 327, 327, ... 
+#Resampling results across tuning parameters:
+
+# mtry Accuracy Kappa
+
+#195 0.7703453 0.5403670
+#348 0.7685185 0.5367943
+#526 0.7684685 0.5367281
+#665 0.7721972 0.5441283 
+#953 0.7730731 0.5458833
+#1011 0.7694444 0.5386467 
+#1017 0.7702202 0.5401206 
+#1038 0.7685435 0.5367490 
+#1115 0.7740240 0.5477867 
+#1142 0.7750000 0.5497308 
+#1253 0.7740490 0.5478857 
+#1268 0.7740240 0.5477339 
+#1627 0.7768018 0.5533787 
+#1842 0.7768268 0.5533826
+#2013 0.7749750 0.5496527
+```
+
+Accuracy was used to select the optimal model using the largest value. #The final value used for the model was mtry = 1842. 
+
+You can test a combination of ntree and mtry values. Unfortunately, this is the most time-consuming part
+
+But here is the code for you to try:
+
+::: callout-warning
+
+## run in **your own time**
+
+```{r, eval = FALSE}
+control <- trainControl(method="repeatedcv", number=5, repeats=3, search="grid") 
+tunegrid <- expand.grid(.mtry=(1650:1750)) 
+modellist <- list() 
+seed <-123 
+metric <- "Accuracy" 
+for (ntree in c(200, 300, 500, 1000)) { 
+  set.seed(seed) 
+  fit <- train(Size~., data=CaRF, method="rf",
+               metric=metric, tuneGrid=tunegrid, trControl=control, ntree=ntree) 
+  key <- toString(ntree) 
+  modellist[[key]] <- fit } # Then you can compare tuning results 
+  results <- resamples(modellist) 
+  summary(results) 
+  dotplot(results)
+  
+  }
+
+```
+
+:::
+
+### Back to the exercise
+
+But the best cobination was ntree = 200 and mtry= 1680
+
+Now We run our forest with the optimal set up based on the tuning
+
+```{r}
+
+rf <- randomForest(Size~., data=train,
+                   ntree = 200,       # number of trees
+                   mtry = 1680,          # number of variables tried at each split
+                   importance = TRUE,
+                   proximity = TRUE)
+print(rf)
+
+###Expected output
+#OOB estimate of error rate: 23.48% #Confusion matrix: 
+#    1  2  class.error 
+# 1 93 34  0.2677165 
+# 2 26 107 0.1954887 
+```
+
+
+
+Around a 5% accuracy gain, looks like not much, but a disclaimer, these are just SNPs from the 4 chomosomes we already identified as important for growth.
+
+Now just check what are these markers
+
+```{r}
+
+varImpPlot(rf)
+
+```
+
+We can determine their importance using their effect on two metrics:
+
+Accuracy - Ratio of correct classifications to total number of samples Gini - Measurement of the cleanliness of feature split in the tree
+
+::: callout-note
+## Questions!?
+:::
+
+
+Ok let's change approach and check concodance:
+
+## RAINBOWR
+
+First, we integrte our inputs in to a GWAS format for RAINBOWR.
+
+And then we check each dataset format:
+
+Phenotype is just two columns, ID and phenotype. Genotype is same format as randomforest, but -1 hom mA 0 het 1 hom MA. Map file with the chromosome and position of each SNP.
+
+```{r}
+
+modify.CaGW.res <- modify.data(pheno.mat = CaGW_phe, 
+                               geno.mat = CaGW_geno,
+                               map = CaGW_map, return.ZETA = TRUE,
+                               return.GWAS.format = TRUE)
+pheno.GWAS <- modify.CaGW.res$pheno.GWAS
+geno.GWAS <- modify.CaGW.res$geno.GWAS
+
+### View each dataset
+See(pheno.GWAS)  
+See(geno.GWAS)
+See(CaGW_map)
+
+```
+
+Now we calcualte ZETA, a list of genomic relationship matrix (GRM). ZETA is basically a random effect and accounts for possible confounding/covariant factors like population structure and relatedness.
+
+```{r}
+
+ZETA <- modify.CaGW.res$ZETA
+
+```
+
+
+### Other methods to control for population structure cofactors
+
+structure.matrix, n.PC should be > 0
+
+```{r, eval = FALSE}
+normal.res <- RGWAS.normal(pheno = pheno.GWAS, 
+                           geno = geno.GWAS, ZETA = ZETA, 
+                           structure.matrix= QMATRIX, n.PC = 4, P3D = TRUE)
+
+## other cofactors, like sex or age (a two-column table similar to phenotype table)
+
+normal.res <- RGWAS.normal(pheno = pheno.GWAS, geno = geno.GWAS, 
+                           ZETA = ZETA, structure.matrix= QMATRIX, 
+                           covariate = SEX_AGE, n.PC = 4, P3D = TRUE)
+
+```
+
+## single-SNP GWAS
+Now, to perform single-SNP GWAS.
+
+```{r, results='hide'}
+
+normal.res <- RGWAS.normal(pheno = pheno.GWAS, geno = geno.GWAS,
+                           ZETA = ZETA, n.PC = 4, P3D = TRUE)
+
+```
+
+![Q-Q plot](images/session7_qqplot.png)
+
+![Manhattan plot](images/session7_manhattan.png)
+
+
+We can see, first the QQ plot, it shows that our data has a little deviation from the expected distribution, but this is just at the end of the tail.
+
+Second, the manhattan plot shows few SNPs that are significantly associated to size, but more importantly, it shows a peak of relatively high-importance SNPs at the end of chromosome 16.
+
+### Important SNPs
+So, what are the most important important SNPs?
+
+```{r, results='hide'}
+
+normal.res$D[normal.res$D$Size  >= 4, ]
+
+```
+
+How much of the phenotype can we really predict?
+
+To determine that, we use a mixed model approach to calculate heritable, in other words the genetic contribution to our trait variation
+
+```{r}
+
+K.A2<-calcGRM(genoMat = CaGW_geno)
+k.AA2 <- K.A2 * K.A2
+y <- as.matrix(pheno.GWAS[,'Size', drop = FALSE])
+Z <- design.Z(pheno.labels = rownames(y), geno.names = rownames(K.A2))
+pheno.mat2 <- y[rownames(Z), , drop = FALSE]
+ZETA2 <- list(A = list(Z = Z, K = K.A2),AA = list(Z = Z, K = k.AA2))
+EM3.res <- EM3.cpp(y = pheno.mat2, X = NULL, ZETA = ZETA2)
+(Vu <- EM3.res$Vu)   ### estimated genetic variance
+(Ve <- EM3.res$Ve)   ### estimated residual variance
+(weights <- EM3.res$weights) ### estimated proportion of two genetic variances
+(herit <- Vu * weights / (Vu + Ve)) ### genomic heritability
+herit
+
+```
+
+### Test performance
+Now we can test the performance of our genomic prediction with 10-fold cross-validation
+
+::: callout-caution
+If you have NAs in your phenotype dataset you have to remove them
+
+```{r, eval = FALSE}
+phenoNoNA <- pheno.mat2[noNA, , drop = FALSE] ### remove NA
+```
+
+:::
+
+#### *But our data doesn't have any NAs.*
+
+```{r}
+
+nFold <- 10 
+nLine <- nrow(pheno.mat2)
+idCV <- sample(1:nLine %% nFold) ### assign random ids for cross-validation
+idCV[idCV == 0] <- nFold
+
+yPred <- rep(NA, nLine)
+for (noCV in 1:nFold) {
+  print(paste0("Fold: ", noCV))
+  yTrain <- pheno.mat2
+  yTrain[idCV == noCV, ] <- NA ### prepare test data
+  EM3.gaston.resCV <- EM3.general(y = yTrain, X0 = NULL, ZETA = ZETA,
+                                  package = "gaston", return.u.always = TRUE,
+                                  pred = TRUE, return.u.each = TRUE,
+                                  return.Hinv = TRUE) ### prediction
+  yTest <- EM3.gaston.resCV$y.pred ### predicted values
+  yPred[idCV == noCV] <- yTest[idCV == noCV]
+}
+
+```
+
+### Plot Genomic Prediction
+
+```{r}
+
+plotRange <- range(pheno.mat2, yPred)
+plot(x = pheno.mat2, y = yPred,xlim = plotRange, ylim = plotRange,
+     xlab = "Observed values", ylab = "Predicted values",
+     main = "Results of Genomic Prediction (multi-kernel)",
+     cex.lab = 1.5, cex.main = 1.5, cex.axis = 1.3)
+abline(a = 0, b = 1, col = 2, lwd = 2, lty = 2)
+R2 <- cor(x = pheno.mat2[, 1], y = yPred) ^ 2
+text(x = plotRange[2] - 10,
+     y = plotRange[1] + 10,
+     paste0("R2 = ", round(R2, 3)),
+     cex = 1.5)
+
+```
+
+Not really the best prediction power, and even worse than randomForest just using \~2K SNPs.
+
+It is important to note that combinations of methods can improve our power to predict complex traits that are polygenic.
+
+Using haplotype-based approaches and Bayesian methods helps a lot.
+
+Annotation of the regions of chromosome 16 shows presence of several genes related to growth and body development.
+
+## *Further steps*
+
+It is time to test how structural variances can improve the power of GWAS.
