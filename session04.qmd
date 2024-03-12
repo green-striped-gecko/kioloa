@@ -131,3 +131,21 @@ library(downloadthis)
 Check out the information life cycle <https://data.uq.edu.au/data-essentials/information-lifecycle>
 
 Check out the push for open research, research that is reproducible and accessible <https://www.repro4everyone.org/>
+
+### Meta data:
+
+How to write metadata?​
+
+Stanford Libraries – [Create metadata for your research project](https://guides.library.stanford.edu/research-metadata)​
+
+The Carpentries Incubator – [Introduction to metadata](https://carpentries-incubator.github.io/fair-bio-practice/05-intro-to-metadata/index.html) ​
+
+ARDC – [Metadata guide](https://ardc.edu.au/resource/metadata-guide/)
+
+### Data Planning
+
+links:
+
+<https://mynotebook.labarchives.com/login>
+
+<https://dmptool.org/>

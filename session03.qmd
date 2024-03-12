@@ -481,4 +481,19 @@ You need to report autosomal heterozygosity at a minimum, which means doing your
 
 ## *Further Study*
 
-still to come...
+
+
+Galaxy Australia:
+
+-   Bioinformatics resources available to through the AAF login (your university)
+
+-   Lots of compute power
+
+-   Has the Stacks2 pipeline available
+
+Links:
+
+<https://australianbiocommons.github.io/how-to-guides/stacks_workflows/stacks>
+
+<https://catchenlab.life.illinois.edu/stacks/manual/>
+
