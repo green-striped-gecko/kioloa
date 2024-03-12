@@ -302,8 +302,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#candidates-snps" id="toc-candidates-snps" class="nav-link" data-scroll-target="#candidates-snps">4 Candidates SNPs</a></li>
   <li><a href="#rainbowr" id="toc-rainbowr" class="nav-link" data-scroll-target="#rainbowr">RAINBOWR</a></li>
   <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">1 Inputs</a></li>
-  <li><a href="#single-snp-base-gwas" id="toc-single-snp-base-gwas" class="nav-link" data-scroll-target="#single-snp-base-gwas">3 Single-SNP base GWAS</a></li>
-  <li><a href="#genomic-predition" id="toc-genomic-predition" class="nav-link" data-scroll-target="#genomic-predition">4 Genomic predition</a>
+  <li><a href="#single-snp-base-gwas" id="toc-single-snp-base-gwas" class="nav-link" data-scroll-target="#single-snp-base-gwas">2 Single-SNP base GWAS</a></li>
+  <li><a href="#genomic-prediction" id="toc-genomic-prediction" class="nav-link" data-scroll-target="#genomic-prediction">3 Genomic prediction</a>
   <ul class="collapse">
   <li><a href="#plot-genomic-prediction." id="toc-plot-genomic-prediction." class="nav-link" data-scroll-target="#plot-genomic-prediction.">Plot Genomic Prediction.</a></li>
   </ul></li>
@@ -1207,7 +1207,7 @@ popL_L016        2        -1         -1         -1         -1         -1
 </section>
 <section id="model-tunning" class="level2">
 <h2 class="anchored" data-anchor-id="model-tunning">2 Model tunning</h2>
-<p>The first step is to crate our training and validation data in a 70:30 proportion.</p>
+<p>The first step is to crate our training and validation data in a 70:25 proportion.</p>
 <p>Then we run a simple forest to see performance without tuning.</p>
 <div class="cell" data-hash="session07_CB_Yuma_cache/html/unnamed-chunk-29_f3a785d69e173162a640236d299482ac">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -1486,7 +1486,7 @@ LG1:10529180 LG1:10529180         1  10529180
 </div>
 </section>
 <section id="single-snp-base-gwas" class="level2">
-<h2 class="anchored" data-anchor-id="single-snp-base-gwas">3 Single-SNP base GWAS</h2>
+<h2 class="anchored" data-anchor-id="single-snp-base-gwas">2 Single-SNP base GWAS</h2>
 <p>Now we calculate ZETA, a list of genomic relationship matrix (GRM). ZETA is basically a random effect and accounts for possible confounding/covariant factors like population structure and relatedness.</p>
 <div class="cell" data-hash="session07_CB_Yuma_cache/html/unnamed-chunk-38_7a7903b96afdfba386e789fd5b2388fc">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>ZETA <span class="ot">&lt;-</span> modify.CaGW.res<span class="sc">$</span>ZETA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1536,8 +1536,8 @@ There are many ways to control for cofactors, here some examples.
 </div>
 </div>
 </section>
-<section id="genomic-predition" class="level2">
-<h2 class="anchored" data-anchor-id="genomic-predition">4 Genomic predition</h2>
+<section id="genomic-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="genomic-prediction">3 Genomic prediction</h2>
 <p>How much of the phenotype can we really predict?</p>
 <p>To determine that, we use a mixed model approach to calculate heritability, in other words the genetic contribution to our trait variation.</p>
 <div class="cell" data-hash="session07_CB_Yuma_cache/html/unnamed-chunk-42_35bb911e6562db6f2f9d0acbe7cafd26">

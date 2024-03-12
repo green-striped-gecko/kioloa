@@ -622,7 +622,7 @@ So here we have the 363 samples, (180 small and 183 large), genotyped for a subs
 
 ## 2 Model tunning
 
-The first step is to crate our training and validation data in a 70:30 proportion.
+The first step is to crate our training and validation data in a 70:25 proportion.
 
 Then we run a simple forest to see performance without tuning.
 
@@ -807,7 +807,7 @@ See(CaGW_map)
 
 ```
 
-## 3 Single-SNP base GWAS
+## 2 Single-SNP base GWAS
 
 Now we calculate ZETA, a list of genomic relationship matrix (GRM). ZETA is basically a random effect and accounts for possible confounding/covariant factors like population structure and relatedness.
 
@@ -851,7 +851,7 @@ normal.res$D[normal.res$D$Size  >= 4, ]
 
 ```
 
-## 4 Genomic predition
+## 3 Genomic prediction
 
 How much of the phenotype can we really predict?
 
