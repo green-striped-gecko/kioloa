@@ -523,8 +523,6 @@ dev.off()
 
 ![](Session%2007%20Natural%20Selection/Mfcandidate_RDA.png)
 
-
-
 ## **GWAS genotype and phenotype association**
 
 ```{r}
@@ -542,7 +540,6 @@ Let's start with randomForest.
 The input is a structure file with genotypes codified as counts of the major allele per individual per locus (0 hom minor allele (mA), 1 het, 2 hom major allele (MA)), with sample's phenotype or trait in the first column instead of the population.
 
 ::: callout-caution
-
 If the trait or phenotype is categorical instead of continuous, it should be tranformed into a factor.
 :::
 
@@ -600,17 +597,13 @@ print(rf_default)
 
 ```
 
-
 Here we have also Kappa, a mesure of how much better the model clasitication is than a random clasification. This is importa when when there is a significant skew in sample sizes.
-
-
 
 ### MODEL TUNING: Do not RUN now
 
 The next couple of steps could take **too long**, so here are the commands for you to try in your own time
 
 ::: callout-warning
-
 ## run in **your own time**
 
 ```{r, eval = FALSE}
@@ -621,7 +614,6 @@ rf_random <- train(Size~., data=CaRF, method="rf", metric=metric,
                    tuneLength=15, trControl=control) print(rf_random)
 plot(rf_random)
 ```
-
 :::
 
 ```{r}
@@ -650,14 +642,13 @@ plot(rf_random)
 #2013 0.7749750 0.5496527
 ```
 
-Accuracy was used to select the optimal model using the largest value. #The final value used for the model was mtry = 1842. 
+Accuracy was used to select the optimal model using the largest value. #The final value used for the model was mtry = 1842.
 
 You can test a combination of ntree and mtry values. Unfortunately, this is the most time-consuming part
 
 But here is the code for you to try:
 
 ::: callout-warning
-
 ## run in **your own time**
 
 ```{r, eval = FALSE}
@@ -679,7 +670,6 @@ for (ntree in c(200, 300, 500, 1000)) {
   }
 
 ```
-
 :::
 
 ### Back to the exercise
@@ -704,8 +694,6 @@ print(rf)
 # 2 26 107 0.1954887 
 ```
 
-
-
 Around a 5% accuracy gain, looks like not much, but a disclaimer, these are just SNPs from the 4 chomosomes we already identified as important for growth.
 
 Now just check what are these markers
@@ -723,7 +711,6 @@ Accuracy - Ratio of correct classifications to total number of samples Gini - Me
 ::: callout-note
 ## Questions!?
 :::
-
 
 Ok let's change approach and check concodance:
 
@@ -759,10 +746,9 @@ ZETA <- modify.CaGW.res$ZETA
 
 ```
 
-
 ### Other methods to control for population structure cofactors
 
-structure.matrix, n.PC should be > 0
+structure.matrix, n.PC should be \> 0
 
 ```{r, eval = FALSE}
 normal.res <- RGWAS.normal(pheno = pheno.GWAS, 
@@ -778,21 +764,22 @@ normal.res <- RGWAS.normal(pheno = pheno.GWAS, geno = geno.GWAS,
 ```
 
 ## single-SNP GWAS
+
 Now, to perform single-SNP GWAS.
 
-```{r, results='hide'}
+```{r, results='hide', message=FALSE}
 
 normal.res <- RGWAS.normal(pheno = pheno.GWAS, geno = geno.GWAS,
                            ZETA = ZETA, n.PC = 4, P3D = TRUE)
 
 ```
 
-
 We can see, first the QQ plot, it shows that our data has a little deviation from the expected distribution, but this is just at the end of the tail.
 
 Second, the manhattan plot shows few SNPs that are significantly associated to size, but more importantly, it shows a peak of relatively high-importance SNPs at the end of chromosome 16.
 
 ### Important SNPs
+
 So, what are the most important important SNPs?
 
 ```{r, results='hide'}
@@ -823,6 +810,7 @@ herit
 ```
 
 ### Test performance
+
 Now we can test the performance of our genomic prediction with 10-fold cross-validation
 
 ::: callout-caution
@@ -831,7 +819,6 @@ If you have NAs in your phenotype dataset you have to remove them
 ```{r, eval = FALSE}
 phenoNoNA <- pheno.mat2[noNA, , drop = FALSE] ### remove NA
 ```
-
 :::
 
 #### *But our data doesn't have any NAs.*
