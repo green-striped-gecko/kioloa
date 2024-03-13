@@ -585,7 +585,7 @@ dev.off()
 
 ```
 
-![](Session%2007%20Natural%20Selection/Mfcandidate_RDA.png)
+![](images/Mfcandidate_RDA.png)
 
 ## **GWAS genotype and phenotype association**
 
