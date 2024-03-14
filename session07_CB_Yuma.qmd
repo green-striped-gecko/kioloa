@@ -940,3 +940,26 @@ Annotation of the regions of chromosome 16 shows presence of several genes relat
 ## *Further steps*
 
 It is time to test how structural variances can improve the power of GWAS.
+
+
+## *Readings*
+
+@attard_fish_2022
+
+@brauer_roles_2018
+
+@batley_whole_2021
+
+@smith_latitudinal_2020
+
+@brauer_natural_2023
+
+@grummer_aquatic_2019
+
+@pratt_seascape_2022
+
+@sandoval-castillo_seascape_2018
+
+
+
+
