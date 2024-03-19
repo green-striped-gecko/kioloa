@@ -154,7 +154,7 @@ To run structure we use an dartR implementation of functions which is based on t
 The possible arguments are listed below:
 
 | parameter    | description                                                                                                                                                          |
-|-------------|-----------------------------------------------------------|
+|----------------|--------------------------------------------------------|
 | k.range      | vector of values to for maxpop in multiple runs. If set to NULL, a single STRUCTURE run is conducted with maxpops groups. If specified, do not also specify maxpops. |
 | num.k.rep    | number of replicates for each value in k.range.                                                                                                                      |
 | label        | label to use for input and output files                                                                                                                              |
@@ -366,3 +366,12 @@ This is a data set (only a subset) of foxes in Australia, which I had lying arou
 foxes <- readRDS("./data/foxes.rds")
 gl.map.interactive(foxes, pop.labels = FALSE)
 ```
+
+
+## *Readings*
+
+@georges_distances_2023
+
+@battey_space_2020
+
+

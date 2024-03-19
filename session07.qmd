@@ -26,6 +26,7 @@ library(caret)
 library(RAINBOWR)
 library(qqman)
 library(randomForest)
+
 ```
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
@@ -38,44 +39,6 @@ First lets load in some functions we will be using.
 source("utils.R")
 ```
 
-If you do not already have it, **download** the `utils.R` file:
-
-::: download_btn
-```{css}
-#| echo: false
-
-.btn-default,
-.btn-default:hover,
-.btn-default:active {
-  font-size: 20px;
-  color: black;
-  background-color: transparent;
-  border-color: lightgreen;
-}
-
-.btn-default:hover {
-  color: grey;
-  transition: 0.2s;
-}
-
-```
-
-```{r, echo=FALSE, warning=FALSE}
-library(downloadthis)
-
-
-  download_file(path = './utils.R',
-    output_name = "utils",
-    output_extension = ".R",
-    button_label = "Download utils.R",
-    button_type = "default",
-    has_icon = TRUE,
-    icon = "fa fa-file-csv"
-  )
-
-```
-:::
-
 ## 1. Data preparation
 
 ```{r}
@@ -84,6 +47,7 @@ load("data/Mf5000_gl.RData")
 Mf5000_gl
 Mf5000_gl@pop
 
+## What do you notice about the factor levels?
 # Factors in R can make you question your life choices like nothing else...
 # re-order the pop levels to match the order of individuals in your data
 Mf5000_gl@pop <- factor(Mf5000_gl@pop, levels = as.character(unique(Mf5000_gl@pop)))
@@ -93,14 +57,15 @@ Mf5000_gl@pop
 Mf5000.genind <- gl2gi(Mf5000_gl)
 Mf5000.genind
 
+# Ok we have our genotypes
 ```
 
-::: callout-caution
-## Ordination analyses cannot handle missing data...
+::: callout-note
+## Decision time:
 
-Impute missing data
+Ordination analyses cannot handle missing data…
 
-**Decision time**
+How can we impute missing data?
 
 1.  remove loci with missing data?
 
@@ -108,33 +73,59 @@ Impute missing data
 
 3.  impute missing data, ok how?
 
-    3a. most common genotype across all data?
+    -   most common genotype across all data?
 
-    3b. most common genotype per site/population/other?
+    -   most common genotype per site/population/other?
 
-    3c. based on population allele frequencies characterised using snmf (admixture)?\
+    -   based on population allele frequencies characterised using snmf (admixture)?\
 :::
 
-```{r, output = FALSE}
+```{r, echo=TRUE, eval=FALSE}
 # ADMIXTURE results most likely 6 pops
-imputed.gi <- melfuR::impute.data(Mf5000.genind, K = 6)
+imputed.gi <- melfuR::impute.data(Mf5000.genind, K = 6 )
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# suppress the 100s of lines of console output, instead print first 15 [...] last 5
+capture_output <- capture.output({
+imputed.gi <- melfuR::impute.data(Mf5000.genind, K = 6 )
+})
+
+output_length <- length(capture_output)
+
+if (output_length > 20) {
+cat(capture_output[1:15], sep="\n")
+cat("\n\n[...]\n\n")
+cat(capture_output[(output_length - 4):output_length], sep="\n")
+} else {
+cat(capture_output, sep="\n")
+}
 ```
 
 ```{r}
-# order major/minor alleles (generally no reason to do this... but might be useful for someone)
+# re-order each genotype as major/minor allele
+# (generally no real reason to do this... but it's neat and might be useful for something)
 imputed.sorted.gi <- sort_alleles(imputed.gi)
 
 # check results
 imputed.gi@tab[1:10,1:6]
 imputed.sorted.gi@tab[1:10,1:6]
 
-#delelte intermediate files
-unlink(c('dat.geno', 'dat.lfmm', 'dat.snmfProject', 'dat.snmf', 'dat.lfmm_imputed.lfmm'), recursive = T)
+# The allele counts for SNP_1 were ordered C/T before sorting, now they are T/C
+# the sort_alleles function also has an optional 'pops' argument where you can specify
+# a population to use as the reference if you want to analyse relative to some focal pop
+
+unlink(c('dat.geno', 'dat.lfmm', 'dat.snmfProject', 'dat.snmf', 'dat.lfmm_imputed.lfmm',
+         'individual_env_data.csv'), recursive = T)
 ```
 
-Format SNP data for ordination analysis in vegan. You want a matrix of allele counts per locus, per individual can use population allele frequencies instead
+The sort_alleles function also has an optional 'pops' argument where you can specify a population to use as the reference if you want to analyse relative to some focal pop.
 
-### Individual based
+### Format SNP data for ordination analysis in vegan
+
+So we have our genotypes and have filled in the missing data. We now need to format the data for use in the RDA. We can do the analysis at an individual level using a matrix of allele counts per locus, or at a population level using population allele frequencies. Both of those options are easy to format from a genind object.
+
+#### Individual-based
 
 ```{r}
 
@@ -158,7 +149,7 @@ snps[1:10,1:10]
  
 ```
 
-### Population based
+#### Population-based
 
 ```{r}
 # for population based analyses
@@ -176,26 +167,42 @@ AF[1:14,1:6]
 
 ### Get environmental data
 
+Ok our SNP data are formatted and ready to go Now we need some environmental data...
+
 ::: callout-note
 ## Decision time:
 
-What are the variables you want to use? Considerations: Prior/expert knowledge, hypotheses, species distribution models (SDMs), most important variables, data availability, think about surrogates/proxies if specific data not available, raw variables, PCA, other transformations?
+What are the variables you want to use? Considerations: Prior/expert knowledge, existing hypotheses, species distribution models (SDMs), most important variables Data availability? Think about surrogates/proxies if specific data not available, raw variables, PCA, other transformations?
 
 In this case we are going to keep it simple and just use a few WorldClim variables Bio01 (annual mean temperature), Bio05 (temperature in hottest month), Bio15 (rainfall seasonality) and Bio19 (rainfall in coldest quarter)
 :::
 
-```{r}
-# set the data dir and extend the waiting time (sometimes the database can be slow to respond)
+```{r, echo=TRUE, eval=FALSE}
+# set the data directory and extend the response timeout (sometimes the database can be slow to respond)
 options(sdmpredictors_datadir="data/spatial_data")
 options(timeout = max(300, getOption("timeout")))
 
-# Explore datasets in the package 
-sdmpredictors::list_datasets()
+# Explore environmental layers
+sdmpredictors::list_layers("WorldClim")
 
 ```
 
-```{r, output = FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+options(sdmpredictors_datadir="data/spatial_data")
+options(timeout = max(300, getOption("timeout")))
+
+capture_output <- capture.output({
 sdmpredictors::list_layers("WorldClim")
+})
+
+output_length <- length(capture_output)
+
+if (output_length > 20) {
+cat(capture_output[1:20], sep="\n")
+cat("\n\n[...]\n\n")
+} else {
+cat(capture_output, sep="\n")
+}
 ```
 
 ```{r}
@@ -207,7 +214,6 @@ write.csv(layers, "./data/WorldClim.csv")
 # Bio01 (annual mean temperature), Bio05 (temperature in hottest month), Bio15 (rainfall seasonality) and Bio19 (rainfall in coldest quarter)
 WC <- load_layers(c("WC_bio1", "WC_bio5", "WC_bio15", "WC_bio19"))
 plot(WC)
-
 
 # Crop rasters to study area and align CRS
 # get Murray-Darling Basin polygon
@@ -246,10 +252,10 @@ text(st_coordinates(sites_sf)[,1], st_coordinates(sites_sf)[,2], labels=sites_sf
 
 ##### Save PDF
 
-```{r, eval=FALSE}
+```{r, output=FALSE}
 
 # format nicely and export as pdf
-{pdf("./env_rasters.pdf")
+{pdf("./images/env_rasters.pdf")
 for(i in 1:nlayers(ENV)) {
   rasterLayer <- ENV[[i]]
   
@@ -291,15 +297,26 @@ env.site <- cbind(env.site, env.dat)
 
 ```
 
-### No missing data
+Have a look at the env.site data frame This is where we will keep all of the metadata for use in the analyses Keep an eye out, we are going to add a few more columns to it and eventually munge it into individual-level metadata
 
 ```{r}
-# we now have our SNP data with no missing genotypes
-# to get a feel for the data we can run quick PCA using the rda function
+
+# let's also just do a sanity check to make sure the genomic and environmental data are in the same order
+stopifnot(all(env.site$site == rownames(AF)))
+
+```
+
+### PCA
+
+```{r}
+# to get a feel for the data we can run quick PCA using the rda function in vegan
 pc <- rda(AF)
 plot(pc)
+```
 
-# set some plotting variables to make it easier to interpret
+Ok, not really that impressive... let's set some plotting variables to make it easier to interpret
+
+```{r}
 # set colours, markers and labels for plotting and add to env.site df
 
 env.site$cols <- c('darkturquoise', 'darkturquoise', 'darkturquoise', 'limegreen', 'limegreen', 'darkorange1', 'slategrey', 'slategrey', 'slategrey',
@@ -318,7 +335,7 @@ y.lab <- paste0("PC2 (", paste(round((pc$CA$eig[2]/pc$tot.chi*100),2)),"%)")
 ```{r, eval=FALSE}
 # plot PCA
 
-{pdf(file = "Mf_PCA.pdf", height = 6, width = 6)
+{pdf(file = "./images/Mf_PCA.pdf", height = 6, width = 6)
 pcaplot <- plot(pc, choices = c(1, 2), type = "n", xlab=x.lab, ylab=y.lab, cex.lab=1)
 with(env.site, points(pc, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
 legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, pt.cex=1, cex=0.50, xpd=1, box.lty = 0, bg= "transparent")
@@ -336,7 +353,7 @@ dev.off()
 
 ```
 
-![](images/Mf_PCA.png) \## 2. Variable filtering
+![](Session%2007%20Natural%20Selection/Mf_PCA.png) \## 2. Variable filtering
 
 ```{r}
 
@@ -346,8 +363,8 @@ env_var <- env.site[ , c("WC_bio1", "WC_bio5", "WC_bio15", "WC_bio19")]
 # check for obvious correlations between variables
 pairs.panels(env_var, scale=T, lm = TRUE)
 
-## reduce variance associated with correlated environmental PCs using VIF analyses
-# run procedure to remove variables with the highest VIF one at a time until all remaining variables are below 10
+## reduce variance associated with covarying variables using variance inflation factor analyses
+# run procedure to remove variables with the highest VIF one at a time until all remaining variables are below your threshold
 keep.env <-vif_func(in_frame=env_var,thresh=2,trace=T)
 keep.env  # the retained environmental variables
 reduced.env <- subset(as.data.frame(env_var), select=c(keep.env))
@@ -358,7 +375,7 @@ pairs.panels(reduced.env, scale=T, lm = TRUE)
 
 ```
 
-## 2. Run analysis
+## 3. Run analysis
 
 So we have formatted genotypes, environmental data
 
@@ -367,12 +384,12 @@ What about controlling for spatial population structure in the model?
 ::: callout-note
 ## Decision time:
 
-Decision time: 1. do I need to control for spatial structure?
+Do I need to control for spatial structure?
 
 ```         
  No? Great!
 
-Yes? How do I do that?
+ Yes? How do I do that?
  
 ```
 
@@ -389,7 +406,6 @@ We are going to use the scaled allelic covariance (Ω) estimated by BayPass to c
 # format spatial coordinates as matrix
 xy <- as.matrix(cbind(env.site$omegaX, env.site$omegaY))
 
-################################################################################
 
 
 # reduced RDA model using the retained environmental PCs 
@@ -404,8 +420,8 @@ RsquareAdj(Mf.RDA)$r.squared
 # how much inertia is associated with each axis
 screeplot(Mf.RDA)
 
-# calculate significance of the reduced model, marginal effect of each term and significance of each axis
-#   (this can take several hours, depending on your computer)
+# calculate significance of the reduced model
+
 mod_perm <- anova.cca(Mf.RDA, nperm=1000) #test significance of the model
 mod_perm
 
@@ -420,7 +436,7 @@ y.lab <- paste0("RDA2 (", paste(round((Mf.RDA$CCA$eig[2]/Mf.RDA$CCA$tot.chi*100)
 
 ```{r, eval=FALSE}
 #plot RDA1, RDA2
-{pdf(file = "Mf_RDA.pdf", height = 6, width = 6)
+{pdf(file = "./images/Mf_RDA.pdf", height = 6, width = 6)
 pRDAplot <- plot(Mf.RDA, choices = c(1, 2), type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
 with(env.site, points(Mf.RDA, display = "sites", col = env.site$cols, pch = env.site$pch, cex=1.5, bg = env.site$cols))
 text(Mf.RDA, "bp",choices = c(1, 2), labels = c("WC_bio5", "WC_bio15", "WC_bio19"), col="blue", cex=0.6)
@@ -442,9 +458,9 @@ dev.off()}
 
 ![](images/Mf_RDA.png)
 
-## 3. Identify candidate loci
+## 4. Identify candidate loci
 
-Estimate p values following: <https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches> and the R function rdadapt (see <https://github.com/Capblancq/RDA-genome-scan>)
+Estimate q-values following: <https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches> and the R function rdadapt (see <https://github.com/Capblancq/RDA-genome-scan>)
 
 ```{r}
 
@@ -465,6 +481,9 @@ ggplot() +
 
 
 # check correlations between candidate loci and environmental predictors
+# this section relies on code by Brenna Forester, found at
+# https://popgen.nescent.org/2018-03-27_RDA_GEA.html
+
 npred <- 3
 env_mat <- matrix(nrow=(sum(rda.q$q.values < 0.01)), 
                   ncol=npred)  # n columns for n predictors
@@ -510,6 +529,10 @@ candidate.alleles <- candidate.gi@tab
 candidate.snps <- candidate.alleles[,seq(1,ncol(candidate.alleles),2)]
 colnames(candidate.snps) <- locNames(candidate.gi)
 
+# another quick sanity check
+stopifnot(all(env.ind$ind.names == indNames(candidate.gi)))
+
+
 # finally run the individual based RDA
 # no need to control for pop structure this time
 Mfcandidate.RDA <- rda(candidate.snps ~ WC_bio5 + WC_bio15 + WC_bio19, data = env.ind)
@@ -532,7 +555,7 @@ y.lab <- paste0("RDA2 (",
 ```{r, eval=FALSE}
 
 #plot RDA1, RDA2
-{pdf(file = "Mfcandidate_RDA.pdf", height = 6, width = 6)
+{pdf(file = "./images/Mfcandidate_RDA.pdf", height = 6, width = 6)
 pRDAplot <- plot(Mfcandidate.RDA, choices = c(1, 2), 
                  type="n", cex.lab=1, xlab=x.lab, ylab=y.lab)
 points(Mfcandidate.RDA, display = "sites", col = env.ind$cols,
@@ -558,16 +581,22 @@ legend("topleft", legend = env.site$site, col=env.site$cols, pch=env.site$pch, p
 dev.off()
 }
 
-unlink('individual_env_data.csv')
+
 
 ```
 
 ![](images/Mfcandidate_RDA.png)
 
-
 ## **GWAS genotype and phenotype association**
 
+## RandomForest
+
+## 1 Input file
+
+Let's start with randomForest.
+
 ```{r}
+
 ## Get input files 
 load(file = "./data/GWAS.RData")
 ##randomForest
@@ -575,35 +604,34 @@ CaRF$Size <- as.factor(CaRF$Size)
 
 ```
 
-## RandomForest
-
-Let's start with randomForest.
-
 The input is a structure file with genotypes codified as counts of the major allele per individual per locus (0 hom minor allele (mA), 1 het, 2 hom major allele (MA)), with sample's phenotype or trait in the first column instead of the population.
 
-::: callout-caution
-
-If the trait or phenotype is categorical instead of continuous, it should be tranformed into a factor.
+::: callout-note
+If the trait or phenotype is categorical instead of continuous, it should be transformed into a factor.
 :::
 
 ```{r}
 
 See(CaRF)
 
+table(CaRF$Size)
+
 ```
 
-The first step is to crate our training and validation data in a 70:30 proportion
+So here we have the 363 samples, (180 small and 183 large), genotyped for a subset of 2,062 markers from the 17,490 original dataset.
 
-Then we run a simple forest to see performance without tuning
+## 2 Model tunning
+
+The first step is to crate our training and validation data in a 70:25 proportion.
+
+Then we run a simple forest to see performance without tuning.
 
 ```{r}
 
-table(CaRF$Size)
 set.seed(123)
-ind <- sample(2, nrow(CaRF), replace = TRUE, prob = c(0.7, 0.3))
+ind <- sample(2, nrow(CaRF), replace = TRUE, prob = c(0.75, 0.25))
 train <- CaRF[ind==1,]
 test <- CaRF[ind==2,]
-train$Size
 
 
 rf <- randomForest(Size~., data=train,
@@ -613,145 +641,135 @@ rf <- randomForest(Size~., data=train,
                    proximity = TRUE)
 print(rf)
 
-### Expected output 
-# OOB estimate of error rate: 27.69% 
-# Confusion matrix: 
-#    1  2 class.error 
-# 1 93 34 0.2677165 
-# 2 38 95 0.2857143 
 ```
 
-70% accuracy is no too bad, but can we improve it
+But if you run this again you get slightly different results, so we need to do some replications using different training data.
 
 ```{r}
 
-control <- trainControl(method="repeatedcv", number=5, repeats=3)
+control <- trainControl(method="oob", number=5)
+set.seed(123) 
+metric <- "Accuracy"
+mtry <- 10
+tunegrid <- expand.grid(.mtry=mtry )
+rf_small <- train(Size~., data=CaRF, method="rf", metric=metric, tuneGrid=tunegrid, trControl=control, ntree=50)
+rf_small
+
+```
+
+Here we have also Kappa, a measure of how much better the model classification is than a random classification. This is important when there is a significant skew in sample sizes.
+
+Now let’s check what the default parameter can do.
+
+```{r}
+
+control <- trainControl(method="oob", number=5)
 set.seed(123) 
 metric <- "Accuracy"
 mtry <- sqrt(ncol(CaRF))
-tunegrid <- expand.grid(.mtry=mtry / 2 )
-rf_default <- train(Size~., data=CaRF, method="rf", metric=metric, 
-                    tuneGrid=tunegrid, trControl=control) # ~ 3mins
-print(rf_default)
-# plot(rf_default) Error: There are no tuning parameters with more than 1 value.
-
-# Accuracy  |   Kappa   |
-# 0.7510761 | 0.5020184 |
+tunegrid <- expand.grid(.mtry=mtry )
+rf_default <- train(Size~., data=CaRF, method="rf", metric=metric, tuneGrid=tunegrid, trControl=control)
+rf_default
 
 ```
 
-
-Here we have also Kappa, a mesure of how much better the model clasitication is than a random clasification. This is importa when when there is a significant skew in sample sizes.
-
-
+> 70% accuracy is no too bad, but can we improve it?
 
 ### MODEL TUNING: Do not RUN now
 
-The next couple of steps could take **too long**, so here are the commands for you to try in your own time
+The next couple of steps could take **too long**, so here are the commands for you to try in your own time.
 
 ::: callout-warning
-
 ## run in **your own time**
 
 ```{r, eval = FALSE}
-control <- trainControl(method="repeatedcv", number=10, repeats=3, search="random")
-set.seed(123) 
-mtry <- sqrt(ncol(CaRF) / 3) 
-rf_random <- train(Size~., data=CaRF, method="rf", metric=metric, 
-                   tuneLength=15, trControl=control) print(rf_random)
+control <- trainControl(method="oob", number=10, search="random")
+set.seed(123)
+mtry <- sqrt(ncol(CaRF))
+rf_random <- train(Size~., data=CaRF, method="rf", metric=metric, tuneLength=15, trControl=control)
+(rf_random)
 plot(rf_random)
 ```
-
 :::
 
 ```{r}
-####Expected output
-#No pre-processing 
-#Resampling: Cross-Validated (10 fold, repeated 3 times) 
-#Summary of sample sizes: 327, 327, 327, 326, 327, 327, ... 
-#Resampling results across tuning parameters:
-
+####Expected output 
 # mtry Accuracy Kappa
-
-#195 0.7703453 0.5403670
-#348 0.7685185 0.5367943
-#526 0.7684685 0.5367281
-#665 0.7721972 0.5441283 
-#953 0.7730731 0.5458833
-#1011 0.7694444 0.5386467 
-#1017 0.7702202 0.5401206 
-#1038 0.7685435 0.5367490 
-#1115 0.7740240 0.5477867 
-#1142 0.7750000 0.5497308 
-#1253 0.7740490 0.5478857 
-#1268 0.7740240 0.5477339 
-#1627 0.7768018 0.5533787 
-#1842 0.7768268 0.5533826
-#2013 0.7749750 0.5496527
+# 195 0.7703453 0.5403670 
+# 348 0.7685185 0.5367943 
+# 526 0.7684685 0.5367281 
+# 665 0.7721972 0.5441283 
+# 953 0.7730731 0.5458833
+# 1011 0.7694444 0.5386467
+# 1017 0.7702202 0.5401206 
+# 1038 0.7685435 0.5367490 
+# 1115 0.7740240 0.5477867 
+# 1142 0.7750000 0.5497308 
+# 1253 0.7740490 0.5478857 
+# 1268 0.7740240 0.5477339 
+# 1627 0.7768018 0.5533787 
+# 1842 0.7768268 0.5533826 
+# 2013 0.7749750 0.5496527
 ```
 
-Accuracy was used to select the optimal model using the largest value. #The final value used for the model was mtry = 1842. 
+You can test a combination of ntree and mtry values. Unfortunately, this is the most time-consuming part.
 
-You can test a combination of ntree and mtry values. Unfortunately, this is the most time-consuming part
-
-But here is the code for you to try:
+But here is the code for you to try.
 
 ::: callout-warning
-
 ## run in **your own time**
 
 ```{r, eval = FALSE}
-control <- trainControl(method="repeatedcv", number=5, repeats=3, search="grid") 
-tunegrid <- expand.grid(.mtry=(1650:1750)) 
-modellist <- list() 
-seed <-123 
-metric <- "Accuracy" 
-for (ntree in c(200, 300, 500, 1000)) { 
-  set.seed(seed) 
-  fit <- train(Size~., data=CaRF, method="rf",
-               metric=metric, tuneGrid=tunegrid, trControl=control, ntree=ntree) 
-  key <- toString(ntree) 
-  modellist[[key]] <- fit } # Then you can compare tuning results 
-  results <- resamples(modellist) 
-  summary(results) 
-  dotplot(results)
-  
-  }
 
+control <- trainControl(method="repeatedcv", number=10, repeats=3, search="grid")
+tunegrid <- expand.grid(.mtry= c(565, 665, 765))
+modellist <- list()
+seed<-123
+metric <- "Accuracy"
+for (ntree in c(200, 300, 500, 1000)) {
+  set.seed(seed)
+  fit <- train(Size~., data=CaRF, method="rf", metric=metric, tuneGrid=tunegrid, trControl=control, ntree=ntree)
+  key <- toString(ntree)
+  modellist[[key]] <- fit
+}
+# Then you can compare tuning results
+results <- resamples(modellist)
+summary(results)
+dotplot(results)
 ```
-
 :::
 
 ### Back to the exercise
 
-But the best cobination was ntree = 200 and mtry= 1680
+![](images/AccuracyKappa.jpg)
 
-Now We run our forest with the optimal set up based on the tuning
+## 3 Final model
+
+But the best combination was ntree = 200 and mtry= 665.
+
+Now we run our forest with the optimal settings based on our tuning.
 
 ```{r}
 
-rf <- randomForest(Size~., data=train,
-                   ntree = 200,       # number of trees
-                   mtry = 1680,          # number of variables tried at each split
-                   importance = TRUE,
-                   proximity = TRUE)
-print(rf)
+control <- trainControl(method="oob", number=5)
+set.seed(123) 
+metric <- "Accuracy"
+mtry <- 665
+tunegrid <- expand.grid(.mtry=mtry)
+rf_best <- train(Size~., data=CaRF, method="rf", metric=metric, tuneGrid=tunegrid, trControl=control, ntree=200)
+rf_best
 
-###Expected output
-#OOB estimate of error rate: 23.48% #Confusion matrix: 
-#    1  2  class.error 
-# 1 93 34  0.2677165 
-# 2 26 107 0.1954887 
 ```
 
+\~ 3% accuracy gain looks like not much, but a disclaimer, these are just SNPs from the 4 chromosomes we already identified as important for growth.
 
+## 4 Candidates SNPs
 
-Around a 5% accuracy gain, looks like not much, but a disclaimer, these are just SNPs from the 4 chomosomes we already identified as important for growth.
-
-Now just check what are these markers
+Now just check what are this markers.
 
 ```{r}
 
+varImpPlot(rf_best$finalModel)
 varImpPlot(rf)
 
 ```
@@ -764,12 +782,13 @@ Accuracy - Ratio of correct classifications to total number of samples Gini - Me
 ## Questions!?
 :::
 
-
-Ok let's change approach and check concodance:
+Ok let's change approach and check concordance:
 
 ## RAINBOWR
 
-First, we integrte our inputs in to a GWAS format for RAINBOWR.
+## 1 Inputs
+
+First, we integrate our inputs in to a GWAS format for RAINBOWR.
 
 And then we check each dataset format:
 
@@ -777,10 +796,7 @@ Phenotype is just two columns, ID and phenotype. Genotype is same format as rand
 
 ```{r}
 
-modify.CaGW.res <- modify.data(pheno.mat = CaGW_phe, 
-                               geno.mat = CaGW_geno,
-                               map = CaGW_map, return.ZETA = TRUE,
-                               return.GWAS.format = TRUE)
+modify.CaGW.res <- modify.data(pheno.mat = CaGW_phe, geno.mat = CaGW_geno, map = CaGW_map, return.ZETA = TRUE, return.GWAS.format = TRUE)
 pheno.GWAS <- modify.CaGW.res$pheno.GWAS
 geno.GWAS <- modify.CaGW.res$geno.GWAS
 
@@ -791,7 +807,9 @@ See(CaGW_map)
 
 ```
 
-Now we calcualte ZETA, a list of genomic relationship matrix (GRM). ZETA is basically a random effect and accounts for possible confounding/covariant factors like population structure and relatedness.
+## 2 Single-SNP base GWAS
+
+Now we calculate ZETA, a list of genomic relationship matrix (GRM). ZETA is basically a random effect and accounts for possible confounding/covariant factors like population structure and relatedness.
 
 ```{r}
 
@@ -799,65 +817,56 @@ ZETA <- modify.CaGW.res$ZETA
 
 ```
 
-
-### Other methods to control for population structure cofactors
-
-structure.matrix, n.PC should be > 0
+::: callout-warning
+## There are many ways to control for cofactors, here some examples.
 
 ```{r, eval = FALSE}
-normal.res <- RGWAS.normal(pheno = pheno.GWAS, 
-                           geno = geno.GWAS, ZETA = ZETA, 
-                           structure.matrix= QMATRIX, n.PC = 4, P3D = TRUE)
 
-## other cofactors, like sex or age (a two-column table similar to phenotype table)
+### Population structure, using a structure Q values matrix, n.PC should be > 0
+normal.res <- RGWAS.normal(pheno = pheno.GWAS, geno = geno.GWAS, ZETA = ZETA, structure.matrix= QMATRIX, n.PC = 4, P3D = TRUE)
 
-normal.res <- RGWAS.normal(pheno = pheno.GWAS, geno = geno.GWAS, 
-                           ZETA = ZETA, structure.matrix= QMATRIX, 
-                           covariate = SEX_AGE, n.PC = 4, P3D = TRUE)
-
+#### other cofactors, like sex or age (a two-column table similar to phenotype table)
+normal.res <- RGWAS.normal(pheno = pheno.GWAS, geno = geno.GWAS, ZETA = ZETA, structure.matrix= QMATRIX, covariate = SEX_AGE,  n.PC = 4, P3D = TRUE)
 ```
+:::
 
-## single-SNP GWAS
 Now, to perform single-SNP GWAS.
 
-```{r, results='hide'}
+```{r, results='hide', message=FALSE}
 
-normal.res <- RGWAS.normal(pheno = pheno.GWAS, geno = geno.GWAS,
-                           ZETA = ZETA, n.PC = 4, P3D = TRUE)
+normal.res <- RGWAS.normal(pheno = pheno.GWAS, geno = geno.GWAS, ZETA = ZETA, n.PC = 4, P3D = TRUE)
+
 
 ```
-
-![Q-Q plot](images/session7_qqplot.png)
-
-![Manhattan plot](images/session7_manhattan.png)
-
 
 We can see, first the QQ plot, it shows that our data has a little deviation from the expected distribution, but this is just at the end of the tail.
 
-Second, the manhattan plot shows few SNPs that are significantly associated to size, but more importantly, it shows a peak of relatively high-importance SNPs at the end of chromosome 16.
+Second, the Manhattan plot shows few SNPs that are significantly associated to size, but more importantly, it shows a peak of relatively high-importance SNPs at the end of chromosome 16.
 
-### Important SNPs
 So, what are the most important important SNPs?
 
-```{r, results='hide'}
+```{r}
 
 normal.res$D[normal.res$D$Size  >= 4, ]
 
 ```
 
+## 3 Genomic prediction
+
 How much of the phenotype can we really predict?
 
-To determine that, we use a mixed model approach to calculate heritable, in other words the genetic contribution to our trait variation
+To determine that, we use a mixed model approach to calculate heritability, in other words the genetic contribution to our trait variation.
 
 ```{r}
 
-K.A2<-calcGRM(genoMat = CaGW_geno)
-k.AA2 <- K.A2 * K.A2
+K.A2<-calcGRM(genoMat = CaGW_geno) ### aditive effects
+k.AA2 <- K.A2 * K.A2 ### epistatic effects
+
 y <- as.matrix(pheno.GWAS[,'Size', drop = FALSE])
 Z <- design.Z(pheno.labels = rownames(y), geno.names = rownames(K.A2))
 pheno.mat2 <- y[rownames(Z), , drop = FALSE]
 ZETA2 <- list(A = list(Z = Z, K = K.A2),AA = list(Z = Z, K = k.AA2))
-EM3.res <- EM3.cpp(y = pheno.mat2, X = NULL, ZETA = ZETA2)
+EM3.res <- EM3.cpp(y = pheno.mat2, X = NULL, ZETA = ZETA2) ### multi-kernel linear mixed effects model
 (Vu <- EM3.res$Vu)   ### estimated genetic variance
 (Ve <- EM3.res$Ve)   ### estimated residual variance
 (weights <- EM3.res$weights) ### estimated proportion of two genetic variances
@@ -866,16 +875,16 @@ herit
 
 ```
 
-### Test performance
-Now we can test the performance of our genomic prediction with 10-fold cross-validation
+Now we can test the performance of our genomic prediction with 10-fold cross-validation.
 
-::: callout-caution
-If you have NAs in your phenotype dataset you have to remove them
+::: callout-note
+If you have NAs in your phenotype dataset you have to remove them.
 
 ```{r, eval = FALSE}
-phenoNoNA <- pheno.mat2[noNA, , drop = FALSE] ### remove NA
-```
 
+phenoNoNA <- pheno.mat2[noNA, , drop = FALSE]   ### remove NA
+
+```
 :::
 
 #### *But our data doesn't have any NAs.*
@@ -895,14 +904,14 @@ for (noCV in 1:nFold) {
   EM3.gaston.resCV <- EM3.general(y = yTrain, X0 = NULL, ZETA = ZETA,
                                   package = "gaston", return.u.always = TRUE,
                                   pred = TRUE, return.u.each = TRUE,
-                                  return.Hinv = TRUE) ### prediction
+                                  return.Hinv = TRUE) 
   yTest <- EM3.gaston.resCV$y.pred ### predicted values
   yPred[idCV == noCV] <- yTest[idCV == noCV]
 }
 
 ```
 
-### Plot Genomic Prediction
+### Plot Genomic Prediction.
 
 ```{r}
 
@@ -931,3 +940,26 @@ Annotation of the regions of chromosome 16 shows presence of several genes relat
 ## *Further steps*
 
 It is time to test how structural variances can improve the power of GWAS.
+
+
+## *Readings*
+
+@attard_fish_2022
+
+@brauer_roles_2018
+
+@batley_whole_2021
+
+@smith_latitudinal_2020
+
+@brauer_natural_2023
+
+@grummer_aquatic_2019
+
+@pratt_seascape_2022
+
+@sandoval-castillo_seascape_2018
+
+
+
+

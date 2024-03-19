@@ -1,8 +1,18 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
 # Combining Genomic Resources
 
 *Session Presenters*
 
 ![](images/Presenters13.png)
+
+## Introduction
+
+Chromosomal rearrangements are often associated with local adaptation and speciation because they suppress recombination, and as a result, rearrangements have been implicated in disrupting geneflow. Although there is strong evidence to suggest that chromosome rearrangements are a factor in genetic isolation of divergent populations, the underlying mechanism remains elusive. Here we applied an integrative cytogenetics and genomics approach testing whether chromosomal rearrangements are the initial process, or a consequence, of population divergence in the dwarf goanna, Varanus acanthurus. Specifically, we tested whether chromosome rearrangements are indicators of genetic barriers that can be used to identify divergent populations by looking at geneflow within and between populations with rearrangements. We found that geneflow was present between individuals with chromosome rearrangements within populations, but there was no geneflow between populations that had similar chromosome rearrangements. Moreover, we identified a correlation between reduced genetic variation in populations with a higher frequency of homozygous submetacentric individuals. These findings suggest that chromosomal rearrangements were widespread prior to divergence and because we found populations with higher frequencies of submetacentric chromosomes were associated with lower genetic diversity, this could indicate that polymorphisms within populations are early indicators of genetic drift.
 
 ## *Required packages*
 
@@ -12,6 +22,7 @@ library(tidyverse)
 library(RColorBrewer) 
 library(patchwork) 
 library(scales) 
+library(ggplot2)
 library(gridExtra) 
 library(grid) 
 library(raster) 
@@ -35,12 +46,28 @@ vac.glch2@other$ind.metrics$karyo[grep("AA095619", vac.glch2@ind.names)] <- "MM"
 vac.glch2
 pop(vac.glch2) %>% table
 
+table(vac.glch2@other$ind.metrics$PCR1)
+vac.glch2@other$ind.metrics$sex = NULL
+
+sex = toupper(as.character(vac.glch2@other$ind.metrics$PCR1))
+# sex[sex==""] = "M" #TODO FIX na
+vac.glch2@other$ind.metrics$sex <- sex
+
 #gl.smearplot(vac.glch2, group.pop = FALSE)
 ## filtering -------------------------------------------------------------------
 vac.pops <-gl.keep.pop(vac.glch2, pop.list = c("North","South","East","West"))
 
 #gl.smearplot(vac.pops, group.pop = TRUE)
+```
 
+```{r, eval=FALSE}
+sex <- gl.filter.sexlinked(vac.glch2, system = "zw")
+table(sex$w.linked@other$loc.metrics$Chrom_Varanus_JD_infer_w)
+```
+
+```{r, echo = FALSE}
+sex <- readRDS('./data/session13_sex.rds')
+table(sex$w.linked@other$loc.metrics$Chrom_Varanus_JD_infer_w)
 ```
 
 ```{r}
@@ -83,6 +110,8 @@ vac.edit@other$ind.metrics$karyo[pop(vac.gl1)=="East"] <- "MM"
 
 ```
 
+### Within population PCoA and IBD
+
 ```{r, message=FALSE}
 
 for(i in 1:4){
@@ -105,6 +134,8 @@ for(i in 1:4){
 }
 ```
 
+### Between population PCoA and IBD
+
 ```{r}
 # figure 4 ---------------------------------------------------------------------
 ## pcoa figures ----------------------------------------------------------------
@@ -121,6 +152,8 @@ gl.ibd(vac.gl17, distance = "propShared",
 gl.ibd(vac.gl18, distance = "propShared",
                    paircols = "pop", Dgeo_trans = "Dgeo")
 ```
+
+### Multiple linear regression model for within and between populations testing same vs different karyotypes
 
 ```{r}
 ## reviewer figures -------------------------------------------------------------
@@ -194,25 +227,6 @@ review.analysis <- function(gl, analysis = "between"){
                      " + ", b1, " + ", b2)
   pval <- round(sm$coefficients[3,4],2)
   
-  grob_m <- grobTree(textGrob(bquote(paste(italic("y = "), "β"[0], 
-                                           " + ",  "β"[1], italic(" x"),"  + ",  
-                                           "β"[2],italic(" same karyo"))),
-                              x= 0.30,  
-                              y= 0.12,
-                              hjust=0, rot = 0,
-                              gp=gpar(col="black", fontsize=10, fontface="italic",
-                                      backgroun = "white")))
-  
-  
-  grob_m2 <- grobTree(textGrob(bquote(paste("β"[2]," = ", .(b2), " (", italic("t = "),.(tb2),
-                                            italic(", p = "), .(pval), ")")),
-                               x= 0.30,  
-                               y= 0.05,
-                               hjust=0, rot = 0,
-                               gp=gpar(col="black", fontsize=8, fontface="italic",
-                                       backgroun = "white")))
-  
-  
   
   reviewerPlot <-ggplot(df, aes(geo, gen, fill = karyo)) +
     geom_point(alpha = 0.7, size = 4, pch = 21) +
@@ -226,9 +240,7 @@ review.analysis <- function(gl, analysis = "between"){
     # theme(legend.position = "none") +
     geom_text(aes(x = 39, y = 0.05, label = c("")), cex = 5)+
     theme(legend.position = "bottom")+
-    labs(fill = "Karyotype", colour = "Karyotype")+
-    annotation_custom(grob_m)+
-    annotation_custom(grob_m2)
+    labs(fill = "Karyotype", colour = "Karyotype")
   
   
   return(reviewerPlot)
@@ -244,10 +256,10 @@ review.analysis(gl = vac.gl18, analysis = "within")
 
 ```
 
-## Whole Genome
+## Characterising a large chromosomal inversion
 
 ```{r}
-vac.gl <- gl.load("./data/varanus_MBE.rds")
+vac.gl <- gl.load("./data/varanus_MBE_Karyotypes.rds")
 
 class(vac.gl) <- "dartR"
 
@@ -255,8 +267,11 @@ class(vac.gl) <- "dartR"
 vac.gl@position <- as.integer(runif(nLoc(vac.gl), 2, 49))
 
 # subset SNPs that align to inferred chromosome pool scaffolds -----------------
+# how many reads align to flow sorted chromosome pool?
 
 table(vac.gl@other$loc.metrics$Chrom_Varanus_JD_vac_aligned_chr6_7 != "")
+
+# Index those loci
 
 index6 <-
   vac.gl@other$loc.metrics$Chrom_Varanus_JD_vac_aligned_chr6_7 != ""
@@ -264,18 +279,33 @@ index6 <-
 # assign alleles aligned to chromosome 6_7 scaffolds to a new genlight object --
 
 vac.gl6 <- vac.gl[, index6]
-vac.gl6x <- gl.filter.allna(vac.gl6)
-# report private alleles and fixed alleles per pair of populations for vac.gl6
-gl.report.pa(vac.gl6x)
 
+gl.smearplot(vac.gl6, group.pop = FALSE)
+# add DAPI Karyotype individual metric
+```
+
+```{r}
+# report private alleles and fixed alleles per pair of populations for vac.gl6
+gl.report.pa(vac.gl6)
+
+#pop(vac.gl6) <- vac.gl6@other$ind.metrics$DAPI
+
+table(pop(vac.gl6))
+
+#s <- gl.smearplot(glkaryo, group.pop = TRUE)
 
 pop(vac.gl6) <- vac.gl6@other$ind.metrics$pop
+```
 
+### Investigate the West only - all three karyotypes with geneflow
+
+```{r}
 ### Check the genlight object for dartR requirements
 
 
 vac.gl6 <- gl.compliance.check(vac.gl6)
 vac.gl6@loc.names %>% duplicated %>% table
+
 # Subset the western population ------------------------------------------------
 
 vac.gl6@other$ind.metrics$ind
@@ -317,13 +347,14 @@ fp6 <- (gl.fixed.diff(west))
 res <- as.matrix(gl.fixed.diff(west)$fd)
 
 gl.plot.heatmap(res, margins = c(10, 10))
+```
 
-
+```{r}
 # Table of SNPs per scaffold that align to chromosome 6 ------------------------
 
 table(vac.gl6@other$loc.metrics["Chrom_Varanus_JD_vac_aligned_chr6_7"])
 
-# Fixed allele analysis for all individuals after probe was tested--------------
+# Fixed allele analysis for with predicted Karyotypes --------------
 
 pop(vac.gl6) <- vac.gl6@other$ind.metrics$karyo
 vac.karyo <- gl.keep.pop(vac.gl6, c("AA", "MA", "MM"))
@@ -357,6 +388,12 @@ hits
 
 vac.pops <- vac.karyo
 
+# SNPs aligning to scaffolds of interest following fixed allele analysis
+
+table(vac.pops@other$loc.metrics[themany, "Chrom_Varanus_JD_vac_aligned_chr6_7"])
+```
+
+```{r}
 # create an index for only those loci on scaf_178-------------------------------
 
 index_178 <- which(vac.pops@other$loc.metrics$Chrom_Varanus_JD_vac_aligned_chr6_7 == "scaf_178")
@@ -393,7 +430,6 @@ fasta <-
     outpath = getwd(),
     verbose = 3
   )
-
 
 # Supplementary Figure 4--------------------------------------------------------
 
