@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -107,12 +114,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lineage Divergence</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lineage Divergence</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -122,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Kioloa PopGen</a> 
@@ -240,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./break.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">__________</span></a>
+ <span class="menu-text">\__________</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -264,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -317,13 +324,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p><em>Session Presenters</em></p>
 <p><img src="images/Presenters9.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-1_3ab115b2b6875326fb496140646ff9f3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>make sure you have the packages installed, see</em> <a href="./install.html">Install dartRverse</a></p>
@@ -377,7 +386,7 @@ external software
 <h2 class="anchored" data-anchor-id="this-tutorial">This Tutorial</h2>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="images/penguin_dartr.png" class="class figure-img" height="70"></p>
+<p><img src="images/penguin_dartr.png" class="class quarto-figure quarto-figure-left figure-img" height="70"></p>
 </figure>
 </div>
 <p>In this tutorial, we explore options for generating phylogenetic trees from SNP data and associated SilicoDArT data. We conveniently sidestep the issues of what is and what is not a species and focus on the evolutionary relationships between lineages (and their descendant clades). Such lineages need to be diagnosable to provide a basis for considering them to be on independent evolutionary trajectories and not subject to horizontal exchange of alleles. This is a requirement enforced by the bifurcating character of phylogenetic trees. Where there is a history of such horizontal exchange, a network is arguably a better model than a bifurcating tree. Similarly, where the individuals that contribute to the data matrix are part of an interbreeding population, the techniques applied fall more into the domain of population genetics or genealogy. The tutorial is structured to first introduce the type of data that is generated during a SNP study using the services of Diversity Arrays Technology Pty Ltd (DArT). We then introduce different approaches to phylogenetic analysis first with distance analyses using Phylip, then Maximum likelihood analyses using IQ-Tree, SVDquartets, and then Bayesian analysis using Snapper in BEAST 2. We finish with the application of parsimony approaches to the binary SilicoDArT data.</p>
@@ -387,7 +396,7 @@ external software
 <section id="reading-in-the-snp-data" class="level3">
 <h3 class="anchored" data-anchor-id="reading-in-the-snp-data">Reading in the SNP data</h3>
 <p>The SNP dataset used in this tutorial is Example_SNP.Rdata which can be read into RStudio using gl.load(“Example_SNP.Rdata”) or readRDS(“Example_SNP.Rdata”).</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-2_eb21e77a032aae4f6c30079272df708b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.set.verbosity</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.set.verbosity 
@@ -400,7 +409,7 @@ Completed: gl.set.verbosity </code></pre>
 </section>
 <section id="examining-the-contents" class="level3">
 <h3 class="anchored" data-anchor-id="examining-the-contents">Examining the Contents</h3>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-3_7df693d1f7f342b6c44142d3d7f240c8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> /// GENLIGHT OBJECT /////////
@@ -422,7 +431,7 @@ Completed: gl.set.verbosity </code></pre>
 </div>
 </div>
 <p>Simply typing the name of the genlight object provides a substantial amount of information. We can see that there are 113 individuals scored for 10,529 SNP loci, all but 1.18% having been successfully called./ We could have used the adegenet accessors to pull this information, for example,</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-4_bf1c19363bd600f14d4f202d8fc72618">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10529</code></pre>
@@ -437,7 +446,7 @@ Completed: gl.set.verbosity </code></pre>
 </div>
 </div>
 <p>and can in addition, list the individual names and population names</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-5_173441af5c875bc594bba557658c7636">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">indNames</span>(gl)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "UC_0126"    "HBS_100900" "HBS_100901" "HBS_100902" "HBS_100922"
@@ -451,7 +460,7 @@ Completed: gl.set.verbosity </code></pre>
 </div>
 </div>
 <p>Samples sizes can be obtained using</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-6_4d8cd0e019183879b307eb553ed64d70">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(gl))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -465,7 +474,7 @@ subglobosa   worrelli tanybaraga  victoriae
 <section id="examining-selected-locus-metrics" class="level3">
 <h3 class="anchored" data-anchor-id="examining-selected-locus-metrics">Examining Selected Locus Metrics</h3>
 <p>You can interrogate the locus metrics dataframe associated with the genotype data by accessing various variable in the loc.metrics dataframe associated with the genlight object <code>gl</code>.</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-7_d9635fe5cc67e91d979f82556fd95f02">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gl<span class="sc">@</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>TrimmedSequence[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] TGCAGGTTCTTTTCCTTTGGGAGCCTGTGACAGAATGGGTTTTCAGGGACAAAGAAAAAGCTTCTCTGA
@@ -482,7 +491,7 @@ subglobosa   worrelli tanybaraga  victoriae
 </div>
 </div>
 <p>Here we are checking to see if the data contain the sequences trimmed of adaptors which we might want to use for phylogenetic analysis. Note that the sequence tags are of variable length and indeed range from 20 bp to 69 bp. We can examine the distribution of tag lengths using</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-8_12c83659f8a0cd879c4c4d3e15843485">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.taglength</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.report.taglength 
@@ -499,7 +508,11 @@ subglobosa   worrelli tanybaraga  victoriae
     Missing Rate Overall:  0.01 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session09_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session09_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Quantile Threshold Retained Percent Filtered Percent
@@ -528,7 +541,7 @@ Completed: gl.report.taglength </code></pre>
 </div>
 </div>
 <p>This information is important because some phylogenetic techniques are brutal in their treatment of missing data. To minimize the impact of this, it might be necessary to filter loci on tag length prior to such analyses. Another locus metric that is of interest to us is the SNP position in the sequence tag, incase we want to look at the details of the transition or transversion mutation.</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-9_d6c7e7b44733d56690de5cdce3ff12f5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gl<span class="sc">@</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>SnpPosition[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 16 18 40 21  9  7 11 24 19 24</code></pre>
@@ -540,7 +553,7 @@ Completed: gl.report.taglength </code></pre>
 </div>
 </div>
 <p>The mutations in each sequence tag can be examined with</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-10_5a4394fbf51396b923b19b385f333106">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>gl<span class="sc">@</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>SNP[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 16:C&gt;T 18:A&gt;C 40:A&gt;G 21:A&gt;G 9:C&gt;T  7:C&gt;T  11:C&gt;A 24:C&gt;T 19:G&gt;A 24:T&gt;A
@@ -548,7 +561,7 @@ Completed: gl.report.taglength </code></pre>
 </div>
 </div>
 <p>Note that a sequence tag can have more than one SNP mutation, and that each of these SNP markers is represented in the dataset as a separate line entry. All but one SNP mutation can be removed from the dataset using <code>gl.filter.secondaries(gl)</code>. This was done in preparing this example dataset. Base frequencies and transition/transversion (Ts/Tv) ratios can be obtained with</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-11_614557aecc482e35b9cfeb130f49fb41">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.bases</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.report.bases 
@@ -564,10 +577,14 @@ Completed: gl.report.taglength </code></pre>
     C: 21.9 
   Transitions  : 62.27 
   Transversions: 37.73 
-  ts/tv ratio: 1.6501 </code></pre>
+  tv/ts ratio: 1.6501 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session09_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session09_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.report.bases </code></pre>
@@ -610,7 +627,7 @@ Where have we come?
 <section id="missing-sequence-nnnnn" class="level3">
 <h3 class="anchored" data-anchor-id="missing-sequence-nnnnn">Missing Sequence (NNNNN)</h3>
 <p>The method used to convert the trimmed sequences in the dartR genlight object to a form amenable to distance analysis is</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-12_ab25e166706fa1c39fa3d43ee17ee579">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl2fasta</span>(gl,<span class="at">outfile=</span><span class="st">"Example1.fas"</span>,<span class="at">outpath =</span> <span class="st">'./data/'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl2fasta 
@@ -625,16 +642,16 @@ Completed: gl2fasta </code></pre>
 </div>
 </div>
 <p>This produces a fastA file of concatenated aligned sequence tags padded where necessary with NNNNNs (Figure 2). Because the sequence tags can vary in length considerably, the substantial addition of Ns can cause problems for distance methods. Some will delete all point information where there is an N for one individual. Filtering on tag length to minimize the impact of this might be considered.</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-13_d28a1a6ea92763fb8b9aa964a9b59d62">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">gl.filter.taglength</span>(gl, <span class="at">lower=</span><span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.filter.taglength 
   Processing genlight object with SNP data
 Initial no. of loci = 10529 
-  Removing loci with taglength between 40 and 69 
+  Removing loci with taglength &lt; 40 and &gt; 69 
   No. of loci deleted = 2268 
   Summary of filtered dataset
-    Sequence Tag Length between 40 and 69 
+    Sequence Tag Length &gt;= 40 and Sequence Tag Length &lt;= 69 
     No. of loci: 8261 
     No. of individuals: 113 
     No. of populations:  11 
@@ -666,13 +683,13 @@ Completed: gl.filter.taglength </code></pre>
 <h3 class="anchored" data-anchor-id="implementation-in-dartr">Implementation in dartR</h3>
 <p>The R package {dartR} is essentially a suite of R scripts, managed on CRAN, that provides a link between SNP data generated by DArT (or using ddRAD) and a range of analyses. Where capability is already available to the community, dartR will provide wrappers for existing R scripts developed by other sources, or will provide a script to export data in a form that can be used by other programs ourside the R environment.</p>
 <p>Distance phylogeny in dartR is implemented by drawing upon the capabilities of R package {ape} and program Phylip. The dartR functions to use are</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-14_cffd2de28ea158d8a6dd4778d9ef41a0">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">gl.dist.phylo</span>(gl,<span class="at">subst.model=</span><span class="st">"F81"</span>)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.tree.fitch</span>(<span class="at">D=</span>d,<span class="at">x=</span>gl,<span class="at">bstrap=</span><span class="dv">100</span>, )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>which together allow you to specify the substitution model, the algorithm for tree building, elect to filter out tag lengths below a given threshold and specify an outgroup taxon.</p>
 <p>A neighbour joining tree can be generated with</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-15_3c00cd26763757f8447e39865116da66">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.tree.nj</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>but bootstrapping is not available as an option.</p>
@@ -683,7 +700,7 @@ Completed: gl.filter.taglength </code></pre>
 <h4 class="anchored" data-anchor-id="preparation">Preparation</h4>
 <p>To start you need to assign the working directory to the path that contains the datafile Example_SNP.Rdata. Also make a note of the directory that holds the Phylip executables, for example, “D:/workspace/R/phylip-3.695/exe”.</p>
 <p>Read in the data using</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-16_66d3194cc88ab70fd231ab0196b64117">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">gl.load</span>(<span class="st">"Example_SNP.Rdata"</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Consider if you want to filter on taglength, say</span></span>
@@ -693,7 +710,7 @@ Completed: gl.filter.taglength </code></pre>
 <section id="compute-distance-matrix" class="level4">
 <h4 class="anchored" data-anchor-id="compute-distance-matrix">Compute distance matrix</h4>
 <p>Select a substitution model, in this case F81 (Felsenstein (1981) which is a generalized the Jukes–Cantor model that distinguishes different substitution rates for transitions and transversions and relaxes the assumption of equal base frequencies.</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-17_4afb5652e5ae8a7a86e9d1bc409e7341">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span><span class="fu">gl.dist.phylo</span>(gl,<span class="at">by.pop=</span><span class="cn">TRUE</span>, <span class="at">subst.model=</span><span class="st">"F81"</span>,<span class="at">verbose=</span><span class="dv">3</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(dd)</span>
@@ -705,7 +722,7 @@ Completed: gl.filter.taglength </code></pre>
 <section id="bootstrapping" class="level4">
 <h4 class="anchored" data-anchor-id="bootstrapping">Bootstrapping</h4>
 <p>We now bootstrap the Fitch-Margoliash tree which is quite computationally expensive.</p>
-<div class="cell" data-hash="session09_cache/html/unnamed-chunk-18_bdfc34aa765e510bbb814efe5cc02529">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.tree.fitch</span>(<span class="at">D=</span>dd,<span class="at">x=</span>gl, <span class="at">phylip.path=</span><span class="st">"D:/workspace/R/phylip-3.695/exe"</span>,</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">outgroup=</span><span class="st">"macquarii"</span>, <span class="at">bstrap=</span><span class="dv">100</span>, <span class="at">verbose=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -719,7 +736,7 @@ Where have we come?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><img src="images/beer.png" class="class" data-fig-align="left" height="60"> The above Session was designed to give you an overview on the application of distance methods in phylogeny using a SNP dataset as implemented in the dartR package. Having completed this Session, you should now be familiar the following concepts.</p>
+<p><img src="images/beer.png" class="class quarto-figure quarto-figure-left" height="60"> The above Session was designed to give you an overview on the application of distance methods in phylogeny using a SNP dataset as implemented in the dartR package. Having completed this Session, you should now be familiar the following concepts.</p>
 <ul>
 <li>The considerations to make in constructing a distance matrix from a SNP dataset, including decisions on the nucleotide substitution model and the mode of deletion of missing values.</li>
 <li>Familiarity with two options for phylogenetic tree construction, the Neighbour-joining method and the Fitch-Margoliash method.</li>
@@ -1028,10 +1045,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1041,8 +1077,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1055,6 +1100,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1098,6 +1262,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1123,6 +1288,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1180,37 +1371,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./session08.html" class="pagination-link">
+      <a href="./session08.html" class="pagination-link" aria-label="Landscape Genetics">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Landscape Genetics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./session10.html" class="pagination-link">
+      <a href="./session10.html" class="pagination-link" aria-label="Sex Linked Markers">
         <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sex Linked Markers</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

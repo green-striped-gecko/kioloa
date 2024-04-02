@@ -63,6 +63,7 @@ tascols <- c("skyblue", "#74c476", "skyblue", "#74c476", "#FDD835", "orange", "s
 ```{r, eval=FALSE}
 gl.report.maf(gl)
 ```
+
 ```{r, include=FALSE}
 library(tidyverse)
 maf_report <- gl.report.maf(gl)

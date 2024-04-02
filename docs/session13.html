@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -100,7 +101,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -109,6 +116,7 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -126,12 +134,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session13.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Combining Genomic Resources</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session13.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Combining Genomic Resources</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -141,7 +149,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Kioloa PopGen</a> 
@@ -259,7 +267,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./break.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">__________</span></a>
+ <span class="menu-text">\__________</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -283,7 +291,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -324,7 +332,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <p><em>Session Presenters</em></p>
 <p><img src="images/Presenters13.png" class="img-fluid"></p>
@@ -334,7 +344,7 @@ div.csl-indent {
 </section>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-1_72641daad1d13c1f3e7353378f079624">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse) </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer) </span>
@@ -350,7 +360,7 @@ div.csl-indent {
 </section>
 <section id="geneflow-between-karyotypes" class="level2">
 <h2 class="anchored" data-anchor-id="geneflow-between-karyotypes">Geneflow between Karyotypes</h2>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-2_ac19dc3a49f6463458e356074bbdaf58">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># setup -----------------------</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## load ---</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>vac.glch2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/spiny_gl1.rds"</span>)</span>
@@ -414,11 +424,11 @@ Completed: gl.keep.pop </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#gl.smearplot(vac.pops, group.pop = TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-3_763d18b7731adf840c0ee365078a117c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sex <span class="ot">&lt;-</span> <span class="fu">gl.filter.sexlinked</span>(vac.glch2, <span class="at">system =</span> <span class="st">"zw"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sex<span class="sc">$</span>w.linked<span class="sc">@</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>Chrom_Varanus_JD_infer_w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-4_542b65267fac2ce7e6ca7ca0ee71d8cc">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
            scaf_10323  scaf_1064  scaf_1092  scaf_1121 scaf_11303  scaf_1133 
@@ -489,7 +499,7 @@ scaf_42444 scaf_42617 scaf_43226 scaf_43673 scaf_44264 scaf_44620 scaf_44621
          1          1          1          2 </code></pre>
 </div>
 </div>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-5_7de1d1f6e610d496a6cd954efa03dfe7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## start ----------</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>vac.gl1 <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(vac.pops, <span class="at">method =</span> <span class="st">"loc"</span>, <span class="at">threshold =</span> <span class="fl">0.80</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -504,7 +514,11 @@ scaf_42444 scaf_42617 scaf_43226 scaf_43673 scaf_44264 scaf_44620 scaf_44621
   Removing loci based on Call Rate, threshold = 0.8 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate </code></pre>
@@ -519,7 +533,11 @@ scaf_42444 scaf_42617 scaf_43226 scaf_43673 scaf_44264 scaf_44620 scaf_44621
   Removing individuals based on Call Rate, threshold = 0.75 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Note: Locus metrics not recalculated
@@ -533,7 +551,11 @@ Completed: gl.filter.callrate </code></pre>
   Removing loci with repeatability less than 0.99 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.reproducibility </code></pre>
@@ -546,7 +568,7 @@ Completed: gl.filter.callrate </code></pre>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>karyocolors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"MM"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"MA"</span> <span class="ot">=</span> <span class="st">"black"</span>, <span class="st">"AA"</span> <span class="ot">=</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-6_a0459eede6301fae0eea1b7e2cc6c321">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## pcoa ------------------------------------------------------------------------</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(vac.gl1, <span class="at">nfactors =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -558,7 +580,11 @@ Selected color type 2
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa </code></pre>
@@ -600,7 +626,7 @@ Completed: gl.drop.pop </code></pre>
 </div>
 <section id="within-population-pcoa-and-ibd" class="level3">
 <h3 class="anchored" data-anchor-id="within-population-pcoa-and-ibd">Within population PCoA and IBD</h3>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-7_c0a6e6ef9c417f26f2ead297a5948ebf">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#pcoa</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  vac.popi <span class="ot">&lt;-</span> <span class="fu">gl.keep.pop</span>(vac.edit, <span class="at">pop.list =</span> popi[i], <span class="at">as.pop =</span> <span class="st">"pop"</span>)</span>
@@ -638,7 +664,11 @@ Selected color type 2
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa 
@@ -649,7 +679,11 @@ Starting gl.pcoa.plot
   Preparing plot .... please wait</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa.plot 
@@ -658,15 +692,23 @@ Analysis performed on the genlight object.
 Coordinates transformed to Mercator (google) projection to calculate distances in meters.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 9 rows containing non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>Warning: Removed 9 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 9 rows containing missing values (`geom_point()`).
-Removed 9 rows containing missing values (`geom_point()`).
-Removed 9 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>Warning: Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 9 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Coordinates used from: x@other$latlon (Mercator transformed) 
@@ -680,11 +722,11 @@ Call:
 vegan::mantel(xdis = Dgen, ydis = Dgeo, permutations = permutations,      na.rm = TRUE) 
 
 Mantel statistic r: 0.6174 
-      Significance: 0.005 
+      Significance: 0.002 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.307 0.394 0.460 0.539 
+0.292 0.382 0.453 0.554 
 Permutation: free
 Number of permutations: 999
 
@@ -710,7 +752,11 @@ Selected color type 2
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa 
@@ -723,7 +769,11 @@ Starting gl.pcoa.plot
   Preparing plot .... please wait</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa.plot 
@@ -732,7 +782,11 @@ Analysis performed on the genlight object.
 Coordinates transformed to Mercator (google) projection to calculate distances in meters.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Coordinates used from: x@other$latlon (Mercator transformed) 
@@ -746,11 +800,11 @@ Call:
 vegan::mantel(xdis = Dgen, ydis = Dgeo, permutations = permutations,      na.rm = TRUE) 
 
 Mantel statistic r: 0.3604 
-      Significance: 0.022 
+      Significance: 0.026 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.202 0.287 0.338 0.409 
+0.220 0.295 0.361 0.420 
 Permutation: free
 Number of permutations: 999
 
@@ -774,7 +828,11 @@ Selected color type 2
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa 
@@ -785,7 +843,11 @@ Starting gl.pcoa.plot
   Preparing plot .... please wait</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa.plot 
@@ -794,7 +856,11 @@ Analysis performed on the genlight object.
 Coordinates transformed to Mercator (google) projection to calculate distances in meters.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-9.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Coordinates used from: x@other$latlon (Mercator transformed) 
@@ -808,11 +874,11 @@ Call:
 vegan::mantel(xdis = Dgen, ydis = Dgeo, permutations = permutations,      na.rm = TRUE) 
 
 Mantel statistic r: 0.643 
-      Significance: 0.003 
+      Significance: 0.005 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.307 0.375 0.643 0.643 
+0.313 0.376 0.637 0.643 
 Permutation: free
 Number of permutations: 999
 
@@ -835,7 +901,11 @@ Selected color type 2
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-10.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa 
@@ -846,7 +916,11 @@ Starting gl.pcoa.plot
   Preparing plot .... please wait</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-11.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-11.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa.plot 
@@ -855,15 +929,23 @@ Analysis performed on the genlight object.
 Coordinates transformed to Mercator (google) projection to calculate distances in meters.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 36 rows containing non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>Warning: Removed 36 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 36 rows containing missing values (`geom_point()`).
-Removed 36 rows containing missing values (`geom_point()`).
-Removed 36 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>Warning: Removed 36 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 36 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 36 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-7-12.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-7-12.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Coordinates used from: x@other$latlon (Mercator transformed) 
@@ -877,11 +959,11 @@ Call:
 vegan::mantel(xdis = Dgen, ydis = Dgeo, permutations = permutations,      na.rm = TRUE) 
 
 Mantel statistic r: 0.5041 
-      Significance: 0.011 
+      Significance: 0.014 
 
 Upper quantiles of permutations (null model):
   90%   95% 97.5%   99% 
-0.271 0.380 0.430 0.484 
+0.297 0.378 0.426 0.529 
 Permutation: free
 Number of permutations: 999
 
@@ -892,7 +974,7 @@ Completed: gl.ibd </code></pre>
 </section>
 <section id="between-population-pcoa-and-ibd" class="level3">
 <h3 class="anchored" data-anchor-id="between-population-pcoa-and-ibd">Between population PCoA and IBD</h3>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-8_d6f9a3c47b0a6ed25db380318092ff70">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># figure 4 ---------------------------------------------------------------------</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="do">## pcoa figures ----------------------------------------------------------------</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pc, vac.gl1, <span class="at">xaxis =</span>  <span class="dv">1</span>, <span class="at">yaxis =</span> <span class="dv">2</span>,<span class="at">pt.colors =</span> popcolors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -904,13 +986,21 @@ Completed: gl.ibd </code></pre>
   Preparing plot .... please wait</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa.plot </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pc, vac.gl1, <span class="at">xaxis =</span> <span class="dv">3</span>, <span class="at">yaxis =</span> <span class="dv">4</span>, <span class="at">pt.colors =</span> popcolors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -921,13 +1011,21 @@ Completed: gl.ibd </code></pre>
   Preparing plot .... please wait</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa.plot </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-8-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-8-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ibd figures -----------------------------------------------------------------</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -940,7 +1038,11 @@ Analysis performed on the genlight object.
 Coordinates transformed to Mercator (google) projection to calculate distances in meters.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-8-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-8-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Coordinates used from: x@other$latlon (Mercator transformed) 
@@ -958,7 +1060,7 @@ Mantel statistic r: 0.5168
 
 Upper quantiles of permutations (null model):
    90%    95%  97.5%    99% 
-0.0847 0.1079 0.1302 0.1509 
+0.0871 0.1113 0.1359 0.1678 
 Permutation: free
 Number of permutations: 999
 
@@ -1250,85 +1352,85 @@ AA095539a     0.32503093 0.32269768 0.31156178 0.13118967 0.32574257 0.31221582
 
 $Dgeo
               ABTC11930_aca ABTC11932_aca ABTC72881_aca ABTC8929_aca
-ABTC11932_aca  9.840809e-01                                         
-ABTC72881_aca  2.559392e+05  2.559395e+05                           
-ABTC8929_aca   2.647224e+05  2.647216e+05  3.105187e+05             
-ABTC8938_aca   1.806084e+05  1.806079e+05  1.979770e+05 1.206150e+05
-AA095616       7.732476e+05  7.732469e+05  1.008646e+06 7.735474e+05
-AA093614       4.288995e+05  4.288997e+05  6.680925e+05 6.395822e+05
-AA095550       4.315582e+05  4.315583e+05  6.759577e+05 6.314449e+05
-AA095620       1.745292e+05  1.745287e+05  1.842648e+05 1.353642e+05
-AA095553       4.648679e+05  4.648688e+05  5.853556e+05 7.294940e+05
-AA095548       4.647514e+05  4.647522e+05  5.844399e+05 7.293526e+05
-AA095617       7.466274e+05  7.466267e+05  9.820409e+05 7.480577e+05
-AA093615       4.288550e+05  4.288552e+05  6.680682e+05 6.395049e+05
-AA095626       4.288544e+05  4.288545e+05  6.680684e+05 6.395029e+05
-AA095636       1.815906e+05  1.815900e+05  2.155175e+05 1.059786e+05
-AA095546       4.648665e+05  4.648673e+05  5.853547e+05 7.294926e+05
-AA096028       6.002872e+05  6.002865e+05  8.345799e+05 6.060684e+05
-AA095562       4.288549e+05  4.288551e+05  6.680682e+05 6.395046e+05
-AA095623       4.288553e+05  4.288554e+05  6.680681e+05 6.395058e+05
-AA095635       1.815843e+05  1.815837e+05  2.155083e+05 1.059889e+05
-AA095547       4.648651e+05  4.648659e+05  5.853538e+05 7.294912e+05
-AA096030       6.002893e+05  6.002886e+05  8.345817e+05 6.060694e+05
-AA095629       4.288559e+05  4.288560e+05  6.680679e+05 6.395077e+05
-AA095624       4.288554e+05  4.288556e+05  6.680681e+05 6.395063e+05
-AA095637       1.745285e+05  1.745280e+05  1.842635e+05 1.353658e+05
-AA095545       4.917068e+05  4.917077e+05  5.912669e+05 7.551014e+05
-AA095568       4.447167e+05  4.447168e+05  6.839464e+05 6.542091e+05
-AA095625       4.288553e+05  4.288554e+05  6.680681e+05 6.395057e+05
-AA095542       4.759474e+05  4.759482e+05  5.794113e+05 7.395862e+05
-AA095570       6.002915e+05  6.002908e+05  8.345836e+05 6.060705e+05
-AA095549       4.447171e+05  4.447172e+05  6.839462e+05 6.542105e+05
-AA095551       6.009384e+05  6.009376e+05  8.349156e+05 6.057498e+05
-AA095543       4.759443e+05  4.759451e+05  5.793644e+05 7.395790e+05
-AA096029       6.003330e+05  6.003323e+05  8.346163e+05 6.060836e+05
-AA095627       6.002914e+05  6.002907e+05  8.345835e+05 6.060705e+05
-AA095540       4.409956e+05  4.409957e+05  6.824287e+05 6.465703e+05
-AA095544       4.757579e+05  4.757588e+05  5.792619e+05 7.393989e+05
-AA095634       6.003283e+05  6.003276e+05  8.346116e+05 6.060792e+05
-AA095569       4.324979e+05  4.324980e+05  6.766545e+05 6.328746e+05
-AA095539a      4.647566e+05  4.647574e+05  5.852520e+05 7.293826e+05
+ABTC11932_aca  7.814513e+00                                         
+ABTC72881_aca  2.559368e+05  2.559393e+05                           
+ABTC8929_aca   2.647237e+05  2.647173e+05  3.105131e+05             
+ABTC8938_aca   1.806070e+05  1.806029e+05  1.979679e+05 1.206193e+05
+AA095616       7.732503e+05  7.732447e+05  1.008644e+06 7.735483e+05
+AA093614       4.289004e+05  4.289015e+05  6.680920e+05 6.395858e+05
+AA095550       4.315578e+05  4.315582e+05  6.759577e+05 6.314427e+05
+AA095620       1.745287e+05  1.745252e+05  1.842574e+05 1.353667e+05
+AA095553       4.648599e+05  4.648665e+05  5.853545e+05 7.294874e+05
+AA095548       4.647458e+05  4.647524e+05  5.844404e+05 7.293484e+05
+AA095617       7.466304e+05  7.466248e+05  9.820389e+05 7.480588e+05
+AA093615       4.288545e+05  4.288556e+05  6.680680e+05 6.395041e+05
+AA095626       4.288548e+05  4.288558e+05  6.680680e+05 6.395048e+05
+AA095636       1.815910e+05  1.815863e+05  2.155114e+05 1.059795e+05
+AA095546       4.648625e+05  4.648690e+05  5.853561e+05 7.294899e+05
+AA096028       6.002886e+05  6.002829e+05  8.345764e+05 6.060685e+05
+AA095562       4.288552e+05  4.288562e+05  6.680679e+05 6.395062e+05
+AA095623       4.288553e+05  4.288563e+05  6.680678e+05 6.395064e+05
+AA095635       1.815855e+05  1.815808e+05  2.155034e+05 1.059885e+05
+AA095547       4.648641e+05  4.648706e+05  5.853571e+05 7.294915e+05
+AA096030       6.002954e+05  6.002897e+05  8.345822e+05 6.060719e+05
+AA095629       4.288549e+05  4.288559e+05  6.680679e+05 6.395052e+05
+AA095624       4.288554e+05  4.288564e+05  6.680678e+05 6.395068e+05
+AA095637       1.745275e+05  1.745239e+05  1.842550e+05 1.353695e+05
+AA095545       4.917061e+05  4.917130e+05  5.912708e+05 7.551021e+05
+AA095568       4.447163e+05  4.447173e+05  6.839462e+05 6.542085e+05
+AA095625       4.288551e+05  4.288561e+05  6.680679e+05 6.395058e+05
+AA095542       4.759477e+05  4.759545e+05  5.794158e+05 7.395879e+05
+AA095570       6.002913e+05  6.002856e+05  8.345787e+05 6.060698e+05
+AA095549       4.447161e+05  4.447171e+05  6.839462e+05 6.542081e+05
+AA095551       6.009395e+05  6.009337e+05  8.349118e+05 6.057498e+05
+AA095543       4.759424e+05  4.759492e+05  5.793675e+05 7.395785e+05
+AA096029       6.003364e+05  6.003307e+05  8.346146e+05 6.060847e+05
+AA095627       6.002922e+05  6.002865e+05  8.345795e+05 6.060703e+05
+AA095540       4.409955e+05  4.409963e+05  6.824283e+05 6.465704e+05
+AA095544       4.757580e+05  4.757648e+05  5.792663e+05 7.394003e+05
+AA095634       6.003318e+05  6.003261e+05  8.346099e+05 6.060804e+05
+AA095569       4.324976e+05  4.324981e+05  6.766543e+05 6.328732e+05
+AA095539a      4.647532e+05  4.647597e+05  5.852538e+05 7.293806e+05
               ABTC8938_aca     AA095616     AA093614     AA095550     AA095620
 ABTC11932_aca                                                                 
 ABTC72881_aca                                                                 
 ABTC8929_aca                                                                  
 ABTC8938_aca                                                                  
-AA095616      8.327168e+05                                                    
-AA093614      5.982896e+05 6.174778e+05                                       
-AA095550      5.963798e+05 5.835729e+05 3.391408e+04                          
-AA095620      1.480612e+04 8.419908e+05 5.960623e+05 5.949873e+05             
-AA095553      6.334274e+05 9.798589e+05 3.712261e+05 4.037581e+05 6.231791e+05
-AA095548      6.330822e+05 9.812622e+05 3.728342e+05 4.053397e+05 6.228019e+05
-AA095617      8.064152e+05 2.665752e+04 5.962865e+05 5.623727e+05 8.156308e+05
-AA093615      5.982312e+05 6.173657e+05 1.233898e+02 3.380086e+04 5.960066e+05
-AA095626      5.982300e+05 6.173609e+05 1.280863e+02 3.379611e+04 5.960055e+05
-AA095636      1.759360e+04 8.168895e+05 5.934931e+05 5.906286e+05 3.157643e+04
-AA095546      6.334261e+05 9.798573e+05 3.712246e+05 4.037565e+05 6.231778e+05
-AA096028      6.600271e+05 1.740858e+05 4.953277e+05 4.621543e+05 6.689780e+05
-AA095562      5.982310e+05 6.173650e+05 1.240911e+02 3.380015e+04 5.960064e+05
-AA095623      5.982317e+05 6.173677e+05 1.213542e+02 3.380293e+04 5.960071e+05
-AA095635      1.758477e+04 8.168950e+05 5.934902e+05 5.906262e+05 3.156668e+04
-AA095547      6.334248e+05 9.798556e+05 3.712231e+05 4.037550e+05 6.231765e+05
-AA096030      6.600286e+05 1.740839e+05 4.953306e+05 4.621572e+05 6.689795e+05
-AA095629      5.982328e+05 6.173721e+05 1.170425e+02 3.380730e+04 5.960081e+05
-AA095624      5.982320e+05 6.173687e+05 1.203601e+02 3.380393e+04 5.960073e+05
-AA095637      1.480765e+04 8.419917e+05 5.960620e+05 5.949870e+05 1.534414e+00
-AA095545      6.544727e+05 1.029983e+06 4.221149e+05 4.546272e+05 6.434738e+05
-AA095568      6.137982e+05 6.151278e+05 1.589281e+04 3.541033e+04 6.116505e+05
-AA095625      5.982316e+05 6.173675e+05 1.216308e+02 3.380265e+04 5.960070e+05
-AA095542      6.396217e+05 1.015140e+06 4.088080e+05 4.410897e+05 6.287431e+05
-AA095570      6.600301e+05 1.740820e+05 4.953336e+05 4.621602e+05 6.689811e+05
-AA095549      6.137991e+05 6.151311e+05 1.589292e+04 3.541358e+04 6.116513e+05
-AA095551      6.600856e+05 1.737306e+05 4.972827e+05 4.641245e+05 6.690758e+05
-AA095543      6.396046e+05 1.015212e+06 4.088918e+05 4.411721e+05 6.287244e+05
-AA096029      6.600548e+05 1.740483e+05 4.954033e+05 4.622300e+05 6.690070e+05
-AA095627      6.600301e+05 1.740821e+05 4.953335e+05 4.621601e+05 6.689811e+05
-AA095540      6.084037e+05 6.018448e+05 1.913309e+04 2.159122e+04 6.065689e+05
-AA095544      6.394408e+05 1.014975e+06 4.086647e+05 4.409432e+05 6.285634e+05
-AA095634      6.600502e+05 1.740530e+05 4.954000e+05 4.622268e+05 6.690023e+05
-AA095569      5.975490e+05 5.850835e+05 3.239681e+04 1.904441e+03 5.961190e+05
-AA095539a     6.333162e+05 9.797931e+05 3.711769e+05 4.037063e+05 6.230679e+05
+AA095616      8.327203e+05                                                    
+AA093614      5.982906e+05 6.174881e+05                                       
+AA095550      5.963777e+05 5.835691e+05 3.392829e+04                          
+AA095620      1.480436e+04 8.419934e+05 5.960637e+05 5.949858e+05             
+AA095553      6.334181e+05 9.798533e+05 3.712115e+05 4.037563e+05 6.231712e+05
+AA095548      6.330751e+05 9.812594e+05 3.728222e+05 4.053406e+05 6.227962e+05
+AA095617      8.064189e+05 2.665721e+04 5.962973e+05 5.623693e+05 8.156337e+05
+AA093615      5.982296e+05 6.173657e+05 1.336093e+02 3.380474e+04 5.960056e+05
+AA095626      5.982300e+05 6.173674e+05 1.318993e+02 3.380646e+04 5.960060e+05
+AA095636      1.759649e+04 8.168911e+05 5.934952e+05 5.906270e+05 3.157795e+04
+AA095546      6.334204e+05 9.798562e+05 3.712142e+05 4.037590e+05 6.231735e+05
+AA096028      6.600294e+05 1.740869e+05 4.953364e+05 4.621485e+05 6.689795e+05
+AA095562      5.982308e+05 6.173706e+05 1.287403e+02 3.380965e+04 5.960067e+05
+AA095623      5.982310e+05 6.173711e+05 1.282742e+02 3.381012e+04 5.960068e+05
+AA095635      1.758879e+04 8.168959e+05 5.934927e+05 5.906250e+05 3.156945e+04
+AA095547      6.334219e+05 9.798580e+05 3.712160e+05 4.037608e+05 6.231749e+05
+AA096030      6.600343e+05 1.740810e+05 4.953458e+05 4.621579e+05 6.689845e+05
+AA095629      5.982303e+05 6.173684e+05 1.309011e+02 3.380747e+04 5.960062e+05
+AA095624      5.982312e+05 6.173719e+05 1.274102e+02 3.381100e+04 5.960070e+05
+AA095637      1.480713e+04 8.419949e+05 5.960630e+05 5.949853e+05 2.778206e+00
+AA095545      6.544698e+05 1.029986e+06 4.221081e+05 4.546333e+05 6.434724e+05
+AA095568      6.137968e+05 6.151283e+05 1.589249e+04 3.541460e+04 6.116496e+05
+AA095625      5.982306e+05 6.173697e+05 1.296748e+02 3.380871e+04 5.960065e+05
+AA095542      6.396198e+05 1.015144e+06 4.088023e+05 4.410968e+05 6.287426e+05
+AA095570      6.600314e+05 1.740845e+05 4.953402e+05 4.621523e+05 6.689815e+05
+AA095549      6.137966e+05 6.151274e+05 1.589246e+04 3.541374e+04 6.116494e+05
+AA095551      6.600878e+05 1.737320e+05 4.972910e+05 4.641184e+05 6.690771e+05
+AA095543      6.396007e+05 1.015213e+06 4.088839e+05 4.411769e+05 6.287220e+05
+AA096029      6.600586e+05 1.740476e+05 4.954148e+05 4.622271e+05 6.690100e+05
+AA095627      6.600320e+05 1.740838e+05 4.953414e+05 4.621535e+05 6.689822e+05
+AA095540      6.084028e+05 6.018471e+05 1.913875e+04 2.159708e+04 6.065685e+05
+AA095544      6.394388e+05 1.014978e+06 4.086588e+05 4.409500e+05 6.285628e+05
+AA095634      6.600541e+05 1.740523e+05 4.954116e+05 4.622239e+05 6.690054e+05
+AA095569      5.975474e+05 5.850820e+05 3.240860e+04 1.906567e+03 5.961179e+05
+AA095539a     6.333110e+05 9.797928e+05 3.711672e+05 4.037095e+05 6.230642e+05
                   AA095553     AA095548     AA095617     AA093615     AA095626
 ABTC11932_aca                                                                 
 ABTC72881_aca                                                                 
@@ -1339,36 +1441,36 @@ AA093614
 AA095550                                                                      
 AA095620                                                                      
 AA095553                                                                      
-AA095548      1.917843e+03                                                    
-AA095617      9.570236e+05 9.584083e+05                                       
-AA093615      3.713199e+05 3.729278e+05 5.961730e+05                          
-AA095626      3.713242e+05 3.729320e+05 5.961683e+05 4.826127e+00             
-AA095636      6.391705e+05 6.388747e+05 7.906304e+05 5.934317e+05 5.934303e+05
-AA095546      1.706638e+00 1.918695e+03 9.570220e+05 3.713184e+05 3.713227e+05
-AA096028      8.400453e+05 8.412905e+05 1.474648e+05 4.952069e+05 4.952021e+05
-AA095562      3.713206e+05 3.729284e+05 5.961723e+05 7.212710e-01 4.104856e+00
-AA095623      3.713181e+05 3.729259e+05 5.961751e+05 2.095098e+00 6.921225e+00
-AA095635      6.391624e+05 6.388666e+05 7.906359e+05 5.934288e+05 5.934274e+05
-AA095547      3.432895e+00 1.919558e+03 9.570203e+05 3.713169e+05 3.713212e+05
-AA096030      8.400481e+05 8.412934e+05 1.474630e+05 4.952099e+05 4.952050e+05
-AA095629      3.713141e+05 3.729219e+05 5.961795e+05 6.539845e+00 1.136597e+01
-AA095624      3.713172e+05 3.729250e+05 5.961761e+05 3.118964e+00 7.945091e+00
-AA095637      6.231779e+05 6.228007e+05 8.156317e+05 5.960063e+05 5.960052e+05
-AA095545      5.088940e+04 4.928835e+04 1.007022e+06 4.222087e+05 4.222130e+05
-AA095568      3.782356e+05 3.798821e+05 5.943641e+05 1.592614e+04 1.592633e+04
-AA095625      3.713183e+05 3.729261e+05 5.961748e+05 1.810295e+00 6.636422e+00
-AA095542      3.881181e+04 3.699160e+04 9.920785e+05 4.088998e+05 4.089040e+05
-AA095570      8.400510e+05 8.412963e+05 1.474611e+05 4.952128e+05 4.952080e+05
-AA095549      3.782326e+05 3.798792e+05 5.943674e+05 1.592627e+04 1.592647e+04
-AA095551      8.417334e+05 8.429762e+05 1.471313e+05 4.971619e+05 4.971570e+05
-AA095543      3.890678e+04 3.708599e+04 9.921496e+05 4.089835e+05 4.089878e+05
-AA096029      8.401167e+05 8.413619e+05 1.474279e+05 4.952825e+05 4.952777e+05
-AA095627      8.400510e+05 8.412962e+05 1.474612e+05 4.952127e+05 4.952079e+05
-AA095540      3.893820e+05 3.910064e+05 5.809608e+05 1.907054e+04 1.906719e+04
-AA095544      3.870458e+04 3.688179e+04 9.919121e+05 4.087564e+05 4.087606e+05
-AA095634      8.401128e+05 8.413580e+05 1.474326e+05 4.952792e+05 4.952744e+05
-AA095569      4.025863e+05 4.041719e+05 5.639154e+05 3.228537e+04 3.228065e+04
-AA095539a     1.115013e+02 1.907729e+03 9.569566e+05 3.712706e+05 3.712749e+05
+AA095548      1.919312e+03                                                    
+AA095617      9.570184e+05 9.584059e+05                                       
+AA093615      3.713147e+05 3.729251e+05 5.961735e+05                          
+AA095626      3.713131e+05 3.729236e+05 5.961753e+05 1.752225e+00             
+AA095636      6.391635e+05 6.388700e+05 7.906322e+05 5.934308e+05 5.934313e+05
+AA095546      3.022337e+00 1.917802e+03 9.570213e+05 3.713174e+05 3.713158e+05
+AA096028      8.400377e+05 8.412858e+05 1.474663e+05 4.952052e+05 4.952069e+05
+AA095562      3.713102e+05 3.729207e+05 5.961784e+05 4.992164e+00 3.239940e+00
+AA095623      3.713098e+05 3.729202e+05 5.961789e+05 5.470548e+00 3.718323e+00
+AA095635      6.391565e+05 6.388630e+05 7.906370e+05 5.934283e+05 5.934288e+05
+AA095547      4.960055e+00 1.916836e+03 9.570232e+05 3.713191e+05 3.713175e+05
+AA096030      8.400469e+05 8.412950e+05 1.474604e+05 4.952145e+05 4.952163e+05
+AA095629      3.713122e+05 3.729226e+05 5.961763e+05 2.775508e+00 1.023283e+00
+AA095624      3.713090e+05 3.729195e+05 5.961798e+05 6.357585e+00 4.605360e+00
+AA095637      6.231691e+05 6.227941e+05 8.156352e+05 5.960049e+05 5.960053e+05
+AA095545      5.089717e+04 4.929356e+04 1.007025e+06 4.222112e+05 4.222097e+05
+AA095568      3.782300e+05 3.798791e+05 5.943651e+05 1.592616e+04 1.592609e+04
+AA095625      3.713111e+05 3.729215e+05 5.961775e+05 4.033226e+00 2.281002e+00
+AA095542      3.881916e+04 3.699685e+04 9.920828e+05 4.089033e+05 4.089018e+05
+AA095570      8.400414e+05 8.412895e+05 1.474639e+05 4.952089e+05 4.952107e+05
+AA095549      3.782308e+05 3.798799e+05 5.943642e+05 1.592612e+04 1.592605e+04
+AA095551      8.417255e+05 8.429711e+05 1.471329e+05 4.971597e+05 4.971614e+05
+AA095543      3.891226e+04 3.708934e+04 9.921515e+05 4.089848e+05 4.089833e+05
+AA096029      8.401120e+05 8.413600e+05 1.474276e+05 4.952835e+05 4.952853e+05
+AA095627      8.400426e+05 8.412907e+05 1.474631e+05 4.952101e+05 4.952119e+05
+AA095540      3.893747e+05 3.910017e+05 5.809636e+05 1.906890e+04 1.907011e+04
+AA095544      3.871174e+04 3.688684e+04 9.919161e+05 4.087597e+05 4.087582e+05
+AA095634      8.401081e+05 8.413562e+05 1.474322e+05 4.952803e+05 4.952821e+05
+AA095569      4.025824e+05 4.041707e+05 5.639143e+05 3.228690e+04 3.228861e+04
+AA095539a     1.071347e+02 1.906317e+03 9.569567e+05 3.712703e+05 3.712687e+05
                   AA095636     AA095546     AA096028     AA095562     AA095623
 ABTC11932_aca                                                                 
 ABTC72881_aca                                                                 
@@ -1384,31 +1486,31 @@ AA095617
 AA093615                                                                      
 AA095626                                                                      
 AA095636                                                                      
-AA095546      6.391691e+05                                                    
-AA096028      6.444477e+05 8.400436e+05                                       
-AA095562      5.934315e+05 3.713191e+05 4.952062e+05                          
-AA095623      5.934323e+05 3.713165e+05 4.952090e+05 2.816369e+00             
-AA095635      1.033812e+01 6.391611e+05 6.444530e+05 5.934286e+05 5.934294e+05
-AA095547      6.391678e+05 1.726256e+00 8.400419e+05 3.713175e+05 3.713150e+05
-AA096030      6.444492e+05 8.400464e+05 2.912510e+00 4.952091e+05 4.952120e+05
-AA095629      5.934335e+05 3.713126e+05 4.952135e+05 7.261116e+00 4.444747e+00
-AA095624      5.934325e+05 3.713156e+05 4.952101e+05 3.840235e+00 1.023866e+00
-AA095637      3.157788e+04 6.231766e+05 6.689788e+05 5.960061e+05 5.960067e+05
-AA095545      6.613843e+05 5.089092e+04 8.888947e+05 4.222093e+05 4.222068e+05
-AA095568      6.088984e+05 3.782341e+05 4.965912e+05 1.592616e+04 1.592605e+04
-AA095625      5.934322e+05 3.713168e+05 4.952088e+05 2.531566e+00 2.848029e-01
-AA095542      6.463480e+05 3.881308e+04 8.733214e+05 4.089004e+05 4.088980e+05
-AA095570      6.444507e+05 8.400494e+05 5.889006e+00 4.952121e+05 4.952149e+05
-AA095549      6.088993e+05 3.782312e+05 4.965946e+05 1.592630e+04 1.592619e+04
-AA095551      6.444786e+05 8.417318e+05 2.216788e+03 4.971611e+05 4.971640e+05
-AA095543      6.463335e+05 3.890805e+04 8.733853e+05 4.089842e+05 4.089817e+05
-AA096029      6.444745e+05 8.401151e+05 7.635678e+01 4.952818e+05 4.952846e+05
-AA095627      6.444506e+05 8.400493e+05 5.802814e+00 4.952120e+05 4.952148e+05
-AA095540      6.031476e+05 3.893805e+05 4.826256e+05 1.907004e+04 1.907199e+04
-AA095544      6.461653e+05 3.870584e+04 8.731460e+05 4.087570e+05 4.087546e+05
-AA095634      6.444699e+05 8.401112e+05 7.374305e+01 4.952785e+05 4.952813e+05
-AA095569      5.918394e+05 4.025847e+05 4.638977e+05 3.228466e+04 3.228742e+04
-AA095539a     6.390590e+05 1.101395e+02 8.399697e+05 3.712713e+05 3.712688e+05
+AA095546      6.391659e+05                                                    
+AA096028      6.444483e+05 8.400407e+05                                       
+AA095562      5.934322e+05 3.713129e+05 4.952101e+05                          
+AA095623      5.934324e+05 3.713125e+05 4.952106e+05 4.783838e-01             
+AA095635      9.016090e+00 6.391589e+05 6.444529e+05 5.934297e+05 5.934298e+05
+AA095547      6.391674e+05 1.937718e+00 8.400426e+05 3.713146e+05 3.713142e+05
+AA096030      6.444531e+05 8.400499e+05 9.359661e+00 4.952195e+05 4.952200e+05
+AA095629      5.934316e+05 3.713149e+05 4.952079e+05 2.216657e+00 2.695040e+00
+AA095624      5.934326e+05 3.713117e+05 4.952115e+05 1.365421e+00 8.870368e-01
+AA095637      3.158057e+04 6.231714e+05 6.689810e+05 5.960061e+05 5.960062e+05
+AA095545      6.613842e+05 5.089449e+04 8.888957e+05 4.222068e+05 4.222063e+05
+AA095568      6.088977e+05 3.782326e+05 4.965900e+05 1.592596e+04 1.592594e+04
+AA095625      5.934320e+05 3.713138e+05 4.952092e+05 9.589378e-01 1.437322e+00
+AA095542      6.463488e+05 3.881692e+04 8.733235e+05 4.088989e+05 4.088985e+05
+AA095570      6.444502e+05 8.400444e+05 3.757963e+00 4.952139e+05 4.952144e+05
+AA095549      6.088975e+05 3.782334e+05 4.965891e+05 1.592592e+04 1.592590e+04
+AA095551      6.444790e+05 8.417285e+05 2.216453e+03 4.971647e+05 4.971652e+05
+AA095543      6.463323e+05 3.891002e+04 8.733850e+05 4.089804e+05 4.089800e+05
+AA096029      6.444766e+05 8.401149e+05 7.913512e+01 4.952885e+05 4.952890e+05
+AA095627      6.444508e+05 8.400456e+05 4.992044e+00 4.952151e+05 4.952156e+05
+AA095540      6.031474e+05 3.893774e+05 4.826261e+05 1.907236e+04 1.907269e+04
+AA095544      6.461660e+05 3.870950e+04 8.731479e+05 4.087553e+05 4.087549e+05
+AA095634      6.444720e+05 8.401111e+05 7.655235e+01 4.952853e+05 4.952858e+05
+AA095569      5.918384e+05 4.025851e+05 4.638944e+05 3.229178e+04 3.229225e+04
+AA095539a     6.390564e+05 1.095140e+02 8.399675e+05 3.712658e+05 3.712654e+05
                   AA095635     AA095547     AA096030     AA095629     AA095624
 ABTC11932_aca                                                                 
 ABTC72881_aca                                                                 
@@ -1429,26 +1531,26 @@ AA096028
 AA095562                                                                      
 AA095623                                                                      
 AA095635                                                                      
-AA095547      6.391597e+05                                                    
-AA096030      6.444544e+05 8.400447e+05                                       
-AA095629      5.934306e+05 3.713110e+05 4.952164e+05                          
-AA095624      5.934296e+05 3.713141e+05 4.952130e+05 3.420881e+00             
-AA095637      3.156813e+04 6.231754e+05 6.689804e+05 5.960078e+05 5.960070e+05
-AA095545      6.613758e+05 5.089245e+04 8.888975e+05 4.222029e+05 4.222059e+05
-AA095568      6.088956e+05 3.782326e+05 4.965941e+05 1.592587e+04 1.592601e+04
-AA095625      5.934293e+05 3.713153e+05 4.952117e+05 4.729550e+00 1.308669e+00
-AA095542      6.463396e+05 3.881436e+04 8.733242e+05 4.088940e+05 4.088971e+05
-AA095570      6.444560e+05 8.400477e+05 2.976496e+00 4.952194e+05 4.952159e+05
-AA095549      6.088965e+05 3.782296e+05 4.965975e+05 1.592601e+04 1.592615e+04
-AA095551      6.444839e+05 8.417301e+05 2.214265e+03 4.971684e+05 4.971650e+05
-AA095543      6.463250e+05 3.890932e+04 8.733882e+05 4.089778e+05 4.089808e+05
-AA096029      6.444798e+05 8.401134e+05 7.349096e+01 4.952890e+05 4.952856e+05
-AA095627      6.444559e+05 8.400476e+05 2.890304e+00 4.952193e+05 4.952159e+05
-AA095540      6.031450e+05 3.893790e+05 4.826285e+05 1.907507e+04 1.907270e+04
-AA095544      6.461569e+05 3.870712e+04 8.731488e+05 4.087507e+05 4.087537e+05
-AA095634      6.444752e+05 8.401095e+05 7.090926e+01 4.952858e+05 4.952824e+05
-AA095569      5.918371e+05 4.025832e+05 4.639006e+05 3.229177e+04 3.228842e+04
-AA095539a     6.390510e+05 1.087719e+02 8.399725e+05 3.712648e+05 3.712679e+05
+AA095547      6.391604e+05                                                    
+AA096030      6.444577e+05 8.400518e+05                                       
+AA095629      5.934291e+05 3.713166e+05 4.952173e+05                          
+AA095624      5.934301e+05 3.713134e+05 4.952209e+05 3.582077e+00             
+AA095637      3.157207e+04 6.231728e+05 6.689860e+05 5.960056e+05 5.960064e+05
+AA095545      6.613768e+05 5.089276e+04 8.889049e+05 4.222087e+05 4.222055e+05
+AA095568      6.088952e+05 3.782343e+05 4.965993e+05 1.592604e+04 1.592590e+04
+AA095625      5.934294e+05 3.713155e+05 4.952185e+05 1.257719e+00 2.324358e+00
+AA095542      6.463415e+05 3.881548e+04 8.733327e+05 4.089009e+05 4.088977e+05
+AA095570      6.444548e+05 8.400463e+05 5.601698e+00 4.952117e+05 4.952153e+05
+AA095549      6.088950e+05 3.782351e+05 4.965984e+05 1.592601e+04 1.592586e+04
+AA095551      6.444836e+05 8.417304e+05 2.208348e+03 4.971625e+05 4.971660e+05
+AA095543      6.463249e+05 3.890858e+04 8.733942e+05 4.089824e+05 4.089792e+05
+AA096029      6.444812e+05 8.401168e+05 6.992762e+01 4.952863e+05 4.952899e+05
+AA095627      6.444554e+05 8.400475e+05 4.367617e+00 4.952129e+05 4.952165e+05
+AA095540      6.031451e+05 3.893791e+05 4.826355e+05 1.907082e+04 1.907330e+04
+AA095544      6.461586e+05 3.870807e+04 8.731571e+05 4.087573e+05 4.087541e+05
+AA095634      6.444766e+05 8.401130e+05 6.744897e+01 4.952831e+05 4.952867e+05
+AA095569      5.918363e+05 4.025868e+05 4.639037e+05 3.228961e+04 3.229312e+04
+AA095539a     6.390494e+05 1.110559e+02 8.399767e+05 3.712678e+05 3.712646e+05
                   AA095637     AA095545     AA095568     AA095625     AA095542
 ABTC11932_aca                                                                 
 ABTC72881_aca                                                                 
@@ -1474,21 +1576,21 @@ AA096030
 AA095629                                                                      
 AA095624                                                                      
 AA095637                                                                      
-AA095545      6.434725e+05                                                    
-AA095568      6.116502e+05 4.291008e+05                                       
-AA095625      5.960067e+05 4.222071e+05 1.592606e+04                          
-AA095542      6.287419e+05 1.669106e+04 4.161427e+05 4.088982e+05             
-AA095570      6.689820e+05 8.889004e+05 4.965971e+05 4.952146e+05 8.733271e+05
-AA095549      6.116509e+05 4.290978e+05 3.383598e+00 1.592620e+04 4.161397e+05
-AA095551      6.690767e+05 8.905589e+05 4.985785e+05 4.971637e+05 8.749756e+05
-AA095543      6.287232e+05 1.666031e+04 4.162283e+05 4.089819e+05 1.014292e+02
-AA096029      6.690078e+05 8.889657e+05 4.966671e+05 4.952843e+05 8.733922e+05
-AA095627      6.689819e+05 8.889003e+05 4.965970e+05 4.952146e+05 8.733270e+05
-AA095540      6.065686e+05 4.402689e+05 1.402712e+04 1.907179e+04 4.271015e+05
-AA095544      6.285622e+05 1.688599e+04 4.160039e+05 4.087548e+05 1.956882e+02
-AA095634      6.690032e+05 8.889617e+05 4.966640e+05 4.952811e+05 8.733882e+05
-AA095569      5.961188e+05 4.534601e+05 3.353530e+04 3.228714e+04 4.399559e+05
-AA095539a     6.230668e+05 5.093827e+04 3.781902e+05 3.712690e+05 3.883333e+04
+AA095545      6.434701e+05                                                    
+AA095568      6.116490e+05 4.291028e+05                                       
+AA095625      5.960058e+05 4.222076e+05 1.592599e+04                          
+AA095542      6.287404e+05 1.668990e+04 4.161457e+05 4.088998e+05             
+AA095570      6.689830e+05 8.888994e+05 4.965937e+05 4.952129e+05 8.733272e+05
+AA095549      6.116488e+05 4.291036e+05 9.010242e-01 1.592596e+04 4.161464e+05
+AA095551      6.690786e+05 8.905595e+05 4.985769e+05 4.971637e+05 8.749774e+05
+AA095543      6.287198e+05 1.666164e+04 4.162291e+05 4.089813e+05 1.003013e+02
+AA096029      6.690115e+05 8.889695e+05 4.966686e+05 4.952876e+05 8.733971e+05
+AA095627      6.689836e+05 8.889006e+05 4.965949e+05 4.952142e+05 8.733284e+05
+AA095540      6.065679e+05 4.402693e+05 1.402529e+04 1.907169e+04 4.271029e+05
+AA095544      6.285606e+05 1.688507e+04 4.160067e+05 4.087562e+05 1.959077e+02
+AA095634      6.690069e+05 8.889656e+05 4.966656e+05 4.952844e+05 8.733932e+05
+AA095569      5.961174e+05 4.534641e+05 3.353730e+04 3.229084e+04 4.399609e+05
+AA095539a     6.230621e+05 5.094114e+04 3.781894e+05 3.712667e+05 3.883659e+04
                   AA095570     AA095549     AA095551     AA095543     AA096029
 ABTC11932_aca                                                                 
 ABTC72881_aca                                                                 
@@ -1519,16 +1621,16 @@ AA095568
 AA095625                                                                      
 AA095542                                                                      
 AA095570                                                                      
-AA095549      4.966005e+05                                                    
-AA095551      2.211687e+03 4.985819e+05                                       
-AA095543      8.733911e+05 4.162254e+05 8.750394e+05                          
-AA096029      7.056612e+01 4.966705e+05 2.145134e+03 8.734562e+05             
-AA095627      8.619243e-02 4.966004e+05 2.211762e+03 8.733910e+05 7.065075e+01
-AA095540      4.826314e+05 1.403046e+04 4.846103e+05 4.271860e+05 4.827014e+05
-AA095544      8.731518e+05 4.160010e+05 8.748001e+05 2.394764e+02 8.732168e+05
-AA095634      6.802007e+01 4.966673e+05 2.146320e+03 8.734522e+05 4.731331e+00
-AA095569      4.639036e+05 3.353855e+04 4.658696e+05 4.400384e+05 4.639735e+05
-AA095539a     8.399754e+05 3.781872e+05 8.416577e+05 3.892819e+04 8.400411e+05
+AA095549      4.965928e+05                                                    
+AA095551      2.213197e+03 4.985760e+05                                       
+AA095543      8.733887e+05 4.162299e+05 8.750387e+05                          
+AA096029      7.543375e+01 4.966677e+05 2.142374e+03 8.734586e+05             
+AA095627      1.234081e+00 4.965940e+05 2.212129e+03 8.733899e+05 7.421950e+01
+AA095540      4.826299e+05 1.402440e+04 4.846104e+05 4.271852e+05 4.827048e+05
+AA095544      8.731516e+05 4.160075e+05 8.748016e+05 2.372201e+02 8.732215e+05
+AA095634      7.288949e+01 4.966647e+05 2.143505e+03 8.734547e+05 4.688269e+00
+AA095569      4.638981e+05 3.353643e+04 4.658659e+05 4.400411e+05 4.639729e+05
+AA095539a     8.399712e+05 3.781902e+05 8.416552e+05 3.892959e+04 8.400418e+05
                   AA095627     AA095540     AA095544     AA095634     AA095569
 ABTC11932_aca                                                                 
 ABTC72881_aca                                                                 
@@ -1564,11 +1666,11 @@ AA095551
 AA095543                                                                      
 AA096029                                                                      
 AA095627                                                                      
-AA095540      4.826314e+05                                                    
-AA095544      8.731517e+05 4.269599e+05                                       
-AA095634      6.810363e+01 4.826983e+05 8.732129e+05                          
-AA095569      4.639035e+05 1.969416e+04 4.398098e+05 4.639703e+05             
-AA095539a     8.399754e+05 3.893344e+05 3.872564e+04 8.400372e+05 4.025349e+05
+AA095540      4.826311e+05                                                    
+AA095544      8.731528e+05 4.269612e+05                                       
+AA095634      7.168878e+01 4.827017e+05 8.732176e+05                          
+AA095569      4.638994e+05 1.969783e+04 4.398145e+05 4.639698e+05             
+AA095539a     8.399724e+05 3.893319e+05 3.872872e+04 8.400379e+05 4.025360e+05
 
 $mantel
 
@@ -1582,7 +1684,7 @@ Mantel statistic r: 0.5168
 
 Upper quantiles of permutations (null model):
    90%    95%  97.5%    99% 
-0.0847 0.1079 0.1302 0.1509 
+0.0871 0.1113 0.1359 0.1678 
 Permutation: free
 Number of permutations: 999</code></pre>
 </div>
@@ -1595,7 +1697,11 @@ Analysis performed on the genlight object.
 Coordinates transformed to Mercator (google) projection to calculate distances in meters.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-8-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-8-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Coordinates used from: x@other$latlon (Mercator transformed) 
@@ -1612,8 +1718,8 @@ Mantel statistic r: 0.5604
       Significance: 0.001 
 
 Upper quantiles of permutations (null model):
-   90%    95%  97.5%    99% 
-0.0875 0.1236 0.1517 0.1910 
+  90%   95% 97.5%   99% 
+0.086 0.121 0.159 0.196 
 Permutation: free
 Number of permutations: 999
 
@@ -1780,67 +1886,67 @@ AA095569 0.08853196 0.31518086 0.08998039 0.08654804 0.31173884 0.08800186
 
 $Dgeo
              AA095616     AA093614     AA095550     AA095620     AA095553
-AA093614 6.174778e+05                                                    
-AA095550 5.835729e+05 3.391408e+04                                       
-AA095620 8.419908e+05 5.960623e+05 5.949873e+05                          
-AA095553 9.798589e+05 3.712261e+05 4.037581e+05 6.231791e+05             
-AA095548 9.812622e+05 3.728342e+05 4.053397e+05 6.228019e+05 1.917843e+03
-AA095617 2.665752e+04 5.962865e+05 5.623727e+05 8.156308e+05 9.570236e+05
-AA093615 6.173657e+05 1.233898e+02 3.380086e+04 5.960066e+05 3.713199e+05
-AA095626 6.173609e+05 1.280863e+02 3.379611e+04 5.960055e+05 3.713242e+05
-AA095636 8.168895e+05 5.934931e+05 5.906286e+05 3.157643e+04 6.391705e+05
-AA095546 9.798573e+05 3.712246e+05 4.037565e+05 6.231778e+05 1.706638e+00
-AA096028 1.740858e+05 4.953277e+05 4.621543e+05 6.689780e+05 8.400453e+05
-AA095562 6.173650e+05 1.240911e+02 3.380015e+04 5.960064e+05 3.713206e+05
-AA095623 6.173677e+05 1.213542e+02 3.380293e+04 5.960071e+05 3.713181e+05
-AA095635 8.168950e+05 5.934902e+05 5.906262e+05 3.156668e+04 6.391624e+05
-AA095547 9.798556e+05 3.712231e+05 4.037550e+05 6.231765e+05 3.432895e+00
-AA096030 1.740839e+05 4.953306e+05 4.621572e+05 6.689795e+05 8.400481e+05
-AA095629 6.173721e+05 1.170425e+02 3.380730e+04 5.960081e+05 3.713141e+05
-AA095624 6.173687e+05 1.203601e+02 3.380393e+04 5.960073e+05 3.713172e+05
-AA095637 8.419917e+05 5.960620e+05 5.949870e+05 1.534414e+00 6.231779e+05
-AA095545 1.029983e+06 4.221149e+05 4.546272e+05 6.434738e+05 5.088940e+04
-AA095568 6.151278e+05 1.589281e+04 3.541033e+04 6.116505e+05 3.782356e+05
-AA095625 6.173675e+05 1.216308e+02 3.380265e+04 5.960070e+05 3.713183e+05
-AA095542 1.015140e+06 4.088080e+05 4.410897e+05 6.287431e+05 3.881181e+04
-AA095570 1.740820e+05 4.953336e+05 4.621602e+05 6.689811e+05 8.400510e+05
-AA095543 1.015212e+06 4.088918e+05 4.411721e+05 6.287244e+05 3.890678e+04
-AA096029 1.740483e+05 4.954033e+05 4.622300e+05 6.690070e+05 8.401167e+05
-AA095627 1.740821e+05 4.953335e+05 4.621601e+05 6.689811e+05 8.400510e+05
-AA095544 1.014975e+06 4.086647e+05 4.409432e+05 6.285634e+05 3.870458e+04
-AA095634 1.740530e+05 4.954000e+05 4.622268e+05 6.690023e+05 8.401128e+05
-AA095569 5.850835e+05 3.239681e+04 1.904441e+03 5.961190e+05 4.025863e+05
+AA093614 6.174881e+05                                                    
+AA095550 5.835691e+05 3.392829e+04                                       
+AA095620 8.419934e+05 5.960637e+05 5.949858e+05                          
+AA095553 9.798533e+05 3.712115e+05 4.037563e+05 6.231712e+05             
+AA095548 9.812594e+05 3.728222e+05 4.053406e+05 6.227962e+05 1.919312e+03
+AA095617 2.665721e+04 5.962973e+05 5.623693e+05 8.156337e+05 9.570184e+05
+AA093615 6.173657e+05 1.336093e+02 3.380474e+04 5.960056e+05 3.713147e+05
+AA095626 6.173674e+05 1.318993e+02 3.380646e+04 5.960060e+05 3.713131e+05
+AA095636 8.168911e+05 5.934952e+05 5.906270e+05 3.157795e+04 6.391635e+05
+AA095546 9.798562e+05 3.712142e+05 4.037590e+05 6.231735e+05 3.022337e+00
+AA096028 1.740869e+05 4.953364e+05 4.621485e+05 6.689795e+05 8.400377e+05
+AA095562 6.173706e+05 1.287403e+02 3.380965e+04 5.960067e+05 3.713102e+05
+AA095623 6.173711e+05 1.282742e+02 3.381012e+04 5.960068e+05 3.713098e+05
+AA095635 8.168959e+05 5.934927e+05 5.906250e+05 3.156945e+04 6.391565e+05
+AA095547 9.798580e+05 3.712160e+05 4.037608e+05 6.231749e+05 4.960055e+00
+AA096030 1.740810e+05 4.953458e+05 4.621579e+05 6.689845e+05 8.400469e+05
+AA095629 6.173684e+05 1.309011e+02 3.380747e+04 5.960062e+05 3.713122e+05
+AA095624 6.173719e+05 1.274102e+02 3.381100e+04 5.960070e+05 3.713090e+05
+AA095637 8.419949e+05 5.960630e+05 5.949853e+05 2.778206e+00 6.231691e+05
+AA095545 1.029986e+06 4.221081e+05 4.546333e+05 6.434724e+05 5.089717e+04
+AA095568 6.151283e+05 1.589249e+04 3.541460e+04 6.116496e+05 3.782300e+05
+AA095625 6.173697e+05 1.296748e+02 3.380871e+04 5.960065e+05 3.713111e+05
+AA095542 1.015144e+06 4.088023e+05 4.410968e+05 6.287426e+05 3.881916e+04
+AA095570 1.740845e+05 4.953402e+05 4.621523e+05 6.689815e+05 8.400414e+05
+AA095543 1.015213e+06 4.088839e+05 4.411769e+05 6.287220e+05 3.891226e+04
+AA096029 1.740476e+05 4.954148e+05 4.622271e+05 6.690100e+05 8.401120e+05
+AA095627 1.740838e+05 4.953414e+05 4.621535e+05 6.689822e+05 8.400426e+05
+AA095544 1.014978e+06 4.086588e+05 4.409500e+05 6.285628e+05 3.871174e+04
+AA095634 1.740523e+05 4.954116e+05 4.622239e+05 6.690054e+05 8.401081e+05
+AA095569 5.850820e+05 3.240860e+04 1.906567e+03 5.961179e+05 4.025824e+05
              AA095548     AA095617     AA093615     AA095626     AA095636
 AA093614                                                                 
 AA095550                                                                 
 AA095620                                                                 
 AA095553                                                                 
 AA095548                                                                 
-AA095617 9.584083e+05                                                    
-AA093615 3.729278e+05 5.961730e+05                                       
-AA095626 3.729320e+05 5.961683e+05 4.826127e+00                          
-AA095636 6.388747e+05 7.906304e+05 5.934317e+05 5.934303e+05             
-AA095546 1.918695e+03 9.570220e+05 3.713184e+05 3.713227e+05 6.391691e+05
-AA096028 8.412905e+05 1.474648e+05 4.952069e+05 4.952021e+05 6.444477e+05
-AA095562 3.729284e+05 5.961723e+05 7.212710e-01 4.104856e+00 5.934315e+05
-AA095623 3.729259e+05 5.961751e+05 2.095098e+00 6.921225e+00 5.934323e+05
-AA095635 6.388666e+05 7.906359e+05 5.934288e+05 5.934274e+05 1.033812e+01
-AA095547 1.919558e+03 9.570203e+05 3.713169e+05 3.713212e+05 6.391678e+05
-AA096030 8.412934e+05 1.474630e+05 4.952099e+05 4.952050e+05 6.444492e+05
-AA095629 3.729219e+05 5.961795e+05 6.539845e+00 1.136597e+01 5.934335e+05
-AA095624 3.729250e+05 5.961761e+05 3.118964e+00 7.945091e+00 5.934325e+05
-AA095637 6.228007e+05 8.156317e+05 5.960063e+05 5.960052e+05 3.157788e+04
-AA095545 4.928835e+04 1.007022e+06 4.222087e+05 4.222130e+05 6.613843e+05
-AA095568 3.798821e+05 5.943641e+05 1.592614e+04 1.592633e+04 6.088984e+05
-AA095625 3.729261e+05 5.961748e+05 1.810295e+00 6.636422e+00 5.934322e+05
-AA095542 3.699160e+04 9.920785e+05 4.088998e+05 4.089040e+05 6.463480e+05
-AA095570 8.412963e+05 1.474611e+05 4.952128e+05 4.952080e+05 6.444507e+05
-AA095543 3.708599e+04 9.921496e+05 4.089835e+05 4.089878e+05 6.463335e+05
-AA096029 8.413619e+05 1.474279e+05 4.952825e+05 4.952777e+05 6.444745e+05
-AA095627 8.412962e+05 1.474612e+05 4.952127e+05 4.952079e+05 6.444506e+05
-AA095544 3.688179e+04 9.919121e+05 4.087564e+05 4.087606e+05 6.461653e+05
-AA095634 8.413580e+05 1.474326e+05 4.952792e+05 4.952744e+05 6.444699e+05
-AA095569 4.041719e+05 5.639154e+05 3.228537e+04 3.228065e+04 5.918394e+05
+AA095617 9.584059e+05                                                    
+AA093615 3.729251e+05 5.961735e+05                                       
+AA095626 3.729236e+05 5.961753e+05 1.752225e+00                          
+AA095636 6.388700e+05 7.906322e+05 5.934308e+05 5.934313e+05             
+AA095546 1.917802e+03 9.570213e+05 3.713174e+05 3.713158e+05 6.391659e+05
+AA096028 8.412858e+05 1.474663e+05 4.952052e+05 4.952069e+05 6.444483e+05
+AA095562 3.729207e+05 5.961784e+05 4.992164e+00 3.239940e+00 5.934322e+05
+AA095623 3.729202e+05 5.961789e+05 5.470548e+00 3.718323e+00 5.934324e+05
+AA095635 6.388630e+05 7.906370e+05 5.934283e+05 5.934288e+05 9.016090e+00
+AA095547 1.916836e+03 9.570232e+05 3.713191e+05 3.713175e+05 6.391674e+05
+AA096030 8.412950e+05 1.474604e+05 4.952145e+05 4.952163e+05 6.444531e+05
+AA095629 3.729226e+05 5.961763e+05 2.775508e+00 1.023283e+00 5.934316e+05
+AA095624 3.729195e+05 5.961798e+05 6.357585e+00 4.605360e+00 5.934326e+05
+AA095637 6.227941e+05 8.156352e+05 5.960049e+05 5.960053e+05 3.158057e+04
+AA095545 4.929356e+04 1.007025e+06 4.222112e+05 4.222097e+05 6.613842e+05
+AA095568 3.798791e+05 5.943651e+05 1.592616e+04 1.592609e+04 6.088977e+05
+AA095625 3.729215e+05 5.961775e+05 4.033226e+00 2.281002e+00 5.934320e+05
+AA095542 3.699685e+04 9.920828e+05 4.089033e+05 4.089018e+05 6.463488e+05
+AA095570 8.412895e+05 1.474639e+05 4.952089e+05 4.952107e+05 6.444502e+05
+AA095543 3.708934e+04 9.921515e+05 4.089848e+05 4.089833e+05 6.463323e+05
+AA096029 8.413600e+05 1.474276e+05 4.952835e+05 4.952853e+05 6.444766e+05
+AA095627 8.412907e+05 1.474631e+05 4.952101e+05 4.952119e+05 6.444508e+05
+AA095544 3.688684e+04 9.919161e+05 4.087597e+05 4.087582e+05 6.461660e+05
+AA095634 8.413562e+05 1.474322e+05 4.952803e+05 4.952821e+05 6.444720e+05
+AA095569 4.041707e+05 5.639143e+05 3.228690e+04 3.228861e+04 5.918384e+05
              AA095546     AA096028     AA095562     AA095623     AA095635
 AA093614                                                                 
 AA095550                                                                 
@@ -1852,26 +1958,26 @@ AA093615
 AA095626                                                                 
 AA095636                                                                 
 AA095546                                                                 
-AA096028 8.400436e+05                                                    
-AA095562 3.713191e+05 4.952062e+05                                       
-AA095623 3.713165e+05 4.952090e+05 2.816369e+00                          
-AA095635 6.391611e+05 6.444530e+05 5.934286e+05 5.934294e+05             
-AA095547 1.726256e+00 8.400419e+05 3.713175e+05 3.713150e+05 6.391597e+05
-AA096030 8.400464e+05 2.912510e+00 4.952091e+05 4.952120e+05 6.444544e+05
-AA095629 3.713126e+05 4.952135e+05 7.261116e+00 4.444747e+00 5.934306e+05
-AA095624 3.713156e+05 4.952101e+05 3.840235e+00 1.023866e+00 5.934296e+05
-AA095637 6.231766e+05 6.689788e+05 5.960061e+05 5.960067e+05 3.156813e+04
-AA095545 5.089092e+04 8.888947e+05 4.222093e+05 4.222068e+05 6.613758e+05
-AA095568 3.782341e+05 4.965912e+05 1.592616e+04 1.592605e+04 6.088956e+05
-AA095625 3.713168e+05 4.952088e+05 2.531566e+00 2.848029e-01 5.934293e+05
-AA095542 3.881308e+04 8.733214e+05 4.089004e+05 4.088980e+05 6.463396e+05
-AA095570 8.400494e+05 5.889006e+00 4.952121e+05 4.952149e+05 6.444560e+05
-AA095543 3.890805e+04 8.733853e+05 4.089842e+05 4.089817e+05 6.463250e+05
-AA096029 8.401151e+05 7.635678e+01 4.952818e+05 4.952846e+05 6.444798e+05
-AA095627 8.400493e+05 5.802814e+00 4.952120e+05 4.952148e+05 6.444559e+05
-AA095544 3.870584e+04 8.731460e+05 4.087570e+05 4.087546e+05 6.461569e+05
-AA095634 8.401112e+05 7.374305e+01 4.952785e+05 4.952813e+05 6.444752e+05
-AA095569 4.025847e+05 4.638977e+05 3.228466e+04 3.228742e+04 5.918371e+05
+AA096028 8.400407e+05                                                    
+AA095562 3.713129e+05 4.952101e+05                                       
+AA095623 3.713125e+05 4.952106e+05 4.783838e-01                          
+AA095635 6.391589e+05 6.444529e+05 5.934297e+05 5.934298e+05             
+AA095547 1.937718e+00 8.400426e+05 3.713146e+05 3.713142e+05 6.391604e+05
+AA096030 8.400499e+05 9.359661e+00 4.952195e+05 4.952200e+05 6.444577e+05
+AA095629 3.713149e+05 4.952079e+05 2.216657e+00 2.695040e+00 5.934291e+05
+AA095624 3.713117e+05 4.952115e+05 1.365421e+00 8.870368e-01 5.934301e+05
+AA095637 6.231714e+05 6.689810e+05 5.960061e+05 5.960062e+05 3.157207e+04
+AA095545 5.089449e+04 8.888957e+05 4.222068e+05 4.222063e+05 6.613768e+05
+AA095568 3.782326e+05 4.965900e+05 1.592596e+04 1.592594e+04 6.088952e+05
+AA095625 3.713138e+05 4.952092e+05 9.589378e-01 1.437322e+00 5.934294e+05
+AA095542 3.881692e+04 8.733235e+05 4.088989e+05 4.088985e+05 6.463415e+05
+AA095570 8.400444e+05 3.757963e+00 4.952139e+05 4.952144e+05 6.444548e+05
+AA095543 3.891002e+04 8.733850e+05 4.089804e+05 4.089800e+05 6.463249e+05
+AA096029 8.401149e+05 7.913512e+01 4.952885e+05 4.952890e+05 6.444812e+05
+AA095627 8.400456e+05 4.992044e+00 4.952151e+05 4.952156e+05 6.444554e+05
+AA095544 3.870950e+04 8.731479e+05 4.087553e+05 4.087549e+05 6.461586e+05
+AA095634 8.401111e+05 7.655235e+01 4.952853e+05 4.952858e+05 6.444766e+05
+AA095569 4.025851e+05 4.638944e+05 3.229178e+04 3.229225e+04 5.918363e+05
              AA095547     AA096030     AA095629     AA095624     AA095637
 AA093614                                                                 
 AA095550                                                                 
@@ -1888,21 +1994,21 @@ AA095562
 AA095623                                                                 
 AA095635                                                                 
 AA095547                                                                 
-AA096030 8.400447e+05                                                    
-AA095629 3.713110e+05 4.952164e+05                                       
-AA095624 3.713141e+05 4.952130e+05 3.420881e+00                          
-AA095637 6.231754e+05 6.689804e+05 5.960078e+05 5.960070e+05             
-AA095545 5.089245e+04 8.888975e+05 4.222029e+05 4.222059e+05 6.434725e+05
-AA095568 3.782326e+05 4.965941e+05 1.592587e+04 1.592601e+04 6.116502e+05
-AA095625 3.713153e+05 4.952117e+05 4.729550e+00 1.308669e+00 5.960067e+05
-AA095542 3.881436e+04 8.733242e+05 4.088940e+05 4.088971e+05 6.287419e+05
-AA095570 8.400477e+05 2.976496e+00 4.952194e+05 4.952159e+05 6.689820e+05
-AA095543 3.890932e+04 8.733882e+05 4.089778e+05 4.089808e+05 6.287232e+05
-AA096029 8.401134e+05 7.349096e+01 4.952890e+05 4.952856e+05 6.690078e+05
-AA095627 8.400476e+05 2.890304e+00 4.952193e+05 4.952159e+05 6.689819e+05
-AA095544 3.870712e+04 8.731488e+05 4.087507e+05 4.087537e+05 6.285622e+05
-AA095634 8.401095e+05 7.090926e+01 4.952858e+05 4.952824e+05 6.690032e+05
-AA095569 4.025832e+05 4.639006e+05 3.229177e+04 3.228842e+04 5.961188e+05
+AA096030 8.400518e+05                                                    
+AA095629 3.713166e+05 4.952173e+05                                       
+AA095624 3.713134e+05 4.952209e+05 3.582077e+00                          
+AA095637 6.231728e+05 6.689860e+05 5.960056e+05 5.960064e+05             
+AA095545 5.089276e+04 8.889049e+05 4.222087e+05 4.222055e+05 6.434701e+05
+AA095568 3.782343e+05 4.965993e+05 1.592604e+04 1.592590e+04 6.116490e+05
+AA095625 3.713155e+05 4.952185e+05 1.257719e+00 2.324358e+00 5.960058e+05
+AA095542 3.881548e+04 8.733327e+05 4.089009e+05 4.088977e+05 6.287404e+05
+AA095570 8.400463e+05 5.601698e+00 4.952117e+05 4.952153e+05 6.689830e+05
+AA095543 3.890858e+04 8.733942e+05 4.089824e+05 4.089792e+05 6.287198e+05
+AA096029 8.401168e+05 6.992762e+01 4.952863e+05 4.952899e+05 6.690115e+05
+AA095627 8.400475e+05 4.367617e+00 4.952129e+05 4.952165e+05 6.689836e+05
+AA095544 3.870807e+04 8.731571e+05 4.087573e+05 4.087541e+05 6.285606e+05
+AA095634 8.401130e+05 6.744897e+01 4.952831e+05 4.952867e+05 6.690069e+05
+AA095569 4.025868e+05 4.639037e+05 3.228961e+04 3.229312e+04 5.961174e+05
              AA095545     AA095568     AA095625     AA095542     AA095570
 AA093614                                                                 
 AA095550                                                                 
@@ -1924,16 +2030,16 @@ AA095629
 AA095624                                                                 
 AA095637                                                                 
 AA095545                                                                 
-AA095568 4.291008e+05                                                    
-AA095625 4.222071e+05 1.592606e+04                                       
-AA095542 1.669106e+04 4.161427e+05 4.088982e+05                          
-AA095570 8.889004e+05 4.965971e+05 4.952146e+05 8.733271e+05             
-AA095543 1.666031e+04 4.162283e+05 4.089819e+05 1.014292e+02 8.733911e+05
-AA096029 8.889657e+05 4.966671e+05 4.952843e+05 8.733922e+05 7.056612e+01
-AA095627 8.889003e+05 4.965970e+05 4.952146e+05 8.733270e+05 8.619243e-02
-AA095544 1.688599e+04 4.160039e+05 4.087548e+05 1.956882e+02 8.731518e+05
-AA095634 8.889617e+05 4.966640e+05 4.952811e+05 8.733882e+05 6.802007e+01
-AA095569 4.534601e+05 3.353530e+04 3.228714e+04 4.399559e+05 4.639036e+05
+AA095568 4.291028e+05                                                    
+AA095625 4.222076e+05 1.592599e+04                                       
+AA095542 1.668990e+04 4.161457e+05 4.088998e+05                          
+AA095570 8.888994e+05 4.965937e+05 4.952129e+05 8.733272e+05             
+AA095543 1.666164e+04 4.162291e+05 4.089813e+05 1.003013e+02 8.733887e+05
+AA096029 8.889695e+05 4.966686e+05 4.952876e+05 8.733971e+05 7.543375e+01
+AA095627 8.889006e+05 4.965949e+05 4.952142e+05 8.733284e+05 1.234081e+00
+AA095544 1.688507e+04 4.160067e+05 4.087562e+05 1.959077e+02 8.731516e+05
+AA095634 8.889656e+05 4.966656e+05 4.952844e+05 8.733932e+05 7.288949e+01
+AA095569 4.534641e+05 3.353730e+04 3.229084e+04 4.399609e+05 4.638981e+05
              AA095543     AA096029     AA095627     AA095544     AA095634
 AA093614                                                                 
 AA095550                                                                 
@@ -1960,11 +2066,11 @@ AA095625
 AA095542                                                                 
 AA095570                                                                 
 AA095543                                                                 
-AA096029 8.734562e+05                                                    
-AA095627 8.733910e+05 7.065075e+01                                       
-AA095544 2.394764e+02 8.732168e+05 8.731517e+05                          
-AA095634 8.734522e+05 4.731331e+00 6.810363e+01 8.732129e+05             
-AA095569 4.400384e+05 4.639735e+05 4.639035e+05 4.398098e+05 4.639703e+05
+AA096029 8.734586e+05                                                    
+AA095627 8.733899e+05 7.421950e+01                                       
+AA095544 2.372201e+02 8.732215e+05 8.731528e+05                          
+AA095634 8.734547e+05 4.688269e+00 7.168878e+01 8.732176e+05             
+AA095569 4.400411e+05 4.639729e+05 4.638994e+05 4.398145e+05 4.639698e+05
 
 $mantel
 
@@ -1977,8 +2083,8 @@ Mantel statistic r: 0.5604
       Significance: 0.001 
 
 Upper quantiles of permutations (null model):
-   90%    95%  97.5%    99% 
-0.0875 0.1236 0.1517 0.1910 
+  90%   95% 97.5%   99% 
+0.086 0.121 0.159 0.196 
 Permutation: free
 Number of permutations: 999</code></pre>
 </div>
@@ -1986,7 +2092,7 @@ Number of permutations: 999</code></pre>
 </section>
 <section id="multiple-linear-regression-model-for-within-and-between-populations-testing-same-vs-different-karyotypes" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-linear-regression-model-for-within-and-between-populations-testing-same-vs-different-karyotypes">Multiple linear regression model for within and between populations testing same vs different karyotypes</h3>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-9_a890bac1845aadd1e24b572f4b545584">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="do">## reviewer figures -------------------------------------------------------------</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># reviewer ibd karyo</span></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>review.analysis <span class="ot">&lt;-</span> <span class="cf">function</span>(gl, <span class="at">analysis =</span> <span class="st">"between"</span>){</span>
@@ -2078,7 +2184,7 @@ Number of permutations: 999</code></pre>
 <span id="cb63-89"><a href="#cb63-89" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb63-90"><a href="#cb63-90" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-10_ae5d8a4a37517e11a1ff12dd5ba16170">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">review.analysis</span>(<span class="at">gl =</span> vac.gl18, <span class="at">analysis =</span> <span class="st">"between"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.ibd 
@@ -2100,8 +2206,8 @@ Mantel statistic r: 0.5604
       Significance: 0.001 
 
 Upper quantiles of permutations (null model):
-   90%    95%  97.5%    99% 
-0.0867 0.1171 0.1451 0.1938 
+  90%   95% 97.5%   99% 
+0.087 0.129 0.163 0.193 
 Permutation: free
 Number of permutations: 999
 
@@ -2112,10 +2218,18 @@ Completed: gl.ibd </code></pre>
 <pre><code>Joining with `by = join_by(id1, id2)`</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">review.analysis</span>(<span class="at">gl =</span> vac.gl18, <span class="at">analysis =</span> <span class="st">"within"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -2138,8 +2252,8 @@ Mantel statistic r: 0.5604
       Significance: 0.001 
 
 Upper quantiles of permutations (null model):
-  90%   95% 97.5%   99% 
-0.102 0.135 0.165 0.220 
+   90%    95%  97.5%    99% 
+0.0964 0.1337 0.1553 0.2120 
 Permutation: free
 Number of permutations: 999
 
@@ -2150,17 +2264,25 @@ Completed: gl.ibd </code></pre>
 <pre><code>Joining with `by = join_by(id1, id2)`</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 </section>
 <section id="characterising-a-large-chromosomal-inversion" class="level2">
 <h2 class="anchored" data-anchor-id="characterising-a-large-chromosomal-inversion">Characterising a large chromosomal inversion</h2>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-11_fc0a9ffd2e7b8b589c8be0fcc19973b6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>vac.gl <span class="ot">&lt;-</span> <span class="fu">gl.load</span>(<span class="st">"./data/varanus_MBE_Karyotypes.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.load 
@@ -2201,14 +2323,18 @@ Completed: gl.load </code></pre>
 Starting gl.smearplot </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.smearplot </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add DAPI Karyotype individual metric</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-12_6d321a22ced5f8c0f5014b3201c6e3d7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># report private alleles and fixed alleles per pair of populations for vac.gl6</span></span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.pa</span>(vac.gl6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -2251,7 +2377,7 @@ AA MA MM
 </div>
 <section id="investigate-the-west-only---all-three-karyotypes-with-geneflow" class="level3">
 <h3 class="anchored" data-anchor-id="investigate-the-west-only---all-three-karyotypes-with-geneflow">Investigate the West only - all three karyotypes with geneflow</h3>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-13_ca7305c60ca85b02d267d149e8e9c5b2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Check the genlight object for dartR requirements</span></span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2421,13 +2547,17 @@ Selected color type div
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.plot.heatmap </code></pre>
 </div>
 </div>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-14_c9578648be38059a5876597431b857d7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of SNPs per scaffold that align to chromosome 6 ------------------------</span></span>
 <span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(vac.gl6<span class="sc">@</span>other<span class="sc">$</span>loc.metrics[<span class="st">"Chrom_Varanus_JD_vac_aligned_chr6_7"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3394,7 +3524,7 @@ scaf_44937
          6 </code></pre>
 </div>
 </div>
-<div class="cell" data-hash="session13_cache/html/unnamed-chunk-15_30a2f328e0ddaf20eb783c190735ab1a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an index for only those loci on scaf_178-------------------------------</span></span>
 <span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a>index_178 <span class="ot">&lt;-</span> <span class="fu">which</span>(vac.pops<span class="sc">@</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>Chrom_Varanus_JD_vac_aligned_chr6_7 <span class="sc">==</span> <span class="st">"scaf_178"</span>)</span>
@@ -3860,7 +3990,11 @@ Completed: gl2fasta </code></pre>
   Removing loci based on Call Rate, threshold = 1 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate </code></pre>
@@ -3878,7 +4012,11 @@ Completed: gl2fasta </code></pre>
 Starting gl.smearplot </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session13_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session13_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.smearplot </code></pre>
@@ -3918,7 +4056,7 @@ Starting gl.smearplot </code></pre>
 <p><span class="citation" data-cites="dobry_widespread_2023">Dobry, Wapstra, et al. (<a href="references.html#ref-dobry_widespread_2023" role="doc-biblioref">2023</a>)</span></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-dobry_widespread_2023" class="csl-entry" role="listitem">
 Dobry, Jason, Erik Wapstra, Emily J. Stringer, Bernd Gruber, Janine E. Deakin, and Tariq Ezaz. 2023. <span>“Widespread Chromosomal Rearrangements Preceded Genetic Divergence in a Monitor Lizard, <span>Varanus</span> Acanthurus (<span>Varanidae</span>).”</span> <em>Chromosome Research</em> 31 (1): 9. <a href="https://doi.org/10.1007/s10577-023-09715-x">https://doi.org/10.1007/s10577-023-09715-x</a>.
 </div>
@@ -4214,10 +4352,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -4227,8 +4384,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -4241,6 +4407,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -4284,6 +4569,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -4309,6 +4595,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -4366,37 +4678,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./session12.html" class="pagination-link">
+      <a href="./session12.html" class="pagination-link" aria-label="Genetic Structure">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Genetic Structure</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./break.html" class="pagination-link">
+      <a href="./break.html" class="pagination-link" aria-label="\__________">
         <span class="nav-page-text">__________</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

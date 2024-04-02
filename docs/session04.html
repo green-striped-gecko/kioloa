@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -108,12 +115,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Management, Reproducibility &amp; Integrity</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Management, Reproducibility &amp; Integrity</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -123,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Kioloa PopGen</a> 
@@ -241,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./break.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">__________</span></a>
+ <span class="menu-text">\__________</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -265,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -309,15 +316,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p><em>Session Presenter</em></p>
 <p><img src="images/Presenters4.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
-<div class="cell" data-hash="session04_cache/html/unnamed-chunk-1_512d227ebad65ee1a4b86409183b414a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(webexercises)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="reproducible-research" class="level2">
@@ -340,11 +351,9 @@ Goal
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p><img src="images/task.png" class="class" width="48" height="48"> Have you ever had problems reproducing your own or someone else’s research?</p>
-<div class="cell" data-hash="session04_cache/html/unnamed-chunk-2_e58b5ee4a2e473b04bb8f6ef24b8aaf4">
 Have you ever had problems reproducing your own or someone else’s research?
-<div id="radio_TKSLKRSPQL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TKSLKRSPQL" value="answer"> <span>My own research</span></label><label><input type="radio" autocomplete="off" name="radio_TKSLKRSPQL" value="answer"> <span>Someone else's</span></label><label><input type="radio" autocomplete="off" name="radio_TKSLKRSPQL" value="answer"> <span>Both</span></label><label><input type="radio" autocomplete="off" name="radio_TKSLKRSPQL" value="answer"> <span>I have never had problems reproducing r…</span></label>
-</div>
+<div id="radio_LMRQJUFSOA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LMRQJUFSOA" value="answer"> <span>My own research</span></label><label><input type="radio" autocomplete="off" name="radio_LMRQJUFSOA" value="answer"> <span>Someone else's</span></label><label><input type="radio" autocomplete="off" name="radio_LMRQJUFSOA" value="answer"> <span>Both</span></label><label><input type="radio" autocomplete="off" name="radio_LMRQJUFSOA" value="answer"> <span>I have never had problems reproducing r…</span></label>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -368,11 +377,15 @@ Have you ever had problems reproducing your own or someone else’s research?
 <section id="meet-the-penguins" class="level3">
 <h3 class="anchored" data-anchor-id="meet-the-penguins">Meet the penguins</h3>
 <p><img src="https://raw.githubusercontent.com/quarto-dev/quarto-web/main/docs/get-started/hello/rstudio/lter_penguins.png" class="img-fluid" style="float:right;" alt="Illustration of three species of Palmer Archipelago penguins: Chinstrap, Gentoo, and Adelie. Artwork by @allison_horst." width="401"></p>
-<p>The <code>penguins</code> data from the <a href="https://allisonhorst.github.io/palmerpenguins" title="palmerpenguins R package"><strong>palmerpenguins</strong></a> package contains size measurements for <code>{r} nrow(penguins)</code> penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.</p>
+<p>The <code>penguins</code> data from the <a href="https://allisonhorst.github.io/palmerpenguins" title="palmerpenguins R package"><strong>palmerpenguins</strong></a> package contains size measurements for 344 penguins from three species observed on three islands in the Palmer Archipelago, Antarctica.</p>
 <p>The plot below shows the relationship between flipper and bill lengths of these penguins.</p>
-<div class="cell" data-hash="session04_cache/html/plot-penguins_bbb25356cd0953e25612cdd880a16937">
+<div class="cell">
 <div class="cell-output-display">
-<p><img src="session04_files/figure-html/plot-penguins-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session04_files/figure-html/plot-penguins-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -389,7 +402,7 @@ Exercise
 </div>
 <div class="callout-body-container callout-body">
 <p><img src="images/task.png" id="id" class="class" width="48" height="48"> Download an example quarto file and try running it on your own.</p>
-<div class="cell" data-hash="session04_cache/html/unnamed-chunk-4_f6158e3f0ef9364d7882d26c87f8cdcb">
+<div class="cell">
 <style type="text/css">
 .btn-default,
 .btn-default:hover,
@@ -407,9 +420,9 @@ Exercise
 
 </style>
 </div>
-<div class="cell" data-hash="session04_cache/html/unnamed-chunk-5_c44396e6feeed8e8e01570b51351bf3d">
+<div class="cell">
 <div class="cell-output-display">
-<button class="btn btn-default" onclick="fetch('data:application/octet-stream;base64,LS0tDQp0aXRsZTogIkhlbGxvLCBRdWFydG8iDQpmb3JtYXQ6IGh0bWwNCmVkaXRvcjogdmlzdWFsDQotLS0NCg0KYGBge3J9DQojfCBsYWJlbDogbG9hZC1wYWNrYWdlcw0KI3wgaW5jbHVkZTogZmFsc2UNCg0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KHBhbG1lcnBlbmd1aW5zKQ0KYGBgDQoNCiMjIE1lZXQgUXVhcnRvDQoNClF1YXJ0byBlbmFibGVzIHlvdSB0byB3ZWF2ZSB0b2dldGhlciBjb250ZW50IGFuZCBleGVjdXRhYmxlIGNvZGUgaW50byBhIGZpbmlzaGVkIGRvY3VtZW50LiBUbyBsZWFybiBtb3JlIGFib3V0IFF1YXJ0byBzZWUgPGh0dHBzOi8vcXVhcnRvLm9yZz4uDQoNCiMjIE1lZXQgdGhlIHBlbmd1aW5zDQoNCiFbXShodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vcXVhcnRvLWRldi9xdWFydG8td2ViL21haW4vZG9jcy9nZXQtc3RhcnRlZC9oZWxsby9yc3R1ZGlvL2x0ZXJfcGVuZ3VpbnMucG5nKXtzdHlsZT0iZmxvYXQ6cmlnaHQ7IiBmaWctYWx0PSJJbGx1c3RyYXRpb24gb2YgdGhyZWUgc3BlY2llcyBvZiBQYWxtZXIgQXJjaGlwZWxhZ28gcGVuZ3VpbnM6IENoaW5zdHJhcCwgR2VudG9vLCBhbmQgQWRlbGllLiBBcnR3b3JrIGJ5IEBhbGxpc29uX2hvcnN0LiIgd2lkdGg9IjQwMSJ9DQoNClRoZSBgcGVuZ3VpbnNgIGRhdGEgZnJvbSB0aGUgWyoqcGFsbWVycGVuZ3VpbnMqKl0oaHR0cHM6Ly9hbGxpc29uaG9yc3QuZ2l0aHViLmlvL3BhbG1lcnBlbmd1aW5zICJwYWxtZXJwZW5ndWlucyBSIHBhY2thZ2UiKSBwYWNrYWdlIGNvbnRhaW5zIHNpemUgbWVhc3VyZW1lbnRzIGZvciBge3J9IG5yb3cocGVuZ3VpbnMpYCBwZW5ndWlucyBmcm9tIHRocmVlIHNwZWNpZXMgb2JzZXJ2ZWQgb24gdGhyZWUgaXNsYW5kcyBpbiB0aGUgUGFsbWVyIEFyY2hpcGVsYWdvLCBBbnRhcmN0aWNhLg0KDQpUaGUgcGxvdCBiZWxvdyBzaG93cyB0aGUgcmVsYXRpb25zaGlwIGJldHdlZW4gZmxpcHBlciBhbmQgYmlsbCBsZW5ndGhzIG9mIHRoZXNlIHBlbmd1aW5zLg0KDQpgYGB7cn0NCiN8IGxhYmVsOiBwbG90LXBlbmd1aW5zDQojfCB3YXJuaW5nOiBmYWxzZQ0KI3wgZWNobzogZmFsc2UNCg0KZ2dwbG90KHBlbmd1aW5zLCANCiAgICAgICBhZXMoeCA9IGZsaXBwZXJfbGVuZ3RoX21tLCB5ID0gYmlsbF9sZW5ndGhfbW0pKSArDQogIGdlb21fcG9pbnQoYWVzKGNvbG9yID0gc3BlY2llcywgc2hhcGUgPSBzcGVjaWVzKSkgKw0KICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gYygiZGFya29yYW5nZSIsInB1cnBsZSIsImN5YW40IikpICsNCiAgbGFicygNCiAgICB0aXRsZSA9ICJGbGlwcGVyIGFuZCBiaWxsIGxlbmd0aCIsDQogICAgc3VidGl0bGUgPSAiRGltZW5zaW9ucyBmb3IgcGVuZ3VpbnMgYXQgUGFsbWVyIFN0YXRpb24gTFRFUiIsDQogICAgeCA9ICJGbGlwcGVyIGxlbmd0aCAobW0pIiwgeSA9ICJCaWxsIGxlbmd0aCAobW0pIiwNCiAgICBjb2xvciA9ICJQZW5ndWluIHNwZWNpZXMiLCBzaGFwZSA9ICJQZW5ndWluIHNwZWNpZXMiDQogICkgKw0KICB0aGVtZV9taW5pbWFsKCkNCmBgYA0K').then(res => res.blob()).then(blob => {
+<button class="btn btn-default" onclick="fetch('data:application/octet-stream;base64,LS0tCnRpdGxlOiAiU2Vzc2lvbiA0IERhdGEgTWFuYWdlbWVudDogSGVsbG8sIFF1YXJ0byIKZm9ybWF0OiBodG1sCmVkaXRvcjogdmlzdWFsCi0tLQoKIVtdKC4uL2ltYWdlcy9QcmVzZW50ZXJzNC5wbmcpCgpgYGB7cn0KI3wgbGFiZWw6IGxvYWQtcGFja2FnZXMKI3wgaW5jbHVkZTogZmFsc2UKCmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KHBhbG1lcnBlbmd1aW5zKQpgYGAKCiMjIE1lZXQgUXVhcnRvCgpRdWFydG8gZW5hYmxlcyB5b3UgdG8gd2VhdmUgdG9nZXRoZXIgY29udGVudCBhbmQgZXhlY3V0YWJsZSBjb2RlIGludG8gYSBmaW5pc2hlZCBkb2N1bWVudC4gVG8gbGVhcm4gbW9yZSBhYm91dCBRdWFydG8gc2VlIDxodHRwczovL3F1YXJ0by5vcmc+LgoKIyMgTWVldCB0aGUgcGVuZ3VpbnMKCiFbXShodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vcXVhcnRvLWRldi9xdWFydG8td2ViL21haW4vZG9jcy9nZXQtc3RhcnRlZC9oZWxsby9yc3R1ZGlvL2x0ZXJfcGVuZ3VpbnMucG5nKXtzdHlsZT0iZmxvYXQ6cmlnaHQ7IiBmaWctYWx0PSJJbGx1c3RyYXRpb24gb2YgdGhyZWUgc3BlY2llcyBvZiBQYWxtZXIgQXJjaGlwZWxhZ28gcGVuZ3VpbnM6IENoaW5zdHJhcCwgR2VudG9vLCBhbmQgQWRlbGllLiBBcnR3b3JrIGJ5IEBhbGxpc29uX2hvcnN0LiIgd2lkdGg9IjQwMSJ9CgpUaGUgYHBlbmd1aW5zYCBkYXRhIGZyb20gdGhlIFsqKnBhbG1lcnBlbmd1aW5zKipdKGh0dHBzOi8vYWxsaXNvbmhvcnN0LmdpdGh1Yi5pby9wYWxtZXJwZW5ndWlucyAicGFsbWVycGVuZ3VpbnMgUiBwYWNrYWdlIikgcGFja2FnZSBjb250YWlucyBzaXplIG1lYXN1cmVtZW50cyBmb3IgYHtyfSBucm93KHBlbmd1aW5zKWAgcGVuZ3VpbnMgZnJvbSB0aHJlZSBzcGVjaWVzIG9ic2VydmVkIG9uIHRocmVlIGlzbGFuZHMgaW4gdGhlIFBhbG1lciBBcmNoaXBlbGFnbywgQW50YXJjdGljYS4KClRoZSBwbG90IGJlbG93IHNob3dzIHRoZSByZWxhdGlvbnNoaXAgYmV0d2VlbiBmbGlwcGVyIGFuZCBiaWxsIGxlbmd0aHMgb2YgdGhlc2UgcGVuZ3VpbnMuCgpgYGB7cn0KI3wgbGFiZWw6IHBsb3QtcGVuZ3VpbnMKI3wgd2FybmluZzogZmFsc2UKI3wgZWNobzogZmFsc2UKCmdncGxvdChwZW5ndWlucywgCiAgICAgICBhZXMoeCA9IGZsaXBwZXJfbGVuZ3RoX21tLCB5ID0gYmlsbF9sZW5ndGhfbW0pKSArCiAgZ2VvbV9wb2ludChhZXMoY29sb3IgPSBzcGVjaWVzLCBzaGFwZSA9IHNwZWNpZXMpKSArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcyA9IGMoImRhcmtvcmFuZ2UiLCJwdXJwbGUiLCJjeWFuNCIpKSArCiAgbGFicygKICAgIHRpdGxlID0gIkZsaXBwZXIgYW5kIGJpbGwgbGVuZ3RoIiwKICAgIHN1YnRpdGxlID0gIkRpbWVuc2lvbnMgZm9yIHBlbmd1aW5zIGF0IFBhbG1lciBTdGF0aW9uIExURVIiLAogICAgeCA9ICJGbGlwcGVyIGxlbmd0aCAobW0pIiwgeSA9ICJCaWxsIGxlbmd0aCAobW0pIiwKICAgIGNvbG9yID0gIlBlbmd1aW4gc3BlY2llcyIsIHNoYXBlID0gIlBlbmd1aW4gc3BlY2llcyIKICApICsKICB0aGVtZV9taW5pbWFsKCkKYGBgCg==').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.style.display = 'none'; // Hide the link
@@ -734,10 +747,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -747,8 +779,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -761,6 +802,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -804,6 +964,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -829,6 +990,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -886,37 +1073,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./session03.html" class="pagination-link">
+      <a href="./session03.html" class="pagination-link" aria-label="Sequencing Technologies">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sequencing Technologies</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./session05.html" class="pagination-link">
+      <a href="./session05.html" class="pagination-link" aria-label="Effective Population Size">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Effective Population Size</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

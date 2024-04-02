@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -100,7 +101,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -109,6 +116,7 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -126,12 +134,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session07.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Natural Selection</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session07.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Natural Selection</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -141,7 +149,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Kioloa PopGen</a> 
@@ -259,7 +267,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./break.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">__________</span></a>
+ <span class="menu-text">\__________</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -283,7 +291,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -349,13 +357,15 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <p><em>Session Presenters</em></p>
 <p><img src="images/Presenters7.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-1_2976afb49a859e2989f0cd892c5b4dc0">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#devtools::install_github("pygmyperch/melfuR")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#BiocManager::install('qvalue')</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(adegenet)</span>
@@ -381,13 +391,13 @@ div.csl-indent {
 <section id="gea-analysis-of-snp-and-environmental-data-using-rda" class="level2">
 <h2 class="anchored" data-anchor-id="gea-analysis-of-snp-and-environmental-data-using-rda"><strong>GEA analysis of SNP and environmental data using RDA</strong></h2>
 <p>First lets load in some functions we will be using.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-2_c4811a36e9ad6f2bc418e3f91af2c971">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"utils.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">1. Data preparation</h2>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-3_2ac5c6d7af97321db4f3c9f0c8d128f1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load genlight object</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/Mf5000_gl.RData"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Mf5000_gl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -502,11 +512,11 @@ Decision time:
 </ol>
 </div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-4_67beb64c3fda10e08aae7cee850d572e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ADMIXTURE results most likely 6 pops</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>imputed.gi <span class="ot">&lt;-</span> melfuR<span class="sc">::</span><span class="fu">impute.data</span>(Mf5000.genind, <span class="at">K =</span> <span class="dv">6</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-5_dc2c0a8f4e94c985e11373bc3e263b01">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Total missing data =  1.04 %
 The project is saved into :
@@ -534,7 +544,7 @@ Total missing data was =  1.04 %
 Total missing data now =  0 %</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-6_40f1f77ce42b4404538b8ea3ca03efd8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># re-order each genotype as major/minor allele</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (generally no real reason to do this... but it's neat and might be useful for something)</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>imputed.sorted.gi <span class="ot">&lt;-</span> <span class="fu">sort_alleles</span>(imputed.gi)</span>
@@ -581,7 +591,7 @@ MBR_1        2       0       1       1       2       0</code></pre>
 <p>So we have our genotypes and have filled in the missing data. We now need to format the data for use in the RDA. We can do the analysis at an individual level using a matrix of allele counts per locus, or at a population level using population allele frequencies. Both of those options are easy to format from a genind object.</p>
 <section id="individual-based" class="level4">
 <h4 class="anchored" data-anchor-id="individual-based">Individual-based</h4>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-7_1c71f208784e3d6bce60b7e65c470067">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for individual based analyses</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get allele counts</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>alleles <span class="ot">&lt;-</span> imputed.sorted.gi<span class="sc">@</span>tab</span>
@@ -614,7 +624,7 @@ MBR_1      2     1     2     2     1     2     2     2     2      2</code></pre>
 </section>
 <section id="population-based" class="level4">
 <h4 class="anchored" data-anchor-id="population-based">Population-based</h4>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-8_1df18593058811942557a43c700f1548">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for population based analyses</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get pop allele frequencies</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>gp <span class="ot">&lt;-</span> <span class="fu">genind2genpop</span>(imputed.sorted.gi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -673,7 +683,7 @@ Decision time:
 <p>In this case we are going to keep it simple and just use a few WorldClim variables Bio01 (annual mean temperature), Bio05 (temperature in hottest month), Bio15 (rainfall seasonality) and Bio19 (rainfall in coldest quarter)</p>
 </div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-9_ac513b44990ce400b3cf5dc3e1656bca">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the data directory and extend the response timeout (sometimes the database can be slow to respond)</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">sdmpredictors_datadir=</span><span class="st">"data/spatial_data"</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">timeout =</span> <span class="fu">max</span>(<span class="dv">300</span>, <span class="fu">getOption</span>(<span class="st">"timeout"</span>)))</span>
@@ -681,7 +691,7 @@ Decision time:
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore environmental layers</span></span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>sdmpredictors<span class="sc">::</span><span class="fu">list_layers</span>(<span class="st">"WorldClim"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-10_b741b1b16938341cb7a23d5136f13143">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>   dataset_code layer_code                                name
 1     WorldClim     WC_alt                            Altitude
@@ -708,7 +718,7 @@ Decision time:
 [...]</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-11_1c4b8c22be57c62dcb2a26cfa0e7d8bd">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore environmental layers</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>layers <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sdmpredictors<span class="sc">::</span><span class="fu">list_layers</span>(<span class="st">"WorldClim"</span>))</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(layers, <span class="st">"./data/WorldClim.csv"</span>)</span>
@@ -718,15 +728,18 @@ Decision time:
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>WC <span class="ot">&lt;-</span> <span class="fu">load_layers</span>(<span class="fu">c</span>(<span class="st">"WC_bio1"</span>, <span class="st">"WC_bio5"</span>, <span class="st">"WC_bio15"</span>, <span class="st">"WC_bio19"</span>))</span>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(WC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session07_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop rasters to study area and align CRS</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get Murray-Darling Basin polygon</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>mdb <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/spatial_data/MDB_polygon/MDB.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `MDB' from data source 
-  `C:\repositories\dartR_workshop\kioloa\data\spatial_data\MDB_polygon\MDB.shp' 
-  using driver `ESRI Shapefile'
+  `/cloud/project/data/spatial_data/MDB_polygon/MDB.shp' using driver `ESRI Shapefile'
 Simple feature collection with 1 feature and 18 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
@@ -756,7 +769,7 @@ Geodetic CRS:  GDA94</code></pre>
 <span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>rivers <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/spatial_data/Mf_streams/Mf_streams.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `Mf_streams' from data source 
-  `C:\repositories\dartR_workshop\kioloa\data\spatial_data\Mf_streams\Mf_streams.shp' 
+  `/cloud/project/data/spatial_data/Mf_streams/Mf_streams.shp' 
   using driver `ESRI Shapefile'
 Simple feature collection with 2826 features and 31 fields
 Geometry type: LINESTRING
@@ -772,12 +785,16 @@ Geodetic CRS:  GDA94</code></pre>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(rivers, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)</span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">1</span>], <span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">2</span>], <span class="at">labels=</span>sites_sf<span class="sc">$</span>site, <span class="at">cex=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session07_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <section id="save-pdf" class="level5">
 <h5 class="anchored" data-anchor-id="save-pdf">Save PDF</h5>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-12_38928ccb56a8347e4066d482a7878f2e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># format nicely and export as pdf</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>{<span class="fu">pdf</span>(<span class="st">"./images/env_rasters.pdf"</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nlayers</span>(ENV)) {</span>
@@ -806,7 +823,7 @@ Geodetic CRS:  GDA94</code></pre>
 </section>
 <section id="extract-site-environmental-data" class="level3">
 <h3 class="anchored" data-anchor-id="extract-site-environmental-data">Extract site environmental data</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-13_e8a8ef00c9cb41c7d6f4dc7c46cda806">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and finally extract the environmental data for your sample sites</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>env.site <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">site =</span> sites_sf<span class="sc">$</span>site,</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">X =</span> <span class="fu">st_coordinates</span>(sites_sf)[,<span class="dv">1</span>],</span>
@@ -818,23 +835,27 @@ Geodetic CRS:  GDA94</code></pre>
 <span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>env.site <span class="ot">&lt;-</span> <span class="fu">cbind</span>(env.site, env.dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Have a look at the env.site data frame This is where we will keep all of the metadata for use in the analyses Keep an eye out, we are going to add a few more columns to it and eventually munge it into individual-level metadata</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-14_5fa8fb381b4ee4c1e43df18be063cdbe">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let's also just do a sanity check to make sure the genomic and environmental data are in the same order</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(env.site<span class="sc">$</span>site <span class="sc">==</span> <span class="fu">rownames</span>(AF)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="pca" class="level3">
 <h3 class="anchored" data-anchor-id="pca">PCA</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-15_8b3604fa86f2d2f3b9d7ce38c55e1ad8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to get a feel for the data we can run quick PCA using the rda function in vegan</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">rda</span>(AF)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session07_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Ok, not really that impressive… let’s set some plotting variables to make it easier to interpret</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-16_b96d0f739cb7aa44b1cf7aa6ae06a770">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set colours, markers and labels for plotting and add to env.site df</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>env.site<span class="sc">$</span>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'darkturquoise'</span>, <span class="st">'darkturquoise'</span>, <span class="st">'darkturquoise'</span>, <span class="st">'limegreen'</span>, <span class="st">'limegreen'</span>, <span class="st">'darkorange1'</span>, <span class="st">'slategrey'</span>, <span class="st">'slategrey'</span>, <span class="st">'slategrey'</span>,</span>
@@ -849,7 +870,7 @@ Geodetic CRS:  GDA94</code></pre>
 </section>
 <section id="plot-pca" class="level3">
 <h3 class="anchored" data-anchor-id="plot-pca">Plot PCA</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-17_532cae2cd44eb88178a749317f8d49ae">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot PCA</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>{<span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">"./images/Mf_PCA.pdf"</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">width =</span> <span class="dv">6</span>)</span>
@@ -860,14 +881,18 @@ Geodetic CRS:  GDA94</code></pre>
 <span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="Session 07 Natural Selection/Mf_PCA.png" class="img-fluid"> ## 2. Variable filtering</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-19_21a6e93062abf4945d45c8152ee492af">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract predictor variables to matrix</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>env_var <span class="ot">&lt;-</span> env.site[ , <span class="fu">c</span>(<span class="st">"WC_bio1"</span>, <span class="st">"WC_bio5"</span>, <span class="st">"WC_bio15"</span>, <span class="st">"WC_bio19"</span>)]</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check for obvious correlations between variables</span></span>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(env_var, <span class="at">scale=</span>T, <span class="at">lm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session07_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">## reduce variance associated with covarying variables using variance inflation factor analyses</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># run procedure to remove variables with the highest VIF one at a time until all remaining variables are below your threshold</span></span>
@@ -891,7 +916,11 @@ removed:  WC_bio1 21.53714 </code></pre>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># lets have another look</span></span>
 <span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(reduced.env, <span class="at">scale=</span>T, <span class="at">lm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session07_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -925,7 +954,7 @@ Decision time:
 </div>
 </div>
 <p>We are going to use the scaled allelic covariance (Ω) estimated by BayPass to control for spatial structure in the data, see BayPass and Gates et al.&nbsp;2023</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-20_0626388c1871b748f49fddc36ee85003">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># format spatial coordinates as matrix</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">cbind</span>(env.site<span class="sc">$</span>omegaX, env.site<span class="sc">$</span>omegaY))</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -962,7 +991,11 @@ Eigenvalues for unconstrained axes:
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how much inertia is associated with each axis</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(Mf.RDA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session07_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate significance of the reduced model</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -986,7 +1019,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <section id="plot-rda" class="level3">
 <h3 class="anchored" data-anchor-id="plot-rda">Plot RDA</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-21_15cd6206ba30676d7a64b5d20d6f2882">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot RDA1, RDA2</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>{<span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">"./images/Mf_RDA.pdf"</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">width =</span> <span class="dv">6</span>)</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>pRDAplot <span class="ot">&lt;-</span> <span class="fu">plot</span>(Mf.RDA, <span class="at">choices =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">type=</span><span class="st">"n"</span>, <span class="at">cex.lab=</span><span class="dv">1</span>, <span class="at">xlab=</span>x.lab, <span class="at">ylab=</span>y.lab)</span>
@@ -1001,7 +1034,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="identify-candidate-loci" class="level2">
 <h2 class="anchored" data-anchor-id="identify-candidate-loci">4. Identify candidate loci</h2>
 <p>Estimate q-values following:&nbsp;<a href="https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches" class="uri">https://kjschmidlab.gitlab.io/b1k-gbs/GenomeEnvAssociation.html#RDA_approaches</a> and the R function rdadapt (see <a href="https://github.com/Capblancq/RDA-genome-scan" class="uri">https://github.com/Capblancq/RDA-genome-scan</a>)</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-23_8141f664dc4dc150834965bd106f6c68">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">2</span> <span class="co"># number of RDA axes to retain</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>rda.q <span class="ot">&lt;-</span> <span class="fu">rdadapt</span>(Mf.RDA, <span class="at">K =</span> k)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(rda.q<span class="sc">$</span>q.values <span class="sc">&lt;=</span> <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1020,7 +1053,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"SNPs"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"-log10(q.values"</span>) <span class="sc">+</span></span>
 <span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session07_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check correlations between candidate loci and environmental predictors</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this section relies on code by Brenna Forester, found at</span></span>
@@ -1061,7 +1098,7 @@ WC_bio15 WC_bio19  WC_bio5
 <section id="individual-level" class="level3">
 <h3 class="anchored" data-anchor-id="individual-level">Individual level</h3>
 <p>Now let’s have a look at an individual level biplot first expand environmental data from population to individual dataframe.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-24_c95c6a67d0fb76b35cff96cbb3240936">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>env.ind <span class="ot">&lt;-</span> <span class="fu">expand_pop2ind</span>(Mf5000_gl, env.site)</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co"># now subset our genotype objects to the candidate loci</span></span>
@@ -1074,8 +1111,6 @@ Starting gl.compliance.check
   The slot loc.all, which stores allele name for each locus, is empty. Creating a dummy variable (A/C) to insert in this slot. 
   Checking coding of SNPs
     SNP data scored NA, 0, 1 or 2 confirmed
-  Checking for population assignments
-    Population assignments confirmed
   Checking locus metrics and flags
   Recalculating locus metrics
   Checking for monomorphic loci
@@ -1085,6 +1120,8 @@ Starting gl.compliance.check
   Checking whether individual names are unique.
   Checking for individual metrics
   Warning: Creating a slot for individual metrics
+  Checking for population assignments
+    Population assignments confirmed
   Spelling of coordinates checked and changed if necessary to 
             lat/lon
 Completed: gl.compliance.check 
@@ -1156,7 +1193,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="plot-rda-1" class="level3">
 <h3 class="anchored" data-anchor-id="plot-rda-1">Plot RDA</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-25_6e170da6840a08ce9b6e7695898b4d60">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot RDA1, RDA2</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>{<span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">"./images/Mfcandidate_RDA.pdf"</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">width =</span> <span class="dv">6</span>)</span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>pRDAplot <span class="ot">&lt;-</span> <span class="fu">plot</span>(Mfcandidate.RDA, <span class="at">choices =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), </span>
@@ -1182,7 +1219,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="input-file" class="level2">
 <h2 class="anchored" data-anchor-id="input-file">1 Input file</h2>
 <p>Let’s start with randomForest.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-27_7ce603a2baec102649612cb876a07b67">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Get input files </span></span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">"./data/GWAS.RData"</span>)</span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="do">##randomForest</span></span>
@@ -1202,7 +1239,7 @@ Note
 <p>If the trait or phenotype is categorical instead of continuous, it should be transformed into a factor.</p>
 </div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-28_a599276a0227c897a052393aa7ef880c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">See</span>(CaRF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Size LG1.22769 LG1.197846 LG1.341740 LG1.428005 LG1.606435
@@ -1229,7 +1266,7 @@ popL_L016        2        -1         -1         -1         -1         -1
 <h2 class="anchored" data-anchor-id="model-tunning">2 Model tunning</h2>
 <p>The first step is to crate our training and validation data in a 70:25 proportion.</p>
 <p>Then we run a simple forest to see performance without tuning.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-29_e8b4a771bbfb7592e433ad89bc0ac9d1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2</span>, <span class="fu">nrow</span>(CaRF), <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.25</span>))</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> CaRF[ind<span class="sc">==</span><span class="dv">1</span>,]</span>
@@ -1258,7 +1295,7 @@ Confusion matrix:
 </div>
 </div>
 <p>But if you run this again you get slightly different results, so we need to do some replications using different training data.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-30_281aa508503bda5a0b887f3da451cc16">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method=</span><span class="st">"oob"</span>, <span class="at">number=</span><span class="dv">5</span>)</span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) </span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>metric <span class="ot">&lt;-</span> <span class="st">"Accuracy"</span></span>
@@ -1284,7 +1321,7 @@ Tuning parameter 'mtry' was held constant at a value of 10</code></pre>
 </div>
 <p>Here we have also Kappa, a measure of how much better the model classification is than a random classification. This is important when there is a significant skew in sample sizes.</p>
 <p>Now let’s check what the default parameter can do.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-31_2a2b61f1dd5ff6dc3a60577e61068a4a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method=</span><span class="st">"oob"</span>, <span class="at">number=</span><span class="dv">5</span>)</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) </span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>metric <span class="ot">&lt;-</span> <span class="st">"Accuracy"</span></span>
@@ -1324,7 +1361,7 @@ run in <strong>your own time</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-32_7493f3131117d053280657e3255dbc3a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method=</span><span class="st">"oob"</span>, <span class="at">number=</span><span class="dv">10</span>, <span class="at">search=</span><span class="st">"random"</span>)</span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>mtry <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">ncol</span>(CaRF))</span>
@@ -1334,7 +1371,7 @@ run in <strong>your own time</strong>
 </div>
 </div>
 </div>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-33_9bb6ea59fc75b82589e0096b71e33086">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="do">####Expected output </span></span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mtry Accuracy Kappa</span></span>
 <span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 195 0.7703453 0.5403670 </span></span>
@@ -1365,7 +1402,7 @@ run in <strong>your own time</strong>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-34_9c4412fc542e48e822db19f71b88d66b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method=</span><span class="st">"repeatedcv"</span>, <span class="at">number=</span><span class="dv">10</span>, <span class="at">repeats=</span><span class="dv">3</span>, <span class="at">search=</span><span class="st">"grid"</span>)</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>tunegrid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">.mtry=</span> <span class="fu">c</span>(<span class="dv">565</span>, <span class="dv">665</span>, <span class="dv">765</span>))</span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>modellist <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
@@ -1394,7 +1431,7 @@ run in <strong>your own time</strong>
 <h2 class="anchored" data-anchor-id="final-model">3 Final model</h2>
 <p>But the best combination was ntree = 200 and mtry= 665.</p>
 <p>Now we run our forest with the optimal settings based on our tuning.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-35_9dc8f289627c20a0e0237cd64ff44fe9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method=</span><span class="st">"oob"</span>, <span class="at">number=</span><span class="dv">5</span>)</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) </span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>metric <span class="ot">&lt;-</span> <span class="st">"Accuracy"</span></span>
@@ -1423,14 +1460,22 @@ Tuning parameter 'mtry' was held constant at a value of 665</code></pre>
 <section id="candidates-snps" class="level2">
 <h2 class="anchored" data-anchor-id="candidates-snps">4 Candidates SNPs</h2>
 <p>Now just check what are this markers.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-36_0415eb1ddbd50358ca1a33bb7719a417">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf_best<span class="sc">$</span>finalModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session07_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-36-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session07_files/figure-html/unnamed-chunk-36-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can determine their importance using their effect on two metrics:</p>
@@ -1458,7 +1503,7 @@ Questions!?
 <p>First, we integrate our inputs in to a GWAS format for RAINBOWR.</p>
 <p>And then we check each dataset format:</p>
 <p>Phenotype is just two columns, ID and phenotype. Genotype is same format as randomforest, but -1 hom mA 0 het 1 hom MA. Map file with the chromosome and position of each SNP.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-37_7917e14f14e4adcb76426e414c6e9f1c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>modify.CaGW.res <span class="ot">&lt;-</span> <span class="fu">modify.data</span>(<span class="at">pheno.mat =</span> CaGW_phe, <span class="at">geno.mat =</span> CaGW_geno, <span class="at">map =</span> CaGW_map, <span class="at">return.ZETA =</span> <span class="cn">TRUE</span>, <span class="at">return.GWAS.format =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>pheno.GWAS <span class="ot">&lt;-</span> modify.CaGW.res<span class="sc">$</span>pheno.GWAS</span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>geno.GWAS <span class="ot">&lt;-</span> modify.CaGW.res<span class="sc">$</span>geno.GWAS</span>
@@ -1508,7 +1553,7 @@ LG1:10529180 LG1:10529180         1  10529180
 <section id="single-snp-base-gwas" class="level2">
 <h2 class="anchored" data-anchor-id="single-snp-base-gwas">2 Single-SNP base GWAS</h2>
 <p>Now we calculate ZETA, a list of genomic relationship matrix (GRM). ZETA is basically a random effect and accounts for possible confounding/covariant factors like population structure and relatedness.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-38_40c438c6492a7da038e77121e4bb06eb">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>ZETA <span class="ot">&lt;-</span> modify.CaGW.res<span class="sc">$</span>ZETA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -1521,7 +1566,7 @@ There are many ways to control for cofactors, here some examples.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-39_8483589fac2a3d446cfc01f58671abb9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Population structure, using a structure Q values matrix, n.PC should be &gt; 0</span></span>
 <span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>normal.res <span class="ot">&lt;-</span> <span class="fu">RGWAS.normal</span>(<span class="at">pheno =</span> pheno.GWAS, <span class="at">geno =</span> geno.GWAS, <span class="at">ZETA =</span> ZETA, <span class="at">structure.matrix=</span> QMATRIX, <span class="at">n.PC =</span> <span class="dv">4</span>, <span class="at">P3D =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1531,13 +1576,13 @@ There are many ways to control for cofactors, here some examples.
 </div>
 </div>
 <p>Now, to perform single-SNP GWAS.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-40_571e0e2196aea683285bda9725b2933b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>normal.res <span class="ot">&lt;-</span> <span class="fu">RGWAS.normal</span>(<span class="at">pheno =</span> pheno.GWAS, <span class="at">geno =</span> geno.GWAS, <span class="at">ZETA =</span> ZETA, <span class="at">n.PC =</span> <span class="dv">4</span>, <span class="at">P3D =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can see, first the QQ plot, it shows that our data has a little deviation from the expected distribution, but this is just at the end of the tail.</p>
 <p>Second, the Manhattan plot shows few SNPs that are significantly associated to size, but more importantly, it shows a peak of relatively high-importance SNPs at the end of chromosome 16.</p>
 <p>So, what are the most important important SNPs?</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-41_d82649a17247f92b5e51f1f7877fbb79">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>normal.res<span class="sc">$</span>D[normal.res<span class="sc">$</span>D<span class="sc">$</span>Size  <span class="sc">&gt;=</span> <span class="dv">4</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                             marker chrom      pos     Size
@@ -1560,7 +1605,7 @@ There are many ways to control for cofactors, here some examples.
 <h2 class="anchored" data-anchor-id="genomic-prediction">3 Genomic prediction</h2>
 <p>How much of the phenotype can we really predict?</p>
 <p>To determine that, we use a mixed model approach to calculate heritability, in other words the genetic contribution to our trait variation.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-42_4ff7a771111943954ea2363b595bf5e5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>K.A2<span class="ot">&lt;-</span><span class="fu">calcGRM</span>(<span class="at">genoMat =</span> CaGW_geno) <span class="do">### aditive effects</span></span>
 <span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>k.AA2 <span class="ot">&lt;-</span> K.A2 <span class="sc">*</span> K.A2 <span class="do">### epistatic effects</span></span>
 <span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1602,14 +1647,14 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>If you have NAs in your phenotype dataset you have to remove them.</p>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-43_b4292bce1c1b82517a55039240438fec">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>phenoNoNA <span class="ot">&lt;-</span> pheno.mat2[noNA, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]   <span class="do">### remove NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <section id="but-our-data-doesnt-have-any-nas." class="level4">
 <h4 class="anchored" data-anchor-id="but-our-data-doesnt-have-any-nas."><em>But our data doesn’t have any NAs.</em></h4>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-44_31efe05c48530fa39ffc27725cc1dc56">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>nFold <span class="ot">&lt;-</span> <span class="dv">10</span> </span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>nLine <span class="ot">&lt;-</span> <span class="fu">nrow</span>(pheno.mat2)</span>
 <span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>idCV <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>nLine <span class="sc">%%</span> nFold) <span class="do">### assign random ids for cross-validation</span></span>
@@ -1643,7 +1688,7 @@ Note
 </section>
 <section id="plot-genomic-prediction." class="level3">
 <h3 class="anchored" data-anchor-id="plot-genomic-prediction.">Plot Genomic Prediction.</h3>
-<div class="cell" data-hash="session07_cache/html/unnamed-chunk-45_fa7a871a0aa4fc48b257e6219974319d">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>plotRange <span class="ot">&lt;-</span> <span class="fu">range</span>(pheno.mat2, yPred)</span>
 <span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> pheno.mat2, <span class="at">y =</span> yPred,<span class="at">xlim =</span> plotRange, <span class="at">ylim =</span> plotRange,</span>
 <span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Observed values"</span>, <span class="at">ylab =</span> <span class="st">"Predicted values"</span>,</span>
@@ -1656,7 +1701,11 @@ Note
 <span id="cb118-10"><a href="#cb118-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">paste0</span>(<span class="st">"R2 = "</span>, <span class="fu">round</span>(R2, <span class="dv">3</span>)),</span>
 <span id="cb118-11"><a href="#cb118-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session07_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session07_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Not really the best prediction power, and even worse than randomForest just using ~2K SNPs.</p>
@@ -1681,7 +1730,7 @@ Note
 <p><span class="citation" data-cites="sandoval-castillo_seascape_2018">Sandoval-Castillo et al. (<a href="references.html#ref-sandoval-castillo_seascape_2018" role="doc-biblioref">2018</a>)</span></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-attard_fish_2022" class="csl-entry" role="listitem">
 Attard, Catherine R. M., Jonathan Sandoval-Castillo, Chris J. Brauer, Peter J. Unmack, David Schmarr, Louis Bernatchez, and Luciano B. Beheregaray. 2022. <span>“Fish Out of Water: <span>Genomic</span> Insights into Persistence of Rainbowfish Populations in the Desert.”</span> <em>Evolution; International Journal of Organic Evolution</em> 76 (1): 171–83. <a href="https://doi.org/10.1111/evo.14399">https://doi.org/10.1111/evo.14399</a>.
 </div>
@@ -1995,10 +2044,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2008,8 +2076,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2022,6 +2099,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2065,6 +2261,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2090,6 +2287,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2147,37 +2370,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./session06.html" class="pagination-link">
+      <a href="./session06.html" class="pagination-link" aria-label="Management of Small Populations">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Management of Small Populations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./session08.html" class="pagination-link">
+      <a href="./session08.html" class="pagination-link" aria-label="Landscape Genetics">
         <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Landscape Genetics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

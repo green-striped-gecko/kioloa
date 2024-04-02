@@ -42,6 +42,7 @@ library(data.table)
 library(stringr)
 library(sequoia)
 library(kinship2)
+library(dartR.base)
 ```
 
 *make sure you have the packages installed, see* [Install dartRverse](install.qmd)
@@ -165,8 +166,9 @@ gl2colony(gl = t3,
 # # 181.102   1.893 183.162 
 # duplicates <- read.csv("./my_project.PairwiseCloneDyad")
 # read the output
-duplicates <- read.csv("./data/my_project.PairwiseCloneDyad")
-duplicates
+
+#duplicates <- read.csv("./data/my_project.PairwiseCloneDyad")
+#duplicates
 cat(res_dup_2,sep="\n")
 ```
 

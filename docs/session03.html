@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -107,12 +114,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session03.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sequencing Technologies</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session03.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sequencing Technologies</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -122,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Kioloa PopGen</a> 
@@ -240,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./break.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">__________</span></a>
+ <span class="menu-text">\__________</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -264,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -323,13 +330,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p><em>Session Presenters</em></p>
 <p><img src="images/Presenters3.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-1_daf36640fce10a477df63a670538399d">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -362,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This uses data from Litoria rubella, a very abundant and widespread frog species. We are using data following <a href="https://onlinelibrary.wiley.com/doi/10.1111/1755-0998.13947" class="uri">https://onlinelibrary.wiley.com/doi/10.1111/1755-0998.13947</a>. Let’s focus on the Kimberley, where we have lots of samples, and we expect the diversity to be really high because there are millions of them everywhere. SNPs were called on different numbers of individuals, in increments of 5 using the Stacks pipeline. We are only going to do a simple filter for call rates because we already filtered for allele depth in Stacks. SNPs were called independent of other populations, which we will get to later.</p>
 <section id="load-data" class="level3">
 <h3 class="anchored" data-anchor-id="load-data">Load data</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-2_52228a6fc292bc1f97f79aded52f0377">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">'./data/Session3_data.RData'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -393,7 +402,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -407,7 +420,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -419,7 +436,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -431,7 +452,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -443,7 +468,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-2-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-2-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -455,7 +484,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-2-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-2-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -467,7 +500,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-2-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-2-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -479,7 +516,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-2-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-2-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate </code></pre>
@@ -488,7 +529,7 @@ Starting gl.filter.callrate
 </section>
 <section id="calculate-heterozygosity" class="level3">
 <h3 class="anchored" data-anchor-id="calculate-heterozygosity">Calculate heterozygosity</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-3_3d86f01cb5b46dd96cd6078e4985ba75">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List all object names in the environment</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>all_names <span class="ot">&lt;-</span> <span class="fu">ls</span>()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -525,15 +566,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.327947 28465         1   28465       0         0 0.233986 0.190371
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001128 0.329375 0.112778 0.000668 0.372398 0.127509 0.000756 0.302454
-        FISSD    FISSE
-pop1 0.469498 0.002783
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001128    NA    NA 0.233986 0.190371 0.001128        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.329375 0.112778 0.000668    NA    NA 0.372398 0.127509 0.000756     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.329375 0.112778 0.000668        NA        NA 0.302454 0.469498
+        FISSE FISLCI FISHCI
+pop1 0.002783     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -546,15 +595,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 8.113689 47375         1   47375       0         0 0.174677 0.144488
-         HoSE       He     HeSD    HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.000664 0.256162 0.135015 0.00062 0.272985 0.143882 0.000661 0.279239
-        FISSD    FISSE
-pop1 0.419149 0.001926
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.000664    NA    NA 0.174677 0.144488 0.000664        NA        NA
+           He     HeSD    HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.256162 0.135015 0.00062    NA    NA 0.272985 0.143882 0.000661     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.256162 0.135015  0.00062        NA        NA 0.279239 0.419149
+        FISSE FISLCI FISHCI
+pop1 0.001926     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -567,15 +624,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc      Ho     HoSD
 pop1 pop1 12.36041 35945         1   35945       0         0 0.15375 0.130734
-        HoSE       He    HeSD     HeSE      uHe    uHeSD   uHeSE      FIS
-pop1 0.00069 0.218107 0.14199 0.000749 0.227301 0.147975 0.00078 0.244173
-        FISSD    FISSE
-pop1 0.379656 0.002002
+        HoSE HoLCI HoHCI  Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI       He
+pop1 0.00069    NA    NA 0.15375 0.130734  0.00069        NA        NA 0.218107
+        HeSD     HeSE HeLCI HeHCI      uHe    uHeSD   uHeSE uHeLCI uHeHCI
+pop1 0.14199 0.000749    NA    NA 0.227301 0.147975 0.00078     NA     NA
+       He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD    FISSE
+pop1 0.218107  0.14199 0.000749        NA        NA 0.244173 0.379656 0.002002
+     FISLCI FISHCI
+pop1     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -588,15 +653,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 16.03257 46276         1   46276       0         0 0.136788 0.122952
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE     FIS
-pop1 0.000572 0.196149 0.143623 0.000668 0.202464 0.148246 0.000689 0.24159
-        FISSD    FISSE
-pop1 0.366035 0.001702
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.000572    NA    NA 0.136788 0.122952 0.000572        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.196149 0.143623 0.000668    NA    NA 0.202464 0.148246 0.000689     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI     FIS    FISSD
+pop1     NA 0.196149 0.143623 0.000668        NA        NA 0.24159 0.366035
+        FISSE FISLCI FISHCI
+pop1 0.001702     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -609,15 +682,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-3-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-3-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 20.24648 39573         1   39573       0         0 0.128296 0.118505
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.000596 0.180369 0.144139 0.000725 0.184936 0.147788 0.000743 0.224197
-        FISSD    FISSE
-pop1 0.345555 0.001737
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.000596    NA    NA 0.128296 0.118505 0.000596        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.180369 0.144139 0.000725    NA    NA 0.184936 0.147788 0.000743     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.180369 0.144139 0.000725        NA        NA 0.224197 0.345555
+        FISSE FISLCI FISHCI
+pop1 0.001737     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -630,15 +711,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-3-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-3-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 23.86971 44532         1   44532       0         0 0.122023 0.115572
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.000548 0.172406 0.144272 0.000684 0.176095 0.147359 0.000698 0.225027
-        FISSD    FISSE
-pop1 0.336198 0.001593
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.000548    NA    NA 0.122023 0.115572 0.000548        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.172406 0.144272 0.000684    NA    NA 0.176095 0.147359 0.000698     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.172406 0.144272 0.000684        NA        NA 0.225027 0.336198
+        FISSE FISLCI FISHCI
+pop1 0.001593     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -651,15 +740,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-3-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-3-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 28.28105 46273         1   46273       0         0 0.114091 0.112716
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.000524 0.160215 0.143001 0.000665 0.163099 0.145574 0.000677 0.217536
-        FISSD    FISSE
-pop1 0.325623 0.001514
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.000524    NA    NA 0.114091 0.112716 0.000524        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.160215 0.143001 0.000665    NA    NA 0.163099 0.145574 0.000677     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.160215 0.143001 0.000665        NA        NA 0.217536 0.325623
+        FISSE FISLCI FISHCI
+pop1 0.001514     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -672,15 +769,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-3-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-3-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 31.86356 49487         1   49487       0         0 0.110686 0.111441
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.000501 0.156579 0.143352 0.000644 0.159075 0.145637 0.000655 0.221427
-       FISSD    FISSE
-pop1 0.32204 0.001448
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.000501    NA    NA 0.110686 0.111441 0.000501        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.156579 0.143352 0.000644    NA    NA 0.159075 0.145637 0.000655     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS   FISSD
+pop1     NA 0.156579 0.143352 0.000644        NA        NA 0.221427 0.32204
+        FISSE FISLCI FISHCI
+pop1 0.001448     NA     NA
 Completed: gl.report.heterozygosity </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># heterozygosity_reports_df now contains all the reports with an </span></span>
@@ -689,27 +794,45 @@ Completed: gl.report.heterozygosity </code></pre>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 4%">
-<col style="width: 11%">
 <col style="width: 2%">
-<col style="width: 5%">
-<col style="width: 3%">
-<col style="width: 5%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 5%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -725,15 +848,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <th style="text-align: right;">Ho</th>
 <th style="text-align: right;">HoSD</th>
 <th style="text-align: right;">HoSE</th>
+<th style="text-align: left;">HoLCI</th>
+<th style="text-align: left;">HoHCI</th>
+<th style="text-align: right;">Ho.adj</th>
+<th style="text-align: right;">Ho.adjSD</th>
+<th style="text-align: right;">Ho.adjSE</th>
+<th style="text-align: left;">Ho.adjLCI</th>
+<th style="text-align: left;">Ho.adjHCI</th>
 <th style="text-align: right;">He</th>
 <th style="text-align: right;">HeSD</th>
 <th style="text-align: right;">HeSE</th>
+<th style="text-align: left;">HeLCI</th>
+<th style="text-align: left;">HeHCI</th>
 <th style="text-align: right;">uHe</th>
 <th style="text-align: right;">uHeSD</th>
 <th style="text-align: right;">uHeSE</th>
+<th style="text-align: left;">uHeLCI</th>
+<th style="text-align: left;">uHeHCI</th>
+<th style="text-align: right;">He.adj</th>
+<th style="text-align: right;">He.adjSD</th>
+<th style="text-align: right;">He.adjSE</th>
+<th style="text-align: left;">He.adjLCI</th>
+<th style="text-align: left;">He.adjHCI</th>
 <th style="text-align: right;">FIS</th>
 <th style="text-align: right;">FISSD</th>
 <th style="text-align: right;">FISSE</th>
+<th style="text-align: left;">FISLCI</th>
+<th style="text-align: left;">FISHCI</th>
 </tr>
 </thead>
 <tbody>
@@ -750,15 +891,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.233986</td>
 <td style="text-align: right;">0.190371</td>
 <td style="text-align: right;">0.001128</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.233986</td>
+<td style="text-align: right;">0.190371</td>
+<td style="text-align: right;">0.001128</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.329375</td>
 <td style="text-align: right;">0.112778</td>
 <td style="text-align: right;">0.000668</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.372398</td>
 <td style="text-align: right;">0.127509</td>
 <td style="text-align: right;">0.000756</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.329375</td>
+<td style="text-align: right;">0.112778</td>
+<td style="text-align: right;">0.000668</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.302454</td>
 <td style="text-align: right;">0.469498</td>
 <td style="text-align: right;">0.002783</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pop1…2</td>
@@ -773,15 +932,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.174677</td>
 <td style="text-align: right;">0.144488</td>
 <td style="text-align: right;">0.000664</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.174677</td>
+<td style="text-align: right;">0.144488</td>
+<td style="text-align: right;">0.000664</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.256162</td>
 <td style="text-align: right;">0.135015</td>
 <td style="text-align: right;">0.000620</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.272985</td>
 <td style="text-align: right;">0.143882</td>
 <td style="text-align: right;">0.000661</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.256162</td>
+<td style="text-align: right;">0.135015</td>
+<td style="text-align: right;">0.000620</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.279239</td>
 <td style="text-align: right;">0.419149</td>
 <td style="text-align: right;">0.001926</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">pop1…3</td>
@@ -796,15 +973,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.153750</td>
 <td style="text-align: right;">0.130734</td>
 <td style="text-align: right;">0.000690</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.153750</td>
+<td style="text-align: right;">0.130734</td>
+<td style="text-align: right;">0.000690</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.218107</td>
 <td style="text-align: right;">0.141990</td>
 <td style="text-align: right;">0.000749</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.227301</td>
 <td style="text-align: right;">0.147975</td>
 <td style="text-align: right;">0.000780</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.218107</td>
+<td style="text-align: right;">0.141990</td>
+<td style="text-align: right;">0.000749</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.244173</td>
 <td style="text-align: right;">0.379656</td>
 <td style="text-align: right;">0.002002</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pop1…4</td>
@@ -819,15 +1014,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.136788</td>
 <td style="text-align: right;">0.122952</td>
 <td style="text-align: right;">0.000572</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.136788</td>
+<td style="text-align: right;">0.122952</td>
+<td style="text-align: right;">0.000572</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.196149</td>
 <td style="text-align: right;">0.143623</td>
 <td style="text-align: right;">0.000668</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.202464</td>
 <td style="text-align: right;">0.148246</td>
 <td style="text-align: right;">0.000689</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.196149</td>
+<td style="text-align: right;">0.143623</td>
+<td style="text-align: right;">0.000668</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.241590</td>
 <td style="text-align: right;">0.366035</td>
 <td style="text-align: right;">0.001702</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">pop1…5</td>
@@ -842,15 +1055,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.128296</td>
 <td style="text-align: right;">0.118505</td>
 <td style="text-align: right;">0.000596</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.128296</td>
+<td style="text-align: right;">0.118505</td>
+<td style="text-align: right;">0.000596</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.180369</td>
 <td style="text-align: right;">0.144139</td>
 <td style="text-align: right;">0.000725</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.184936</td>
 <td style="text-align: right;">0.147788</td>
 <td style="text-align: right;">0.000743</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.180369</td>
+<td style="text-align: right;">0.144139</td>
+<td style="text-align: right;">0.000725</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.224197</td>
 <td style="text-align: right;">0.345555</td>
 <td style="text-align: right;">0.001737</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pop1…6</td>
@@ -865,15 +1096,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.122023</td>
 <td style="text-align: right;">0.115572</td>
 <td style="text-align: right;">0.000548</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.122023</td>
+<td style="text-align: right;">0.115572</td>
+<td style="text-align: right;">0.000548</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.172406</td>
 <td style="text-align: right;">0.144272</td>
 <td style="text-align: right;">0.000684</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.176095</td>
 <td style="text-align: right;">0.147359</td>
 <td style="text-align: right;">0.000698</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.172406</td>
+<td style="text-align: right;">0.144272</td>
+<td style="text-align: right;">0.000684</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.225027</td>
 <td style="text-align: right;">0.336198</td>
 <td style="text-align: right;">0.001593</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">pop1…7</td>
@@ -888,15 +1137,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.114091</td>
 <td style="text-align: right;">0.112716</td>
 <td style="text-align: right;">0.000524</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.114091</td>
+<td style="text-align: right;">0.112716</td>
+<td style="text-align: right;">0.000524</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.160215</td>
 <td style="text-align: right;">0.143001</td>
 <td style="text-align: right;">0.000665</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.163099</td>
 <td style="text-align: right;">0.145574</td>
 <td style="text-align: right;">0.000677</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.160215</td>
+<td style="text-align: right;">0.143001</td>
+<td style="text-align: right;">0.000665</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.217536</td>
 <td style="text-align: right;">0.325623</td>
 <td style="text-align: right;">0.001514</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pop1…8</td>
@@ -911,15 +1178,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.110686</td>
 <td style="text-align: right;">0.111441</td>
 <td style="text-align: right;">0.000501</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.110686</td>
+<td style="text-align: right;">0.111441</td>
+<td style="text-align: right;">0.000501</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.156579</td>
 <td style="text-align: right;">0.143352</td>
 <td style="text-align: right;">0.000644</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.159075</td>
 <td style="text-align: right;">0.145637</td>
 <td style="text-align: right;">0.000655</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.156579</td>
+<td style="text-align: right;">0.143352</td>
+<td style="text-align: right;">0.000644</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.221427</td>
 <td style="text-align: right;">0.322040</td>
 <td style="text-align: right;">0.001448</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
@@ -928,7 +1213,7 @@ Completed: gl.report.heterozygosity </code></pre>
 </section>
 <section id="plotting-results" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-results">Plotting results</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-4_36a006897766bfcf045b3e1d564318a5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_0<span class="fl">.7</span>callrate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(heterozygosity_reports_df, <span class="fu">aes</span>(<span class="at">x =</span> ObjectName, <span class="at">y =</span> Ho)) <span class="sc">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
@@ -937,7 +1222,11 @@ Completed: gl.report.heterozygosity </code></pre>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_0<span class="fl">.7</span>callrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -960,7 +1249,7 @@ Sampling
 <p><em>Lets redo our heterozygosity estimates, but see how changing your call rate filter impacts estimates</em></p>
 <section id="reload-data" class="level3">
 <h3 class="anchored" data-anchor-id="reload-data">Reload data</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-5_e8da821f9ebac8d99cafde431c1d4b03">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reload data</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">'./data/Session3_data.RData'</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># List all object names in the environment</span></span>
@@ -993,7 +1282,11 @@ Sampling
   Removing loci based on Call Rate, threshold = 0.95 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1007,7 +1300,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.95 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1019,7 +1316,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.95 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1031,7 +1332,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.95 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1043,7 +1348,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.95 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1055,7 +1364,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.95 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-5-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-5-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1067,7 +1380,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.95 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-5-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-5-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1079,7 +1396,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.95 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-5-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-5-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate </code></pre>
@@ -1088,7 +1409,7 @@ Starting gl.filter.callrate
 </section>
 <section id="calculate-heterozygosity-1" class="level3">
 <h3 class="anchored" data-anchor-id="calculate-heterozygosity-1">Calculate heterozygosity</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-6_a9babc2e76974d332e06686e8b11cac8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List all object names in the environment</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>all_names <span class="ot">&lt;-</span> <span class="fu">ls</span>()</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1126,15 +1447,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1     5  9335         1    9335       0         0 0.229502 0.173222
-         HoSE       He     HeSD    HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001793 0.307878 0.119766 0.00124 0.342087 0.133073 0.001377 0.261799
-        FISSD    FISSE
-pop1 0.439324 0.004547
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001793    NA    NA 0.229502 0.173222 0.001793        NA        NA
+           He     HeSD    HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.307878 0.119766 0.00124    NA    NA 0.342087 0.133073 0.001377     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.307878 0.119766  0.00124        NA        NA 0.261799 0.439324
+        FISSE FISLCI FISHCI
+pop1 0.004547     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -1147,15 +1476,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1    10  5814         1    5814       0         0 0.176402 0.137187
-         HoSE       He     HeSD    HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001799 0.228789 0.139511 0.00183 0.240831 0.146854 0.001926 0.192591
-        FISSD    FISSE
-pop1 0.359841 0.004719
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001799    NA    NA 0.176402 0.137187 0.001799        NA        NA
+           He     HeSD    HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.228789 0.139511 0.00183    NA    NA 0.240831 0.146854 0.001926     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.228789 0.139511  0.00183        NA        NA 0.192591 0.359841
+        FISSE FISLCI FISHCI
+pop1 0.004719     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -1168,15 +1505,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1    15  2003         1    2003       0         0 0.152804 0.122813
-         HoSE       He     HeSD     HeSE      uHe   uHeSD    uHeSE      FIS
-pop1 0.002744 0.196298 0.145174 0.003244 0.203067 0.15018 0.003356 0.161721
-        FISSD    FISSE
-pop1 0.315393 0.007047
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.002744    NA    NA 0.152804 0.122813 0.002744        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe   uHeSD    uHeSE uHeLCI
+pop1 0.196298 0.145174 0.003244    NA    NA 0.203067 0.15018 0.003356     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.196298 0.145174 0.003244        NA        NA 0.161721 0.315393
+        FISSE FISLCI FISHCI
+pop1 0.007047     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -1189,15 +1534,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 19.27864  4199         1    4199       0         0 0.140333 0.124561
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001922 0.177053 0.144114 0.002224 0.181767 0.147951 0.002283 0.153933
-        FISSD    FISSE
-pop1 0.306136 0.004724
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001922    NA    NA 0.140333 0.124561 0.001922        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.177053 0.144114 0.002224    NA    NA 0.181767 0.147951 0.002283     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.177053 0.144114 0.002224        NA        NA 0.153933 0.306136
+        FISSE FISLCI FISHCI
+pop1 0.004724     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -1210,15 +1563,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop   n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 24.2354  2243         1    2243       0         0 0.129226 0.119719
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.002528 0.162692 0.145793 0.003078 0.166119 0.148864 0.003143 0.135561
-        FISSD    FISSE
-pop1 0.276653 0.005841
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.002528    NA    NA 0.129226 0.119719 0.002528        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.162692 0.145793 0.003078    NA    NA 0.166119 0.148864 0.003143     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.162692 0.145793 0.003078        NA        NA 0.135561 0.276653
+        FISSE FISLCI FISHCI
+pop1 0.005841     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -1231,15 +1592,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 29.20428  1356         1    1356       0         0 0.117792 0.114525
-        HoSE       He     HeSD     HeSE      uHe    uHeSD  uHeSE      FIS
-pop1 0.00311 0.147605 0.141139 0.003833 0.150176 0.143597 0.0039 0.129329
-        FISSD    FISSE
-pop1 0.267582 0.007267
+        HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.00311    NA    NA 0.117792 0.114525  0.00311        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD  uHeSE uHeLCI
+pop1 0.147605 0.141139 0.003833    NA    NA 0.150176 0.143597 0.0039     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.147605 0.141139 0.003833        NA        NA 0.129329 0.267582
+        FISSE FISLCI FISHCI
+pop1 0.007267     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -1252,15 +1621,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-6-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-6-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 34.21357  1105         1    1105       0         0 0.111003 0.113222
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.003406 0.136806 0.139159 0.004186 0.138835 0.141223 0.004248 0.112563
-        FISSD    FISSE
-pop1 0.246423 0.007413
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.003406    NA    NA 0.111003 0.113222 0.003406        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.136806 0.139159 0.004186    NA    NA 0.138835 0.141223 0.004248     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.136806 0.139159 0.004186        NA        NA 0.112563 0.246423
+        FISSE FISLCI FISHCI
+pop1 0.007413     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.report.heterozygosity 
   Processing genlight object with SNP data
@@ -1273,15 +1650,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-6-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-6-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 38.42546  1838         1    1838       0         0 0.110599 0.115467
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.002693 0.137218 0.141699 0.003305 0.139027 0.143567 0.003349 0.114931
-        FISSD    FISSE
-pop1 0.246381 0.005747
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.002693    NA    NA 0.110599 0.115467 0.002693        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.137218 0.141699 0.003305    NA    NA 0.139027 0.143567 0.003349     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.137218 0.141699 0.003305        NA        NA 0.114931 0.246381
+        FISSE FISLCI FISHCI
+pop1 0.005747     NA     NA
 Completed: gl.report.heterozygosity </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># heterozygosity_reports_df now contains all the reports with an </span></span>
@@ -1290,27 +1675,45 @@ Completed: gl.report.heterozygosity </code></pre>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 4%">
-<col style="width: 12%">
 <col style="width: 2%">
-<col style="width: 4%">
-<col style="width: 3%">
-<col style="width: 5%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 5%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 2%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1326,15 +1729,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <th style="text-align: right;">Ho</th>
 <th style="text-align: right;">HoSD</th>
 <th style="text-align: right;">HoSE</th>
+<th style="text-align: left;">HoLCI</th>
+<th style="text-align: left;">HoHCI</th>
+<th style="text-align: right;">Ho.adj</th>
+<th style="text-align: right;">Ho.adjSD</th>
+<th style="text-align: right;">Ho.adjSE</th>
+<th style="text-align: left;">Ho.adjLCI</th>
+<th style="text-align: left;">Ho.adjHCI</th>
 <th style="text-align: right;">He</th>
 <th style="text-align: right;">HeSD</th>
 <th style="text-align: right;">HeSE</th>
+<th style="text-align: left;">HeLCI</th>
+<th style="text-align: left;">HeHCI</th>
 <th style="text-align: right;">uHe</th>
 <th style="text-align: right;">uHeSD</th>
 <th style="text-align: right;">uHeSE</th>
+<th style="text-align: left;">uHeLCI</th>
+<th style="text-align: left;">uHeHCI</th>
+<th style="text-align: right;">He.adj</th>
+<th style="text-align: right;">He.adjSD</th>
+<th style="text-align: right;">He.adjSE</th>
+<th style="text-align: left;">He.adjLCI</th>
+<th style="text-align: left;">He.adjHCI</th>
 <th style="text-align: right;">FIS</th>
 <th style="text-align: right;">FISSD</th>
 <th style="text-align: right;">FISSE</th>
+<th style="text-align: left;">FISLCI</th>
+<th style="text-align: left;">FISHCI</th>
 </tr>
 </thead>
 <tbody>
@@ -1351,15 +1772,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.229502</td>
 <td style="text-align: right;">0.173222</td>
 <td style="text-align: right;">0.001793</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.229502</td>
+<td style="text-align: right;">0.173222</td>
+<td style="text-align: right;">0.001793</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.307878</td>
 <td style="text-align: right;">0.119766</td>
 <td style="text-align: right;">0.001240</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.342087</td>
 <td style="text-align: right;">0.133073</td>
 <td style="text-align: right;">0.001377</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.307878</td>
+<td style="text-align: right;">0.119766</td>
+<td style="text-align: right;">0.001240</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.261799</td>
 <td style="text-align: right;">0.439324</td>
 <td style="text-align: right;">0.004547</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pop1…2</td>
@@ -1374,15 +1813,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.176402</td>
 <td style="text-align: right;">0.137187</td>
 <td style="text-align: right;">0.001799</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.176402</td>
+<td style="text-align: right;">0.137187</td>
+<td style="text-align: right;">0.001799</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.228789</td>
 <td style="text-align: right;">0.139511</td>
 <td style="text-align: right;">0.001830</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.240831</td>
 <td style="text-align: right;">0.146854</td>
 <td style="text-align: right;">0.001926</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.228789</td>
+<td style="text-align: right;">0.139511</td>
+<td style="text-align: right;">0.001830</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.192591</td>
 <td style="text-align: right;">0.359841</td>
 <td style="text-align: right;">0.004719</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">pop1…3</td>
@@ -1397,15 +1854,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.152804</td>
 <td style="text-align: right;">0.122813</td>
 <td style="text-align: right;">0.002744</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.152804</td>
+<td style="text-align: right;">0.122813</td>
+<td style="text-align: right;">0.002744</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.196298</td>
 <td style="text-align: right;">0.145174</td>
 <td style="text-align: right;">0.003244</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.203067</td>
 <td style="text-align: right;">0.150180</td>
 <td style="text-align: right;">0.003356</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.196298</td>
+<td style="text-align: right;">0.145174</td>
+<td style="text-align: right;">0.003244</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.161721</td>
 <td style="text-align: right;">0.315393</td>
 <td style="text-align: right;">0.007047</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pop1…4</td>
@@ -1420,15 +1895,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.140333</td>
 <td style="text-align: right;">0.124561</td>
 <td style="text-align: right;">0.001922</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.140333</td>
+<td style="text-align: right;">0.124561</td>
+<td style="text-align: right;">0.001922</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.177053</td>
 <td style="text-align: right;">0.144114</td>
 <td style="text-align: right;">0.002224</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.181767</td>
 <td style="text-align: right;">0.147951</td>
 <td style="text-align: right;">0.002283</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.177053</td>
+<td style="text-align: right;">0.144114</td>
+<td style="text-align: right;">0.002224</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.153933</td>
 <td style="text-align: right;">0.306136</td>
 <td style="text-align: right;">0.004724</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">pop1…5</td>
@@ -1443,15 +1936,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.129226</td>
 <td style="text-align: right;">0.119719</td>
 <td style="text-align: right;">0.002528</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.129226</td>
+<td style="text-align: right;">0.119719</td>
+<td style="text-align: right;">0.002528</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.162692</td>
 <td style="text-align: right;">0.145793</td>
 <td style="text-align: right;">0.003078</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.166119</td>
 <td style="text-align: right;">0.148864</td>
 <td style="text-align: right;">0.003143</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.162692</td>
+<td style="text-align: right;">0.145793</td>
+<td style="text-align: right;">0.003078</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.135561</td>
 <td style="text-align: right;">0.276653</td>
 <td style="text-align: right;">0.005841</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pop1…6</td>
@@ -1466,15 +1977,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.117792</td>
 <td style="text-align: right;">0.114525</td>
 <td style="text-align: right;">0.003110</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.117792</td>
+<td style="text-align: right;">0.114525</td>
+<td style="text-align: right;">0.003110</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.147605</td>
 <td style="text-align: right;">0.141139</td>
 <td style="text-align: right;">0.003833</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.150176</td>
 <td style="text-align: right;">0.143597</td>
 <td style="text-align: right;">0.003900</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.147605</td>
+<td style="text-align: right;">0.141139</td>
+<td style="text-align: right;">0.003833</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.129329</td>
 <td style="text-align: right;">0.267582</td>
 <td style="text-align: right;">0.007267</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">pop1…7</td>
@@ -1489,15 +2018,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.111003</td>
 <td style="text-align: right;">0.113222</td>
 <td style="text-align: right;">0.003406</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.111003</td>
+<td style="text-align: right;">0.113222</td>
+<td style="text-align: right;">0.003406</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.136806</td>
 <td style="text-align: right;">0.139159</td>
 <td style="text-align: right;">0.004186</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.138835</td>
 <td style="text-align: right;">0.141223</td>
 <td style="text-align: right;">0.004248</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.136806</td>
+<td style="text-align: right;">0.139159</td>
+<td style="text-align: right;">0.004186</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.112563</td>
 <td style="text-align: right;">0.246423</td>
 <td style="text-align: right;">0.007413</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pop1…8</td>
@@ -1512,15 +2059,33 @@ Completed: gl.report.heterozygosity </code></pre>
 <td style="text-align: right;">0.110599</td>
 <td style="text-align: right;">0.115467</td>
 <td style="text-align: right;">0.002693</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.110599</td>
+<td style="text-align: right;">0.115467</td>
+<td style="text-align: right;">0.002693</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.137218</td>
 <td style="text-align: right;">0.141699</td>
 <td style="text-align: right;">0.003305</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.139027</td>
 <td style="text-align: right;">0.143567</td>
 <td style="text-align: right;">0.003349</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.137218</td>
+<td style="text-align: right;">0.141699</td>
+<td style="text-align: right;">0.003305</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">0.114931</td>
 <td style="text-align: right;">0.246381</td>
 <td style="text-align: right;">0.005747</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
@@ -1529,7 +2094,7 @@ Completed: gl.report.heterozygosity </code></pre>
 </section>
 <section id="plotting-results-1" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-results-1">Plotting results</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-7_586c37063cd34e3345fd8b7ec4de144a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example using ggplot2 to plot the data</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_0<span class="fl">.95</span>callrate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(heterozygosity_reports_df_0<span class="fl">.95</span>, <span class="fu">aes</span>(<span class="at">x =</span> ObjectName, <span class="at">y =</span> Ho)) <span class="sc">+</span></span>
@@ -1540,12 +2105,20 @@ Completed: gl.report.heterozygosity </code></pre>
 <span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Sample Number"</span>, <span class="at">y =</span> <span class="st">"Observed Heterozygosity (Ho) at 0.95 Call Rate"</span>)</span>
 <span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_0<span class="fl">.95</span>callrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_0<span class="fl">.7</span>callrate <span class="sc">+</span>kimberley_Ho_0<span class="fl">.95</span>callrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -1570,7 +2143,7 @@ Call rate filters
 <p>If you called SNPs on more individuals than you wanted to make them equal, can you just remove individuals without re-calling SNPS? Let’s test.</p>
 <section id="subsampling" class="level3">
 <h3 class="anchored" data-anchor-id="subsampling">Subsampling</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-8_b31bb93eb6396f86e79470ddaadb10fc">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use grep() to match names that start with "Kimberley" </span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>kimberley_names <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^Kimberley.*</span><span class="sc">\\</span><span class="st">.vcf$"</span>, all_names, <span class="at">value =</span> <span class="cn">TRUE</span>) </span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># put all the genlights into a mega list</span></span>
@@ -1625,7 +2198,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1640,15 +2217,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.327947 28465         1   28465       0         0 0.233986 0.190371
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001128 0.329375 0.112778 0.000668 0.372398 0.127509 0.000756 0.302454
-        FISSD    FISSE
-pop1 0.469498 0.002783
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001128    NA    NA 0.233986 0.190371 0.001128        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.329375 0.112778 0.000668    NA    NA 0.372398 0.127509 0.000756     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.329375 0.112778 0.000668        NA        NA 0.302454 0.469498
+        FISSE FISLCI FISHCI
+pop1 0.002783     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -1666,7 +2251,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1681,15 +2270,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.360384 25656         1   25656       0         0 0.236861 0.185631
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE     FIS
-pop1 0.001159 0.324224 0.113105 0.000706 0.366218 0.127754 0.000798 0.28369
-        FISSD    FISSE
-pop1 0.460341 0.002874
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001159    NA    NA 0.236861 0.185631 0.001159        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.324224 0.113105 0.000706    NA    NA 0.366218 0.127754 0.000798     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI     FIS    FISSD
+pop1     NA 0.324224 0.113105 0.000706        NA        NA 0.28369 0.460341
+        FISSE FISLCI FISHCI
+pop1 0.002874     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -1705,7 +2302,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1720,15 +2321,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.404846 21171         1   21171       0         0 0.241755 0.181273
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001246 0.318786 0.113593 0.000781 0.359605 0.128138 0.000881 0.259282
-       FISSD    FISSE
-pop1 0.44866 0.003084
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001246    NA    NA 0.241755 0.181273 0.001246        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.318786 0.113593 0.000781    NA    NA 0.359605 0.128138 0.000881     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS   FISSD
+pop1     NA 0.318786 0.113593 0.000781        NA        NA 0.259282 0.44866
+        FISSE FISLCI FISHCI
+pop1 0.003084     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -1744,7 +2353,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1759,15 +2372,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.390371 22184         1   22184       0         0 0.241731 0.181534
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001219 0.319324 0.113423 0.000762 0.360365 0.128001 0.000859 0.260639
-        FISSD    FISSE
-pop1 0.449285 0.003016
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001219    NA    NA 0.241731 0.181534 0.001219        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.319324 0.113423 0.000762    NA    NA 0.360365 0.128001 0.000859     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.319324 0.113423 0.000762        NA        NA 0.260639 0.449285
+        FISSE FISLCI FISHCI
+pop1 0.003016     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -1783,7 +2404,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-9.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1798,15 +2423,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-10.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.414982 19731         1   19731       0         0 0.243949 0.180217
-         HoSE       He     HeSD     HeSE     uHe    uHeSD    uHeSE      FIS
-pop1 0.001283 0.317031 0.113598 0.000809 0.35752 0.128106 0.000912 0.250234
-        FISSD    FISSE
-pop1 0.444447 0.003164
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001283    NA    NA 0.243949 0.180217 0.001283        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI     uHe    uHeSD    uHeSE uHeLCI
+pop1 0.317031 0.113598 0.000809    NA    NA 0.35752 0.128106 0.000912     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.317031 0.113598 0.000809        NA        NA 0.250234 0.444447
+        FISSE FISLCI FISHCI
+pop1 0.003164     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -1822,7 +2455,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-11.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-11.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1837,15 +2474,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-12.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-12.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.404714 20239         1   20239       0         0 0.242991 0.179167
-         HoSE       He     HeSD     HeSE     uHe    uHeSD    uHeSE      FIS
-pop1 0.001259 0.316909 0.113413 0.000797 0.35749 0.127936 0.000899 0.251896
-        FISSD    FISSE
-pop1 0.444278 0.003123
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001259    NA    NA 0.242991 0.179167 0.001259        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI     uHe    uHeSD    uHeSE uHeLCI
+pop1 0.316909 0.113413 0.000797    NA    NA 0.35749 0.127936 0.000899     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.316909 0.113413 0.000797        NA        NA 0.251896 0.444278
+        FISSE FISLCI FISHCI
+pop1 0.003123     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -1861,7 +2506,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-13.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-13.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1876,15 +2525,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-14.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-14.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.407437 19873         1   19873       0         0 0.244377 0.179303
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001272 0.316308 0.113527 0.000805 0.356783 0.128054 0.000908 0.247269
-       FISSD   FISSE
-pop1 0.44271 0.00314
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001272    NA    NA 0.244377 0.179303 0.001272        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.316308 0.113527 0.000805    NA    NA 0.356783 0.128054 0.000908     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS   FISSD
+pop1     NA 0.316308 0.113527 0.000805        NA        NA 0.247269 0.44271
+       FISSE FISLCI FISHCI
+pop1 0.00314     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -1900,7 +2557,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-15.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-15.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -1915,22 +2576,30 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-8-16.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-8-16.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.404922 20073         1   20073       0         0 0.244488 0.179823
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001269 0.316304 0.113509 0.000801 0.356805 0.128043 0.000904 0.247144
-        FISSD    FISSE
-pop1 0.443154 0.003128
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001269    NA    NA 0.244488 0.179823 0.001269        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.316304 0.113509 0.000801    NA    NA 0.356805 0.128043 0.000904     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.316304 0.113509 0.000801        NA        NA 0.247144 0.443154
+        FISSE FISLCI FISHCI
+pop1 0.003128     NA     NA
 Completed: gl.report.heterozygosity </code></pre>
 </div>
 </div>
 </section>
 <section id="plotting-results-2" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-results-2">Plotting results</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-9_83231383465074347e683241519e7372">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_subsampling <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(heterozygosity_when_subsampling, <span class="fu">aes</span>(<span class="at">x =</span> ObjectName, <span class="at">y =</span> Ho)) <span class="sc">+</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
@@ -1940,7 +2609,11 @@ Completed: gl.report.heterozygosity </code></pre>
 <span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>kimberley_Ho_subsampling</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1962,7 +2635,7 @@ subsampling
 <p><em>There appears to be minor differences between sample sizes for the Kimberley population, but is this true for all populations?</em></p>
 <section id="southeast" class="level4">
 <h4 class="anchored" data-anchor-id="southeast">Southeast</h4>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-10_dddc15a7bc13f6a0ffe1c17705841d7a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create a list of the southeast genlights</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>Southeast_names <span class="ot">&lt;-</span> <span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">"^SouthEast"</span>)</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co">#put all the genlights into a mega list</span></span>
@@ -2011,7 +2684,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -2026,15 +2703,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.543063 23907         1   23907       0         0 0.306134 0.227794
-         HoSE       He     HeSD     HeSE     uHe    uHeSD    uHeSE     FIS
-pop1 0.001473 0.345947 0.118783 0.000768 0.38873 0.133473 0.000863 0.18011
-        FISSD    FISSE
-pop1 0.458069 0.002963
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001473    NA    NA 0.306134 0.227794 0.001473        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI     uHe    uHeSD    uHeSE uHeLCI
+pop1 0.345947 0.118783 0.000768    NA    NA 0.38873 0.133473 0.000863     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI     FIS    FISSD
+pop1     NA 0.345947 0.118783 0.000768        NA        NA 0.18011 0.458069
+        FISSE FISLCI FISHCI
+pop1 0.002963     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -2052,7 +2737,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -2067,15 +2756,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc      Ho    HoSD
 pop1 pop1 4.560711 23167         1   23167       0         0 0.30276 0.21977
-         HoSE       He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001444 0.340234 0.119545 0.000785 0.382127 0.134265 0.000882 0.172587
-        FISSD    FISSE
-pop1 0.445217 0.002925
+         HoSE HoLCI HoHCI  Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001444    NA    NA 0.30276  0.21977 0.001444        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.340234 0.119545 0.000785    NA    NA 0.382127 0.134265 0.000882     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.340234 0.119545 0.000785        NA        NA 0.172587 0.445217
+        FISSE FISLCI FISHCI
+pop1 0.002925     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -2093,7 +2790,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-10-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-10-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -2108,15 +2809,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-10-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-10-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.584442 21956         1   21956       0         0 0.300644 0.212385
-         HoSE       He     HeSD    HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001433 0.337159 0.119975 0.00081 0.378432 0.134662 0.000909 0.168427
-        FISSD    FISSE
-pop1 0.433861 0.002928
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001433    NA    NA 0.300644 0.212385 0.001433        NA        NA
+           He     HeSD    HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.337159 0.119975 0.00081    NA    NA 0.378432 0.134662 0.000909     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.337159 0.119975  0.00081        NA        NA 0.168427 0.433861
+        FISSE FISLCI FISHCI
+pop1 0.002928     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -2132,7 +2841,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-10-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-10-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -2147,15 +2860,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-10-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-10-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.575179 22513         1   22513       0         0 0.300346 0.212014
-         HoSE       He     HeSD  HeSE     uHe    uHeSD    uHeSE      FIS
-pop1 0.001413 0.336459 0.120052 8e-04 0.37774 0.134782 0.000898 0.167435
-        FISSD    FISSE
-pop1 0.432974 0.002886
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001413    NA    NA 0.300346 0.212014 0.001413        NA        NA
+           He     HeSD  HeSE HeLCI HeHCI     uHe    uHeSD    uHeSE uHeLCI
+pop1 0.336459 0.120052 8e-04    NA    NA 0.37774 0.134782 0.000898     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.336459 0.120052    8e-04        NA        NA 0.167435 0.432974
+        FISSE FISLCI FISHCI
+pop1 0.002886     NA     NA
 Completed: gl.report.heterozygosity </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>southeast_Ho_subsampling <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(heterozygosity_when_subsampling, <span class="fu">aes</span>(<span class="at">x =</span> ObjectName, <span class="at">y =</span> Ho)) <span class="sc">+</span></span>
@@ -2168,7 +2889,7 @@ Completed: gl.report.heterozygosity </code></pre>
 </section>
 <section id="central" class="level4">
 <h4 class="anchored" data-anchor-id="central">Central</h4>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-11_cf3f0fd1a5a15af8dfa34567b3a9c9f2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create a list of the central australian genlights</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>central_names <span class="ot">&lt;-</span> <span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">"^Central"</span>)</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="co">#put all the genlights into a mega list</span></span>
@@ -2216,7 +2937,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -2231,15 +2956,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.591516 20745         1   20745       0         0 0.293408 0.265273
-         HoSE      He     HeSD     HeSE      uHe    uHeSD    uHeSE      FIS
-pop1 0.001842 0.35118 0.115651 0.000803 0.394095 0.129784 0.000901 0.246186
-        FISSD    FISSE
-pop1 0.526134 0.003653
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001842    NA    NA 0.293408 0.265273 0.001842        NA        NA
+          He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD    uHeSE uHeLCI
+pop1 0.35118 0.115651 0.000803    NA    NA 0.394095 0.129784 0.000901     NA
+     uHeHCI  He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.35118 0.115651 0.000803        NA        NA 0.246186 0.526134
+        FISSE FISLCI FISHCI
+pop1 0.003653     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -2257,7 +2990,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -2272,15 +3009,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.612141 20064         1   20064       0         0 0.281935 0.253619
-        HoSE       He     HeSD    HeSE     uHe    uHeSD    uHeSE      FIS
-pop1 0.00179 0.346597 0.116089 0.00082 0.38874 0.130204 0.000919 0.258105
-        FISSD    FISSE
-pop1 0.514939 0.003635
+        HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.00179    NA    NA 0.281935 0.253619  0.00179        NA        NA
+           He     HeSD    HeSE HeLCI HeHCI     uHe    uHeSD    uHeSE uHeLCI
+pop1 0.346597 0.116089 0.00082    NA    NA 0.38874 0.130204 0.000919     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.346597 0.116089  0.00082        NA        NA 0.258105 0.514939
+        FISSE FISLCI FISHCI
+pop1 0.003635     NA     NA
 Completed: gl.report.heterozygosity 
 Starting gl.keep.ind 
   Processing genlight object with SNP data
@@ -2298,7 +3043,11 @@ Starting gl.filter.callrate
   Removing loci based on Call Rate, threshold = 0.7 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-11-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-11-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate 
@@ -2313,15 +3062,23 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-11-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-11-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop   n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
 pop1 pop1 4.63602 19067         1   19067       0         0 0.276449 0.249131
-         HoSE       He     HeSD     HeSE      uHe   uHeSD    uHeSE      FIS
-pop1 0.001804 0.345069 0.116176 0.000841 0.386784 0.13022 0.000943 0.266283
-        FISSD    FISSE
-pop1 0.511497 0.003704
+         HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI Ho.adjHCI
+pop1 0.001804    NA    NA 0.276449 0.249131 0.001804        NA        NA
+           He     HeSD     HeSE HeLCI HeHCI      uHe   uHeSD    uHeSE uHeLCI
+pop1 0.345069 0.116176 0.000841    NA    NA 0.386784 0.13022 0.000943     NA
+     uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI      FIS    FISSD
+pop1     NA 0.345069 0.116176 0.000841        NA        NA 0.266283 0.511497
+        FISSE FISLCI FISHCI
+pop1 0.003704     NA     NA
 Completed: gl.report.heterozygosity </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>central_Ho_subsampling <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(heterozygosity_when_subsampling, <span class="fu">aes</span>(<span class="at">x =</span> ObjectName, <span class="at">y =</span> Ho)) <span class="sc">+</span></span>
@@ -2335,14 +3092,22 @@ Completed: gl.report.heterozygosity </code></pre>
 </section>
 <section id="plotting-results-3" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-results-3">Plotting Results</h3>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-12_c69c4e3dda6f6f8d033eb179c97a332f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>southeast_Ho_subsampling</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>central_Ho_subsampling</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -2368,7 +3133,7 @@ Subsampling
 <h2 class="anchored" data-anchor-id="calling-populations-together">Calling populations together</h2>
 <p><em>Does this resolve the issue?</em></p>
 <p>Lets look at a file where SNPs were called on all three populations at once, and the samples were equal numbers.</p>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-13_85337f8c2883b80794534391377cb0d8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co">#first we assign populations to the individuals in the genlight</span></span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>individual_names <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">indNames</span>(combined_kim_15_cen_15_se_15.vcf))</span>
 <span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2396,7 +3161,11 @@ Subsampling
   Removing loci based on Call Rate, threshold = 0.95 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate </code></pre>
@@ -2415,21 +3184,33 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                pop    n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho
 Central     Central 14.74289   914         1     205     709         0 0.037671
 Kimberley Kimberley 14.07878   914         1     656     258         0 0.117284
 SouthEast SouthEast 14.62144   914         1     372     542         0 0.079583
-              HoSD     HoSE       He     HeSD     HeSE      uHe    uHeSD
-Central   0.112102 0.003708 0.071363 0.153583 0.005080 0.073868 0.158975
-Kimberley 0.134002 0.004432 0.143542 0.152636 0.005049 0.148827 0.158257
-SouthEast 0.134695 0.004455 0.089745 0.145624 0.004817 0.092922 0.150781
-             uHeSE      FIS    FISSD FISSE
-Central   0.005258 0.400900 0.452247    NA
-Kimberley 0.005235 0.128504 0.310302    NA
-SouthEast 0.004987 0.091166 0.254158    NA
+              HoSD     HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE Ho.adjLCI
+Central   0.112102 0.003708    NA    NA 0.037671 0.112102 0.003708        NA
+Kimberley 0.134002 0.004432    NA    NA 0.117284 0.134002 0.004432        NA
+SouthEast 0.134695 0.004455    NA    NA 0.079583 0.134695 0.004455        NA
+          Ho.adjHCI       He     HeSD     HeSE HeLCI HeHCI      uHe    uHeSD
+Central          NA 0.071363 0.153583 0.005080    NA    NA 0.073868 0.158975
+Kimberley        NA 0.143542 0.152636 0.005049    NA    NA 0.148827 0.158257
+SouthEast        NA 0.089745 0.145624 0.004817    NA    NA 0.092922 0.150781
+             uHeSE uHeLCI uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI He.adjHCI
+Central   0.005258     NA     NA 0.071363 0.153583 0.005080        NA        NA
+Kimberley 0.005235     NA     NA 0.143542 0.152636 0.005049        NA        NA
+SouthEast 0.004987     NA     NA 0.089745 0.145624 0.004817        NA        NA
+               FIS    FISSD    FISSE FISLCI FISHCI
+Central   0.400900 0.452247 0.014959     NA     NA
+Kimberley 0.128504 0.310302 0.010264     NA     NA
+SouthEast 0.091166 0.254158 0.008407     NA     NA
 Completed: gl.report.heterozygosity </code></pre>
 </div>
 </div>
@@ -2437,7 +3218,7 @@ Completed: gl.report.heterozygosity </code></pre>
 <section id="calling-snps-together-but-with-different-sample-sizes" class="level3">
 <h3 class="anchored" data-anchor-id="calling-snps-together-but-with-different-sample-sizes">Calling SNPs together but with different sample sizes</h3>
 <p>Lots of times we have different numbers of samples… so what does this do to our estimates? Lets look at what happens when we have different sample numbers across all populations</p>
-<div class="cell" data-hash="session03_cache/html/unnamed-chunk-14_0e6a546597d10d354dd12771bc8a899f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>individual_names <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">indNames</span>(combined_kim_15_cen_5_se_10.vcf))</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Split each name at the underscore and keep the first part</span></span>
@@ -2463,7 +3244,11 @@ Completed: gl.report.heterozygosity </code></pre>
   Removing loci based on Call Rate, threshold = 0.95 </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate </code></pre>
@@ -2482,21 +3267,33 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="session03_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="session03_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                pop     n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc
 Central     Central  4.980290   964         1     206     758         0
 Kimberley Kimberley 14.429461   964         1     709     255         0
 SouthEast SouthEast  9.854772   964         1     373     591         0
-                Ho     HoSD     HoSE       He     HeSD     HeSE      uHe
-Central   0.047355 0.138961 0.004476 0.067501 0.141209 0.004548 0.075034
-Kimberley 0.113975 0.131324 0.004230 0.140553 0.147435 0.004749 0.145598
-SouthEast 0.089523 0.153169 0.004933 0.094679 0.151447 0.004878 0.099740
-             uHeSD    uHeSE      FIS    FISSD FISSE
-Central   0.156968 0.005056 0.325189 0.510923    NA
-Kimberley 0.152727 0.004919 0.130096 0.317600    NA
-SouthEast 0.159541 0.005138 0.065369 0.267902    NA
+                Ho     HoSD     HoSE HoLCI HoHCI   Ho.adj Ho.adjSD Ho.adjSE
+Central   0.047355 0.138961 0.004476    NA    NA 0.047355 0.138961 0.004476
+Kimberley 0.113975 0.131324 0.004230    NA    NA 0.113975 0.131324 0.004230
+SouthEast 0.089523 0.153169 0.004933    NA    NA 0.089523 0.153169 0.004933
+          Ho.adjLCI Ho.adjHCI       He     HeSD     HeSE HeLCI HeHCI      uHe
+Central          NA        NA 0.067501 0.141209 0.004548    NA    NA 0.075034
+Kimberley        NA        NA 0.140553 0.147435 0.004749    NA    NA 0.145598
+SouthEast        NA        NA 0.094679 0.151447 0.004878    NA    NA 0.099740
+             uHeSD    uHeSE uHeLCI uHeHCI   He.adj He.adjSD He.adjSE He.adjLCI
+Central   0.156968 0.005056     NA     NA 0.067501 0.141209 0.004548        NA
+Kimberley 0.152727 0.004919     NA     NA 0.140553 0.147435 0.004749        NA
+SouthEast 0.159541 0.005138     NA     NA 0.094679 0.151447 0.004878        NA
+          He.adjHCI      FIS    FISSD    FISSE FISLCI FISHCI
+Central          NA 0.325189 0.510923 0.016456     NA     NA
+Kimberley        NA 0.130096 0.317600 0.010229     NA     NA
+SouthEast        NA 0.065369 0.267902 0.008629     NA     NA
 Completed: gl.report.heterozygosity </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">#how much more heterozygosity does kimberley have than central in different analyses?</span></span>
@@ -2846,10 +3643,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2859,8 +3675,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2873,6 +3698,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2916,6 +3860,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2941,6 +3886,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2998,37 +3969,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./session02.html" class="pagination-link">
+      <a href="./session02.html" class="pagination-link" aria-label="Pop Gen In Conservation">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pop Gen In Conservation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./session04.html" class="pagination-link">
+      <a href="./session04.html" class="pagination-link" aria-label="Data Management, Reproducibility &amp; Integrity">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Management, Reproducibility &amp; Integrity</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

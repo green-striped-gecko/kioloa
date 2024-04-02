@@ -9,6 +9,8 @@
 ```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(palmerpenguins)
+library(webexercises)
+data("penguins")
 ```
 
 ## Reproducible research

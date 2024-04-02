@@ -1,3 +1,9 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
 # Pop Gen In Conservation
 
 *Session Presenters*
@@ -340,7 +346,7 @@ This is a function written to calculate Tajima's D from SNP data. This code will
 
 ```{r}
 get_tajima_D <- function(x){
-  require(dartRverse) # possibly not needed for a function in an R package?
+  #require(dartRverse) # possibly not needed for a function in an R package?
   
   # Find allele frequencies (p1 and p2) for every locus in every population
   allele_freqs <- dartR::gl.percent.freq(x)
@@ -454,7 +460,7 @@ gl.D_withfiltering <- gl.filter.monomorphs(gl.4)
 
 
 #calculate tajima's D with removing singletons and secondaries
-
+gl.D_withfiltering
 D_w_filtering <- get_tajima_D(gl.D_withfiltering)
 D_w_filtering
 
