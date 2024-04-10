@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -58,7 +58,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -101,13 +100,7 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -116,12 +109,12 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/htmltools-fill-0.5.8/fill.css" rel="stylesheet">
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
@@ -130,39 +123,12 @@ div.csl-indent {
 <script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="site_libs/leaflet-binding-2.2.1/leaflet.js"></script>
+<script src="site_libs/leaflet-binding-2.2.2/leaflet.js"></script>
 <script src="site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
-<script src="site_libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
+<script src="site_libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="css.css">
 <link rel="stylesheet" href="include/webex.css">
@@ -174,12 +140,12 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session02.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pop Gen In Conservation</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session02.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pop Gen In Conservation</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -189,7 +155,7 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Kioloa PopGen</a> 
@@ -307,7 +273,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./break.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">\__________</span></a>
+ <span class="menu-text">__________</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -331,7 +297,7 @@ window.Quarto = {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -385,15 +351,13 @@ window.Quarto = {
   </div>
   
 
-
 </header>
-
 
 <p><em>Session Presenters</em></p>
 <p><img src="images/Presenters2.png" class="img-fluid"></p>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-1_f9ddd1c4797778f866521b4383402596">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#BiocManager::install("LEA")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#devtools::install_github("tdhock/directlabels")</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -431,11 +395,11 @@ Task
 </div>
 <section id="load-data" class="level3">
 <h3 class="anchored" data-anchor-id="load-data">Load data</h3>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-3_b50186764cb46a74ca634ab7495da3b5">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>glsim <span class="ot">&lt;-</span> <span class="fu">gl.load</span>(<span class="st">"./data/sess2_glsim.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-4_6420d8f937cee235978c46704c5a7d7f">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check the population size and number of populations</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(glsim))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -458,7 +422,7 @@ popA
 <p>Let’s have a look at an example of what happens if our sampling design caused us to sample selectively related individuals. We are going to use a simulated dataset based on the concept presented in Pacioni et al (2020) where females intensively trapped (using a grid design, ‘G’) within an area that didn’t encompassed multiple home ranges were highly related. ON the contrary, individuals trapped along transect (‘T’) that extended over multiple home ranges were an actual random rapresentation of the population.</p>
 <section id="load-data-1" class="level3">
 <h3 class="anchored" data-anchor-id="load-data-1">Load data</h3>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-6_ff6399c56a9996e43e8fc416aec6a276">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>glw <span class="ot">&lt;-</span> <span class="fu">gl.load</span>(<span class="st">"./data/sess2_glDes.rds"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#check the population size and number of populations</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(glw)) <span class="co"># G stands for trapped in a grid, T for transect</span></span>
@@ -470,7 +434,7 @@ popA
 </section>
 <section id="calculate-relatedness" class="level3">
 <h3 class="anchored" data-anchor-id="calculate-relatedness">Calculate Relatedness</h3>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-7_fb05e592c255303fb479a440b9583576">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run EMIBD9 to detect related individuals. Output saved to save time</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ibd9 &lt;- gl.run.EMIBD9(glw, Inbreed = FALSE, </span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="co">#                     emibd9.path = "E:/Software/Genetic software/EMIBD9")</span></span>
@@ -505,7 +469,7 @@ popA
 <section id="relatedness-results" class="level3">
 <h3 class="anchored" data-anchor-id="relatedness-results">Relatedness results</h3>
 <p>Mean relatedness for animals trapped in the grid is 3 times those trapped with a transect. There are also a series of other interesting things that happens: Mean relatedness of animals trapped in the grid is just marginally above the mean expected for first cousins (~0.06). However, more than half of the comparisons were between half sibs or more related individuals:</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-8_2e5e6cda05e7f446d190aedff245b1a4">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ibd9DT[, <span class="fu">sum</span>(<span class="st">`</span><span class="at">r(1,2)</span><span class="st">`</span><span class="sc">&gt;=</span><span class="fl">0.125</span>), by<span class="ot">=</span>PDes] <span class="co"># HS or more</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     PDes    V1
@@ -530,7 +494,7 @@ popA
 </div>
 </div>
 <p>Only a limited number of loci are out of HWE after correction for multiple comparisons</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-9_81eedae14e6907759411a8d4b6c6538d">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hwe <span class="ot">&lt;-</span> <span class="fu">gl.report.hwe</span>(glw, <span class="at">multi_comp =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.report.hwe 
@@ -539,7 +503,7 @@ Package HardyWeinberg  needed for this function to work. Please install it.</cod
 </div>
 </div>
 <p>But incredibly, because of the het excess, <span class="math inline">\(Fis\)</span> in ‘G’ is negative suggesting a outbred population!</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-10_c2c5dbc621960d4bd76bfaae96e72d79">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>het <span class="ot">&lt;-</span> <span class="fu">gl.report.heterozygosity</span>(glw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.report.heterozygosity 
@@ -553,11 +517,7 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  pop n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
@@ -595,7 +555,7 @@ Interpreting results
 </section>
 <section id="exercise-data" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-data">Exercise data</h2>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-11_48b9e5d9df089caca0dea44633e9f529">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.heterozygosity</span>(glsim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.report.heterozygosity 
@@ -609,11 +569,7 @@ Selected color type dis
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      pop n.Ind n.Loc n.Loc.adj polyLoc monoLoc all_NALoc       Ho     HoSD
@@ -638,11 +594,7 @@ Selected color type 2
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa </code></pre>
@@ -670,7 +622,7 @@ Package HardyWeinberg  needed for this function to work. Please install it.</cod
 <section id="load-data-and-explore" class="level3">
 <h3 class="anchored" data-anchor-id="load-data-and-explore">Load data and explore</h3>
 <p>This dataset is to assess population structure and diversity in Uperoleia crassa, from <span class="citation" data-cites="jaya_population_2022">Jaya et al. (<a href="references.html#ref-jaya_population_2022" role="doc-biblioref">2022</a>)</span>.</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-12_b7e264b632cd60865a3eda6259b5ac0a">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gl &lt;- dartR::gl.read.dart("Report_DUp20-4995_1_moreOrders_SNP_mapping_2.csv",</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                           ind.metafile = "Uperoleia_metadata.csv")</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -678,7 +630,7 @@ Package HardyWeinberg  needed for this function to work. Please install it.</cod
 </div>
 <p>These are monsoonal tropical frogs, who are very common and abundant. They do evolutionarily and reproductively interesting and weird stuff.</p>
 <p>Lets quickly look at our samples and populations.</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-13_c60835156b158b511395c5e293c0aaa3">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.map.interactive</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.map.interactive 
@@ -695,7 +647,7 @@ Completed: gl.map.interactive </code></pre>
 <section id="clean-data" class="level3">
 <h3 class="anchored" data-anchor-id="clean-data">Clean data</h3>
 <p>Clean up your dataset to remove the most egregiously bad loci and individuals this set of filtering can be used across analyses,</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-14_f4c7d1fe16bb4738f6c1e05721b7014a">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Get rid of really poorly sequenced loci</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#But don’t cut hard</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -714,11 +666,7 @@ Completed: gl.map.interactive </code></pre>
     Missing Rate Overall:  0.2536 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.report.callrate </code></pre>
@@ -733,11 +681,7 @@ Completed: gl.map.interactive </code></pre>
   Removing loci based on Call Rate, threshold = 0.8 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate </code></pre>
@@ -793,11 +737,7 @@ Listing 20 individuals with the lowest CallRates
 )</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.report.callrate </code></pre>
@@ -812,11 +752,7 @@ Listing 20 individuals with the lowest CallRates
   Removing individuals based on Call Rate, threshold = 0.25 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-4.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-4.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Note: Locus metrics not recalculated
@@ -849,11 +785,7 @@ Completed: gl.filter.monomorphs </code></pre>
     Missing Rate Overall:  0.08 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-5.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-5.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Quantile Threshold Retained Percent Filtered Percent
@@ -889,11 +821,7 @@ Completed: gl.report.reproducibility </code></pre>
   Showing and returning 2 of 9 colors for library RColorBrewer : palette Blues </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-6.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-6.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.select.colors 
@@ -902,11 +830,7 @@ Starting gl.filter.reproducibility
   Removing loci with repeatability less than 0.99 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-7.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-7.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.reproducibility </code></pre>
@@ -929,11 +853,7 @@ Starting gl.filter.reproducibility
     Missing Rate Overall:  0.09 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-8.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-8.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Quantile Threshold Retained Percent Filtered Percent
@@ -967,11 +887,7 @@ Completed: gl.report.rdepth </code></pre>
   Removing loci with rdepth &lt;= 0 and &gt;= 25 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-9.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-9.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.rdepth </code></pre>
@@ -983,11 +899,7 @@ Completed: gl.report.rdepth </code></pre>
   Removing loci with rdepth &lt;= 8 and &gt;= 17 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-10.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-10.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.rdepth </code></pre>
@@ -1003,11 +915,7 @@ Completed: gl.report.rdepth </code></pre>
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at the data to see if you see any obvious issues and redo if you do.</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-14-11.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-14-11.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(gl<span class="fl">.1</span>, gl<span class="fl">.2</span>, gl<span class="fl">.3</span>, gl<span class="fl">.4</span>, gl<span class="fl">.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1030,7 +938,7 @@ gl.clean
 <section id="filtering-data-for-population-structure-and-phylogenetic-analyses" class="level5">
 <h5 class="anchored" data-anchor-id="filtering-data-for-population-structure-and-phylogenetic-analyses"><strong>Filtering data for population structure and phylogenetic analyses</strong></h5>
 <p>Loci on the same fragment and missing data are not well supported in these analyses, as they expect all loci to be independently inherited. This means very very close loci are not going to be split through recombination and should be removed. Structure-like analyses dislike missing data. We are also going to filter harder than normal here just so that we can see a result within the workshop.</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-15_8c54df78aec5bdfb2a5de9941c8c09fb">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl.clean, <span class="at">method =</span> <span class="st">"loc"</span>, <span class="at">threshold =</span> <span class="fl">0.98</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove minor alleles</span></span>
@@ -1066,7 +974,7 @@ gl.clean
 <section id="run-snmf-lea" class="level3">
 <h3 class="anchored" data-anchor-id="run-snmf-lea">Run SNMF (LEA)</h3>
 <p>This is a structure-like analysis called SNMF. This code is not all you would need to publish this result, but it is a good first look. You need to test your parameter settings (alpha and tolerance) in a real analysis.</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-16_b0aaa390fb71b4cdc2f1b9c53e632589">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co">#takes quite a while to run (about 15 minutes)</span></span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="co">#in case you want to run it uncomment the following lines and comment the readRDS line</span></span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1079,14 +987,10 @@ gl.clean
 <span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>snmf.Sy.K1_8<span class="fl">.10</span> <span class="ot">=</span> <span class="fu">snmf</span>(<span class="st">"./data/gl_structure.fstr.geno"</span>, <span class="at">K =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,</span>
 <span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">entropy =</span> T, <span class="at">ploidy =</span> <span class="dv">2</span>, <span class="at">project=</span><span class="st">"new"</span>, <span class="at">repetitions =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-17_b9bef9e1c02e80ea66eae93bc074f26e">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(snmf.Sy.K1_8<span class="fl">.10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co">#chose best based on lowest cross entropy in graph</span></span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>ce <span class="ot">=</span> <span class="fu">cross.entropy</span>(snmf.Sy.K1_8<span class="fl">.10</span>, <span class="at">K =</span> k)</span>
@@ -1094,11 +998,7 @@ gl.clean
 <span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span> (<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
 <span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">t</span>(<span class="fu">Q</span>(snmf.Sy.K1_8<span class="fl">.10</span>, <span class="at">K =</span> k, <span class="at">run =</span> best)), <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span>k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Do a PCoA plot. I hate these but they are also good for first pass visualisation.</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(gl.structure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1111,11 +1011,7 @@ Selected color type 2
 Completed: gl.colors </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-17-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-17-3.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.pcoa </code></pre>
@@ -1152,7 +1048,7 @@ Exercise
 <p>Now we are going to look at how filtering can affect your understanding of demographic processes that population is undergoing. In this case we are going to look at the metric Tajima’s D. Significant negative values of Tajima’s D are due to an excess of rare alleles and are consistent with range expansion. Significant positive values are associated with population contraction.</p>
 <p>The moral of the story here is that rare alleles matter, especially when looking at population demographics! Lets look at how singletons impact our estimations of whether a population is expanding or contracting.</p>
 <p>This is a function written to calculate Tajima’s D from SNP data. This code will create the function in your global environment so that you can call it. This function differs from calculations in packages such as heirfstat and popgen because it deals with missing data correctly for SNPs, while those other programs were built for gene alignments.Significance (a P-value) cannot be calculated without a simulation, and we are not doing that here. Please ask me how to do this using Hudson’s ms program if you are interested.</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-18_2721a177149b76f44d2052a875bd9072">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>get_tajima_D <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#require(dartRverse) # possibly not needed for a function in an R package?</span></span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -1233,7 +1129,7 @@ Exercise
 <section id="maf-filtering" class="level4">
 <h4 class="anchored" data-anchor-id="maf-filtering">1. <strong>MAF filtering</strong></h4>
 <p>We will start with our lightly cleaned data and filter this for the tajima’s calculation.</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-19_dedb25b484713602c0c9451637537b62">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This function is written to calculate Tajima's D with a fair amount of missing data</span></span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co">#so we are going to filter lightly here</span></span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1252,11 +1148,7 @@ Exercise
     Missing Rate Overall:  0.0613 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.report.callrate </code></pre>
@@ -1269,11 +1161,7 @@ Exercise
   Removing loci based on Call Rate, threshold = 0.9 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate </code></pre>
@@ -1319,11 +1207,7 @@ Starting gl.report.maf
     Missing Rate Overall:  0.03 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-19-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-19-3.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Quantile Threshold Retained Percent Filtered Percent
@@ -1363,11 +1247,7 @@ Completed: gl.report.maf </code></pre>
   Showing and returning 2 of 9 colors for library RColorBrewer : palette Blues </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-19-4.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-19-4.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.select.colors 
@@ -1377,11 +1257,7 @@ Starting gl.filter.maf
                 and recalculating FreqHoms and FreqHets</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-19-5.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-19-5.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.maf </code></pre>
@@ -1394,11 +1270,7 @@ Starting gl.filter.maf
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="co">#this starts to show some obvious banding which are the two populations</span></span>
 <span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gl<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-19-6.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-19-6.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co">#we are also going to remove secondary SNPs on the same fragment in this first round</span></span>
 <span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>gl<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">gl.filter.secondaries</span>(gl<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1461,11 +1333,7 @@ Listing 20 individuals with the lowest CallRates
 )</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-19-7.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-19-7.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.report.callrate </code></pre>
@@ -1480,11 +1348,7 @@ Listing 20 individuals with the lowest CallRates
 Up1186_QMJ88804[IT], Up1041_R138706[IT],</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-19-8.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-19-8.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Note: Locus metrics not recalculated
@@ -1566,7 +1430,7 @@ Completed: ::
 <section id="no-maf-filtering" class="level4">
 <h4 class="anchored" data-anchor-id="no-maf-filtering">2. <strong>No MAF filtering</strong></h4>
 <p>Now lets try it where we <em>don’t</em> remove singletons or secondaries</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-20_20a0f879a9f42b544ec590c0be958879">
 <div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This function is written to calculate Tajima's D with a fair amount of missing data</span></span>
 <span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="co">#we are going to filter lightly here </span></span>
 <span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1585,11 +1449,7 @@ Completed: ::
     Missing Rate Overall:  0.0613 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.report.callrate </code></pre>
@@ -1602,11 +1462,7 @@ Completed: ::
   Removing loci based on Call Rate, threshold = 0.9 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-20-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-20-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate </code></pre>
@@ -1615,11 +1471,7 @@ Completed: ::
 <span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="co">#this starts ot show some obvious population banding</span></span>
 <span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gl<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-20-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-20-3.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter on individuals. You can usually be a bit flexible at this point.</span></span>
 <span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="co">#make note of any idnviduals with a low call rate. Keep them in for now</span></span>
@@ -1674,11 +1526,7 @@ Listing 20 individuals with the lowest CallRates
 )</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-20-4.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-20-4.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.report.callrate </code></pre>
@@ -1693,11 +1541,7 @@ Listing 20 individuals with the lowest CallRates
 Up1041_R138706[IT],</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-20-5.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-20-5.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Note: Locus metrics not recalculated
@@ -1732,7 +1576,7 @@ Completed: ::
 <section id="no-maf-filtering-but-filtering-on-read-depth" class="level4">
 <h4 class="anchored" data-anchor-id="no-maf-filtering-but-filtering-on-read-depth">3. <strong>No MAF filtering but filtering on Read depth</strong></h4>
 <p>Now lets try it where we <em>don’t</em> remove singletons or secondaries AND we filter for read depth to remove singletons where we are not confident about their base calls</p>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-21_8accffb08bf8e11aa823081ff8d0cd9b">
 <div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This function is written to calculate Tajima's D with a fair amount of missing data</span></span>
 <span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we are going to filter lightly here </span></span>
 <span id="cb146-3"><a href="#cb146-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl.clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1751,11 +1595,7 @@ Completed: ::
     Missing Rate Overall:  0.0613 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.report.callrate </code></pre>
@@ -1768,11 +1608,7 @@ Completed: ::
   Removing loci based on Call Rate, threshold = 0.9 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.callrate </code></pre>
@@ -1781,11 +1617,7 @@ Completed: ::
 <span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="co">#this starts ot show some obvious population banding</span></span>
 <span id="cb152-3"><a href="#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gl<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-21-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-21-3.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filter to loci with a lower read depth, so that we are really confident</span></span>
 <span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="co">#that our base calls are correct</span></span>
@@ -1805,11 +1637,7 @@ Completed: ::
     Missing Rate Overall:  0.03 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-21-4.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-21-4.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Quantile Threshold Retained Percent Filtered Percent
@@ -1843,11 +1671,7 @@ Completed: gl.report.rdepth </code></pre>
   Removing loci with rdepth &lt;= 12 and &gt;= 17 </code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-21-5.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-21-5.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.filter.rdepth </code></pre>
@@ -1905,11 +1729,7 @@ Listing 20 individuals with the lowest CallRates
 )</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-21-6.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-21-6.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.report.callrate </code></pre>
@@ -1924,11 +1744,7 @@ Listing 20 individuals with the lowest CallRates
 Up1041_R138706[IT],</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session02_files/figure-html/unnamed-chunk-21-7.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session02_files/figure-html/unnamed-chunk-21-7.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Note: Locus metrics not recalculated
@@ -1967,7 +1783,7 @@ Completed: ::
 <h3 class="anchored" data-anchor-id="results">Results</h3>
 <section id="lets-look-at-all-three" class="level5">
 <h5 class="anchored" data-anchor-id="lets-look-at-all-three"><em>lets look at all three</em></h5>
-<div class="cell">
+<div class="cell" data-hash="session02_cache/html/unnamed-chunk-22_4bd8cb12c96e83f7d5af3e90a5536407">
 <div class="sourceCode cell-code" id="cb169"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a>D_w_filtering</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  population        pi    S          D
@@ -2016,7 +1832,7 @@ Interpreting results
 <p><span class="citation" data-cites="jaya_population_2022">Jaya et al. (<a href="references.html#ref-jaya_population_2022" role="doc-biblioref">2022</a>)</span></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-jaya_population_2022" class="csl-entry" role="listitem">
 Jaya, Frederick R., Jessie C. Tanner, Michael R. Whitehead, Paul Doughty, J. Scott Keogh, Craig C. Moritz, and Renee A. Catullo. 2022. <span>“Population Genomics and Sexual Signals Support Reproductive Character Displacement in <span>Uperoleia</span> (<span>Anura</span>: <span>Myobatrachidae</span>) in a Contact Zone.”</span> <em>Molecular Ecology</em> 31 (17): 4527–43. <a href="https://doi.org/10.1111/mec.16597">https://doi.org/10.1111/mec.16597</a>.
 </div>
@@ -2322,29 +2138,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-          // default icon
-          link.classList.add("external");
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2354,17 +2151,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2377,125 +2165,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2539,7 +2208,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2565,32 +2233,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2648,22 +2290,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./session01.html" class="pagination-link" aria-label="Intro to dartR">
+      <a href="./session01.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to dartR</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./session03.html" class="pagination-link" aria-label="Sequencing Technologies">
+      <a href="./session03.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sequencing Technologies</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

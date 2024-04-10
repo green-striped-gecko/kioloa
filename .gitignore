@@ -50,8 +50,10 @@ rsconnect/
 
 /.quarto/
 
-# pdfs
+#binaries
+/binaries/*
 
+# pdfs
 tutorials/
 !docs/tutorials/
 # html

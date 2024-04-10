@@ -116,7 +116,7 @@ ggplot(penguins,
 ```{r, echo=FALSE, warning=FALSE}
 library(downloadthis)
 
-  download_file(path = './session04_code.qmd',
+  download_file(path = './session04.qmd',
     output_name = "hello",
     output_extension = ".qmd",
     button_label = "Download hello.qmd",

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,13 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -96,7 +90,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -114,12 +107,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session11.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">From Genes to Kin: Dissecting Relatedness &amp; Kinship</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./session11.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">From Genes to Kin: Dissecting Relatedness &amp; Kinship</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -129,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Kioloa PopGen</a> 
@@ -247,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./break.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">\__________</span></a>
+ <span class="menu-text">__________</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -271,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -322,15 +315,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-
 </header>
-
 
 <p><em>Session Presenters</em></p>
 <p><img src="images/Presenters11.png" class="img-fluid"></p>
 <section id="required-packages" class="level3">
 <h3 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h3>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-1_24ccd93d115c5bca351bead1a5be7986">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(related)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
@@ -420,15 +411,15 @@ Tip
 <h2 class="anchored" data-anchor-id="the-quest-to-quash-the-cane-toad-conundrum-in-mandalong">The Quest to Quash the Cane Toad Conundrum in Mandalong</h2>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="./images/cane_toad.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="300"></p>
-<figcaption><em>Cane toad (Rhinella marinus)</em></figcaption>
+<p><img src="./images/cane_toad.png" class="img-fluid figure-img" width="300"></p>
+<figcaption class="figure-caption"><em>Cane toad (Rhinella marinus)</em></figcaption>
 </figure>
 </div>
 <p>Introduced to Australia in the 1930s to combat cane beetles, cane toads have since become a significant invasive threat, adapting to diverse habitats and reproducing prolifically. Lacking natural predators and possessing toxic secretions, they’ve harmed native wildlife and disrupted ecosystems across eastern and northern Australia.</p>
 <p><em>The key issue here is figuring out if the young toads at Mandalong are locals, born and bred, or if they’ve crashed the party as a group from elsewhere.</em></p>
 <section id="loading-data" class="level4">
 <h4 class="anchored" data-anchor-id="loading-data">Loading data</h4>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-2_06e8a5256ae37ed4d58be62a884a5975">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">gl.load</span>(<span class="st">"./data/cane_toad.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.load 
@@ -473,7 +464,7 @@ Tip
 <p>In order to ensure that replicated individuals are properly identified, it’s important to have a clear separation between the third and fourth peaks in the second histogram. This means that there should be bins with zero counts between these two peaks</p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-3_9ca8cdf4d1c9c26c1116db35c551faf8">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t1_dup <span class="ot">&lt;-</span> t1</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>res_dup <span class="ot">&lt;-</span> <span class="fu">gl.report.replicates</span>(t1_dup,<span class="at">perc_geno =</span> <span class="fl">0.925</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -482,11 +473,7 @@ Tip
   Processing genlight object with SNP data</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Completed: gl.report.replicates </code></pre>
@@ -515,7 +502,7 @@ RJCT10, RJCT51</code></pre>
 <section id="colony" class="level3">
 <h3 class="anchored" data-anchor-id="colony">COLONY</h3>
 <p>We will use <a href="https://doi.org/10.1111/1755-0998.13844">Diana Robledo’s</a> function to convert a genlight object into COLONY format.</p>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-4_93b4ef2b624fc7dd921ca01f204869d8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loading gl2colony function from Diana Robledo </span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"./functions/gl2colony.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -574,7 +561,7 @@ Attaching package: 'crayon'</code></pre>
 <span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">excluded_maternity_sibships =</span> <span class="dv">0</span></span>
 <span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Random seed set to 30464</code></pre>
+<pre><code>Random seed set to 42763</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>112 Offspring detected. 
@@ -626,70 +613,42 @@ Note
 <p>Previous studies showed that around 5,000 SNPs are sufficient to accurately estimate relatedness and kinship (<a href="https://doi.org/10.1111/mec.14833">Goudet et al., 2018</a>).</p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-5_2e5e8a479f200eba7ddafd4f80e902e5">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#removing duplicates </span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">gl.drop.ind</span>(t1,<span class="at">ind.list =</span> res_dup<span class="sc">$</span>ind.list.drop)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># filtering on callrate by individual</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(t2,<span class="at">method =</span> <span class="st">"ind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(t2,<span class="at">method =</span> <span class="st">"ind"</span>, <span class="at">threshold =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtering monomorphs</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">gl.filter.monomorphs</span>(t2,<span class="at">verbose =</span> <span class="dv">5</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># filtering on callrate by locus</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(t2,<span class="at">method =</span> <span class="st">"loc"</span>, <span class="at">threshold =</span> <span class="fl">0.95</span>,<span class="at">verbose =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtering on reproducibility </span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">gl.filter.reproducibility</span>(t2,<span class="at">threshold =</span> <span class="fl">0.99</span>,<span class="at">verbose =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtering on read depth </span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">gl.filter.rdepth</span>(t2,<span class="at">lower =</span> <span class="dv">10</span>, <span class="at">upper =</span> <span class="fu">max</span>(t2<span class="sc">$</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>rdepth),<span class="at">verbose =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtering on Minor Allele Count (MAC)</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">gl.filter.maf</span>(t2,<span class="at">threshold =</span> <span class="dv">3</span>,<span class="at">verbose =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-5-6.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-5-6.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-5-7.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-5-7.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtering secondaries</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">gl.filter.secondaries</span>(t2,<span class="at">verbose =</span> <span class="dv">5</span>)</span>
@@ -702,25 +661,13 @@ Note
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># report of linkage disequilibrium </span></span>
 <span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>ld_rep <span class="ot">&lt;-</span> <span class="fu">gl.report.ld.map</span>(t2,<span class="at">verbose =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-5-8.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-5-8.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-5-9.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-5-9.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-5-10.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-5-10.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtering on LD</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a threshold (R.squared = 0.2) is commonly used to imply that two loci are unlinked (Delourme et al., 2013; Li et al., 2014).</span></span>
@@ -737,7 +684,7 @@ Note
 <section id="coancestry" class="level3">
 <h3 class="anchored" data-anchor-id="coancestry">COANCESTRY</h3>
 <p>We first run COANCESTRY (<a href="https://doi.org/10.1111/j.1755-0998.2010.02885.x">Wang, 2011</a>) using <a href="https://github.com/timothyfrasier/related">related</a> package and Wang’s unbiased estimator (<a href="https://doi.org/10.1038/hdy.2017.52">Wang, 2017</a>).</p>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-6_cd116ca9fdf65134c60e0d75503a30e3">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># converting to related format </span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>related <span class="ot">&lt;-</span> <span class="fu">gl2related</span>(t2, <span class="at">save=</span><span class="cn">FALSE</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># using Wang's unbiased estimator</span></span>
@@ -760,7 +707,7 @@ Note
 <section id="emibd9" class="level3">
 <h3 class="anchored" data-anchor-id="emibd9">EMIBD9</h3>
 <p>Now let’s estimate kinship using new Wang’s method which uses a likelihood approach as implemented in the software EMIBD9 (<a href="https://doi.org/10.1111/2041-210X.13963">Wang 2022</a>).</p>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-7_46895efc736fb2fde75e7214369141cd">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncomment to run </span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a> <span class="co"># system.time(EMIBD9 &lt;- gl.run.EMIBD9(t2,emibd9.path = path.EMIBD9))</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># user  system elapsed </span></span>
@@ -776,7 +723,7 @@ Note
 <section id="gcta" class="level3">
 <h3 class="anchored" data-anchor-id="gcta">GCTA</h3>
 <p>Relatedness estimation using a genetic relationship matrix (<a href="https://doi.org/10.1016/j.ajhg.2011.02.002">Lee et al., 2011</a>) as implemented in the program GCTA (<a href="10.1016/j.ajhg.2010.11.011">Yang et al., 2011</a>).</p>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-8_c1439372d5dbe10f7a5f1084e6952cea">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function to read the GRM binary file</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ReadGRMBin <span class="ot">&lt;-</span> <span class="cf">function</span>(prefix, <span class="at">AllN=</span><span class="cn">FALSE</span>, <span class="at">size=</span><span class="dv">4</span>){</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  sum_i <span class="ot">&lt;-</span> <span class="cf">function</span>(i){</span>
@@ -832,14 +779,10 @@ Note
 <h3 class="anchored" data-anchor-id="genomic-relationship-matrix-grm">Genomic relationship matrix (GRM)</h3>
 <p>Relatedness estimation using an additive relationship matrix (<a href="https://doi.org/10.1534/g3.112.004259">Endelman &amp; Jannink, 2012</a>) as implemented in the R package rrBLUP (<a href="https://doi.org/10.3835/plantgenome2011.08.0024">Endelman, 2011</a>).</p>
 <p>The GRM is an estimate of the proportion of alleles that two individuals have in common. It is generated by estimating the covariance of the genotypes between two individuals, i.e.&nbsp;how much genotypes in the two individuals correspond with each other. This covariance depends on the probability that alleles at a random locus are identical by state (IBS). Two alleles are IBS if they represent the same allele. Two alleles are identical by descent (IBD) if one is a physical copy of the other or if they are both physical copies of the same ancestral allele. Note that IBD is complicated to determine. IBD implies IBS, but not conversely. However, as the number of SNPs in a dataset increases, the mean probability of IBS approaches the mean probability of IBD.</p>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-9_67d08a3d5af5234bcb044f60f7111526">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>GRM <span class="ot">&lt;-</span> <span class="fu">gl.grm</span>(t2,<span class="at">palette_convergent =</span> <span class="fu">gl.colors</span>(<span class="at">type=</span><span class="st">"con"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># formatting data</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>order_grm <span class="ot">&lt;-</span> <span class="fu">colnames</span>(GRM)[<span class="fu">order</span>(<span class="fu">colnames</span>(GRM))]</span>
@@ -853,7 +796,7 @@ Note
 </section>
 <section id="plotting" class="level3">
 <h3 class="anchored" data-anchor-id="plotting">Plotting</h3>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-10_dae62da9efb8845880e1f5136f770938">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sibling/Parent-Offspring</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"./functions/gl.grm.network_2.R"</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>mat_coan <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">'./data/session11coancestry_mat_coan.rds'</span>)</span>
@@ -866,11 +809,7 @@ Note
 <span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>                            <span class="at">title=</span><span class="st">"Coancestry relatedness &gt; 0.5 </span><span class="sc">\n</span><span class="st">(parent–offspring &amp; full sibs)"</span></span>
 <span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Half-sibling</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>grm_half_sib <span class="ot">&lt;-</span> <span class="fu">gl.grm.network_2</span>(mat_coan, t2,</span>
@@ -881,11 +820,7 @@ Note
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">method =</span> <span class="st">"kk"</span>,</span>
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">title=</span><span class="st">"Coancestry relatedness &gt; 0.25 </span><span class="sc">\n</span><span class="st">(parent–offspring &amp; full sibs + half sibs)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First cousin</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>grm_first_cos <span class="ot">&lt;-</span> <span class="fu">gl.grm.network_2</span>(mat_coan, t2,</span>
@@ -896,14 +831,10 @@ Note
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">method =</span> <span class="st">"kk"</span>,</span>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">title=</span><span class="st">"Coancestry relatedness &gt; 0.125 </span><span class="sc">\n</span><span class="st">(parent–offspring &amp; full sibs + half sibs + first cousins) "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<p><img src="session11_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</div>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-12_c031b1c90420fc2f479445832715771c">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TABLE</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>rel_cal <span class="ot">&lt;-</span> <span class="fu">cbind</span>(coan_col,EMIBD9_col<span class="sc">$</span>Freq,GCTA_col<span class="sc">$</span>Freq,GRM_col<span class="sc">$</span>Freq)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>rel_cal <span class="ot">&lt;-</span> rel_cal[<span class="fu">complete.cases</span>(rel_cal<span class="sc">$</span>Freq),]</span>
@@ -918,7 +849,7 @@ Note
 <span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>rel_plot_2 <span class="ot">&lt;-</span> <span class="fu">melt</span>(rel_cal, <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">"ind1"</span>,<span class="st">"ind2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Box and violin plots showing the distribution of kinship values from four methods. Relatedness estimates from Coancestry, GCTA and rrBLUP methods were divided by two to obtain kinship estimates. Kinship values shown in the plot, were filtered such as the minimum kinship value in all the datasets was &gt;0.05 for any pairwise relationship.</p>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-13_c73086f8adc68e04b8f534c466f34821">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rel_plot_2,<span class="fu">aes</span>(<span class="at">y=</span>value,<span class="at">x=</span>variable,<span class="at">color =</span> variable,<span class="at">fill =</span> variable)) <span class="sc">+</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position=</span><span class="fu">position_jitterdodge</span>(<span class="at">dodge.width=</span><span class="dv">1</span>),<span class="at">show.legend =</span> F) <span class="sc">+</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha=</span><span class="fl">0.1</span>,<span class="at">scale =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
@@ -933,11 +864,7 @@ Note
 <span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">legend.key.height=</span><span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>))<span class="sc">+</span></span>
 <span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Kiship"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -946,23 +873,19 @@ Note
 <h2 class="anchored" data-anchor-id="feathers-of-laughter-unveiling-the-mysteries-of-the-amazonian-giggletuft-hilaroplumis-amazoniana">Feathers of Laughter: Unveiling the Mysteries of the Amazonian Giggletuft (Hilaroplumis amazoniana)”</h2>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="./images/New_bird.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="300"></p>
-<figcaption><em>Amazonian Giggletuft (Hilaroplumis amazoniana)</em></figcaption>
+<p><img src="./images/New_bird.png" class="img-fluid figure-img" width="300"></p>
+<figcaption class="figure-caption"><em>Amazonian Giggletuft (Hilaroplumis amazoniana)</em></figcaption>
 </figure>
 </div>
 <p>A new bird species has recently been identified in the Amazon region, characterized by its distinctive and intriguing appearance. Scientists are keen to explore the possibility of multiple paternity occurrences within clutches for this species. To delve into this question, the research team employs SNP data to conduct relatedness analyses. Egg samples have been collected from three separate clutches.</p>
 <p>Understanding of mating dynamics of this species in the wild may help shape future management strategies, particularly in captive breeding programs. By adjusting ratios of males to females based on the mating system, we may be able to mimic wild matings as closely as possible.</p>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-14_77372764e7f093e8e31b2f5b4ee8a8ac">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loading filtered file</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>new_bird <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/new_bird.rds"</span>) </span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA visualization. </span></span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>pcoa_new_bird <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(new_bird)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you can zoom in or out and move in all directions. you can also </span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># unselect/select populations if you click in the labels of the populations in </span></span>
@@ -971,16 +894,12 @@ Note
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># a relatedness matrix. </span></span>
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>new_bird_grm <span class="ot">&lt;-</span> <span class="fu">gl.grm</span>(new_bird,<span class="at">palette_convergent =</span> <span class="fu">gl.colors</span>(<span class="at">type=</span><span class="st">"con"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <section id="coancestry-1" class="level3">
 <h3 class="anchored" data-anchor-id="coancestry-1">COANCESTRY</h3>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-15_c9d43e528881ea73610f937ff542f4fb">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>new_bird_related <span class="ot">&lt;-</span> <span class="fu">gl2related</span>(new_bird)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The mean relatedness for each clutch is calculated, with 1,000 bootstrap interactions performed to determine 95% confidence intervals.</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>res_coancestry <span class="ot">&lt;-</span> <span class="fu">coancestry</span>(new_bird_related,<span class="at">wang=</span><span class="dv">2</span>,<span class="at">ci95.num.bootstrap =</span> <span class="dv">1000</span>)</span>
@@ -1000,7 +919,7 @@ Note
 <section id="plotting-1" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-1">Plotting</h3>
 <p>All the individuals had a coefficient of relatedness within clutches greater than 0.25, with means within each clutch close to 0.50. We can therefore conclude that all individuals within each clutch were full siblings who share the same mother and father.</p>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-17_1a67c31de9422215a5c85e2acea30e91">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lightgoldenrod"</span>,<span class="st">"darkturquoise"</span>,<span class="st">"deeppink"</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(</span>
@@ -1019,11 +938,7 @@ Note
 <span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.key.height=</span><span class="fu">unit</span>(<span class="fl">1.5</span>, <span class="st">"cm"</span>))</span>
 <span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -1032,25 +947,21 @@ Note
 <h2 class="anchored" data-anchor-id="from-the-brink-and-back-the-arabian-oryxs-oman-odyssey">From the Brink and Back: The Arabian Oryx’s Oman Odyssey</h2>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="./images/Arabian_Oryx.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="300"></p>
-<figcaption><em>Arabian oryx (Oryx leucoryx)</em></figcaption>
+<p><img src="./images/Arabian_Oryx.png" class="img-fluid figure-img" width="300"></p>
+<figcaption class="figure-caption"><em>Arabian oryx (Oryx leucoryx)</em></figcaption>
 </figure>
 </div>
 <p>The Arabian oryx, once extinct in the wild by 1972, found a lifeline through global zoo and private collection breeding efforts. Thanks to “The World Herd” in the Phoenix Zoo and Saudi Arabian private reserves, these oryxes were reintroduced into the wild. Now, we’ve got about 1,000 roaming free and another 6,000-7,000 in captivity, marking a historic comeback from extinction to vulnerable status. Quite the turnaround for these majestic creatures in Oman!</p>
-<p><img src="./images/oryx_timeline.png" class="img-fluid quarto-figure quarto-figure-left" style="width:100.0%" alt="Arabian oryx (Oryx leucoryx)"> Timeline of the Arabian oryx reintroduction program in Oman and establishment of the “World Herd”. Top row displays the years when the animals were captured, translocated or released and the country where the event took place. Middle boxes show the major event and activity at that time. Bottom boxes show the number and sex of animals which had been used.</p>
+<p><img src="./images/oryx_timeline.png" class="img-fluid" style="width:100.0%" data-fig-align="left" alt="Arabian oryx (Oryx leucoryx)"> Timeline of the Arabian oryx reintroduction program in Oman and establishment of the “World Herd”. Top row displays the years when the animals were captured, translocated or released and the country where the event took place. Middle boxes show the major event and activity at that time. Bottom boxes show the number and sex of animals which had been used.</p>
 <section id="load-dataset-and-filtering" class="level3">
 <h3 class="anchored" data-anchor-id="load-dataset-and-filtering">Load dataset and filtering</h3>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-18_19d4f46030fa88ef2b05ee68d26ff6c7">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>oryx_gl <span class="ot">&lt;-</span> <span class="fu">gl.load</span>(<span class="st">"./data/oryx.rds"</span>)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>t1_dup <span class="ot">&lt;-</span> oryx_gl</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>res_dup <span class="ot">&lt;-</span> <span class="fu">gl.report.replicates</span>(t1_dup,<span class="at">perc_geno =</span> <span class="fl">0.925</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>res_dup2 <span class="ot">&lt;-</span> res_dup<span class="sc">$</span>table.rep</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordering pairwise estimates </span></span>
@@ -1071,29 +982,21 @@ Note
 <section id="grm" class="level3">
 <h3 class="anchored" data-anchor-id="grm">GRM</h3>
 <p>Heatmap of the probabilities of identity by descent in the group formed by the herds of WWR-Oman and WWR-UAE. As described by Endelman &amp; Jannink (68), each diagonal element has a mean that equals 1+f, where f is the inbreeding coefficient (i.e.&nbsp;the probability that the two alleles at a randomly chosen locus are IBD from the base population). As this probability lies between 0 and 1, the diagonal elements range from 1 to 2. Because the inbreeding coefficients are expressed relative to the current population, the mean of the off-diagonal elements is -(1+f)/n, where n is the number of loci. Yellow and red colours indicate those individuals that are more related to each other. The identification number of each individual is shown in the margins of the figure, where the last letter denotes whether the individual is male (M) or female (F).</p>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-19_98519d95819507f86c6e2b12f8c55103">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>oryx_related_matrix_all <span class="ot">&lt;-</span> <span class="fu">gl.grm</span>(oryx_gl,<span class="at">palette_convergent =</span> <span class="fu">gl.colors</span>(<span class="at">type=</span><span class="st">"con"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.grm.network</span>(oryx_related_matrix_all,</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>               oryx_gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="sequoia" class="level3">
 <h3 class="anchored" data-anchor-id="sequoia">SEQUOIA</h3>
-<div class="cell">
+<div class="cell" data-hash="session11_cache/html/unnamed-chunk-20_51317a993c72a954b9091011b397320b">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>LifeHistData_2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(oryx_gl<span class="sc">$</span>ind.names)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>LifeHistData_2<span class="sc">$</span>Sex <span class="ot">&lt;-</span> <span class="fu">as.character</span>(oryx_gl<span class="sc">$</span>other<span class="sc">$</span>ind.metrics<span class="sc">$</span>Gender)</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>LifeHistData_2[LifeHistData_2<span class="sc">==</span><span class="st">"Female"</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -1132,11 +1035,7 @@ Note
 <span id="cb47-36"><a href="#cb47-36" aria-hidden="true" tabindex="-1"></a>family <span class="ot">&lt;-</span> <span class="fu">pedigree</span>(<span class="at">id=</span>pedigree_res<span class="sc">$</span>id, <span class="at">dadid=</span>pedigree_res<span class="sc">$</span>sire, <span class="at">momid=</span>pedigree_res<span class="sc">$</span>dam,<span class="at">sex=</span>pedigree_res<span class="sc">$</span>sex)</span>
 <span id="cb47-37"><a href="#cb47-37" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(family)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="session11_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="session11_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
@@ -1430,29 +1329,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-          // default icon
-          link.classList.add("external");
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1462,17 +1342,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1485,125 +1356,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1647,7 +1399,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1673,32 +1424,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1756,22 +1481,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./session10.html" class="pagination-link" aria-label="Sex Linked Markers">
+      <a href="./session10.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sex Linked Markers</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./session12.html" class="pagination-link" aria-label="Genetic Structure">
+      <a href="./session12.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Genetic Structure</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 
